@@ -1,0 +1,462 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/ToolButtonCss/ToolButton.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/ButtonCss/Button.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/CornerShadowCss/CornerShadow.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/WindowCss/Window.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../../ui-core/DragControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/ResizeControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/blockUI.js"></script>
+    <script type="text/javascript" src="../../ui-core/PositionControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/FloatControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/PowerString.js"></script>
+    <script type="text/javascript" src="../../ui-control/ToolButton.js"></script>
+    <script type="text/javascript" src="../../ui-control/Button.js"></script>
+    <script type="text/javascript" src="../../ui-control/CornerShadow.js"></script>
+    <script type="text/javascript" src="../../ui-control/Window.js"></script>
+    
+    <script type="text/javascript">
+
+        function load(){
+            /*
+            $("#htmldemo").find("td[WindowType='TopTdCenter']").CreateToolButton("htmldemo-close","paraString",$.ToolButtonGetStyle("","close"));
+            $("#htmldemo").find("td[WindowType='TopTdCenter']").CreateToolButton("htmldemo-maximize","paraString",$.ToolButtonGetStyle("","maximize"));
+            $("#htmldemo").find("td[WindowType='TopTdCenter']").CreateToolButton("htmldemo-minimize","paraString",$.ToolButtonGetStyle("","minimize"));
+            
+            $("#testwinobj").bind("click",function(){alert(1);});
+            */
+            
+            //$.cssAdapter();
+            
+            $("#EventShowDropBar").bind("mousedown",function(){$(this.parentNode).Drag();});
+            $("#EventShow").SetResizeAble({position : "inner",borderColor : "#FF0000"});
+            
+            $("#ControlShowDropBar").bind("mousedown",function(){$(this.parentNode).Drag();});
+            $("#ControlShow").SetResizeAble({position : "inner",borderColor : "#FF0000"});
+            
+            //设置父窗口的层级
+            $(window).CreateWindowCtl(10000,11000,30);
+            $("#WindowInObj").CreateWindowCtl(9000,9999,30);
+        };
+        
+        //修改窗口的默认处理事件
+        $.Window.defaults.OnLoading = function(obj,divObj,opts){$("#OnLoadingShow").get(0).innerHTML="OnLoading("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType") +"   opts.ResizeAble:"+opts.ResizeAble;
+            //将窗口添加到可修改处理的列表中 
+            
+            var y=document.createElement('option');
+            y.text = obj.attr("id");
+            y.value = obj.attr("id");
+            try
+            {
+                $("#sl_Windows").get(0).add(y,null); // standards compliant
+            }
+            catch(ex)
+            {
+                $("#sl_Windows").get(0).add(y); // IE only
+            } 
+            
+        };
+        
+        $.Window.defaults.OnClose = function(obj,divObj){$("#OnCloseShow").get(0).innerHTML="OnClose("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType");
+            //将窗口从可修改处理的列表中删除
+            var sl = $("#sl_Windows").get(0);
+            for(var i =0;i<sl.options.length;i++){
+                if(sl.options[i].value == obj.attr("id")){
+                    sl.remove(i);
+                    break;
+                }
+            }
+            return true;
+        };
+        
+        $.Window.defaults.OnShow = function(obj,divObj){var text="OnShow("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType");
+            if(arguments.length > 2){
+                for(var i = 2;i<arguments.length;i++){
+                    text += "   ShowPara"+i+":"+arguments[i];
+                }
+            }
+            $("#OnShowShow").get(0).innerHTML = text;
+        };
+        
+        $.Window.defaults.OnHide = function(obj,divObj){$("#OnHideShow").get(0).innerHTML="OnHide("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType");};
+        
+        $.Window.defaults.OnResize = function(obj,divObj,WindowSize,DivSize){$("#OnResizeShow").get(0).innerHTML="OnResize("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType") + "   WindowSize:"+WindowSize.width + "x"+WindowSize.height + "   DivSize:"+DivSize.width + "x" + DivSize.height;};
+        
+        $.Window.defaults.AfterDrag = function(obj,divObj,pos){$("#AfterDragShow").get(0).innerHTML="AfterDrag("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType") + "Pos:" + pos.left+":"+pos.top;};
+        
+        $.Window.defaults.OnMinSizeClick = function(obj,divObj){$("#OnMinSizeClickShow").get(0).innerHTML="OnMinSizeClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType"); return true;};
+        
+        $.Window.defaults.OnMaxSizeClick = function(obj,divObj){$("#OnMaxSizeClickShow").get(0).innerHTML="OnMaxSizeClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType"); return true;};
+        
+        $.Window.defaults.OnCloseClick = function(obj,divObj){$("#OnCloseClickShow").get(0).innerHTML="OnCloseClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType"); return true;};
+        
+        $.Window.defaults.OnTitleDbClick = function(obj,divObj){$("#OnTitleDbClickShow").get(0).innerHTML="OnTitleDbClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   divObj WindowType is:"+divObj.attr("WindowType"); return true;};
+        
+        
+        function ShowHideEventShow(obj){
+            if(obj.value == "显示事件栏"){
+                obj.value = "隐藏事件栏";
+                $("#EventShow").css("display","block");
+            }
+            else{
+                obj.value = "显示事件栏";
+                 $("#EventShow").css("display","none");
+            }
+        };
+        
+        function ShowHideControlShow(obj){
+            if(obj.value == "显示控制栏"){
+                obj.value = "隐藏控制栏";
+                $("#ControlShow").css("display","block");
+            }
+            else{
+                obj.value = "显示控制栏";
+                 $("#ControlShow").css("display","none");
+            }
+        };
+        
+        function ShowWindow(){
+            var sl = $("#sl_Windows").get(0);
+            $("#"+sl.options[sl.selectedIndex].value).ShowWindow();
+        };
+        
+        function ShowWindowPos(){
+            var sl = $("#sl_Windows").get(0);
+            $("#"+sl.options[sl.selectedIndex].value).ShowWindow(parseInt($("#ShowPosX").get(0).value),parseInt($("#ShowPosY").get(0).value),"test");
+        };
+        
+        function HideWindow(){
+            var sl = $("#sl_Windows").get(0);
+            $("#"+sl.options[sl.selectedIndex].value).HideWindow();
+        };
+        
+        function CloseWindow(){
+            var sl = $("#sl_Windows").get(0);
+            $("#"+sl.options[sl.selectedIndex].value).CloseWindow();
+        };
+        
+        function CreateWindow(){
+            var parentObj = $(window);
+            if($("#sl_parentObj").get(0).selectedIndex == 1){
+                parentObj = $("#WindowInObj");
+            }
+
+            var opts = {
+                //样式前缀
+                CssBefore :$("#CssBefore").get(0).value,
+                
+                //是否对话窗口－显示时其他内容不能操作
+                IsMsgBox : $("#IsMsgBox").get(0).checked,
+                
+                //是否内容栏位颜色是否素色
+                IsPlain :  $("#IsPlain").get(0).checked,
+                
+                //是否显示阴影
+                HasShadow :  $("#HasShadow").get(0).checked,
+                
+                //窗口标题文字
+                TitleText : $("#TitleText").get(0).value,
+                
+                //是否显示标题图片
+                ShowTitlePic :  $("#ShowTitlePic").get(0).checked,
+                
+                //标题图片src
+                TitlePicSrc :$("#TitlePicSrc").get(0).value,
+                
+                //是否显示状态栏
+                ShowStatusBar : $("#ShowStatusBar").get(0).checked,
+                
+                //是否显示内容滚动条
+                ShowScrollBar : $("#ShowScrollBar").get(0).checked,
+                
+                //是否可拖动
+                DragAble : $("#DragAble").get(0).checked,
+                
+                //是否显示关闭按钮
+                ShowCloseButton :$("#ShowCloseButton").get(0).checked,
+                
+                //是否可最大化
+                MaxSizeAble :$("#MaxSizeAble").get(0).checked,
+                
+                //是否可最小化
+                MinSizeAble : $("#MinSizeAble").get(0).checked,
+                
+                
+                //窗口大小类型,fixed - 固定设置大小，fit － 根据内容大小自适应（内容div不出现滚动条），fitX - 横向自适应，fitY - 纵向自适应
+                SizeType : $("#SizeType").get(0).options[$("#SizeType").get(0).selectedIndex].value,
+                
+                //是否可改变大小，如果窗口大小类型为fit，则不允许改变大小，fitX不允许改变宽度，fitY不允许改变高度
+                ResizeAble :$("#ResizeAble").get(0).checked,
+                
+                //初始窗口宽度,px，对于fit类型无效
+                Width : parseInt($("#Width").get(0).value),
+                
+                //初始窗口高度,px，对于fit类型无效
+                Height :  parseInt($("#Height").get(0).value),
+                
+                //最小宽度，px
+                MinWidth : parseInt($("#MinWidth").get(0).value),
+                
+                //最小高度，px
+                MinHeight :  parseInt($("#MinHeight").get(0).value),
+                       
+                
+                //窗口初始位置类型,center - 居中，letftop － 相对左上角
+                StartPosition :  $("#StartPosition").get(0).options[$("#StartPosition").get(0).selectedIndex].value,
+                
+                //窗口初始位置，px，对于center类型无效
+                Left : parseInt($("#Left").get(0).value),
+                
+                //窗口初始位置，px，对于center类型无效
+                Top : parseInt($("#Top").get(0).value),
+                
+                //IE6防崩溃代码，启动后性能较差，用于防止由于存在滚动条而导致的浏览器崩溃情况
+                IE6Defense : true
+            };
+            
+            var html = "<div id='testwinobj' style='width:100px; height:600px; overflow:scroll;'>要放到窗口的内容fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</div>";
+            
+            //html = "要放到窗口的内容fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
+            
+            parentObj.CreateWindow("",opts,html,$("#isShow").get(0).checked,$("#isMaximize").get(0).checked);
+        };
+        
+        function AddSelfButton(){
+            var sl = $("#sl_Windows").get(0);
+            $("#"+sl.options[sl.selectedIndex].value).WindowAddSelfButton(sl.options[sl.selectedIndex].value+"_SelfButton","SelfPara",$.ToolButtonGetStyle("","gear"),{
+                //按下鼠标时执行的函数，传入的参数依次为：按钮本身对象、按钮参数、event
+                OnClick : function(obj,para,ev){alert(para);}
+            });
+        };
+        
+        function test(){
+            
+            $(window).CreateWindowDialog("",{
+                //消息窗口的类型
+                //Alert - 警告框
+                //Confirm - 确认框
+                //Prompt - 输入框
+                //MultilinePrompt - 多行的内容输入框
+                //YesNoCancel - 3个按钮的确认框
+                DialogType : "YesNoCancel",
+                
+                //标题内容
+                TitleText : "Alert",
+                
+                //消息内容
+                Message : "消息内容ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+                
+                //默认的输入内容
+                PromptText : "test",
+                
+                //多行的内容输入框的行数
+                PromptRows : 5,
+                      
+                //窗口宽度，填像素值，若不控制则填null
+                Width : 300,
+                
+                //窗口高度，填像素值，若不控制则填null
+                Height : null,
+                
+                //是否显示标题图标
+                ShowTitlePic : false,
+                
+                //是否显示内容图片
+                ShowMessagePic : true,
+                
+                //图片类型
+                //Error - 错误
+                //Info - 消息
+                //Question - 提问
+                //Warning - 警告
+                //SelfDef - 自定义
+                PicType : "Warning",
+                
+                //图片的路径
+                PicPath : "../../ui-control/WindowImg/",
+                
+                //自定义图片类型时标题图标src
+                TitlePicSrc : "",
+                
+                //自定义图片类型时内容图片src
+                MessagePicSrc : "",
+                
+                //Yes按钮的文字，填空的话会根据消息窗口的类型赋值
+                YesBtnText : "",
+                
+                //No按钮的文字，填空的话会根据消息窗口的类型赋值
+                NoBtnText : "",
+                
+                //Cancel按钮的文字，填空的话会根据消息窗口的类型赋值
+                CancelBtnText : "",
+                
+                //窗口关闭的回调函数，若函数返回false，则终止对窗口的关闭
+                //根据不同的窗口类型传入不同的参数
+                //Alert传入CallBackPara
+                //Confirm、YesNoCancel传入CallBackPara、点击的按钮类型-Yes/No/Cancel
+                //Prompt、MultilinePrompt传入CallBackPara、点击的按钮类型Yes/No，填入的内容
+                CallBack : function(){
+                    for(var i = 0;i<arguments.length;i++){
+                        alert(arguments[i]);
+                    }
+                    return true;
+                },
+                
+                //窗口调用参数，可传对象，用于返回到回调函数中进行窗口识别
+                CallBackPara : "para"
+            });
+        };
+        
+    </script>
+    <style type="text/css">
+        #Select1
+        {
+            width: 114px;
+        }
+    </style>
+</head>
+<body onload="load();">
+
+<div id='EventShow' style="width:500px; height:300px; background-color:RosyBrown; position:absolute; left:0px; top:0px; overflow:hidden;  z-index:40000; padding:10px; display:none;">
+<div id="EventShowDropBar" style="width:100%; height:20px; background-color:Beige;">事件栏</div>
+<div style="width:100%; height:95%; overflow:auto; word-break:break-all; padding:0px;">
+<p id='OnLoadingShow'>OnLoadingShow:</p>
+<p id='OnCloseShow'>OnCloseShow:</p>
+<p id='OnShowShow'>OnShowShow:</p>
+<p id='OnHideShow'>OnHideShow:</p>
+<p id='OnResizeShow'>OnResizeShow:</p>
+<p id='AfterDragShow'>AfterDragShow:</p>
+<p id='OnMinSizeClickShow'>OnMinSizeClickShow:</p>
+<p id='OnMaxSizeClickShow'>OnMaxSizeClickShow:</p>
+<p id='OnCloseClickShow'>OnCloseClickShow:</p>
+<p id='OnTitleDbClickShow'>OnTitleDbClickShow:</p>
+</div>
+</div>
+
+<div id='ControlShow' style="width:500px; height:300px; background-color:RosyBrown; position:absolute; left:0px; top:320px; overflow:hidden;  z-index:40000; padding:10px; display:none;">
+<div id="ControlShowDropBar" style="width:100%; height:20px; background-color:Beige;">控制栏</div>
+<div style="width:100%; height:95%; overflow:auto; word-break:break-all; padding:0px;">
+    <p> 已创建的窗口
+        <select id="sl_Windows" name="D1" style="width:130px;">
+        </select>&nbsp;&nbsp;
+        <input id="Button2" type="button" value="显示窗口" onclick="ShowWindow();" />&nbsp;
+        <input id="Button3" type="button" value="隐藏窗口" onclick="HideWindow();" />&nbsp;
+        <input id="Button4" type="button" value="关闭窗口" onclick="CloseWindow();" />
+    </p>
+    <p>窗口位置X<input id="ShowPosX" type="text" value="100" style="width:50px;" />&nbsp;
+        窗口位置Y<input id="ShowPosY" type="text" value="100" style="width:50px;"  />&nbsp;
+        <input id="Button5" type="button" value="显示窗口" onclick="ShowWindowPos();" /> &nbsp;
+        <input id="Button7" type="button" value="添加自定义按钮" onclick="AddSelfButton();" /> &nbsp;
+    </p>
+    <p> 窗口父节点
+        <select id="sl_parentObj">
+            <option value="window">window</option>
+            <option value="WindowInObj">WindowInObj</option>
+        </select>
+        &nbsp;<input id="isShow" type="checkbox" checked=checked />显示窗口
+        &nbsp;<input id="isMaximize" type="checkbox" />最大化
+        &nbsp;<input id="Button6" type="button" value="创建窗口" onclick="CreateWindow();" />
+    </p>
+    <p>
+    样式前缀<input id="CssBefore" type="text" value="Window" style="width:50px;"  />&nbsp;
+    <input id="IsMsgBox" type="checkbox" />弹出窗口&nbsp;
+    <input id="IsPlain" type="checkbox" />内容栏位颜色是素色&nbsp;
+    <input id="HasShadow" type="checkbox" checked=checked />显示阴影&nbsp;
+    窗口标题文字<input id="TitleText" type="text" value="Window" style="width:50px;"  />&nbsp;
+    <input id="ShowTitlePic" type="checkbox" />显示标题图片&nbsp;
+    标题图片src<input id="TitlePicSrc" type="text" value="list-items.gif" style="width:100px;"  />&nbsp;
+    <input id="ShowStatusBar" type="checkbox" />显示状态栏&nbsp;
+    <input id="ShowScrollBar" type="checkbox" checked=checked />显示内容滚动条&nbsp;
+    <input id="DragAble" type="checkbox"  checked=checked />可拖动&nbsp;
+    <input id="ShowCloseButton" type="checkbox"  checked=checked />显示关闭按钮&nbsp;
+    <input id="MaxSizeAble" type="checkbox"  checked=checked />可最大化&nbsp;
+    <input id="MinSizeAble" type="checkbox"  checked=checked />可最小化&nbsp;
+    窗口大小类型<select id="SizeType"  style="width:50px;">
+            <option value="fixed">fixed</option>
+            <option value="fit">fit</option>
+            <option value="fitX">fitX</option>
+            <option value="fitY">fitY</option>
+        </select>&nbsp;
+     <input id="ResizeAble" type="checkbox"  checked=checked />可改变大小&nbsp;
+     初始窗口宽度<input id="Width" type="text" value="300" style="width:50px;" />&nbsp;
+     初始窗口高度<input id="Height" type="text" value="200" style="width:50px;" />&nbsp;
+     最小宽度<input id="MinWidth" type="text" value="130" style="width:50px;" />&nbsp;
+     最小高度<input id="MinHeight" type="text" value="75" style="width:50px;" />&nbsp;
+     窗口初始位置类型<select id="StartPosition"  style="width:50px;">
+            <option value="center">center</option>
+            <option value="letftop">letftop</option>
+        </select>&nbsp;
+        窗口初始位置Left<input id="Left" type="text" value="10" style="width:50px;" />&nbsp;
+        窗口初始位置Top<input id="Top" type="text" value="10" style="width:50px;" />&nbsp;
+    </p>
+</div>
+</div>
+
+<div style="width:100px; height:50px; overflow:hidden; background-color:Gray; position:absolute; left:20px; top:100px; border:solid 2px #000000; z-index:50000; display:none; ">
+    <input type=button value="隐藏控制栏" onclick="ShowHideControlShow(this);" />
+    <input type=button value="隐藏事件栏" onclick="ShowHideEventShow(this);" />
+</div>
+
+<div id='WindowInObj' style="width:80%; height:400px; border:solid 1px #000000; position:absolute; left:50px; top:50px; background-color:Olive; display:block; overflow:hidden; display:none;"></div>
+
+
+<p><div id='testwinobj' style="display:none;">要放到窗口的内容fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</div></p>
+
+
+<p>
+    <input id="Button1" type="button" value="创建窗口" onclick='test();' /></p>
+
+<p>HTML测试</p>
+<p>
+   <!-- 窗口控件 
+        可选参数：
+        WindowMoveAble - 可移动
+        WindowPlain - 素色，窗口内容的背景色深一点
+        WindowWithStatusBar - 窗口下方是状态栏
+   -->
+   <DIV selftype='Window' class='Window_MainDiv' id='htmldemo' style='Z-INDEX: 9003; WIDTH: 300px; height:200px; TOP: 97px; LEFT: 266px; position:static; display:block;'>
+        <table WindowType='Table' class='WindowTable WindowMoveAble WindowWithStatusBar WindowDialog' cellpadding='0' cellspacing='0'>
+            <tr WindowType='TopTr' class='WindowTopTr'>
+                <td WindowType='TopTdLeft' class='WindowTopTdLeft'>&nbsp;</td>
+                <td WindowType='TopTdCenter' class='WindowTopTdCenter'>
+                    <img WindowType='TitlePic' class='WindowTitlePic' src="../../ui-control/WindowImg/grid.png" />
+                    <a WindowType='TitleText' class='WindowTitleText'>Window Demo</a>
+                </td>
+                <td WindowType='TopTdRight' class='WindowTopTdRight'>&nbsp;</td>
+            </tr>
+            <tr WindowType='MidTr' class='WindowMidTr'>
+                <td WindowType='MidTdLeft' class='WindowMidTdLeft'>&nbsp;</td>
+                <td WindowType='MidTdCenter' class='WindowMidTdCenter'>
+                    <div WindowType='Body' class='WindowBody' style='height:150px;'>
+                        <div WindowType='DialogDiv' class='WindowDialogDiv'>
+                            <img WindowType='DialogPic' class='WindowDialogPic' src="../../ui-control/WindowImg/icon-error.gif" style="display:none;" />
+                            <div WindowType='DialogText' class='WindowDialogText'>ffffffffffffffffffffffd:</div>
+                            <input type=text WindowType='DialogPrompt' class='WindowDialogPrompt' style="display:none;" />
+                            <textarea WindowType='DialogMultilinePrompt' class='WindowDialogMultilinePrompt' rows='5'></textarea>
+                        </div>
+                    </div>
+                </td>
+                <td WindowType='MidTdRight' class='WindowMidTdRight'>&nbsp;</td>
+            </tr>
+            <tr WindowType='BtmTr' class='WindowBtmTr'>
+                <td WindowType='BtmTdLeft' class='WindowBtmTdLeft'>&nbsp;</td>
+                <td WindowType='BtmTdCenter' class='WindowBtmTdCenter'>&nbsp;</td>
+                <td WindowType='BtmTdRight' class='WindowBtmTdRight'>&nbsp;</td>
+            </tr>
+        </table>
+   </DIV>
+</p>
+<p><div style="width:600px; height:400px; position:absolute; left:50px; top:60px; background-color:Yellow; z-index:10; display:none;">
+    <div style="width:400px; height:600px; position:absolute; left:80px; top:90px; background-color:Green; z-index:1000;"></div>
+</div>
+<div style="width:300px; height:200px; position:absolute; left:80px; top:90px; background-color:Gray; z-index:20; display:none;">
+</div>
+</p>
+
+
+</body>
+</html>

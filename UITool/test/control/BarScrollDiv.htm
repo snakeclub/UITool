@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/BarScrollDivCss/BarScrollDiv.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+     <script type="text/javascript" src="../../ui-core/TimerControl.js"></script>
+    <script type="text/javascript" src="../../ui-control/BarScrollDiv.js"></script>
+    
+    <script type="text/javascript">
+        function AddDiv(){
+            $("#test1").WrapBarScrollDiv("Sid",{
+                //样式前缀
+                CssBefore : "BarScrollDiv",
+                
+                //容器宽度,可以为象素值，也可以为百分比，也可以为auto
+                Width : "70%",
+                
+                //滚动每一下的距离，单位为px
+                ScrollStep : 2
+            });
+        };
+        
+        function AddDiv1(){
+            $("#Div1").WrapBarScrollDiv("Sid1",{
+                //样式前缀
+                CssBefore : "BarScrollDiv",
+                
+                //容器宽度,可以为象素值，也可以为百分比，也可以为auto
+                Width : "70%",
+                
+                //滚动每一下的距离，单位为px
+                ScrollStep : 2,
+                
+                //自定义滚动对象，若定义该值，则通过该对象判断是否需滚动，同时也是滚动该对象
+                SelfScrollObj : $("#Div1")
+            });
+        };
+    </script>
+</head>
+<body>
+
+<p>
+            <div id='test1' style="background-color:Green; width:600px; height:23px;">
+	            testdddddddddddddddddddddddddddddddddddddddddddddddddd
+	        </div>
+</p>
+
+<p><input id="Button1" type="button" value="添加容器" onclick="AddDiv();" /></p>
+
+<p>
+            <div id='Div1' style="background-color:Green; width:100%; height:23px; overflow:hidden;">
+	            testdddddddddddddddddddddddddddddddddddddddddddddddddd
+	        </div>
+</p>
+
+<p><input id="Button2" type="button" value="添加容器" onclick="AddDiv1();" /></p>
+
+
+</body>
+</html>

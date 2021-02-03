@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/HotKeyControl.js"></script>
+    <script type="text/javascript">
+        function bind1(){
+            $("#Div1").BindHotKey("CTRL+S",
+              function(v1,v2,v3){document.getElementById("Div1ExeFun").innerHTML="text1ExeFun("+Date().toString()+"):对象id:"+v1.attr("id")+" KeyDef:" + v2 + " KeyBreak" + v3; return false;},
+              false);
+        }
+        
+        function bind2(){
+            //为Div1绑定CTRL+ALT+S
+            $("#Div1").BindHotKey("CTRL+1",
+              function(v1,v2,v3){document.getElementById("Div1ExeFun").innerHTML="Div1ExeFun("+Date().toString()+"):对象id:"+v1.attr("id")+" KeyDef:" + v2 + " KeyBreak" + v3; return true;},
+              true);
+        }
+        
+        function bind3(){
+            //为Div2绑定CTRL+B
+            $("#Div2").BindHotKey("CTRL+S",
+              function(v1,v2,v3){document.getElementById("Div2ExeFun").innerHTML="Div2ExeFun("+Date().toString()+"):对象id:"+v1.attr("id")+" KeyDef:" + v2 + " KeyBreak" + v3; return true;},
+              false);
+        }
+        
+        function bind4(){
+            //为document.body绑定CTRL+B
+            $(document).BindHotKey("CTRL+S",
+              function(v1,v2,v3){document.getElementById("BodyExeFun").innerHTML="BodyExeFun("+Date().toString()+"):对象id:"+v1+" KeyDef:" + v2 + " KeyBreak" + v3; return true;},
+              true);
+              
+              $(document).BindHotKey("CTRL+ALT+ENTER",
+              function(v1,v2,v3){document.getElementById("BodyExeFun").innerHTML="BodyExeFun("+Date().toString()+"):对象id:"+v1+" KeyDef:" + v2 + " KeyBreak" + v3; return true;},
+              false);
+        }
+        
+        function clearbind(){
+            $("#Div1").UnbindHotKey();
+            $("#Div2").UnbindHotKey("CTRL+S");
+            $(document).UnbindHotKey();
+        }
+        
+    </script>
+    <style type="text/css">
+        #Select1
+        {
+            width: 99px;
+        }
+        #Select2
+        {
+            width: 99px;
+        }
+        #sl_XPosition
+        {
+            width: 90px;
+        }
+        #sl_YPosition
+        {
+            width: 87px;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <input type=button value="为Div1绑定CTRL+S,不冒泡到低层" onclick="bind1();" />
+        <input type=button value="为Div1绑定CTRL+1" onclick="bind2();" />
+        <input type=button value="为Div2绑定CTRL+S,并冒泡到底层" onclick="bind3()" />
+        <input type=button value="为document绑定CTRL+S和CTRL+ALT+ENTER" onclick="bind4()" />
+        <input type=button value="解除所有绑定" onclick="clearbind();" />
+    </p>
+    <p id="Div1ExeFun"></p>
+    <p id="Div2ExeFun"></p>
+    <p id="BodyExeFun"></p>
+    <Div id="Div2" style="width:200px; height:200px; background-color:Red; overflow:hidden; position:absolute; left:200px; top:200px;">Div2,请先用鼠标点一下我！</Div>
+    <Div id="Div1" style="width:80px; height:80px; background-color:Green; overflow:hidden; position:absolute; left:400px; top:400px;">Div1,请先用鼠标点一下我！</Div>
+</body>
+</html>

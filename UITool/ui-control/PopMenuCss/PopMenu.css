@@ -1,0 +1,266 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：PopMenu
+说明：弹出菜单控件
+文件：PopMenu.css
+
+资源文件：../PopMenuImg/
+
+
+<UL selftype='PopMenu' class='PopMenu_ULMain'>
+	<LI PopMenuType='Title' class='PopMenu_LITitle'>
+		<DIV PopMenuType='TitlePic' class='PopMenu_DivTitlePic'></DIV>
+		<DIV PopMenuType='TitleText' class='PopMenu_DivTitleText'>标题文字</DIV>
+	</LI>
+	<LI PopMenuType='Item' class='PopMenu_LIItem'>
+		<DIV PopMenuType='ItemPicBg' class='PopMenu_DivItemPicBg'></DIV>
+		<DIV PopMenuType='ItemBgDiv' class='PopMenu_DivItemBgDiv' mouseover='PopMenu_DivItemBgDiv_Over'>
+			<DIV PopMenuType='ItemPic' class='PopMenu_DivItemPic' mouseover='PopMenu_DivItemPic_Over' disable='PopMenu_DivItemPic_Dis'></DIV>
+			<DIV PopMenuType='ItemText' class='PopMenu_DivItemText' mouseover='PopMenu_DivItemText_Over' disable='PopMenu_DivItemText_Dis'></DIV>
+			<DIV PopMenuType='ItemTail' class='PopMenu_DivItemTail' mouseover='PopMenu_DivItemTail_Over'></DIV>
+		</DIV>
+	</LI>
+	<LI PopMenuType='Split' class='PopMenu_LISplit'>
+		<DIV PopMenuType='SplitPicBg'  class='PopMenu_DivSplitPicBg'></DIV>
+		<DIV PopMenuType='SplitBar'  class='PopMenu_SplitBar'></DIV>
+	</LI>
+</UL>
+-----------------------*/
+
+/* 最外层元素样式 */
+.PopMenu_ULMain
+{
+	/* 不建议修改的样式 */
+	padding:0px;
+	margin:0px;  /* 可以精确定位 */
+	font-size:0px; /* 让LI项可以控制最小高度 */
+	overflow:hidden; /* 让菜单可以控制宽度，不会被撑大 */
+	position:absolute; /* 绝对位置 */
+	cursor:default;
+	
+	/* 可修改的样式 */
+	background-color:#FAFAFA; /* 总额控件背景色 */
+	border:1px solid #868686; /* 边框 */
+}
+
+/* 标题框的LI容器 */
+.PopMenu_LITitle
+{
+	/* 不建议修改的样式 */
+	overflow:hidden; 
+	width:200%; /* 足够的宽度让里面的多个div不会换行 */
+	list-style-type:none; /* 不显示列表图标 */
+	padding:0px;
+	
+	/* 可修改的样式 */
+	background-color:#DDE7EE; /* 标题背景颜色 */
+	border-bottom:1px solid #C5C5C5; /* 标题下边框样式 */
+}
+
+/* 标题框的图片样式 */
+.PopMenu_DivTitlePic
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	border:0px solid #fff; /* 没有边框 */
+	overflow:hidden; /* 图片超大截取 */
+	background-repeat:no-repeat; /* 背景图不重复 */
+	float:left; /* div不换行 */
+	
+	/* 可修改的样式 */
+}
+
+/* 标题框的文字样式 */
+.PopMenu_DivTitleText
+{
+	/* 不建议修改的样式 */
+	padding:0px; 
+	margin:0px; 
+	border:0px solid #fff; 
+	overflow:hidden; 
+	float:left; /* div不换行 */
+	
+	/* 可修改的样式 */
+	font-size:12px;  /* 字体大小 */
+	font-weight:bold; /* 加粗 */
+	color:#00156E; /* 字体颜色 */
+}
+
+/* 选项的LI容器 */
+.PopMenu_LIItem
+{
+	/* 不建议修改的样式 */
+	padding:0px;
+	margin:0px;
+	list-style-type:none; /* 不显示列表图标 */
+	overflow :hidden; 
+	width:200%; /* 足够的宽度让里面的多个div不会换行 */
+	
+	/* 可修改的样式 */
+}
+
+/* 选项图片的背景颜色 */
+.PopMenu_DivItemPicBg
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	padding:0px;
+	float:left; /* div不换行 */
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	background-color:#E9EEEE;  /* 选项图片的背景色 */
+	border-right:1px solid #C5C5C5; /*选项图片的右边框－生成分隔线*/
+}
+
+/* 选项mouseover特效的背景容器－正常情况 */
+.PopMenu_DivItemBgDiv
+{
+	/* 不建议修改的样式 */
+	margin:0px;
+	padding:0px;
+	float:left;
+	position:relative;  /* 用于控制该容器的位置往左移，覆盖到图片的背景颜色div上 */
+	border:0px solid #DBCE99;  /* 没有边框 */
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+}
+
+/* 选项mouseover特效的背景容器－mouseover的情况 */
+.PopMenu_DivItemBgDiv_Over
+{
+	/* 不建议修改的样式 */
+	margin:0px;
+	padding:0px;
+	float:left;
+	position:relative;  /* 用于控制该容器的位置往左移，覆盖到图片的背景颜色div上 */
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	background-color:#FFE69F;  /* 背景颜色-在背景图无效的情况下显示 */
+	border:1px solid #DBCE99;  /* 没有边框 */
+}
+
+/* 选项图片－正常情况/鼠标移上/屏蔽状态 */
+.PopMenu_DivItemPic,.PopMenu_DivItemPic_Over,.PopMenu_DivItemPic_Dis
+{
+	/* 不建议修改的样式 */
+	margin:0px;
+	overflow :hidden; 
+	float:left;
+	
+	/* 可修改的样式 */
+}
+
+/* 选项文字-正常情况/鼠标移上 */
+.PopMenu_DivItemText,.PopMenu_DivItemText_Over
+{
+	/* 不建议修改的样式 */
+	 margin:0px;
+	 padding:0px;
+	 float:left;
+	 overflow:hidden;
+	 
+	/* 可修改的样式 */
+	font-size:11px;  /* 字体大小 */
+	color:#00156E;  /* 字体颜色 */
+	margin-left:5px; /* 距离左边的宽度 */
+}
+
+/* 选项文字-屏蔽 */
+.PopMenu_DivItemText_Dis
+{
+	/* 不建议修改的样式 */
+	 margin:0px;
+	 padding:0px;
+	 float:left;
+	 
+	/* 可修改的样式 */
+	font-size:11px;  /* 字体大小 */
+	color:#C5C5C5;  /* 字体颜色 */
+	margin-left:5px; /* 距离左边的宽度 */
+}
+
+/* 子菜单提示图 - 正常情况/鼠标移上 */
+.PopMenu_DivItemTail,.PopMenu_DivItemTail_Over
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	float:right; /* 在右边显示 */
+	
+	/* 可修改的样式 */
+	width:8px; 
+	height:9px;
+	margin-right:2px;
+	background-image:url(../../ui-control/PopMenuImg/PopMenu_rightarrow.gif);  /* 背景图 */
+}
+
+/* 分隔符选项LI容器 */
+.PopMenu_LISplit
+{
+	/* 不建议修改的样式 */
+	padding:0px;
+	margin:0px;
+	list-style-type:none; /* 不显示列表图标 */
+	overflow :hidden; 
+	width:200%; /* 足够的宽度让里面的多个div不会换行 */
+	
+	/* 可修改的样式 */
+}
+
+/* 分隔符选项图片背景块 */
+.PopMenu_DivSplitPicBg
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	padding:0px;
+	float:left; /* div不换行 */
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	background-color:#E9EEEE;  /* 选项图片的背景色 */
+	border-right:1px solid #C5C5C5; /*选项图片的右边框－生成分隔线*/
+}
+
+/* 分隔符选项分隔样式 */
+.PopMenu_SplitBar
+{
+	/* 不建议修改的样式 */
+	float:left;  
+	margin:0px;  
+	
+	/* 可修改的样式 */
+	height:1px; /* 样式div的高度 */
+	border-top:1px solid #C5C5C5;  /* 用灰色边框弄成的直线 */
+	margin-left:6px; /* 距离左边的距离 */
+}
+
+
+/* -------------------
+	默认高度宽度的定义 
+-------------------- */
+.PopMenu_LITitle
+{
+	height:25px;  /* 注意要与该class的border-bottom联动修改 */
+}
+
+.PopMenu_LIItem,.PopMenu_DivItemPicBg,.PopMenu_DivSplitPicBg
+{
+	height:26px;  /* 选项的固定高度 */
+}
+
+.PopMenu_DivItemPicBg,.PopMenu_DivSplitPicBg
+{
+	width:25px; /* 注意与相应选项的 border-right 联动修改*/
+}
+
+.PopMenu_LISplit
+{
+	height:2px; /* 分隔栏的高度 */
+}

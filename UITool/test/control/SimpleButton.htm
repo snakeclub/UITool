@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/SimpleButtonCss/SimpleButton.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../../ui-control/SimpleButton.js"></script>
+    
+    
+    <script type="text/javascript">
+    
+    $.SimpleButton.defaults.OnClick = function(obj,status,text){$("#OnClickShow").get(0).innerHTML="OnClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+    
+    $.SimpleButton.defaults.OnMouseOver = function(obj,status,text){$("#OnMouseOverShow").get(0).innerHTML="OnMouseOver("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+    
+     $.SimpleButton.defaults.OnMouseOut = function(obj,status,text){$("#OnMouseOutShow").get(0).innerHTML="OnMouseOut("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+     
+      $.SimpleButton.defaults.OnMouseDown = function(obj,status,text){$("#OnMouseDownShow").get(0).innerHTML="OnMouseDown("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+      
+      $.SimpleButton.defaults.OnMouseUp = function(obj,status,text){$("#OnMouseUpShow").get(0).innerHTML="OnMouseUp("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+    
+    /* 添加按钮 */
+    function AddButton(){
+        $("#ButtonDiv").empty();
+        var clickFun = $.SimpleButton.defaults.OnClick;
+        if($("#cb_SupportDownStatus").get(0).checked){
+            clickFun = function(obj,status,text){$("#OnClickShow").get(0).innerHTML="OnClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text; obj.SimpleButtonIsUp(status=="Down");};
+        }
+        
+        $("#ButtonDiv").CreateSimpleButton("demobotton",
+            {
+                //样式前缀
+                CssBefore : $("#txt_CssBefore").get(0).value,
+                
+                //按钮类型，支持Input、Div、DivIcon、A 这4种类型
+                Type : $("#sle_Type").get(0).options[$("#sle_Type").get(0).selectedIndex].value,
+                
+                //是否支持按下效果
+                SupportDownStatus : $("#cb_SupportDownStatus").get(0).checked,
+                
+                //按下鼠标时执行的函数，传入的参数依次为：按钮本身对象、当前按下状态、按钮文本
+                OnClick : clickFun,
+                
+                //开启鼠标移动上去的效果，仅Input、Div、DivIcon类型有效
+                MouseOverEfect : $("#cb_MouseOverEfect").get(0).checked,
+                
+                //开启按钮点击的效果，仅Input、Div、DivIcon类型有效
+                MouseClickEfect : $("#cb_MouseClickEfect").get(0).checked,
+                
+                //按钮大小控制方式,fixed-固定大小，css－依照css样式中的大小，text-依照文字内容大小，仅Div、DivIcon类型有效
+                SizeType : $("#sle_SizeType").get(0).options[$("#sle_SizeType").get(0).selectedIndex].value,
+                
+                //大小控制方式为fixed时的宽，仅Div、DivIcon类型有效
+                Width : $("#txt_Width").get(0).value,
+                
+                //大小控制方式为fixed时的高，仅Div、DivIcon类型有效
+                Height : $("#txt_Height").get(0).value,
+                
+                 //是否显示Icon，仅Div有效
+                ShowIcon :  $("#cb_ShowIcon").get(0).checked,
+                
+                //是否显示Text，仅Div有效
+                ShowText : $("#cb_ShowText").get(0).checked,
+                
+                //DivIcon样式时，图标的位置是否为左边
+                IconLeft : $("#cb_IconLeft").get(0).checked,
+                
+                IconBgNormal : "url(PopMenu_TestIcon_login.gif)  no-repeat 0 0",
+                
+                IconBgOver : "url(list-items.gif)  no-repeat 0 0"
+            },
+        $("#txt_Text").get(0).value);
+    };
+    
+    /* 获取/设置按钮显示文本  */
+    function GetText(){
+        alert($("#demobotton").SimpleButtonValue());
+    };
+    
+    function SetText(){
+        $("#demobotton").SimpleButtonValue($("#txt_Text").get(0).value);
+    };
+    
+    /* 设置或获取Button的Up/Down状态 */
+    function GetUpDown(){
+        alert($("#demobotton").SimpleButtonIsUp());
+    };
+    
+    function SetUpDown(obj){
+        if(obj.value=="取消按下"){
+            $("#demobotton").SimpleButtonIsUp(true);
+            obj.value = "按下";
+        }else{
+            $("#demobotton").SimpleButtonIsUp(false);
+            obj.value = "取消按下";
+        }
+    };
+    
+    /*获取/设置Button是否开启*/
+    function GetEnable(){
+        alert($("#demobotton").SimpleButtonEnable());
+    };
+    
+    function SetEnable(obj){
+        if(obj.value=="屏蔽按钮"){
+            $("#demobotton").SimpleButtonEnable(false);
+            obj.value = "启用按钮";
+        }else{
+            $("#demobotton").SimpleButtonEnable(true);
+            obj.value = "屏蔽按钮";
+        }
+    };
+    
+    </script>
+    
+    <style type="text/css">
+        #sle_Type
+        {
+            width: 70px;
+        }
+        #txt_CornerSize
+        {
+            width: 40px;
+        }
+        #txt_CornerSize0
+        {
+            width: 40px;
+        }
+        #txt_Width
+        {
+            width: 37px;
+        }
+        #txt_Width0
+        {
+            width: 37px;
+        }
+    </style>
+</head>
+<body>
+<!--
+<table cellpadding="0" cellspacing="0" width="72%" height="30" border="0">
+<tr>
+<td width="33%" height="300" style="filter:progid:DXImageTransform.Microsoft.Gradient
+(startColorStr='#FFFFFF', endColorStr='#3568CC', gradientType='0')">1</td>
+<td width="33%" height="300" style="filter:progid:DXImageTransform.Microsoft.Gradient
+(startColorStr='#FFFFFF', endColorStr='#3568CC', gradientType='1')">2</td>
+<td width="33%" height="300" style="filter:progid:DXImageTransform.Microsoft.Gradient
+(startColorStr='#FFFFFF', endColorStr='#3568CC', gradientType='2')">3</td>
+</tr>
+</table>
+-->
+
+
+
+    <table style="width:100%;">
+         <tr>
+            <td> <p id='OnClickShow'>&nbsp;</p>
+            <p id='OnMouseOverShow'>&nbsp;</p>
+            <p id='OnMouseOutShow'>&nbsp;</p>
+            <p id='OnMouseDownShow'>&nbsp;</p>
+            <p id='OnMouseUpShow'>&nbsp;</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                样式前缀:<input id="txt_CssBefore" type="text" value="SimpleButton" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                按钮类型<select id="sle_Type" name="D1">
+                    <option value="A" selected="selected">A</option>
+                    <option value="Input" >Input</option>
+                    <option value="Div">Div</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_SupportDownStatus" type="checkbox" />支持按下效果&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <input id="cb_MouseOverEfect" checked="checked" type="checkbox" />鼠标移动上去的效果<br />
+                <input id="cb_MouseClickEfect" checked="checked" type="checkbox" />按钮点击的效果&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                按钮大小控制方式<select id="sle_SizeType" name="D1">
+                    <option value="text" selected="selected">text</option>
+                    <option value="fixed">fixed</option>
+                    <option value="css">css</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 宽<input id="txt_Width" type="text" 
+                    value="70" /><br />
+                高<input id="txt_Height" type="text" value="16" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input 
+                    id="cb_ShowIcon" checked="checked" type="checkbox" />显示Icon&nbsp;&nbsp;&nbsp;
+                <input id="cb_ShowText" checked="checked" type="checkbox" />显示Text&nbsp;
+                <input id="cb_IconLeft" checked="checked" type="checkbox" />图标的位置为左边</td>
+        </tr>
+        <tr>
+            <td>
+                <input id="btn_AddButton" type="button" value="创建按钮" onclick="AddButton();" />&nbsp;&nbsp;
+                <input id="btn_GetValue" type="button" value="获取按钮显示文本" onclick="GetText();" />&nbsp;&nbsp;
+                <input id="Button1" type="button" value="获取按下状态" onclick="GetUpDown();" />&nbsp;&nbsp;
+                <input id="Button2" type="button" value="获取启用状态" onclick="GetEnable();" />&nbsp;&nbsp;
+                <input id="Button3" type="button" value="模拟点击按钮" onclick="$('demobotton').SimpleButtonClick();" />&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="Button4" type="button" value="设置按钮文本" onclick="SetText();" />
+                <input id="txt_Text" type="text" value="按钮Demo" />&nbsp;&nbsp;
+                <input id="Button5" type="button" value="取消按下" onclick="SetUpDown(this);" />&nbsp;&nbsp;
+                <input id="Button6" type="button" value="屏蔽按钮" onclick="SetEnable(this);" />&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="ButtonDiv">&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td>
+                Input按钮类型HTML测试</td>
+        </tr>
+        <tr>
+            <td>
+            正常状态：
+            <input type='button' class="SimpleButton_Input_Normal" value='Input按钮'
+              onmouseover="this.className='SimpleButton_Input_Over'"
+              onmouseout="this.className='SimpleButton_Input_Normal'"
+              onmousedown="this.className='SimpleButton_Input_Click'"
+             />
+            正常屏蔽状态：
+            <input type='button' class="SimpleButton_Input_Disable" value='Input按钮' disabled=disabled
+             />
+             
+             按下状态：
+            <input type='button' class="SimpleButton_Input_Down" value='Input按钮'
+              onmouseover="this.className='SimpleButton_Input_DownOver'"
+              onmouseout="this.className='SimpleButton_Input_Down'"
+              onmousedown="this.className='SimpleButton_Input_DownClick'"
+             />
+             
+             按下屏蔽状态：
+            <input type='button' class="SimpleButton_Input_DownDisable" value='Input按钮' disabled=disabled
+             />
+            
+            <p></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                    Div按钮类型HTML测试</td>
+        </tr>
+        <tr>
+            <td>
+                正常状态：
+                <div class="SimpleButton_Div_Normal"
+                  onmouseover="this.className='SimpleButton_Div_Over'"
+                  onmouseout="this.className='SimpleButton_Div_Normal'"
+                  onmousedown="this.className='SimpleButton_Div_Click'"
+                  onmouseup="this.className='SimpleButton_Div_Normal'"
+                ><a>Div按钮</a></div>
+                
+                正常屏蔽状态：
+                <div class="SimpleButton_Div_Disable" ><a>Div按钮</a></div>
+                
+                 按下状态：
+                <div class="SimpleButton_Div_Down"
+                  onmouseover="this.className='SimpleButton_Div_DownOver'"
+                  onmouseout="this.className='SimpleButton_Div_Down'"
+                  onmousedown="this.className='SimpleButton_Div_DownClick'"
+                  onmouseup="this.className='SimpleButton_Div_Down'"
+                ><a>Div按钮</a></div>
+                
+                按下屏蔽状态：
+                <div class="SimpleButton_Div_DownDisable" ><a>Div按钮</a></div>
+                <p></p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                    DivIcon按钮类型HTML测试</td>
+        </tr>
+        <tr>
+            <td>
+                正常状态：
+                <div class="SimpleButton_Div_Normal"
+                  onmouseover="this.className='SimpleButton_Div_Over'"
+                  onmouseout="this.className='SimpleButton_Div_Normal'"
+                  onmousedown="this.className='SimpleButton_Div_Click'"
+                  onmouseup="this.className='SimpleButton_Div_Normal'"
+                >
+                <div class="SimpleButton_DivIconImg_Normal"></div>
+                <a>Div按钮</a></div>
+                
+                正常屏蔽状态：
+                <div class="SimpleButton_Div_Disable" ><a>Div按钮</a></div>
+                
+                 按下状态：
+                <div class="SimpleButton_Div_Down"
+                  onmouseover="this.className='SimpleButton_Div_DownOver'"
+                  onmouseout="this.className='SimpleButton_Div_Down'"
+                  onmousedown="this.className='SimpleButton_Div_DownClick'"
+                  onmouseup="this.className='SimpleButton_Div_Down'"
+                ><a>Div按钮</a></div>
+                
+                按下屏蔽状态：
+                <div class="SimpleButton_Div_DownDisable" ><a>Div按钮</a></div>
+                <p></p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                A按钮类型HTML测试</td>
+        </tr>
+        <tr>
+            <td>
+                正常状态：
+                <A class='SimpleButton_A_Normal' href="#" onclick='this.blur();'>
+                <SPAN>按钮显示文字</SPAN>
+                </A>
+                
+                按下状态：
+                <A class='SimpleButton_A_Down' href="#" onclick='this.blur();'>
+                <SPAN>按钮显示文字</SPAN>
+                </A>   
+                
+                正常屏蔽状态：
+                <A class='SimpleButton_A_Disable' href="#" onclick='this.blur();'>
+                <SPAN>按钮显示文字</SPAN>
+                </A>  
+                
+                按下屏蔽状态：
+                <A class='SimpleButton_A_DownDisable' href="#" onclick='this.blur();'>
+                <SPAN>按钮显示文字</SPAN>
+                </A>  
+                
+                <p></p>
+            </td>
+        </tr>
+       
+    </table>
+
+</body>
+</html>

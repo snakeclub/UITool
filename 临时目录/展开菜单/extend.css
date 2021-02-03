@@ -1,0 +1,6 @@
+.x-menu_close {
+	background: url(resources/icons/bullet_delete.png) !important;
+}
+.x-menu_close_other {
+	background: url(resources/icons/bullet_blue.png) !important;
+}

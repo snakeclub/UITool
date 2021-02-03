@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-control/CheckBox.js"></script>
+    <script type="text/javascript" src="../../ui-control/Radio.js"></script>
+    
+    <script type="text/javascript">
+        var opts = {
+                //对象的id，使用$("").SetCheckBox函数时，若对象的id不为空，则使用对象的id
+                id : "newcheckbox",
+                
+                //对象的value，仅初始化使用，使用$("").SetCheckBox函数则该参数无效
+                value : "",
+                
+                //宽度
+                width : "13px",
+                
+                //高度
+                height : "20px",
+                
+                //选中状态改变后执行的函数，依次传入的参数为CheckBox对象、是否选中
+                onChanged : function(obj,isChecked){alert("id:"+obj.attr("id")+"   checked:"+isChecked);},
+                
+                //是否开启鼠标移动上的显示效果，true－开启效果，false-关闭效果
+                openMouseOverEffect : true,
+                
+                //正常未选中样式图片
+                unChecked : {
+                    background : "url(../../ui-control/CheckBoxImg/checkbox.gif) 0 0 no-repeat"
+                },
+                
+                //正常选中样式图片
+                Checked : {
+                    background : "url(../../ui-control/CheckBoxImg/checkbox.gif) 0 -40px no-repeat"
+                },
+                
+                //鼠标移上去选中的样式图片
+                mouseOverChecked :{
+                    background : "url(../../ui-control/CheckBoxImg/checkbox.gif) 0 -60px no-repeat"
+                },
+                
+                //鼠标移上去未选中的样式图片
+                mouseOverUnChecked : {
+                    background : "url(../../ui-control/CheckBoxImg/checkbox.gif) 0 -20px no-repeat"
+                },
+                
+                //禁用时未选中样式图片
+                disableUnChecked : {
+                    background : "url(../../ui-control/CheckBoxImg/checkbox.gif) 0 0 no-repeat"
+                },
+                
+                //禁用时选中样式图片
+                disableChecked : {
+                    background : "url(../../ui-control/CheckBoxImg/checkbox.gif) 0 -40px no-repeat"
+                }
+            };
+            
+        function NewCheckBox(){
+            $.AddCheckBox($("#AddNew"),opts);
+        }
+        
+        function SetCheckBoxEnable(){
+            $("#newcheckbox").CheckBoxEnable(true);
+        }
+        
+        function SetCheckBoxDisable(){
+            $("#newcheckbox").CheckBoxEnable(false);
+        }
+        
+        function SetAllCheckBox(){
+            $(":checkbox").SetCheckBox(opts);
+        }
+        
+        
+        //Radio
+        
+        var radioopts = {
+            //对象的id，使用$("").SetRadio函数时，若对象的id不为空，则使用对象的id
+            id : "",
+            
+            //对象的value，仅初始化使用，使用$("").SetRadio函数则该参数无效
+            value : "",
+            
+            //对象的name，仅初始化使用，使用$("").SetRadio函数则该参数无效
+            name : "",
+            
+            //宽度
+            width : "13px",
+            
+            //高度
+            height : "20px",
+            
+            //选中后执行的函数，依次传入的参数为Radio对象
+            onChecked : function(obj,isChecked){alert("id:"+obj.attr("id"));},
+            
+            //是否开启鼠标移动上的显示效果，true－开启效果，false-关闭效果
+            openMouseOverEffect : true,
+            
+            //正常未选中样式图片
+            unChecked : {
+                background : "url(../../ui-control/RadioImg/radio.gif) 0 0 no-repeat"
+            },
+            
+            //正常选中样式图片
+            Checked : {
+                background : "url(../../ui-control/RadioImg/radio.gif) 0 -40px no-repeat"
+            },
+            
+            //鼠标移上去选中的样式图片
+            mouseOverChecked :{
+                background : "url(../../ui-control/RadioImg/radio.gif) 0 -60px no-repeat"
+            },
+            
+            //鼠标移上去未选中的样式图片
+            mouseOverUnChecked : {
+                background : "url(../../ui-control/RadioImg/radio.gif) 0 -20px no-repeat"
+            },
+            
+            //禁用时未选中样式图片
+            disableUnChecked : {
+                background : "url(../../ui-control/RadioImg/radio.gif) 0 0 no-repeat"
+            },
+            
+            //禁用时选中样式图片
+            disableChecked : {
+                background : "url(../../ui-control/RadioImg/radio.gif) 0 -40px no-repeat"
+            }
+        };
+        
+        function SetAllRadio(){
+            $(":radio").SetRadio(radioopts);
+        }
+        
+    </script>
+</head>
+<body>
+<p>
+    <input id="Button1" type="button" value="新建checkbox-图片方式" onclick="NewCheckBox();" />
+    <input id="Button3" type="button" value="设置checkbox可用" onclick="SetCheckBoxEnable();" />
+    <input id="Button4" type="button" value="设置checkbox不可用" onclick="SetCheckBoxDisable();" />
+    <input id="Button5" type="button" value="美化其他checkbox" onclick="SetAllCheckBox();" />
+ </p>
+<p id='AddNew'>&nbsp;</p>
+<p>
+    <input id="cb1" type="checkbox" />
+    <input id="cb2" type="checkbox"  disabled='disabled' />
+    <input id="cb3" type="checkbox" checked='checked' />
+    <input id="Checkbox1" type="checkbox" checked='checked' disabled='disabled' />
+    <input id="cb4" type="checkbox" checked='checked'  />
+    </p>
+    <p>
+    <input id="Button2" type="button" value="美化其他radio" onclick="SetAllRadio();" />
+    </p>
+    <p id='AddNewRadio'></p>
+    <p>
+        <input id="Radio1" checked="checked" name="R1" type="radio" value="V1" />
+        <input id="Radio2" checked="" name="R1" type="radio" value="V1" />
+        <input id="Radio3" checked="" name="R1" type="radio" value="V1" />
+        <input id="Radio4" checked="checked" name="R2" type="radio" value="V1" />
+        <input id="Radio5" checked="" name="R2" type="radio" value="V1" />
+    </p>
+</body>
+</html>

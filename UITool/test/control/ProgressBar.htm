@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/ProgressBarCss/ProgressBar.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-control/ProgressBar.js"></script>
+    
+    <script type="text/javascript">
+        //设置默认执行函数
+        $.ProgressBar.defaults.OnProgressChange = function(obj,progress,progressPx){$("#OnProgressChange").get(0).innerHTML="OnProgressChange("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   progress:"+progress+"%   progressPx:"+progressPx+"px"; obj.ProgressBarChangeText("Loading.....");};
+        $.ProgressBar.defaults.OnFinish = function(obj,progress,progressPx){$("#OnFinish").get(0).innerHTML="OnFinish("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   progress:"+progress+"%   progressPx:"+progressPx+"px"; obj.ProgressBarChangeText("Done!");};
+        $.ProgressBar.defaults.OnWaitingBegin = function(obj){$("#OnWaitingBegin").get(0).innerHTML="OnWaitingBegin("+Date().toString()+"):obj ID is:"+obj.attr("id");};
+        
+        
+     /* 按界面选项设置按钮初始选项 */
+    function GetOpts(){
+        var opts = {
+            //样式前缀
+            CssBefore : $("#txt_CssBefore").get(0).value,
+            
+            //进度条宽度,可以为象素值，也可以为百分比，例如300px或80%
+            Width : $("#txt_Width").get(0).value,
+            
+            //进度条的左右边框象素值之和，用于控制样式
+            BorderWidthSum : parseInt($("#txt_BorderWidthSum").get(0).value),
+            
+            //创建时默认的进度，可以为象素值，也可以是百分比
+            DefaultProgress :  $("#txt_DefaultProgress").get(0).value,
+            
+            //是否显示进度文字
+            ShowText : $("#cb_ShowText").get(0).checked,
+            
+            //进度文字内容
+            Text : $("#txt_Text").get(0).value,
+            
+            //进度文字方向,Center\Left\Right
+            TextPosition : $("#sle_TextPosition").get(0).options[$("#sle_TextPosition").get(0).selectedIndex].value,
+            
+            
+            //是否等待进度条－循环自动loading
+            WaitingBar : $("#cb_WaitingBar").get(0).checked,
+            
+            //等待进度条的每次循环时间，毫秒为单位
+            WaitingTime : parseInt($("#txt_WaitingTime").get(0).value),
+            
+            //等待进度条结束时的进度百分比值，例如0，100 , 59.333
+            WaitingEndProgress : parseInt($("#txt_WaitingEndProgress").get(0).value)
+        };
+        
+        return opts;
+        
+   };
+      
+        
+        /* 添加滚动条 */
+        function AddP(){
+            $("#PDiv").empty();
+            var opts = GetOpts();
+            
+            $("#PDiv").CreateProgressBar("demoP",opts);
+        };
+        
+        /* 修改进度 */
+        function ChangeP(){
+            var obj = $("#demoP");
+            
+            obj.ProgressBarProgress(parseInt($("#txt_Progress").get(0).value),$("#txt_Progress").get(0).value.indexOf("%") > -1 ? "%":"px",$("#txt_ChangeText").get(0).value, $("#cb_ExeFun").get(0).checked);
+        };
+        
+        /* 修改文字 */
+        function ChangePText(){
+            var obj = $("#demoP");
+            
+            obj.ProgressBarChangeText($("#txt_ChangeText").get(0).value);
+        };
+        
+  
+    </script>
+</head>
+<body>
+    <p id="OnProgressChange">OnProgressChange:</p>
+    <p id="OnFinish">OnFinish:</p>
+    <p id="OnWaitingBegin">OnWaitingBegin:</p>
+    
+    <p>样式前缀<input id="txt_CssBefore" type="text" value="ProgressBar" />&nbsp;&nbsp;&nbsp; 
+        进度条宽度<input id="txt_Width" type="text" value="300px" />&nbsp;&nbsp;&nbsp; 
+        进度条左右边框和<input id="txt_BorderWidthSum" type="text" value="2" /></p>
+    <p>
+        &nbsp;</p>
+    <p>初始默认进度<input id="txt_DefaultProgress" type="text" value="0%" />&nbsp;&nbsp;
+        <input id="cb_ShowText" type="checkbox" />显示进度文字&nbsp;&nbsp;&nbsp;&nbsp; 进度文字<input 
+            id="txt_Text" type="text" value="Waiting" />&nbsp;&nbsp;&nbsp; 进度文字方向<select 
+            id="sle_TextPosition" name="D1">
+                    <option value="Center" selected="selected">Center</option>
+                    <option value="Left">Left</option>
+                    <option value="Right">Right</option>
+                </select></p>
+    <p>
+        <input id="cb_WaitingBar" type="checkbox" />等待进度条&nbsp;&nbsp;&nbsp; 每次循环时间<input 
+            id="txt_WaitingTime" type="text" value="3000" />&nbsp;&nbsp;&nbsp; 结束时百分比<input 
+            id="txt_WaitingEndProgress" type="text" value="100%" /></p>
+    <p>
+        <input id="Button1" type="button" value="添加进度条" onclick="AddP();" />&nbsp;&nbsp;&nbsp;
+        <input id="Button2" type="button" value="修改进度" onclick="ChangeP();" />&nbsp;&nbsp;
+        <input id="Button3" type="button" value="修改文字" onclick="ChangePText();" /> 文字<input 
+            id="txt_ChangeText" type="text" value="Waiting" />&nbsp; 进度<input 
+            id="txt_Progress" type="text" value="100%" />&nbsp;
+        <input id="cb_ExeFun" type="checkbox" />执行函数</p>
+    <p>
+        <input id="Button4" type="button" value="开始等待条" onclick="$('#demoP').ProgressBarBeginWaiting();" />&nbsp;&nbsp;&nbsp;
+        <input id="Button5" type="button" value="结束等待条" onclick="$('#demoP').ProgressBarEndWaiting();"  /></p>
+    <p>
+        &nbsp;</p>
+    <p id="PDiv"></p>
+    
+    <p>HTML测试</p>
+    
+    <p>文字在中间</p>
+    <p>
+        <DIV id=p1 style='WIDTH: 300px'>
+	        <DIV class='ProgressBar_Div'>
+		        <DIV class=ProgressBar_Inner>
+			        <DIV class=ProgressBar_Bar style='WIDTH: 130px;'>
+				        <DIV class='ProgressBar_Text' style='WIDTH: 130px'>
+					        <DIV class='ProgressBar_TextDiv' style='WIDTH: 298px;'>Loading item 7 of 10...</DIV>
+				        </DIV>
+				        <DIV class='ProgressBar_Text ProgressBar_TextBack'>
+					        <DIV class='ProgressBar_TextDiv' style='WIDTH: 298px;'>Loading item 7 of 10...</DIV>
+				        </DIV>
+			        </DIV>
+		        </DIV>
+	        </DIV>
+        </DIV>
+    </p>
+    
+    <p>文字在左边</p>
+    <p>
+        <DIV id=DIV1 style='WIDTH: 300px'>
+	        <DIV class='ProgressBar_Div ProgressBar_TextLeft'>
+		        <DIV class=ProgressBar_Inner>
+			        <DIV class=ProgressBar_Bar style='WIDTH: 50px;'>
+				        <DIV class='ProgressBar_Text' style='WIDTH: 50px'>
+					        <DIV class='ProgressBar_TextDiv' style='WIDTH: 298px;'>Loading item 7 of 10...</DIV>
+				        </DIV>
+				        <DIV class='ProgressBar_Text ProgressBar_TextBack'>
+					        <DIV class='ProgressBar_TextDiv' style='WIDTH: 298px;'>Loading item 7 of 10...</DIV>
+				        </DIV>
+			        </DIV>
+		        </DIV>
+	        </DIV>
+        </DIV>
+    </p>
+    
+    <p>文字在右边</p>
+    <p>
+        <DIV id=DIV2 style='WIDTH: 300px'>
+	        <DIV class='ProgressBar_Div ProgressBar_TextRight'>
+		        <DIV class=ProgressBar_Inner>
+			        <DIV class=ProgressBar_Bar style='WIDTH: 250px;'>
+				        <DIV class='ProgressBar_Text' style='WIDTH: 250px'>
+					        <DIV class='ProgressBar_TextDiv' style='WIDTH: 298px;'>Loading item 7 of 10...</DIV>
+				        </DIV>
+				        <DIV class='ProgressBar_Text ProgressBar_TextBack'>
+					        <DIV class='ProgressBar_TextDiv' style='WIDTH: 298px;'>Loading item 7 of 10...</DIV>
+				        </DIV>
+			        </DIV>
+		        </DIV>
+	        </DIV>
+        </DIV>
+    </p>
+    
+    
+</body>
+</html>

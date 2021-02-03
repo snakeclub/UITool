@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/ToolBarCss/ToolBar.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/ButtonCss/Button.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/BarScrollDivCss/BarScrollDiv.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>>
+    <script type="text/javascript" src="../../ui-control/Button.js"></script>
+     <script type="text/javascript" src="../../ui-core/TimerControl.js"></script>
+    <script type="text/javascript" src="../../ui-control/BarScrollDiv.js"></script>
+    <script type="text/javascript" src="../../ui-control/ToolBar.js"></script>
+    
+    <script type="text/javascript">
+        function AddBar(){
+            $("#Div").CreateToolBar("bar",{
+                //样式前缀
+                CssBefore : "ToolBar",
+                
+                //工具栏宽度,可以为百分比，也可以象素
+                Width: "100%",
+                
+                //是否包含在滚动容器中
+                InScrollDiv : true
+            });
+            
+            //创建按钮
+            $("#bar").CreateToolBarDiv("b1").CreateButton("btn1",{InToolBar : true},"B1");
+            $("#bar").CreateToolBarSplit("s1");
+             $("#bar").CreateToolBarDiv("b2").CreateButton("btn2",{InToolBar : true},"B2");
+             $("#bar").CreateToolBarDiv("b7","Left",null,"<input type=text value='haha' />");
+             $("#bar").CreateToolBarDiv("b3","Right").CreateButton("btn3",{InToolBar : true},"B3");
+             $("#bar").CreateToolBarSplit("s2","Right");
+             $("#bar").CreateToolBarDiv("b4","Right").CreateButton("btn4",{InToolBar : true},"B4");
+             $("#bar").CreateToolBarDiv("b5","Right").CreateButton("btn5",{InToolBar : true},"B5");
+             $("#bar").CreateToolBarDiv("b6","Right").CreateButton("btn6",{InToolBar : true},"B6");
+        };
+    </script>
+</head>
+<body>
+
+	<p> <input id="Button4" type="button" value="创建bar" onclick="AddBar();" /> </p>
+	<p> <input id="Button1" type="button" value="test" onclick="alert($('#bar').outerWidth());alert($('div[BarScrollDivType=\'ContentDiv\']').innerWidth());" /> </p>
+	<p id="Div"></p>
+
+</body>
+</html>

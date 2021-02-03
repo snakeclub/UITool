@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/CornerShadowCss/CornerShadow.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../../ui-core/DragControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/ResizeControl.js"></script>
+    <script type="text/javascript" src="../../ui-control/CornerShadow.js"></script>
+    
+    <script type="text/javascript">
+        function load(){
+            $("#test").CreateCornerShadow("",{
+                //样式前缀
+                CssBefore : "CornerShadow",
+                
+                //阴影颜色，默认为#777，仅IE浏览器有效
+                Color : "#777",
+                
+                //圆角大小，仅IE浏览器有效
+                CornerSize : 4,
+                
+                //强制设置为图片阴影的模式
+                ForcePicShadow : false,
+                
+                //自动随对象大小改变阴影大小
+                AutoSizeChange : true,
+                
+                //光源X,Y方向的偏移（单位为象素），负数代表向左上偏移，阴影在右下方；正数代表向右下偏移，阴影在左上边。默认为-5
+                Offset : {X:0,Y:0},
+                
+                //X,Y方向的阴影扩展，用于控制阴影的宽高度，例如1代表阴影宽高度比对象大小大1，默认为0
+                Extend : {X:100,Y:100},
+                
+                //添加阴影后执行的事件,传入的参数依次为要要添加阴影的对象，阴影对象
+                AfterAddShadow : null,
+                
+                //清除阴影前执行的事件,传入的参数依次为要要添加阴影的对象，阴影对象
+                BeforeClearShadow : null
+            });
+            
+            //拖动
+            $("#test").bind("mousedown",function(){$(this).GetCornerShadow().add(this).Drag();});
+            
+            //改变大小，从效果看，不建议直接这样联动来拖动改变大小，建议用以下方式
+            $("#test").SetResizeAble({
+                //开始改变大小前执行的函数，传入的参数依次为对象本身、改变大小参数、event（mousedown），必须返回true/false，若返回false，则终止改变大小操作
+                beginResizeFun : function(obj){obj.HideCornerShadow();return true;},
+                //结束改变大小后执行的函数，传入的参数依次为confirmResizeFun返回结果、对象本身、改变大小参数、event（mouseup）
+                endResizeFun : function(confirm,obj){obj.ShowCornerShadow();return true;}
+            });
+            
+            
+        };
+    </script>
+</head>
+<body onload="load();">
+<p></p>
+<p></p>
+<p>
+    <div id="test" style="width:100px; height:100px; background-color:Green; position:absolute; left:100px; top:100px; Z-INDEX: 9002;">拖动或改变大小</div>
+</p>
+
+
+<p>HTML测试 - IE</p>
+<p>
+    <!-- 阴影 IE -->
+   <DIV selftype='CornerShadow' class='CornerShadow_IE' style="Z-INDEX: 9002; FILTER: progid:DXImageTransform.Microsoft.alpha(opacity=50) progid:DXImageTransform.Microsoft.Blur(pixelradius=4); WIDTH: 292px; DISPLAY: none; HEIGHT: 192px; position:static;"></DIV>
+  
+</p>
+
+<p>HTML测试 - 其他浏览器</p>
+<p>
+    <DIV selftype='CornerShadow' class='CornerShadow_PicShadow' style="Z-INDEX: 9002; WIDTH: 300px; DISPLAY: none; HEIGHT: 200px; position:static;">
+        <table CornerShadowType='Table' class='CornerShadowTable' cellpadding='0' cellspacing='0'>
+            <tr CornerShadowType='TopTr' class='CornerShadowTopTr'>
+                <td CornerShadowType='TopTdLeft' class='CornerShadowTopTdLeft'>&nbsp;</td>
+                <td CornerShadowType='TopTdCenter' class='CornerShadowTopTdCenter'>&nbsp;</td>
+                <td CornerShadowType='TopTdRight' class='CornerShadowTopTdRight'>&nbsp;</td>
+            </tr>
+            <tr CornerShadowType='MidTr' class='CornerShadowMidTr'>
+                <td CornerShadowType='MidTdLeft' class='CornerShadowMidTdLeft'>&nbsp;</td>
+                <td CornerShadowType='MidTdCenter' class='CornerShadowMidTdCenter' style="height:188px;">&nbsp;</td>
+                <td CornerShadowType='MidTdRight' class='CornerShadowMidTdRight'>&nbsp;</td>
+            </tr>
+            <tr CornerShadowType='BtmTr' class='CornerShadowBtmTr'>
+                <td CornerShadowType='BtmTdLeft' class='CornerShadowBtmTdLeft'>&nbsp;</td>
+                <td CornerShadowType='BtmTdCenter' class='CornerShadowBtmTdCenter'>&nbsp;</td>
+                <td CornerShadowType='BtmTdRight' class='CornerShadowBtmTdRight'>&nbsp;</td>
+            </tr>
+        </table>
+    </DIV>
+</p>
+</body>
+</html>

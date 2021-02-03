@@ -1,0 +1,507 @@
+Js字符串操作函数大全
+
+String.prototype.LTrim = function()
+{
+        return this.replace(/(^/s*)/g, "");
+}
+
+
+
+String.prototype.Rtrim = function()
+{
+        return this.replace(/(/s*$)/g, "");
+}
+
+ 
+
+
+String.prototype.Trim = function()
+{
+        return this.replace(/(^/s*)|(/s*$)/g, "");
+}
+
+
+String.prototype.Left = function(len)
+{
+
+        if(isNaN(len)||len==null)
+        {
+                len = this.length;
+        }
+        else
+        {
+                if(parseInt(len)<0||parseInt(len)>this.length)
+                {
+                        len = this.length;
+                }
+        }
+       
+        return this.substr(0,len);
+}
+
+
+
+String.prototype.Right = function(len)
+{
+
+        if(isNaN(len)||len==null)
+        {
+                len = this.length;
+        }
+        else
+        {
+                if(parseInt(len)<0||parseInt(len)>this.length)
+                {
+                        len = this.length;
+                }
+        }
+       
+        return this.substring(this.length-len,this.length);
+}
+
+
+
+String.prototype.Mid = function(start,len)
+{
+        return this.substr(start,len);
+}
+
+
+
+String.prototype.InStr = function(str)
+{
+
+        if(str==null)
+        {
+                str = "";
+        }
+       
+        return this.indexOf(str);
+}
+
+
+String.prototype.InStrRev = function(str)
+{
+
+        if(str==null)
+        {
+                str = "";
+        }
+       
+        return this.lastIndexOf(str);
+}
+
+ 
+
+
+String.prototype.LengthW = function()
+{
+        return this.replace(/[^/x00-/xff]/g,"**").length;
+}
+
+
+String.prototype.isIP = function()
+{
+
+        var reSpaceCheck = /^(/d+)/.(/d+)/.(/d+)/.(/d+)$/;
+
+        if (reSpaceCheck.test(this))
+        {
+                this.match(reSpaceCheck);
+                if (RegExp.$1 <= 255 && RegExp.$1 >= 0
+                 && RegExp.$2 <= 255 && RegExp.$2 >= 0
+                 && RegExp.$3 <= 255 && RegExp.$3 >= 0
+                 && RegExp.$4 <= 255 && RegExp.$4 >= 0)
+                {
+                        return true;    
+                }
+                else
+                {
+                        return false;
+                }
+        }
+        else
+        {
+                return false;
+        }
+  
+}
+
+
+
+String.prototype.isLongDate = function()
+{
+        var r = this.replace(/(^/s*)|(/s*$)/g, "").match(/^(/d{1,4})(-|//)(/d{1,2})/2(/d{1,2}) (/d{1,2}):(/d{1,2}):(/d{1,2})$/);
+        if(r==null)
+        {
+                return false;
+        }
+        var d = new Date(r[1], r[3]-1,r[4],r[5],r[6],r[7]);
+        return (d.getFullYear()==r[1]&&(d.getMonth()+1)==r[3]&&d.getDate()==r[4]&&d.getHours()==r[5]&&d.getMinutes()==r[6]&&d.getSeconds()==r[7]);
+
+}
+
+
+String.prototype.isShortDate = function()
+{
+        var r = this.replace(/(^/s*)|(/s*$)/g, "").match(/^(/d{1,4})(-|//)(/d{1,2})/2(/d{1,2})$/);
+        if(r==null)
+        {
+                return false;
+        }
+        var d = new Date(r[1], r[3]-1, r[4]);
+        return (d.getFullYear()==r[1]&&(d.getMonth()+1)==r[3]&&d.getDate()==r[4]);
+}
+
+
+String.prototype.isDate = function()
+{
+        return this.isLongDate()||this.isShortDate();
+}
+
+
+String.prototype.isMobile = function()
+{
+        return /^0{0,1}13[0-9]{9}$/.test(this);
+}
+
+
+String.prototype.isEmail = function()
+{
+        return /^/w+((-/w+)|(/./w+))*/@[A-Za-z0-9]+((/.|-)[A-Za-z0-9]+)*/.[A-Za-z0-9]+$/.test(this);
+}
+
+ 
+
+String.prototype.isZipCode = function()
+{
+        return /^[//d]{6}$/.test(this);
+}
+
+
+String.prototype.existChinese = function()
+{
+        //[/u4E00-/u9FA5]為漢字﹐[/uFE30-/uFFA0]為全角符號
+        return /^[/x00-/xff]*$/.test(this);
+}
+
+
+String.prototype.isFileName = function()
+{
+        return !/[/////*/?/|:"<>]/g.test(this);
+}
+
+
+String.prototype.isUrl = function()
+{
+        return /^http[s]?:////([/w-]+/.)+[/w-]+([/w-./?%&=]*)?$/i.test(this);
+}
+
+
+
+String.prototype.isIDCard = function()
+{
+        var iSum=0;
+        var info="";
+        var sId = this;
+
+        var aCity={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外"};
+
+        if(!/^/d{17}(/d|x)$/i.test(sId))
+        {
+                return false;
+        }
+        sId=sId.replace(/x$/i,"a");
+        //非法地区
+        if(aCity[parseInt(sId.substr(0,2))]==null)
+        {
+                return false;
+        }
+
+        var sBirthday=sId.substr(6,4)+"-"+Number(sId.substr(10,2))+"-"+Number(sId.substr(12,2));
+
+        var d=new Date(sBirthday.replace(/-/g,"/"))
+       
+        //非法生日
+        if(sBirthday!=(d.getFullYear()+"-"+ (d.getMonth()+1) + "-" + d.getDate()))
+        {
+                return false;
+        }
+        for(var i = 17;i>=0;i--)
+        {
+                iSum += (Math.pow(2,i) % 11) * parseInt(sId.charAt(17 - i),11);
+        }
+
+        if(iSum%11!=1)
+        {
+                return false;
+        }
+        return true;
+
+}
+
+
+String.prototype.isPhoneCall = function()
+{
+        return /(^[0-9]{3,4}/-[0-9]{3,8}$)|(^[0-9]{3,8}$)|(^/([0-9]{3,4}/)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/.test(this);
+}
+
+
+
+String.prototype.isNumeric = function(flag)
+{
+        //验证是否是数字
+        if(isNaN(this))
+        {
+
+                return false;
+        }
+
+        switch(flag)
+        {
+
+                case null:        //数字
+                case "":
+                        return true;
+                case "+":        //正数
+                        return                /(^/+?|^/d?)/d*/.?/d+$/.test(this);
+                case "-":        //负数
+                        return                /^-/d*/.?/d+$/.test(this);
+                case "i":        //整数
+                        return                /(^-?|^/+?|/d)/d+$/.test(this);
+                case "+i":        //正整数
+                        return                /(^/d+$)|(^/+?/d+$)/.test(this);                       
+                case "-i":        //负整数
+                        return                /^[-]/d+$/.test(this);
+                case "f":        //浮点数
+                        return                /(^-?|^/+?|^/d?)/d*/./d+$/.test(this);
+                case "+f":        //正浮点数
+                        return                /(^/+?|^/d?)/d*/./d+$/.test(this);                       
+                case "-f":        //负浮点数
+                        return                /^[-]/d*/./d$/.test(this);               
+                default:        //缺省
+                        return true;                       
+        }
+}
+
+
+String.prototype.IsColor = function()
+{
+        var temp        = this;
+        if (temp=="") return true;
+        if (temp.length!=7) return false;
+        return (temp.search(//#[a-fA-F0-9]{6}/) != -1);
+}
+
+
+String.prototype.toCase = function()
+{
+        var tmp = "";
+        for(var i=0;i<this.length;i++)
+        {
+                if(this.charCodeAt(i)>0&&this.charCodeAt(i)<255)
+                {
+                        tmp += String.fromCharCode(this.charCodeAt(i)+65248);
+                }
+                else
+                {
+                        tmp += String.fromCharCode(this.charCodeAt(i));
+                }
+        }
+        return tmp
+}
+
+
+String.prototype.toHtmlEncode = function()
+{
+        var str = this;
+
+        str=str.replace(/&/g,"&amp;");
+        str=str.replace(/</g,"&lt;");
+        str=str.replace(/>/g,"&gt;");
+        str=str.replace(//'/g,"&apos;");
+        str=str.replace(//"/g,"&quot;");
+        str=str.replace(//n/g,"<br>");
+        str=str.replace(// /g,"&nbsp;");
+        str=str.replace(//t/g,"&nbsp;&nbsp;&nbsp;&nbsp;");
+
+        return str;
+}
+
+
+String.prototype.toDate = function()
+{
+        try
+        {
+                return new Date(this.replace(/-/g, "//"));
+        }
+        catch(e)
+        {
+                return null;
+        }
+}
+
+ 
+
+ 
+
+ 
+
+1.Asc(x),Chr(x):转换字符，字符码
+
+2。Filter:搜寻字符串数组中的特定字符串
+
+格式：v=filter(x,s[,include[,compare]])
+
+实例：
+
+Dim x()={"kjwang","wangkj","peter"}
+
+Dim v
+
+v=filter(x,"kj") '结果v(0)="kjwang",v(1)="wangkj"
+
+v=filter(x,"kj",false) '结果v(0)="peter"
+
+v=filter(x,"kj",true,vbTextCompare) '不分大小写搜寻
+
+3.InStr:寻找字符串位置(InstrRev:倒过来寻找字符串）
+
+格式：
+
+v=instr(x,y) '从x字符串第1个字符起找出y字符串出现的位置
+
+v=instr(n,x,y) '从x字符串第n个字符起找出y字符串出现的位置
+
+格式：
+
+v=InstrRev(x,s[,n[,Compare]])
+
+4。Join:将字符串连接
+
+格式：v=join(x[,d]）’d为分隔字符
+
+5。Len(x):计算字符串x的长度
+
+格式：v=len(x)
+
+6.Left(x,n):返回字符串x左边n个字符(对应Right(x,n))
+
+7。Mid:读取字符串x中间的字符
+
+格式：v=mid(x,n,m)
+
+8。LTrim(x),RTim(x),Trim(x)去空白字符
+
+9.Replace:字符串取代
+
+格式：v=Replace(x,s,r)
+
+实例：x="i saw a saw a saw"
+
+v=replace(x,"saw","so") 'v="i so a so a so"
+
+10.Split:字符串分割
+
+格式：v=split(s[,d])
+
+实例：v=split("vb.net,iis6.0,asp.net",",")
+
+'结果v(0)="vb.net",v(1)="iis6.0",v(2)="asp.net"
+
+11.StrReverse:反转字符串
+
+实例：v=strreverse("kjwang") 'v="gnawjk"
+
+12.UCase(x),LCase(x):变换英文字母的大小写
+
+实例：x="hello,VB中文!"
+
+v=UCase(x) 'v="HELLO,VB中文！"
+1.取出日期时间
+
+－1）Datue(x),Timue(x)
+
+格式：v=Datue(x) :取出的“日期”部分
+
+　　　v=timue(x) '类上
+
+－2）Year(x),Month(x),Day(x)
+
+格式：v=Year(x)
+
+　　　v=Month(x)
+
+　　　v=Day(x)
+
+　　　Hour(x),Minute(x),Second(x):取出时，分，秒
+
+－3）DateSerial(Y,M,D):合并年、月、日成为日期
+
+实例：Dim v
+
+v=DateSerial(1996,10,5) 'v=1996/10/5
+
+　　　TimeSerial(H,M,S):合并时、分、秒成为时间
+
+2.Now:读取系统日期时间
+
+格式：v=now
+
+3.Timer:从凌晨12：00：00AM起所经过的秒数
+
+格式：v=timer
+
+4.DatePart(p,x):取出年、月、日等各部分的数值
+
+实例：Dim X=#2/10/1996 16:45:30#
+
+v=DatePart("yyyy",X) 'v=1996年
+
+v=DatePart("m",X) 'v=2月
+
+v=DatePart("d",X) 'v=10日
+
+v=DatePart("h",X) 'v=16时
+
+v=DatePart("n",X) 'v=45分
+
+v=DatePart("s",X) 'v=30秒
+
+v=DatePart("q",X) 'v=1季（第一季，春季）
+
+v=DatePart("y",X) 'v=41天（1996年的第41天）
+
+v=DatePart("ww",X) 'v=6周（1996年的第6周）
+
+v=DatePart("w",X) 'v=7（第6周的第7天，即星期六）
+
+5。DateAdd(p,n,x):加减若干时间后的新日期时间
+
+格式：v=DateAdd(p,n,x) 'p值同上如："yyyy"、"m"等
+
+实例：Dim x=#1/31/1996 16:45:30#
+
+v=dateadd("yyyy",-3,x) '减3年，v=1993/1/31 16:45:30
+
+6.DateDiff(p,x1,x2):计算两日期时间的差值 'p值同上
+
+实例：dim x1=#12/31/1996 16:45:30#
+
+x2=#2/10/1997 9:30:50#
+
+v=datediff("yyyy",x1,x2) 'v=1年
+
+7。FormatDateTime:日期时间的格式化
+
+格式：v=formatdateyime(x[,日期格式])
+
+日期格式值：DateFormat.GeneralDate　、　DateFormat.LongDate、
+
+DateFotmat.ShortDate、DateFormat.LongTime、DateFormat.ShortTime
+
+8.MonthName:返回月份名称
+
+实例：v=monthname(5) 'v="五月"
+
+9.WeekDayName:返回星期名称　’用法同8.

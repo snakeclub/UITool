@@ -1,0 +1,566 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：Table按钮类型样式(纯文字按钮)
+说明：按钮控件
+文件：Button_.css
+
+资源文件：../ButtonImg/Button_Sprite.gif
+          ../ButtonImg/Button_BarSprite.gif
+          ../ButtonImg/Button_Split.gif
+          ../ButtonImg/Button_Arrow.gif
+
+
+Table按钮类型样式
+A.TABLE的样式值说明
+Button_Table  ： 标准文字按钮样式,所有样式都要带有
+Button_IconText ： 带图标按钮样式
+Button_SplitArrow ： 分隔的下拉按钮,按钮在右边
+Button_SplitArrowL ： 分隔的下拉按钮,按钮在左边
+Button_Icon ：只有图标的按钮
+
+
+B.可选参数说明：
+Button_Arrow  ：  带下拉框－右边
+Button_ArrowL ：  带下拉框－左边
+Button_IconR ： 图标在文字右边
+Button_ToolBar  ： 工具栏
+Button_Split  ： 与右边的下拉框组合
+Button_SplitL ： 与左边的下拉框组合
+
+
+可将A B 组合在一起改变按钮样式，例如：
+文字按钮：Button_Table
+文字按钮-带箭头：Button_Arrow
+文字按钮-左边箭头：Button_ArrowL
+图标按钮：Button_IconText 
+图标按钮-带箭头：Button_IconText Button_Arrow
+图标按钮-右边图片：Button_IconText Button_IconR
+图标按钮-右边图片-带箭头：Button_IconText Button_IconR Button_ArrowL
+工具栏按钮：Button_ToolBar
+工具栏按钮－带箭头：Button_ToolBar Button_Arrow
+
+要改变按钮的鼠标事件样式，可通过改变TR的样式表
+TR : class=Button_Disable/Over/Click/Down/DownOver/DownClick/DownDisable
+
+<TABLE class='Button_Table' border=0 cellSpacing=0 cellPadding=0>
+	<TBODY>
+		<TR class='Button_Disable/Over/Click/Down/DownOver/DownClick/DownDisable'>
+			<TD class='Button_Left'>
+				<I class='Button_LeftI'>&nbsp;</I>
+			</TD>
+			<TD class='Button_Center'>
+				<EM class='Button_EM'>
+					<BUTTON class='Button_Button'>按钮文字</BUTTON>
+				</EM>
+			</TD>
+			<TD class='Button_Right'>
+				<I class='Button_RightI'>&nbsp;</I>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+-----------------------*/
+
+/* -------------最外层TABLE------------- */
+.Button_Table
+{
+	font:normal 11px tahoma, verdana, helvetica;
+	cursor:pointer;
+	white-space: nowrap;
+}
+
+.Button_Disable
+{
+	cursor:default;
+}
+
+/* -------------I 样式------------- */
+.Button_LeftI,.Button_RightI
+{
+	display:block;
+    overflow:hidden;
+    font-size:1px;
+    line-height:1px;
+	
+	width:3px;
+}
+
+/* ######## SplitArrow ######## */
+.Button_SplitArrow .Button_LeftI,
+.Button_SplitArrowL .Button_RightI
+{
+	line-height:16px;
+    background:none;
+    background-position: center;
+	        background-repeat: no-repeat;
+	        height: 16px;
+	        width:2px;
+	        cursor:default;
+	        margin: 0px;
+	        border:0;
+}
+
+/* Disable/Over/Click/Down/DownOver/DownClick/DownDisable */
+.Button_SplitArrow .Button_Disable .Button_LeftI,
+.Button_SplitArrow .Button_Over .Button_LeftI,
+.Button_SplitArrow .Button_Click .Button_LeftI,
+.Button_SplitArrow .Button_Down .Button_LeftI,
+.Button_SplitArrow .Button_DownOver .Button_LeftI,
+.Button_SplitArrow .Button_DownClick .Button_LeftI,
+.Button_SplitArrow .Button_DownDisable .Button_LeftI,
+.Button_SplitArrowL .Button_Disable .Button_RightI,
+.Button_SplitArrowL .Button_Over .Button_RightI,
+.Button_SplitArrowL .Button_Click .Button_RightI,
+.Button_SplitArrowL .Button_Down .Button_RightI,
+.Button_SplitArrowL .Button_DownOver .Button_RightI,
+.Button_SplitArrowL .Button_DownClick .Button_RightI,
+.Button_SplitArrowL .Button_DownDisable .Button_RightI
+{
+	background:transparent url(../../ui-control/ButtonImg/Button_Split.gif) no-repeat 0px 2px;
+}
+
+/* -------------EM 样式------------- */
+.Button_EM
+{
+	font-style:normal;
+    font-weight:normal;
+    display:block;
+}
+
+/* ######## Arrow ######## */
+.Button_Arrow .Button_EM
+{
+    background:transparent url(../../ui-control/ButtonImg/Button_Arrow.gif) no-repeat right 0;
+	padding-right:10px;
+}
+
+/* ######## ArrowL ######## */
+.Button_ArrowL .Button_EM
+{
+    background:transparent url(../../ui-control/ButtonImg/Button_Arrow.gif) no-repeat left 0;
+	padding-left:13px;
+	margin:0px;
+}
+
+/* 根据浏览器版本进行的调整 */
+.CssAdapter_IE6 .Button_EM,
+.CssAdapter_IE7 .Button_EM
+{
+	background-position-y:3px;
+}
+
+.CssAdapter_IE6 .Button_IconText .Button_EM,
+.CssAdapter_IE7 .Button_IconText .Button_EM
+{
+    overflow:hidden;
+    height:16px;
+    background-position-y:0px;
+}
+
+.CssAdapter_IE7 .Button_EM
+{
+	display:inline-block;
+}
+
+/* -------------Button 样式------------- */
+.Button_Button
+{
+	/* 不建议修改的样式 */
+	cursor:pointer;
+	border:0 none;
+    background:transparent;
+    margin:0;
+    overflow:visible;
+    width:auto;
+    -moz-outline:0 none;
+    outline:0 none;
+    
+    /* 可修改的样式 */
+    font:normal 11px tahoma,verdana,helvetica;
+    padding-left:3px;
+    padding-right:3px;
+    
+    /* ie情况的样式-如果要兼容浏览器，要考虑其他方式 */
+    width: auto!important; /* IE7+FF */
+	width: 1px; /* IE6 */
+}
+
+/* 根据浏览器版本进行的调整 */
+.CssAdapter_IE6 .Button_Button,
+.CssAdapter_IE7 .Button_Button
+{
+	padding-top:4px;
+}
+
+
+/* 屏蔽状态 */
+.Button_Disable .Button_Button,.Button_DownDisable .Button_Button
+{
+	color:gray!important;cursor:default!important;
+}
+
+/* ######## IconText ######## */
+.Button_IconText .Button_Button
+{ 
+    background-position: 0 2px;
+	background-repeat: no-repeat;
+	padding-left:18px;
+	padding-top:4px;
+	padding-bottom:1px;
+    padding-right:0px;
+    padding-top:4px!important;
+    background-position:left top!important;
+    
+    /* ie情况的样式-如果要兼容浏览器，要考虑其他方式 */
+    width: auto!important; /* IE7+FF */
+	width: 1px; /* IE6 */
+}
+
+/* 图片在右手边的情况 */
+.Button_IconR .Button_Button
+{
+	padding-left:0px;
+	padding-right:18px;
+	background-position:right 2px;
+	background-position:right top!important;
+}
+
+/* 根据浏览器版本进行的调整 */
+.CssAdapter_IE6 .Button_IconText .Button_Button
+{
+    padding-top:2px!important;
+}
+
+/* ######## SplitArrow ######## */
+.Button_SplitArrow .Button_Button,
+.Button_SplitArrowL .Button_Button
+{
+	width:12px !important;
+    height:21px;
+    padding:0 !important;
+    display:block;
+    background:transparent url(../../ui-control/ButtonImg/Button_Arrow.gif) no-repeat left 3px;
+}
+
+/* ######## IconOnly ######## */
+.Button_Icon .Button_Button
+{
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+	width:16px !important;
+	cursor:pointer;
+	white-space: nowrap;
+    padding:0;
+}
+
+
+/* -------------TD-Left 样式------------- */
+.Button_Left
+{
+	font-size:1px;
+    line-height:1px;
+    width:3px;
+	height:21px;
+	background:url(../../ui-control/ButtonImg/Button_Sprite.gif) no-repeat 0 0;
+}
+
+/* Disable DownDisable */
+.Button_Disable .Button_Left,
+.Button_DownDisable .Button_Left
+{
+	cursor:default;
+}
+
+/* Down DownDisable Click  DownClick */
+.Button_Down .Button_Left,
+.Button_DownDisable .Button_Left,
+.Button_Click .Button_Left,
+.Button_DownClick .Button_Left
+{
+	background-position:0px -147px;
+}
+
+/* Over DownOver */
+.Button_Over .Button_Left,
+.Button_DownOver .Button_Left
+{
+	background-position:0px -63px;
+}
+
+/* ######## ToolBar ######## */
+.Button_ToolBar .Button_Left,
+.Button_ToolBar .Button_Disable .Button_Left
+{
+	background:none;
+}
+
+/* Down DownDisable Click  DownClick */
+.Button_ToolBar .Button_Down .Button_Left,
+.Button_ToolBar .Button_DownDisable .Button_Left,
+.Button_ToolBar .Button_Click .Button_Left,
+.Button_ToolBar .Button_DownClick .Button_Left
+{
+	background:url(../../ui-control/ButtonImg/Button_BarSprite.gif) no-repeat 0 0;
+	background-position:0px -63px;
+}
+
+/* Disable Over DownOver */
+.Button_ToolBar .Button_Over .Button_Left,
+.Button_ToolBar .Button_DownOver .Button_Left
+{
+	background:url(../../ui-control/ButtonImg/Button_BarSprite.gif) no-repeat 0 0;
+	background-position:0px 0px;
+}
+
+/* ######## Split ######## */
+.Button_SplitL .Button_Left
+{
+	display:none;
+}
+
+/* ######## SplitArrow - ToolBar ######## */
+.Button_SplitArrow .Button_ToolBar .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_Disable .Button_Left
+{
+	background:none;
+}
+
+
+.Button_SplitArrow .Button_ToolBar .Button_Over .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_Click .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_Down .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_DownOver .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_DownClick .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_DownDisable .Button_Left
+{
+	background:url(../../ui-control/ButtonImg/Button_BarSprite.gif) repeat-x 0 -42px;
+}
+
+/* Click Down DownClick DownDisable */
+.Button_SplitArrow .Button_ToolBar .Button_Click .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_Down .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_DownClick .Button_Left,
+.Button_SplitArrow .Button_ToolBar .Button_DownDisable .Button_Left
+{
+	background-position:0px -105px;
+}
+
+
+/* -------------TD-Right 样式------------- */
+.Button_Right
+{
+	font-size:1px;
+    line-height:1px;
+    width:3px;
+	height:21px;
+	background:url(../../ui-control/ButtonImg/Button_Sprite.gif) no-repeat 0 -21px;
+}
+
+/* Disable DownDisable */
+.Button_Disable .Button_Right,
+.Button_DownDisable .Button_Right
+{
+	cursor:default;
+}
+
+/* Down DownDisable Click  DownClick */
+.Button_Down .Button_Right,
+.Button_DownDisable .Button_Right,
+.Button_Click .Button_Right,
+.Button_DownClick .Button_Right
+{
+	background-position:0px -168px;
+}
+
+/* Over DownOver */
+.Button_Over .Button_Right,
+.Button_DownOver .Button_Right
+{
+	background-position:0px -84px;
+}
+
+/* ######## ToolBar ######## */
+.Button_ToolBar .Button_Right,
+.Button_ToolBar .Button_Disable .Button_Right
+{
+	background:none;
+}
+
+/* Down DownDisable Click  DownClick */
+.Button_ToolBar .Button_Down .Button_Right,
+.Button_ToolBar .Button_DownDisable .Button_Right,
+.Button_ToolBar .Button_Click .Button_Right,
+.Button_ToolBar .Button_DownClick .Button_Right
+{
+	background:url(../../ui-control/ButtonImg/Button_BarSprite.gif) no-repeat 0 0;
+	background-position:0px -84px;
+}
+
+/* Disable Over DownOver */
+.Button_ToolBar .Button_Over .Button_Right,
+.Button_ToolBar .Button_DownOver .Button_Right
+{
+	background:url(../../ui-control/ButtonImg/Button_BarSprite.gif) no-repeat 0 0;
+	background-position:0px -21px;
+}
+
+/* ######## Split ######## */
+.Button_Split .Button_Right
+{
+	display:none;
+}
+
+/* ######## SplitArrow ######## */
+.Button_SplitArrowL .Button_ToolBar .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_Disable .Button_Right
+{
+	background:none;
+}
+
+.Button_SplitArrowL .Button_ToolBar .Button_Over .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_Click .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_Down .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_DownOver .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_DownClick .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_DownDisable .Button_Right
+{
+	background:url(../../ui-control/ButtonImg/Button_BarSprite.gif) repeat-x 0 -42px;
+}
+
+/* Click Down DownClick DownDisable */
+.Button_SplitArrowL .Button_ToolBar .Button_Click .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_Down .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_DownClick .Button_Right,
+.Button_SplitArrowL .Button_ToolBar .Button_DownDisable .Button_Right
+{
+	background-position:0px -105px;
+}
+
+/* ######## SplitArrow - Left - Right ######## */
+.Button_SplitArrow .Button_Left,
+.Button_SplitArrowL .Button_Right
+{
+	background:url(../../ui-control/ButtonImg/Button_Sprite.gif) repeat-x 0 -42px;
+}
+
+/* Down DownDisable Click  DownClick */
+.Button_SplitArrow .Button_Down .Button_Left,
+.Button_SplitArrow .Button_DownDisable .Button_Left,
+.Button_SplitArrow .Button_Click .Button_Left,
+.Button_SplitArrow .Button_DownClick .Button_Left,
+.Button_SplitArrowL .Button_Down .Button_Right,
+.Button_SplitArrowL .Button_DownDisable .Button_Right,
+.Button_SplitArrowL .Button_Click .Button_Right,
+.Button_SplitArrowL .Button_DownClick .Button_Right
+{
+	background-position:0px -189px;
+}
+
+/* Over */
+.Button_SplitArrow .Button_Over .Button_Left,
+.Button_SplitArrowL .Button_Over .Button_Right
+{
+	background-position:0px -105px;
+}
+
+/* DownOver */
+.Button_SplitArrow .Button_DownOver .Button_Left,
+.Button_SplitArrowL .Button_DownOver .Button_Right
+{
+	background-position:0px -126px;
+}
+
+
+/* -------------TD-Center 样式------------- */
+.Button_Center
+{
+	background:url(../../ui-control/ButtonImg/Button_Sprite.gif) repeat-x 0 -42px;
+	vertical-align: middle;
+	text-align:center;
+	padding:0 5px;
+	cursor:pointer;
+	white-space:nowrap;
+}
+
+/* Disable DownDisable */
+.Button_Disable .Button_Center,
+.Button_DownDisable .Button_Center
+{
+	color:gray!important;cursor:default!important;
+}
+
+/* Down DownDisable Click  DownClick */
+.Button_Down .Button_Center,
+.Button_DownDisable .Button_Center,
+.Button_Click .Button_Center,
+.Button_DownClick .Button_Center
+{
+	background-position:0px -189px;
+}
+
+/* Over */
+.Button_Over .Button_Center
+{
+	background-position:0px -105px;
+}
+
+/* DownOver */
+.Button_DownOver .Button_Center
+{
+	background-position:0px -126px;
+}
+
+/* ######## ToolBar ######## */
+.Button_ToolBar .Button_Center,
+.Button_ToolBar .Button_Disable .Button_Center
+{
+	background:none;
+}
+
+/* Down DownDisable Click  DownClick */
+.Button_ToolBar .Button_Down .Button_Center,
+.Button_ToolBar .Button_DownDisable .Button_Center,
+.Button_ToolBar .Button_Click .Button_Center,
+.Button_ToolBar .Button_DownClick .Button_Center
+{
+	background:url(../../ui-control/ButtonImg/Button_BarSprite.gif) repeat-x 0 0;
+	background-position:0px -105px;
+}
+
+/* Disable Over DownOver */
+.Button_ToolBar .Button_Over .Button_Center,
+.Button_ToolBar .Button_DownOver .Button_Center
+{
+	background:url(../../ui-control/ButtonImg/Button_BarSprite.gif) repeat-x 0 0;
+	background-position:0px -42px;
+}
+
+
+/* ######## Split ######## */
+.Button_Split .Button_Center,
+.Button_SplitL .Button_Center
+{
+	padding:0px;
+	margin:0px;
+}
+
+/* ######## SplitArrow ######## */
+.Button_SplitArrow .Button_Center,
+.Button_SplitArrowL .Button_Center
+{
+	padding:0px;
+}
+
+/* ######## IconOnly ######## */
+.Button_Icon .Button_Center
+{
+	padding:1px;
+}

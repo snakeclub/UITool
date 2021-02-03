@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-control/TextBox.js"></script>
+    
+    <script type="text/javascript">
+        $.TextBoxStyle.defaults.FocusOn = function(obj){
+            $("#FocusOn").get(0).innerHTML="FocusOn("+Date().toString()+"):obj ID is:"+obj.attr("id");
+        };
+        
+        $.TextBoxStyle.defaults.FocusOut = function(obj){
+            $("#FocusOut").get(0).innerHTML="FocusOut("+Date().toString()+"):obj ID is:"+obj.attr("id");
+        };
+        
+        $.TextBoxStyle.defaults.StatusChange = function(obj,laststatus,status){
+            $("#StatusChange").get(0).innerHTML="StatusChange("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   laststatus:"+laststatus+"   status:"+status;
+        };
+        
+        
+        function CreateStyle1(){
+            $.TextBoxAddStyle("Style1",{
+                //自定义样式
+                SelfDef : {
+                    //样式类型,none - 无样式，class - css类名, css - css样式表
+                    StyleType : "css",
+                    
+                    //是否清除原来的样式,例如在Normal切换到Focus时，若Focus的这个参数为true，会根据Normal的样式类型进行原样式的清除，例如清空ClassName或将对应的CssStyle的项清空为默认值
+                    ClearStyle : true,
+                    
+                    //需要设置的css类名，可以用空格分隔，或者是返回类名的函数，传入的参数依次为JQuery对象、对象原先的class属性值
+                    ClassName : "",
+                    
+                    //css样式
+                    CssStyle : {
+                        "background-color" : "Blue"
+                    }
+                }
+            });
+        }
+        
+        function SetTextStyle1(){
+            $("#style1").children().TextBoxSetStyleName("Style1", true);
+        }
+        
+        function SetText3Normal(obj){
+            if(obj.value == "设置对象3的状态为Normal"){
+                $('#Text3').TextBoxSetStatus('Normal');
+                obj.value = "设置对象3的状态为屏蔽";
+            }
+            else{
+                $('#Text3').TextBoxSetStatus('Disable');
+                obj.value = "设置对象3的状态为Normal";
+            }
+        }
+        
+        
+        function CreateStyle2(){
+            $.TextBoxAddStyle("Style2",{
+                //正常样式
+                Normal : {
+                    //样式类型,none - 无样式，class - css类名, css - css样式表
+                    StyleType : "css",
+                    
+                    //是否清除原来的样式,例如在Normal切换到Focus时，若Focus的这个参数为true，会根据Normal的样式类型进行原样式的清除，例如清空ClassName或将对应的CssStyle的项清空为默认值
+                    ClearStyle : true,
+                    
+                    //需要设置的css类名，可以用空格分隔，或者是返回类名的函数，传入的参数依次为obj、对象原先的class属性值
+                    ClassName : "",
+                    
+                    //css样式
+                    CssStyle : {
+                        "background-color" : "Blue"
+                    }
+                },
+                
+                //获得焦点时的样式
+                Focus : {
+                    //样式类型,none - 无样式，class - css类名, css - css样式表
+                    StyleType : "css",
+                    
+                    //是否清除原来的样式,例如在Normal切换到Focus时，若Focus的这个参数为true，会根据Normal的样式类型进行原样式的清除，例如清空ClassName或将对应的CssStyle的项清空为默认值
+                    ClearStyle : true,
+                    
+                    //需要设置的css类名，可以用空格分隔，或者是返回类名的函数，传入的参数依次为obj、对象原先的class属性值
+                    ClassName : "",
+                    
+                    //css样式
+                    CssStyle : {
+                        "background-color" : "Red"
+                    }
+                },
+                
+                //屏蔽时的样式
+                Disable : {
+                    //样式类型,none - 无样式，class - css类名, css - css样式表
+                    StyleType : "css",
+                    
+                    //是否清除原来的样式,例如在Normal切换到Focus时，若Focus的这个参数为true，会根据Normal的样式类型进行原样式的清除，例如清空ClassName或将对应的CssStyle的项清空为默认值
+                    ClearStyle : true,
+                    
+                    //需要设置的css类名，可以用空格分隔，或者是返回类名的函数，传入的参数依次为JQuery对象、对象原先的class属性值
+                    ClassName : "",
+                    
+                    //css样式
+                    CssStyle : {
+                        "background-color" : "Orange"
+                    }
+                },
+                
+                //警告提示时的样式
+                Warning : {
+                    //样式类型,none - 无样式，class - css类名, css - css样式表
+                    StyleType : "css",
+                    
+                    //是否清除原来的样式,例如在Normal切换到Focus时，若Focus的这个参数为true，会根据Normal的样式类型进行原样式的清除，例如清空ClassName或将对应的CssStyle的项清空为默认值
+                    ClearStyle : true,
+                    
+                    //需要设置的css类名，可以用空格分隔，或者是返回类名的函数，传入的参数依次为JQuery对象、对象原先的class属性值
+                    ClassName : "",
+                    
+                    //css样式
+                    CssStyle : {
+                        "background-color" : "Gray"
+                    }
+                }
+            });
+        }
+        
+        function ChangeStyle1(){
+            $.TextBoxAddStyle("Style1",{
+                //正常样式
+                Normal : {
+                    //样式类型,none - 无样式，class - css类名, css - css样式表
+                    StyleType : "css",
+                    
+                    //是否清除原来的样式,例如在Normal切换到Focus时，若Focus的这个参数为true，会根据Normal的样式类型进行原样式的清除，例如清空ClassName或将对应的CssStyle的项清空为默认值
+                    ClearStyle : true,
+                    
+                    //需要设置的css类名，可以用空格分隔，或者是返回类名的函数，传入的参数依次为obj、对象原先的class属性值
+                    ClassName : "",
+                    
+                    //css样式
+                    CssStyle : {
+                        "background-color" : "Orange"
+                    }
+                }
+            });
+        }
+        
+        function AddCTip4(obj){
+            if(obj.value=="对象4添加CTip"){
+                $("#Text4").TextBoxAddCTip("对象4的提示内容");
+                obj.value="对象4清除CTip";
+            }
+            else{
+                $("#Text4").TextBoxClearCTip();
+                obj.value="对象4添加CTip";
+            }
+        }
+        
+        function AddCTip2(obj){
+            if(obj.value=="对象2添加CTip"){
+                $("#Text2").TextBoxAddCTip("对象2的提示内容");
+                obj.value="对象2清除CTip";
+            }
+            else{
+                $("#Text2").TextBoxClearCTip();
+                obj.value="对象2添加CTip";
+            }
+        }
+ 
+        
+    </script>
+    
+    <style type="text/css">
+        #Text3
+        {
+            width: 206px;
+        }
+    </style>
+    
+</head>
+<body>
+    <p id='style1'>
+        
+        <input id="Text1" type="text" />&nbsp;&nbsp;
+        <input id="Text2" type="text" />&nbsp;
+        <input id="Text3" type="text" readonly="readonly" />
+        <input id="Text4" type="text" />&nbsp;&nbsp;
+    </p>
+    <p>
+        
+        <input id="Button1" type="button" value="创建样式Style1-初始化" onclick="CreateStyle1();" />
+        <input id="Button2" type="button" value="为对象设置Style1-初始化" onclick="SetTextStyle1();" />
+        <input id="Button3" type="button" value="设置对象1状态为Warning" onclick="$('#Text1').TextBoxSetStatus('Warning');" />
+        <input id="Button4" type="button" value="设置对象2状态为SelfDef"  onclick="$('#Text2').TextBoxSetStatus('SelfDef');" />
+        <input id="Button5" type="button" value="设置对象3的状态为Normal" onclick="SetText3Normal(this);"; />
+        <input id="Button6" type="button" value="清除对象2的Style1样式" onclick="$('#Text2').TextBoxSetStyleName('');" />
+        <input id="Button7" type="button" value="清除Style1样式" onclick="$.TextBoxClearStyle('Style1',true);" />
+        <input id="Button10" type="button" value="变更Style1样式" onclick="ChangeStyle1();" />
+    </p>
+    <p>
+    <input id="Button8" type="button" value="创建样式Style2-初始化" onclick="CreateStyle2();"; />
+    <input id="Button9" type="button" value="将对象2设置为Style2样式" onclick="$('#Text2').TextBoxSetStyleName('Style2');" />
+    </p>
+    <p>
+    <input id="Button11" type="button" value="对象4添加CTip" onclick="AddCTip4(this);"; />
+    <input id="Button12" type="button" value="对象2添加CTip" onclick="AddCTip2(this);" />
+    <input id="Button13" type="button" value="获取对象2的值" onclick="alert($('#Text2').TextBoxCTipValue());" />
+    </p>
+    <p id='FocusOn'>FocusOn</p>
+    <p id='FocusOut'>FocusOut</p>
+    <p id='StatusChange'>StatusChange</p>
+    <p></p>
+</body>
+</html>

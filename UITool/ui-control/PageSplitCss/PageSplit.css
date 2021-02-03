@@ -1,0 +1,120 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：Table按钮类型样式(纯文字按钮)
+说明：按钮控件
+文件：PageSplit.css
+
+资源文件：../PageSplitImg/
+
+    <TABLE selftype='ToolBar' PageSplit='true' class='ToolBar_Main PageSplit_PageSplit' border=0 cellSpacing=0 cellPadding=0 data=PageSplitOpts data=PageInfo>
+		<TR>
+			<TD class='ToolBarFirst'>第一页按钮</TD>
+			<TD class='ToolBarPrev'>上一页按钮</TD>
+			<TD id='_ToolBarSplit1'><SPAN class='ToolBar_Split'></SPAN></TD>
+			<TD class='ToolBarPageShowText'>页码数显示(里面的变量的class分别为：CurrentPageInput、CurrentPage、TotalPage、TotalCount)</TD>
+			<TD id='_ToolBarSplit2'><SPAN class='ToolBar_Split'></SPAN></TD>
+			<TD class='ToolBarNext'>下一页按钮</TD>
+			<TD class='ToolBarLast'>最后一页按钮</TD>
+			<TD id='_ToolBarSplitRefresh'><SPAN class='ToolBar_Split'></SPAN></TD>
+			<TD class='ToolBarRefresh'>刷新按钮</TD>
+			<TD class='ToolBarLoadingPic'><img class='LoadingPic' /></TD>
+			<TD id='_ToolBarSplitNumPerPage'><SPAN class='ToolBar_Split'></SPAN></TD>
+			<TD class='ToolBarNumPerPageText'>每页记录数显示(里面的变量的class分别为：NumPerPageInput)</TD>
+
+			<TD ToolBarType='CenterTd' class='ToolBar_CenterTd'>&nbsp;</TD>  --定位中间分隔的格子
+
+			<TD  class='ToolBarRightTip'>右边提示信息(里面的变量的class分别为：CurrentPage、TotalPage、TotalCount、NumPerPage)</TD>
+		</TR>
+	</TABLE>
+-----------------------*/
+
+/* -------------按钮相关的样式------------- */
+/* ######## 第一页按钮 ######## */
+.PageSplit_PageSplit .ToolBarFirst .Button_Icon .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/page-first.gif);
+}
+
+.PageSplit_PageSplit .ToolBarFirst .Button_Icon .Button_Disable .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/page-first-disabled.gif);
+}
+
+/* ######## 上一页按钮 ######## */
+.PageSplit_PageSplit .ToolBarPrev .Button_Icon .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/page-prev.gif);
+}
+
+.PageSplit_PageSplit .ToolBarPrev .Button_Icon .Button_Disable .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/page-prev-disabled.gif);
+}
+
+/* ######## 下一页按钮 ######## */
+.PageSplit_PageSplit .ToolBarNext .Button_Icon .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/page-next.gif);
+}
+
+.PageSplit_PageSplit .ToolBarNext .Button_Icon .Button_Disable .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/page-next-disabled.gif);
+}
+
+/* ######## 最后一页按钮 ######## */
+.PageSplit_PageSplit .ToolBarLast .Button_Icon .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/page-last.gif);
+}
+
+.PageSplit_PageSplit .ToolBarLast .Button_Icon .Button_Disable .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/page-last-disabled.gif);
+}
+
+/* ######## 刷新按钮 ######## */
+.PageSplit_PageSplit .ToolBarRefresh .Button_Icon .Button_Button
+{
+	background-image:url(../../ui-control/PageSplitImg/refresh.gif);
+}
+
+
+/* -------------Loading图片------------- */
+.PageSplit_PageSplit .LoadingPic
+{
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	margin-left:4px;
+	margin-right:4px;
+}
+
+/* -------------变量的样式------------- */
+.PageSplit_PageSplit .CurrentPageInput,
+.PageSplit_PageSplit .NumPerPageInput,
+.PageSplit_PageSplit .CurrentPage,
+.PageSplit_PageSplit .TotalPage,
+.PageSplit_PageSplit .TotalCount,
+.PageSplit_PageSplit .NumPerPage
+{
+	margin-left:3px;
+	margin-right:3px;
+	text-align:center;
+}
+
+/* -------------头尾的样式------------- */
+.PageSplit_PageSplit .ToolBarFirst
+{
+	padding-left:5px;
+}
+
+.PageSplit_PageSplit .ToolBarRightTip
+{
+	padding-right:5px;
+}

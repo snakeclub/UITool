@@ -1,0 +1,355 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：DropDownList
+说明：下拉列表
+文件：DropDownList.css
+
+资源文件：../DropDownListImg/
+
+<div selftype='DropDownList'
+    class='DropDownList_Normal DropDownList_Disabled'
+focusIndex='当前焦点对象索引,没有焦点为-1' 
+data='SelectedIndexs'
+enable='true'
+    data='DropDownListOpts'
+>
+<table DropDownListType='InputTab'
+      class='DropDownList_Tab_Normal DropDownList_Tab_Disabled'
+     cellpadding='0' cellspacing='0'
+>
+	<tr DropDownListType='InputTr' --显示选项的行>
+		<td DropDownListType='InputTd' 
+         class='DropDownList_InputTd_Normal
+              DropDownList_InputTd_Disabled' 
+       >
+			<img DropDownListType='InputImg'
+               class='DropDownList_InputImg_Normal
+                    DropDownList_InputImg_Disabled'
+          />
+			<input DropDownListType='InputShow' 
+                class='DropDownList_InputShow_Normal
+                     DropDownList_InputShow_Disabled'
+                lastvalue='最后一次录入的值'
+           />
+          <input DropDownListType='InputHide'
+                style='width:0px;height:0px;' 
+                lastvalue='最后一次录入的值'
+                onkeyup='键盘输入检索的处理函数'
+          />
+		</td>
+		<td DropDownListType='ArrowTd'
+          class='DropDownList_ArrowTd_Normal
+               DropDownList_ArrowTd_Disabled'
+       >
+			<div DropDownListType='ArrowDiv'
+				 class='DropDownList_ArrowDiv_Normal
+					  DropDownList_ArrowDiv_Disabled
+					  DropDownList_ArrowDiv_MouseOver'
+          >
+		</td>
+	</tr>
+</table>
+//以下是隐藏的下拉列表
+<UL DropDownListType='DropListUl'
+				 class='DropDownList_DropListUl'
+			>
+				<LI DropDownListType='DropListItem'
+					class='DropDownList_DropListItem_Normal
+						  DropDownList_DropListItem_Focus
+						  DropDownList_DropListItem_Selected
+						  DropDownList_DropListItem_SelectedFocus'
+					data='DropDownListItemOpts'
+					selected='false'
+					index='所在ul的索引'
+					itemValue='选项值' 
+				>
+					<img DropDownListType='DropListItemImg'
+						 class='DropDownList_DropListItemImg_Normal
+							   DropDownList_DropListItemImg_Focus
+							   DropDownList_DropListItemImg_Selected
+							 DropDownList_DropListItemImg_SelectedFocus'
+					>
+					<div DropDownListType='DropListItemDiv'
+						 class='DropDownList_DropListItemDiv_Normal
+							   DropDownList_DropListItemDiv_Focus
+							   DropDownList_DropListItemDiv_Selected
+							DropDownList_DropListItemDiv_SelectedFocus'
+					>
+						<a DropDownListType='DropListItemText'
+							class='DropDownList_DropListItemText_Normal
+							   DropDownList_DropListItemText_Focus
+							   DropDownList_DropListItemText_Selected
+							DropDownList_DropListItemText_SelectedFocus'
+						>
+							选项文本
+						</a>
+					</div>
+				</LI>
+			</UL>
+</div>
+
+-----------------------*/
+/* 下拉框控件主样式 － 无边框无背景，只是容器 */
+.DropDownList_Normal,.DropDownList_Disabled
+{
+	/* 不建议修改的样式 */
+	border:0px solid #868686; /* 边框 */
+	padding : 0px;
+	font-size:0px; /* 可以控制最小高度 */
+	overflow:visible;
+	
+	/* 可修改的样式 */
+	height:18px;
+}
+
+/* 下拉框控件展示表格主样式 */
+/* 公共样式 */
+.DropDownList_Tab_Normal, .DropDownList_Tab_Disabled
+{
+	/* 不建议修改的样式 */
+	border-collapse:collapse; 
+	padding:0px; 
+	overflow:hidden; 
+	table-layout:fixed;
+	margin:0px; 
+	width:100%;
+	
+	/* 可修改的样式 */
+	
+}
+
+/* 正常状态 */
+.DropDownList_Tab_Normal
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-color:#FFFFFF; /* 总额控件背景色 */
+	border:1px solid #868686; /* 边框 */
+}
+
+/* 屏蔽状态 */
+.DropDownList_Tab_Disabled
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-color:#CCCCCC; /* 总额控件背景色 */
+	border:1px solid #868686; /* 边框 */
+}
+
+/* 输入框单元格样式 */
+/* 公共样式 */
+.DropDownList_InputTd_Normal, .DropDownList_InputTd_Disabled
+{
+	/* 不建议修改的样式 */
+	overflow:hidden; 
+	white-space:nowrap; 
+	margin:0px; 
+	padding:0px; 
+	vertical-align:top;
+	
+	/* 可修改的样式 */
+	border-bottom-width:0px;
+	height:18px;
+}
+
+
+/* 输入框图片样式 */
+/* 公共样式 */
+.DropDownList_InputImg_Normal, .DropDownList_InputImg_Disabled
+{
+	/* 不建议修改的样式 */
+	overflow:hidden; 
+	padding:0px; 
+	border:0px solid #868686;
+	float:left;
+	margin:0px;
+	
+	/* 可修改的样式 */
+	width:18px;
+	height:18px;
+	margin-left:2px;
+}
+
+/* 输入框样式 */
+/* 公共样式 */
+.DropDownList_InputShow_Normal,.DropDownList_InputShow_Disabled
+{
+	/* 不建议修改的样式 */
+	border:0px solid; 
+	width:100%; 
+	margin:0px; 
+	padding:0px;
+	vertical-align:middle;
+	float:left;
+	cursor:default;
+	
+	/* 可修改的样式 */
+	font-size:11px;
+	padding-left:5px;
+	padding-top:2px;
+	height:16px; /* 真实高度为高度+padding */
+}
+
+/* 下拉框单元格样式 */
+/* 公共样式 */
+.DropDownList_ArrowTd_Normal,.DropDownList_ArrowTd_Disabled
+{
+	/* 不建议修改的样式 */
+	overflow:hidden; 
+	white-space:nowrap; 
+	margin:0px; 
+	padding:0px; 
+	vertical-align:top;
+	
+	/* 可修改的样式 */
+	border-bottom-width:0px;
+	width:18px;
+}
+
+/* 下拉箭头样式 */
+/* 公共样式 */
+.DropDownList_ArrowDiv_Normal,.DropDownList_ArrowDiv_Disabled,.DropDownList_ArrowDiv_MouseOver
+{
+	/* 不建议修改的样式 */
+	overflow:hidden; 
+	white-space:nowrap; 
+	margin:0px; 
+	padding:0px; 
+	border:0px solid; 
+	
+	/* 可修改的样式 */
+    background-image:url('../../ui-control/DropDownListImg/DropDownList_DownArrow.gif');
+    background-repeat:no-repeat;
+    background-position:3px 3px;
+    width:18px;
+    height:18px;
+}
+
+/* 鼠标移上去的样式 */
+.DropDownList_ArrowDiv_MouseOver
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-color: #E7F1FD;
+}
+
+
+/* 下拉列表的框架样式 */
+.DropDownList_DropListUl
+{
+	/* 不建议修改的样式 */
+	padding:0px;
+	margin:0px;
+	position:absolute;
+	overflow:hidden;
+	overflow-y:auto;
+	
+	/* 可修改的样式 */
+	background-color:#FFFFFF;
+	border:1px solid #868686; /* 边框 */
+	/* 滚动条 */
+	SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+	SCROLLBAR-SHADOW-COLOR: #33BAFF;
+	SCROLLBAR-3DLIGHT-COLOR: #33BAFF; 
+	SCROLLBAR-TRACK-COLOR: #E0F4FF; 
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff; 
+	SCROLLBAR-BASE-COLOR: #65CBFF;
+}
+
+/* 下拉选项的li样式 */
+/* 公共样式 */
+.DropDownList_DropListItem_Normal,.DropDownList_DropListItem_Focus,.DropDownList_DropListItem_Selected,.DropDownList_DropListItem_SelectedFocus
+{
+	/* 不建议修改的样式 */
+	padding:0px;
+	margin:0px;
+	list-style-type:none; /* 不显示列表图标 */
+	overflow :hidden; 
+	width:2000px;  /* 确保不会出现换行的情况 */
+	
+	/* 可修改的样式 */
+	height:20px;
+}
+
+/* 下拉选项的图片样式 */
+/* 公共样式 */
+.DropDownList_DropListItemImg_Normal,.DropDownList_DropListItemImg_Focus,.DropDownList_DropListItemImg_Selected,.DropDownList_DropListItemImg_SelectedFocus
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	padding:0px;
+	float:left; /* div不换行 */
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	border:0px solid;
+	width:18px;
+	height:18px;
+	margin:1px;
+	margin-left:2px;
+}
+
+/* 下拉选项的容器样式 */
+/* 公共样式 */
+.DropDownList_DropListItemDiv_Normal,.DropDownList_DropListItemDiv_Focus,.DropDownList_DropListItemDiv_Selected,.DropDownList_DropListItemDiv_SelectedFocus
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	padding:3px;
+	float:left; /* div不换行 */
+	overflow:hidden;
+	white-space:nowrap;
+	width:1800px; /* 让Div的样式能延伸到选项后面 */
+	
+	/* 可修改的样式 */
+	border:0px solid #DBCE99;  /* 没有边框 */
+	font-size:11px;  /* 字体大小 */
+}
+
+.DropDownList_DropListItemDiv_Focus
+{
+	/* 不建议修改的样式 */
+	/* 可修改的样式 */
+	background-color:#95d5f1;
+}
+
+.DropDownList_DropListItemDiv_Selected
+{
+	/* 不建议修改的样式 */ 
+	/* 可修改的样式 */
+	background-color: #3399FF;
+}
+
+.DropDownList_DropListItemDiv_SelectedFocus
+{
+	/* 不建议修改的样式 */ 
+	/* 可修改的样式 */
+	background-color: #95F5Af;
+}
+
+/* 字体 */
+.DropDownList_DropListItemText_Normal,.DropDownList_DropListItemText_Focus,.DropDownList_DropListItemText_Selected,.DropDownList_DropListItemText_SelectedFocus
+{
+	/* 不建议修改的样式 */
+	white-space:nowrap;
+	cursor:default;
+
+	/* 可修改的样式 */
+	font-size:11px;  /* 字体大小 */
+	color:#000000;  /* 字体颜色 */
+}
+
+.DropDownList_DropListItemText_Selected
+{
+	/* 不建议修改的样式 */
+	/* 可修改的样式 */
+	color:#ffffff;
+}

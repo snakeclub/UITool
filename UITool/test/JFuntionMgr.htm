@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/JFuntionMgr.js"></script>
+    
+    
+    <script type="text/javascript">
+        function Define(){
+            $.JFMgrAddFun("JFMgrT","t1","[selftype='t1']","width");
+            $.JFMgrAddFun("JFMgrT","t2","[selftype='t2']","height");
+        }
+        
+        function T1Test(){
+            var back = $("[selftype='t1']").JFMgrT(Math.random()*500 + "px");
+            alert(back);
+        }
+        
+        function T2Test(){
+            $("[selftype='t2']").JFMgrT(Math.random()*500 + "px");
+        }
+    </script>
+</head>
+<body>
+<p>
+    <input id="Button1" type="button" value="定义公共函数" onclick="Define();" />
+    <input id="Button2" type="button" value="修改t1宽度" onclick="T1Test();" />
+    <input id="Button3" type="button" value="修改t2高度" onclick="T2Test();" />
+    
+</p>
+
+<div selftype='t1' style="width:100px; height:200px; background-color:Green;">t1</div>
+    <div selftype='t2' style="width:100px; height:200px; background-color:SkyBlue;">t2</div>
+</body>
+</html>

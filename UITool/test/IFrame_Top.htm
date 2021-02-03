@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/IFrame.js"></script>
+    <script type="text/javascript" src="../ui-ajax/json2.js"></script>
+    
+    <script language=javascript>
+        function test(){
+            alert($("#TopP").attr("test"));
+        };
+        
+        function L11AutoHeight(){
+            $(window).IFrameChildren("L11").IFrameAutoHeight("L11");
+        };
+        
+        function L11Fun(){
+            $(window).IFrameChildren("L11").IFrameFunCall("TopCallFun",function(id,back){alert(id+"   "+back);},"ParaA","ParaB");
+        };
+    </script>
+</head>
+<body onload="$.IFrameInitFunBase('Top')";>
+    <p id='TopP'>IFrame_Top</p>
+    <p><input id="Button1" type="button" value="test" onclick="test();" />
+    <input id="Button2" type="button" value="L11自适应大小" onclick="L11AutoHeight();" />
+    <input id="Button3" type="button" value="调用L11函数" onclick="L11Fun();" />
+    </p>
+    
+    <iframe id='L11' name='L11Name' src='IFrame_L11.htm' style="width:50%; height:100px;"></iframe>
+    
+    <iframe id='L12' name='L12Name' src='IFrame_L12.htm' style="width:100%; height:auto;"></iframe>
+</body>
+</html>

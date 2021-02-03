@@ -1,0 +1,412 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：Slider
+说明：滑动条
+文件：SliderBlue.css
+
+资源文件：../SliderImg/
+
+<div selftype='Slider' class='Slider_DivMain'  --主容器
+    data='SliderOpts'  enable='true/false'
+    ScaleL='长刻度高度' ScaleS='短刻度高度' MaxScaleValue='最高的刻度提示值'
+ValueBegin='开始值'  ValueEnd='结束值'
+Data='PosPara'
+>
+    --头尾值容器
+    <div SliderType='DivHeadBox' class='Slider_DivHeadBox_H/V)' > 
+       --头尾值
+       <div SliderType='DivHeadValue' class='Slider_DivHeadValue_H/V'></div>
+       <div SliderType='DivTailValue' class='Slider_DivHeadValue_H/V'></div>
+    </div>
+    
+<div SliderType='DivBar' class='Slider_DivBar_H / Slider_DivBar_V'  --滑动条背景>
+	   <div SliderType='DivBarF' class='Slider_DivBarF_H / Slider_DivF_V'  --滑动条前端颜色条></div>
+    </div>
+
+    --刻度容器
+    <div SliderType='DivScaleBox' class='Slider_DivScaleBox_H/V'> 
+        <div SliderType='DivScale' class='Slider_DivScale_(H/V)_(L/S)' pos='刻度位置'></div> ...多个
+    </div> 
+
+    --刻度值容器
+    <div SliderType='DivScaleValueBox' class='Slider_DivScaleValueBox_H/V'> 
+        --刻度值
+        <div SliderType='DivScaleValue' class='Slider_DivScaleValue_H/V'>...多个
+    </div> 
+
+    --滑动块容器
+    <div SliderType='DivMoveBox' class='Slider_DivMoveBox_H/V'> 
+        --滑动块
+        <div SliderType='DivMoveBegin' class='Slider_DivMove_H/V Slider_DivMove_H/V_Drag'></div>
+        <div SliderType='DivMoveEnd' class='Slider_DivMove_H/V Slider_DivMove_H/V_Drag '></div>
+    </div> 
+
+    --滑动块值容器
+    <div SliderType='DivMoveValueBox' class='Slider_DivMoveValueBox_H/V'> 
+        --滑动块值
+        <div SliderType='DivMoveValue' class='Slider_DivMoveValue_H/V'></div>
+        <div SliderType='DivMoveValue' class='Slider_DivMoveValue_H/V'></div>
+    </div>
+
+</div>
+
+
+
+
+
+-----------------------*/
+
+/* 滑动条控件主样式 */
+/* 主容器 */
+.SliderBlue_DivMain
+{
+	/* 不建议修改的样式 */
+	font-size:0px; /* 可以随意控制大小 */
+	overflow:hidden; /* 让不显示的对象移出对象显示区，而非隐藏 */
+	
+	/* 可修改的样式 */
+	border:0px solid #fff; /* 没有边框 */
+}
+
+/* 滑动条背景*/
+/* 公共样式 */
+.SliderBlue_DivBar_H,.SliderBlue_DivBar_V
+{
+	/* 不建议修改的样式 */
+	font-size:0px;
+	padding:0px;
+	margin:0px;
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	border:0px solid #fff; /* 没有边框 */
+}
+
+/* 横向背景 */
+.SliderBlue_DivBar_H
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	height:5px;
+	background-image:url(../../ui-control/SliderImg/SliderBlue.gif);
+	background-position:0px 0px;
+	background-repeat:repeat-x;
+}
+
+/* 纵向背景 */
+.SliderBlue_DivBar_V
+{
+	/* 不建议修改的样式 */
+	float:left;
+	
+	/* 可修改的样式 */
+	width:5px;
+	background-image:url(../../ui-control/SliderImg/SliderBlueV.gif);
+	background-position:0px 0px;
+	background-repeat:repeat-y;
+}
+
+/* 滑动条前景色 */
+/* 公共样式 */
+.SliderBlue_DivBarF_H,.SliderBlue_DivBarF_V
+{
+	/* 不建议修改的样式 */
+	font-size:0px;
+	padding:0px;
+	margin:0px;
+	
+	/* 可修改的样式 */
+	border:0px solid #fff; /* 没有边框 */
+}
+
+.SliderBlue_DivBarF_H
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	height:5px;
+	background-image:url(../../ui-control/SliderImg/SliderBlue.gif);
+	background-position:0px -6px;
+	background-repeat:repeat-x;
+}
+
+.SliderBlue_DivBarF_V
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	width:5px;
+	background-image:url(../../ui-control/SliderImg/SliderBlueV.gif);
+	background-position:-6px 0px;
+	background-repeat:repeat-y;
+}
+
+
+/* 头尾值 */
+/* 头尾值容器 */
+.SliderBlue_DivHeadBox_H,.SliderBlue_DivHeadBox_V
+{
+	/* 不建议修改的样式 */
+	padding : 0px;
+	overflow:hidden; /* 控制大小不改变 */
+	margin : 0px;
+	
+	/* 可修改的样式 */
+}
+
+.SliderBlue_DivHeadBox_H
+{
+	/* 可修改的样式 */
+	height:18px;
+}
+
+.SliderBlue_DivHeadBox_V
+{
+	/* 不建议修改的样式 */
+	float:left;
+	text-align:center;
+	
+	/* 可修改的样式 */
+	margin-right:5px;
+	width:18px;
+}
+
+/* 头尾值内容 */
+.SliderBlue_DivHeadValue_H,.SliderBlue_DivHeadValue_V
+{
+	/* 不建议修改的样式 */
+	margin : 0px;
+	
+	/* 可修改的样式 */
+	font-size:12px;
+}
+
+
+
+/* 刻度线容器 */
+.SliderBlue_DivScaleBox_H,.SliderBlue_DivScaleBox_V
+{
+	/* 不建议修改的样式 */
+	padding : 0px;
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+}
+
+.SliderBlue_DivScaleBox_V
+{
+	/* 不建议修改的样式 */
+	float:left;
+	
+}
+
+/* 刻度线 */
+.SliderBlue_DivScale_H_L,.SliderBlue_DivScale_H_S,.SliderBlue_DivScale_V_L,.SliderBlue_DivScale_V_S
+{
+	/* 不建议修改的样式 */
+	font-size:0px;
+	background:0px solid #fff; /* 没有边框 */
+	padding:0px;
+	margin:0px;
+	overflow:hidden;
+	z-index:-1; /* 让刻度线在滑动条下面 */
+	
+	/* 可修改的样式 */
+	background-color:Red; /* 刻度颜色 */
+}
+
+.SliderBlue_DivScale_H_L
+{
+	/* 不建议修改的样式 */
+	width:1px;
+	
+	/* 可修改的样式 */
+	height:8px;
+}
+
+.SliderBlue_DivScale_H_S
+{
+	/* 不建议修改的样式 */
+	width:1px;
+	
+	/* 可修改的样式 */
+	height:5px;
+}
+
+.SliderBlue_DivScale_V_L
+{
+	/* 不建议修改的样式 */
+	height:1px;
+	 
+	
+	/* 可修改的样式 */
+	width:8px;
+}
+
+.SliderBlue_DivScale_V_S
+{
+	/* 不建议修改的样式 */
+	height:1px;
+	
+	/* 可修改的样式 */
+	width:5px;
+}
+
+
+/* 刻度值容器 */
+.SliderBlue_DivScaleValueBox_H,.SliderBlue_DivScaleValueBox_V
+{
+	/* 不建议修改的样式 */
+	padding : 0px;
+	overflow:visible;
+	
+	/* 可修改的样式 */
+}
+
+.SliderBlue_DivScaleValueBox_V
+{
+	/* 不建议修改的样式 */
+	float:left;
+}
+
+/* 刻度值 */
+.SliderBlue_DivScaleValue_H,.SliderBlue_DivScaleValue_V
+{
+	/* 不建议修改的样式 */
+	margin:0px;
+	padding:0px;
+	z-index:-1; /* 让刻度值在滑动条下面 */
+	
+	/* 可修改的样式 */
+	font-size:12px;
+}
+
+
+/* 滑动块 */
+/* 滑动块容器 */
+.SliderBlue_DivMoveBox_H,.SliderBlue_DivMoveBox_V
+{
+	/* 不建议修改的样式 */
+	padding : 0px;
+	overflow:visible;
+	
+	/* 可修改的样式 */
+}
+
+.SliderBlue_DivMoveBox_V
+{
+	/* 不建议修改的样式 */
+	float:left;
+}
+
+/* 滑动块公共样式 */
+.SliderBlue_DivMove_H,.SliderBlue_DivMove_V,.SliderBlue_DivMove_H_Drag,.SliderBlue_DivMove_V_Drag
+{
+	/* 不建议修改的样式 */
+	font-size:0px;
+	margin:0px;
+	
+	/* 可修改的样式 */
+	border:0px solid #fff; /* 没有边框 */
+	padding:0px;
+	background-repeat:no-repeat;
+}
+
+/* 滑动块 */
+.SliderBlue_DivMove_H,.SliderBlue_DivMove_H_Drag
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	width:11px;
+	height:13px;
+	background-image:url(../../ui-control/SliderImg/SliderBlue.gif);
+	background-position:0px -12px;
+}
+
+.SliderBlue_DivMove_H_Drag
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-position:-12px -12px;
+}
+
+.SliderBlue_DivMove_V,.SliderBlue_DivMove_V_Drag
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	width:13px;
+	height:11px;
+	background-image:url(../../ui-control/SliderImg/SliderBlueV.gif);
+	background-position:-12px 0px;
+}
+
+.SliderBlue_DivMove_V_Drag
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-position:-12px -12px;
+}
+
+
+/* 滑动块值容器 */
+.SliderBlue_DivMoveValueBox_H,.SliderBlue_DivMoveValueBox_V
+{
+	/* 不建议修改的样式 */
+	padding : 0px;
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+}
+
+.SliderBlue_DivMoveValueBox_V
+{
+	/* 不建议修改的样式 */
+	float:left; 
+}
+
+/* 滑动块值 */
+.SliderBlue_DivMoveValue_H, .SliderBlue_DivMoveValue_V
+{
+	/* 不建议修改的样式 */ 
+
+	/* 可修改的样式 */
+	font-size: 12px;
+	border: 1px solid #ff9933; /* 边框 */
+	background-color: #FFFBAD; /* 背景 */
+}
+
+.SliderBlue_DivMoveValue_H
+{
+	/* 不建议修改的样式 */
+	width:0px;
+	
+	/* 可修改的样式 */
+	height:16px;
+	text-align:center;
+}
+
+.SliderBlue_DivMoveValue_V
+{
+	/* 不建议修改的样式 */
+	height:0px;  /* 大小根据显示内容变化 */
+	
+	/* 可修改的样式 */
+	width:16px;
+	text-align:center;
+}
+
+
+
+
+
+

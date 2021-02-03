@@ -1,0 +1,734 @@
+﻿@CHARSET "UTF-8";
+html, body {
+    font-size:9pt;
+    font-family:宋体, tahoma, arial, verdana, sans-serif;
+}
+
+.btn_ico_add    {background-image:url(../images/icons/calendar_add.png) !important;}
+.btn_ico_modify {background-image:url(../images/icons/calendar_edit.png) !important;}
+.btn_ico_remove {background-image:url(../images/icons/calendar_delete.png) !important;}
+.btn_ico_query  {background-image:url(../images/icons/search.gif) !important;}
+.btn_ico_save   {background-image:url(../images/icons/save.gif) !important;}
+.btn_ico_show   {background-image:url(../images/icons/comment_new.gif) !important;}
+.btn_ico_tree   {background-image:url(../images/icons/text_list_bullets.png) !important;}
+.btn_ico_analyse{background-image:url(../images/icons/chart_line.png) !important;}
+.btn_ico_search {background-image:url(../images/icons/application_form_magnify.png) !important;}
+.btn_ico_stop   {background-image:url(../images/icons/close.png) !important;}
+.btn_ico_closeme{background-image:url(../images/icons/closeme.gif) !important;}
+.btn_ico_home   {background-image:url(../images/icons/house.png) !important;}
+.btn_ico_down   {background-image:url(../images/icons/down.gif) !important;}
+.btn_ico_download{background-image:url(../images/icons/down_load.gif) !important;}
+.btn_ico_connect{background-image:url(../images/icons/connect.png) !important;}
+.btn_ico_collapseall{background-image:url(../images/icons/collapse-all.gif) !important;}
+.btn_ico_expandall{background-image:url(../images/icons/expand-all.gif) !important;}
+.btn_ico_filter {background-image:url(../images/icons/mnu_filter.gif) !important;}
+.btn_ico_refresh{background-image:url(../images/icons/refresh_blue.gif) !important;}
+.btn_ico_iplus  {background-image:url(../images/icons/i_plus.gif) !important;}
+.btn_ico_iminus {background-image:url(../images/icons/i_minus.gif) !important;}
+.btn_ico_upload {background-image:url(../images/icons/upload.gif) !important;}
+.btn_ico_key    {background-image:url(../images/icons/key.png) !important;}
+.btn_ico_lock   {background-image:url(../images/icons/lock.gif) !important;}
+.btn_ico_reset  {background-image:url(../images/icons/new1.gif) !important;}
+.btn_ico_find   {background-image:url(../images/icons/find.png) !important;}
+.btn_ico_bricks {background-image:url(../images/icons/bricks.png) !important;}
+.btn_ico_rename {background-image:url(../images/icons/textfield_rename.png) !important;}
+.btn_ico_history {background-image:url(../images/icons/history.png) !important;}
+.btn_ico_synced {background-image:url(../images/icons/synced.gif) !important;}
+.btn_ico_pencil {background-image:url(../images/icons/pencil.png) !important;}
+.btn_ico_eye {background-image:url(../images/icons/eye.png) !important;}
+.btn_ico_loading {background-image: url(../ext/resources/images/default/grid/loading.gif) !important;}
+.btn_ico_goright {background-image:url(../images/icons/go_right.gif) !important;}
+.btn_ico_doc {background-image:url(../images/icons/docs-close.gif) !important;}
+.btn_ico_doc_open {background-image:url(../images/icons/docs-open.gif) !important;}
+
+.btn_ico_cog {background-image:url(../images/icons/cog.png) !important;}
+.btn_ico_cog_go {background-image:url(../images/icons/cog_go.png) !important;}
+.btn_ico_cog_edit {background-image:url(../images/icons/cog_edit.png) !important;}
+.btn_ico_cog_add{background-image:url(../images/icons/cog_add.png) !important;}
+.btn_ico_cog_delete{background-image:url(../images/icons/cog_delete.png) !important;}
+
+.btn_ico_arrow_l   {background-image:url(../images/icons/arrow_left.gif) !important;}
+.btn_ico_arrow_r   {background-image:url(../images/icons/arrow_right.gif) !important;}
+.btn_ico_arrow_d   {background-image:url(../images/icons/arrow_refresh_small.png) !important;}
+.btn_ico_arrow_sm  {background-image:url(../images/icons/arrow_refresh_sm.png) !important;}
+.btn_ico_arrow_rotate1 {background-image:url(../images/icons/arrow_rotate_clockwise.png) !important;}
+.btn_ico_arrow_rotate2 {background-image:url(../images/icons/arrow_rotate_anticlockwise.png) !important;}
+.btn_ico_arrow_undo {background-image:url(../images/icons/arrow_undo.png) !important;}
+.btn_ico_arrow_redo {background-image:url(../images/icons/arrow_redo.png) !important;}
+.btn_ico_arrow_up  {background-image:url(../images/icons/up_enabled_0.gif) !important;}
+.btn_ico_arrow_down{background-image:url(../images/icons/down_enabled_0.gif) !important;}
+.btn_ico_action_down{background-image:url(../images/icons/action_down.gif) !important;}
+.btn_ico_action_ups {background-image:url(../images/icons/action_ups.gif) !important;}
+
+.btn_ico_version {background-image:url(../images/icons/anchor.png) !important;}
+.btn_ico_other   {background-image:url(../images/icons/application_key.png) !important;}
+.btn_ico_spcheck {background-image:url(../images/icons/spellcheck.png) !important;}
+.btn_ico_page_go {background-image:url(../images/icons/page_white_go.png) !important;}
+.btn_ico_folder_upload {background-image:url(../images/icons/folder_upload.gif) !important;}
+.btn_ico_file_upload {background-image:url(../images/icons/takeup.gif) !important;}
+
+.btn_ico_zip  {background-image:url(../images/icons/zip.gif) !important;}
+.btn_ico_xls  {background-image:url(../images/icons/excel.gif) !important;}
+.btn_ico_htm  {background-image:url(../images/icons/page_world.png) !important;}
+.btn_ico_excel  {background-image:url(../images/icons/excel.png) !important;}
+
+.btn_ico_tree_cut {background-image:url(../images/icons/tree-cut.png) !important;}
+.btn_ico_tree_filter {background-image:url(../images/icons/tree-filter.png) !important;}
+.btn_ico_tree_parent {background-image:url(../images/icons/t_parent.gif) !important;}
+.btn_ico_tree_branch {background-image:url(../images/icons/t_branch.gif) !important;}
+.btn_ico_tree_arrange {background-image:url(../images/icons/t_arrange.gif) !important;}
+.btn_ico_tree_arrtext {background-image:url(../images/icons/t_arrange_text.gif) !important;}
+.btn_ico_tree_individ {background-image:url(../images/icons/t_individual.gif) !important;}
+
+.btn_ico_user {background-image:url(../images/icons/user.gif) !important;}
+.btn_ico_role {background-image:url(../images/icons/group.png) !important;}
+.btn_ico_anchor {background-image:url(../images/icons/anchor.png) !important;}
+.btn_ico_anchor_blue {background-image:url(../images/icons/anchor_blue.png) !important;}
+.btn_ico_anchor_yell {background-image:url(../images/icons/anchor_yellow.png) !important;}
+.btn_ico_anchor_go {background-image:url(../images/icons/anchor_go.gif) !important;}
+.btn_ico_anchor_find {background-image:url(../images/icons/anchor_find.gif) !important;}
+
+.btn_ico_group  {background-image:url(../images/icons/group.png) !important;}
+.btn_ico_group_add  {background-image:url(../images/icons/group_add.png) !important;}
+.btn_ico_group_dele {background-image:url(../images/icons/group_delete.png) !important;}
+.btn_ico_group_edit {background-image:url(../images/icons/group_edit.png) !important;}
+.btn_ico_group_gear {background-image:url(../images/icons/group_gear.png) !important;}
+.btn_ico_group_key  {background-image:url(../images/icons/group_key.png) !important;}
+.btn_ico_group_link {background-image:url(../images/icons/group_link.png) !important;}
+.btn_ico_group_mnu {background-image:url(../images/icons/mnuGroup.gif) !important;}
+
+.btn_ico_user_add   {background-image:url(../images/icons/user_add.png) !important;}
+.btn_ico_user_dele  {background-image:url(../images/icons/user_delete.png) !important;}
+.btn_ico_user_edit  {background-image:url(../images/icons/user_edit.png) !important;}
+.btn_ico_user_female{background-image:url(../images/icons/user_female.png) !important;}
+.btn_ico_user_suit  {background-image:url(../images/icons/user_suit.png) !important;}
+.btn_ico_user_orang {background-image:url(../images/icons/user_orange.png) !important;}
+.btn_ico_user_green {background-image:url(../images/icons/user_green.png) !important;}
+.btn_ico_user_red   {background-image:url(../images/icons/user_red.png) !important;}
+.btn_ico_user_gray  {background-image:url(../images/icons/user_gray.png) !important;}
+.btn_ico_user_go    {background-image:url(../images/icons/user_go.png) !important;}
+
+.btn_ico_building   {background-image:url(../images/icons/building.png) !important;}
+.btn_ico_building_add {background-image:url(../images/icons/building_add.png) !important;}
+.btn_ico_building_dele{background-image:url(../images/icons/building_delete.png) !important;}
+.btn_ico_building_edit{background-image:url(../images/icons/building_edit.png) !important;}
+.btn_ico_building_go{background-image:url(../images/icons/building_go.png) !important;}
+.btn_ico_building_key{background-image:url(../images/icons/building_key.png) !important;}
+.btn_ico_building_link{background-image:url(../images/icons/building_link.png) !important;}
+.btn_ico_building_err{background-image:url(../images/icons/building_error.png) !important;}
+
+.btn_ico_email   {background-image:url(../images/icons/email.png) !important;}
+.btn_ico_email_add {background-image:url(../images/icons/email_add.png) !important;}
+.btn_ico_email_dele{background-image:url(../images/icons/email_delete.png) !important;}
+.btn_ico_email_edit{background-image:url(../images/icons/email_edit.png) !important;}
+.btn_ico_email_go{background-image:url(../images/icons/email_go.png) !important;}
+.btn_ico_email_key{background-image:url(../images/icons/email_key.png) !important;}
+.btn_ico_email_link{background-image:url(../images/icons/email_link.png) !important;}
+.btn_ico_email_err{background-image:url(../images/icons/email_error.png) !important;}
+.btn_ico_email_attach{background-image:url(../images/icons/email_attach.png) !important;}
+.btn_ico_email_open{background-image:url(../images/icons/email_open.png) !important;}
+.btn_ico_email_image{background-image:url(../images/icons/email_open_image.png) !important;}
+.btn_ico_email_grid{background-image:url(../images/icons/grid.gif) !important;}
+
+.btn_ico_vcard      {background-image:url(../images/icons/vcard.png) !important;}
+.btn_ico_vcard_add  {background-image:url(../images/icons/vcard_add.png) !important;}
+.btn_ico_vcard_dele {background-image:url(../images/icons/vcard_delete.png) !important;}
+.btn_ico_vcard_edit {background-image:url(../images/icons/vcard_edit.png) !important;}
+
+.btn_ico_vector     {background-image:url(../images/icons/vector.png) !important;}
+.btn_ico_vector_add {background-image:url(../images/icons/vector_add.png) !important;}
+.btn_ico_vector_dele{background-image:url(../images/icons/vector_delete.png) !important;}
+.btn_ico_film {background-image:url(../images/icons/film.png) !important;}
+.btn_ico_film_add {background-image:url(../images/icons/film_add.png) !important;}
+.btn_ico_film_dele{background-image:url(../images/icons/film_delete.png) !important;}
+
+.btn_ico_list_add {background-image:url(../images/icons/add.gif) !important;}
+.btn_ico_list_option {background-image:url(../images/icons/plugin.gif) !important;}
+.btn_ico_list_remove {background-image:url(../images/icons/delete.gif) !important;}
+.btn_ico_list_save {background-image:url(../images/icons/save.gif) !important;}
+.btn_ico_list_show {background-image:url(../images/icons/folder_magnify.png) !important;}
+.btn_ico_list_grid {background-image:url(../images/icons/grid.png) !important;}
+.btn_ico_list_accept {background-image:url(../images/icons/accept.png) !important;}
+.btn_ico_list_reload {background-image:url(../images/icons/reload.png) !important;}
+.btn_ico_list_refresh{background-image:url(../images/icons/action_refresh.gif) !important;}
+.btn_ico_list_reject {background-image:url(../images/icons/reject.png) !important;}
+.btn_ico_list_edit {background-image:url(../images/icons/wrench_edit.png) !important;}
+.btn_ico_list_warn {background-image:url(../images/icons/exclamation.png) !important;}
+.btn_ico_list_error {background-image:url(../images/icons/error_sm.png) !important;}
+.btn_ico_list_cancel {background-image:url(../images/icons/cancel.gif) !important;}
+.btn_ico_list_copy {background-image:url(../images/icons/copy.gif) !important;}
+.btn_ico_list_tick {background-image:url(../images/icons/tick.png) !important;}
+.btn_ico_list_cross {background-image:url(../images/icons/cross.png) !important;}
+.btn_ico_list_delete {background-image:url(../images/icons/delete_cross.png) !important;}
+.btn_ico_list_cancel2 {background-image:url(../images/icons/cancel.png) !important;}
+
+.btn_action_refresh{background-image:url(../images/icons/action_refresh.gif) !important;}
+.btn_action_forward{background-image:url(../images/icons/action_forward.gif) !important;}
+.btn_action_back{background-image:url(../images/icons/action_back.gif) !important;}
+.btn_action_go{background-image:url(../images/icons/action_go.gif) !important;}
+.btn_action_compare{background-image:url(../images/icons/action_compare.png) !important;}
+.btn_action_comparedb{background-image:url(../images/icons/action_comparedb.png) !important;}
+.btn_action_recover{background-image:url(../images/icons/action_recover.png) !important;}
+.btn_action_mapping{background-image:url(../images/icons/action_mapping.png) !important;}
+.btn_action_mappingdb{background-image:url(../images/icons/action_mappingdb.png) !important;}
+
+.btn_ico_world {background-image:url(../images/icons/world.png) !important;}
+.btn_ico_world_add  {background-image:url(../images/icons/world_add.png) !important;}
+.btn_ico_world_dele {background-image:url(../images/icons/world_delete.png) !important;}
+.btn_ico_world_edit {background-image:url(../images/icons/world_edit.png) !important;}
+.btn_ico_world_go {background-image:url(../images/icons/world_go.png) !important;}
+.btn_ico_world_link {background-image:url(../images/icons/world_link.png) !important;}
+.btn_ico_world_get {background-image:url(../images/icons/icon_get_world.gif) !important;}
+.btn_ico_world_flas {background-image:url(../images/icons/icon_world_dynamic.gif) !important;}
+.btn_ico_world_smll {background-image:url(../images/icons/icon_world.gif) !important;}
+
+.btn_ico_clock {background-image:url(../images/icons/clock.png) !important;}
+.btn_ico_clock_link {background-image:url(../images/icons/clock_link.png) !important;}
+.btn_ico_clock_play {background-image:url(../images/icons/clock_play.png) !important;}
+.btn_ico_clock_stop {background-image:url(../images/icons/clock_stop.png) !important;}
+.btn_ico_clock_pause {background-image:url(../images/icons/clock_pause.png) !important;}
+.btn_ico_clock_dele {background-image:url(../images/icons/clock_delete.png) !important;}
+.btn_ico_clock_red {background-image:url(../images/icons/clock_red.png) !important;}
+.btn_ico_clock_history {background-image:url(../images/icons/icon_history.gif) !important;}
+.btn_ico_clock_min {background-image:url(../images/icons/icon_clock.gif) !important;}
+
+.btn_ico_datetime {background-image:url(../images/icons/datetime.gif) !important;}
+.btn_ico_time {background-image:url(../images/icons/time.png) !important;}
+.btn_ico_time_go {background-image:url(../images/icons/time_go.png) !important;}
+.btn_ico_time_add {background-image:url(../images/icons/time_add.png) !important;}
+.btn_ico_time_del {background-image:url(../images/icons/time_delete.png) !important;}
+.btn_ico_ctrl_stop{background-image:url(../images/icons/control_stop_blue.png) !important;}
+.btn_ico_ctrl_play{background-image:url(../images/icons/control_play_blue.png) !important;}
+.btn_ico_ctrl_stop2{background-image:url(../images/icons/control_stop.png) !important;}
+.btn_ico_ctrl_play2{background-image:url(../images/icons/control_play.png) !important;}
+.btn_ico_ctrl_pause{background-image:url(../images/icons/control_pause_blue.png) !important;}
+.btn_ico_ctrl_pause2{background-image:url(../images/icons/control_pause.png) !important;}
+.btn_ico_ctrl_next{background-image:url(../images/icons/resultset_next.png) !important;}
+.btn_ico_ctrl_prev{background-image:url(../images/icons/resultset_previous.png) !important;}
+.btn_ico_ctrl_down{background-image:url(../images/icons/resultset_down.png) !important;}
+.btn_ico_ctrl_equal{background-image:url(../images/icons/control_equalizer_blue.png) !important;}
+.btn_arraw_switch {background-image:url(../images/icons/arraw-switch.png) !important;}
+
+.btn_img_on {background-image:url(../images/icons/button_on.gif) !important;}
+.btn_img_off {background-image:url(../images/icons/button_off.gif) !important;}
+.btn_ico_comment_blue {background-image:url(../images/icons/comment_blue.gif) !important;}
+.btn_ico_comment_yell {background-image:url(../images/icons/comment_yellow.gif) !important;}
+
+.btn_ico_commentg {background-image:url(../images/icons/comment.gif) !important;}
+.btn_ico_commentg_add {background-image:url(../images/icons/comment_new.gif) !important;}
+.btn_ico_commentg_del {background-image:url(../images/icons/comment_delete.gif) !important;}
+.btn_ico_comment {background-image:url(../images/icons/comment.png) !important;}
+.btn_ico_comment_add {background-image:url(../images/icons/comment_add.png) !important;}
+.btn_ico_comment_edit {background-image:url(../images/icons/comment_edit.png) !important;}
+.btn_ico_comment_dele {background-image:url(../images/icons/comment_delete.png) !important;}
+.btn_ico_comments {background-image:url(../images/icons/comments.png) !important;}
+.btn_ico_comments_add {background-image:url(../images/icons/comments_add.png) !important;}
+.btn_ico_comments_del {background-image:url(../images/icons/comments_delete.png) !important;}
+
+.btn_arrow_bottom2 {background-image:url(../images/icons/arrow_bottom2.gif) !important;}
+.btn_arrow_down2 {background-image:url(../images/icons/arrow_down2.gif) !important;}
+.btn_arrow_left2 {background-image:url(../images/icons/arrow_left2.gif) !important;}
+.btn_arrow_right2 {background-image:url(../images/icons/arrow_right2.gif) !important;}
+.btn_arrow_top2 {background-image:url(../images/icons/arrow_top2.gif) !important;}
+.btn_arrow_up2 {background-image:url(../images/icons/arrow_up2.gif) !important;}
+.btn_arrow_left3 {background-image:url(../images/icons/arrow_left3.gif) !important;}
+.btn_arrow_right3 {background-image:url(../images/icons/arrow_right3.gif) !important;}
+
+.btn_ico_folder {background-image:url(../images/icons/folder.png) !important;}
+.btn_ico_folder_gif {background-image:url(../images/icons/folder.gif) !important;}
+.btn_ico_folder_star {background-image:url(../images/icons/folder_star.png) !important;}
+.btn_ico_folder_add  {background-image:url(../images/icons/folder_add.png) !important;}
+.btn_ico_folder_dele {background-image:url(../images/icons/folder_delete.png) !important;}
+.btn_ico_folder_edit {background-image:url(../images/icons/folder_edit.png) !important;}
+.btn_ico_folder_new  {background-image:url(../images/icons/folder_new.gif) !important;}
+.btn_ico_folder_exp  {background-image:url(../images/icons/folder_explore.png) !important;}
+.btn_ico_folder_tbl  {background-image:url(../images/icons/folder_table.png) !important;}
+.btn_ico_folder_mag  {background-image:url(../images/icons/folder_magnify.png) !important;}
+.btn_ico_folder_find {background-image:url(../images/icons/folder_find.png) !important;}
+.btn_ico_folder_lock {background-image:url(../images/icons/folder_lock.gif) !important;}
+.btn_ico_folder_page {background-image:url(../images/icons/folder_page.png) !important;}
+.btn_ico_folder_pic  {background-image:url(../images/icons/folder_picture.png) !important;}
+.btn_ico_folder_img  {background-image:url(../images/icons/folder_image.png) !important;}
+.btn_ico_folder_imgs {background-image:url(../images/icons/folder_images.gif) !important;}
+.btn_ico_folder_link {background-image:url(../images/icons/folder_link.png) !important;}
+.btn_ico_folder_user {background-image:url(../images/icons/folder_user.png) !important;}
+.btn_ico_folder_brick {background-image:url(../images/icons/folder_brick.png) !important;}
+.btn_ico_folder_db {background-image:url(../images/icons/folder_database.png) !important;}
+.btn_ico_folder_bell {background-image:url(../images/icons/folder_bell.png) !important;}
+.btn_ico_folder_key {background-image:url(../images/icons/folder_key.png) !important;}
+.btn_ico_folder_wrench {background-image:url(../images/icons/folder_wrench.png) !important;}
+.btn_ico_folder_closed {background-image:url(../images/icons/folderClosed.gif) !important;}
+.btn_ico_folder_open {background-image:url(../images/icons/folderOpen.gif) !important;}
+.btn_ico_folder_classic {background-image:url(../images/icons/folder-close.gif) !important;}
+.btn_ico_folder_2k {background-image:url(../images/icons/folder-close-2k.gif) !important;}
+.btn_ico_folder_go {background-image:url(../images/icons/folder_go.png) !important;}
+
+.btn_ico_report  {background-image:url(../images/icons/report.png) !important;}
+.btn_ico_report_add  {background-image:url(../images/icons/report_add.png) !important;}
+.btn_ico_report_dele {background-image:url(../images/icons/report_delete.png) !important;}
+.btn_ico_report_disk {background-image:url(../images/icons/report_disk.png) !important;}
+.btn_ico_report_edit {background-image:url(../images/icons/report_edit.png) !important;}
+.btn_ico_report_go {background-image:url(../images/icons/report_go.png) !important;}
+.btn_ico_report_key  {background-image:url(../images/icons/report_key.png) !important;}
+.btn_ico_report_link {background-image:url(../images/icons/report_link.png) !important;}
+.btn_ico_report_find {background-image:url(../images/icons/report_magnify.png) !important;}
+.btn_ico_report_pic  {background-image:url(../images/icons/report_picture.png) !important;}
+.btn_ico_report_user {background-image:url(../images/icons/report_user.png) !important;}
+.btn_ico_report_word {background-image:url(../images/icons/report_word.png) !important;}
+
+.btn_ico_note_dele  {background-image:url(../images/icons/note_delete.png) !important;}
+.btn_ico_page_dele  {background-image:url(../images/icons/page_delete.png) !important;}
+.btn_ico_page_refr  {background-image:url(../images/icons/page_refresh.gif) !important;}
+.btn_ico_page_gear  {background-image:url(../images/icons/page_gear.png) !important;}
+.btn_ico_page_comp  {background-image:url(../images/icons/page_component.gif) !important;}
+.btn_ico_page_find  {background-image:url(../images/icons/page_find.png) !important;}
+.btn_ico_page_owf {background-image:url(../images/icons/page-owf.png) !important;}
+.btn_ico_page_up {background-image:url(../images/icons/page_up.gif) !important;}
+.btn_ico_zip_up {background-image:url(../images/icons/zip-up.gif) !important;}
+.btn_ico_page_url {background-image:url(../images/icons/page_url.gif) !important;}
+.btn_ico_page_tick {background-image:url(../images/icons/page_tick.gif) !important;}
+.btn_ico_page_tag1 {background-image:url(../images/icons/page_tag_blue.gif) !important;}
+.btn_ico_page_tag2 {background-image:url(../images/icons/page_tag_red.gif) !important;}
+
+.btn_ico_book      {background-image:url(../images/icons/book.png) !important;}
+.btn_ico_book_add  {background-image:url(../images/icons/book_add.png) !important;}
+.btn_ico_book_dele {background-image:url(../images/icons/book_delete.png) !important;}
+.btn_ico_book_edit {background-image:url(../images/icons/book_edit.png) !important;}
+.btn_ico_book_open {background-image:url(../images/icons/book_open.png) !important;}
+.btn_ico_book_go {background-image:url(../images/icons/book_go.png) !important;}
+.btn_ico_text_sign {background-image:url(../images/icons/text_signature.png) !important;}
+.btn_ico_docs_add {background-image:url(../images/icons/docs_add.gif) !important;}
+.btn_ico_docs_dele{background-image:url(../images/icons/docs_delete.gif) !important;}
+.btn_ico_docs_edit{background-image:url(../images/icons/docs_edit.gif) !important;}
+.btn_ico_docs_check{background-image:url(../images/icons/docs_check.gif) !important;}
+
+.btn_ico_money      {background-image:url(../images/icons/money.png) !important;}
+.btn_ico_money_add  {background-image:url(../images/icons/money_add.png) !important;}
+.btn_ico_money_edit {background-image:url(../images/icons/money_edit.png) !important;}
+.btn_ico_money_dele {background-image:url(../images/icons/money_delete.png) !important;}
+.btn_ico_money_yen  {background-image:url(../images/icons/money_yen.png) !important;}
+.btn_ico_money_user {background-image:url(../images/icons/moneyuser.png) !important;}
+
+.btn_ico_card    {background-image:url(../images/icons/card.png) !important;}
+
+.ico_chart_pie  {background-image:url(../images/icons/chart_pie.png) !important;}
+.ico_chart_pie_add{background-image:url(../images/icons/chart_pie_add.png) !important;}
+.ico_chart_pie_dele{background-image:url(../images/icons/chart_pie_delete.png) !important;}
+.ico_chart_pie_edit{background-image:url(../images/icons/chart_pie_edit.png) !important;}
+.ico_chart_pie_link{background-image:url(../images/icons/chart_pie_link.png) !important;}
+.ico_chart_org  {background-image:url(../images/icons/chart_organisation.png) !important;}
+.ico_chart_org_add{background-image:url(../images/icons/chart_organisation_add.png) !important;}
+.ico_chart_org_edit{background-image:url(../images/icons/chart_organisation_edit.png) !important;}
+.ico_chart_org_dele{background-image:url(../images/icons/chart_organisation_delete.png) !important;}
+.ico_chart_bar  {background-image:url(../images/icons/chart_bar.png) !important;}
+.ico_chart_bar_add{background-image:url(../images/icons/chart_bar_add.png) !important;}
+.ico_chart_bar_dele{background-image:url(../images/icons/chart_bar_delete.png) !important;}
+.ico_chart_bar_edit{background-image:url(../images/icons/chart_bar_edit.png) !important;}
+.ico_chart_bar_link{background-image:url(../images/icons/chart_bar_link.png) !important;}
+.ico_chart_line  {background-image:url(../images/icons/chart_line.png) !important;}
+.ico_chart_line_add{background-image:url(../images/icons/chart_line_add.png) !important;}
+.ico_chart_line_dele{background-image:url(../images/icons/chart_line_delete.png) !important;}
+.ico_chart_line_edit{background-image:url(../images/icons/chart_line_edit.png) !important;}
+.ico_chart_line_link{background-image:url(../images/icons/chart_line_link.png) !important;}
+.ico_chart_line_forw{background-image:url(../images/icons/chart_line_forw.png) !important;}
+.ico_chart_line_back{background-image:url(../images/icons/chart_line_back.png) !important;}
+.ico_chart_curve  {background-image:url(../images/icons/chart_curve.png) !important;}
+.ico_chart_curve_go {background-image:url(../images/icons/chart_curve_go.png) !important;}
+.ico_chart_curve_add{background-image:url(../images/icons/chart_curve_add.png) !important;}
+.ico_chart_curve_dele{background-image:url(../images/icons/chart_curve_delete.png) !important;}
+.ico_chart_curve_edit{background-image:url(../images/icons/chart_curve_edit.png) !important;}
+.ico_chart_curve_link{background-image:url(../images/icons/chart_curve_link.png) !important;}
+
+.btn_ico_calcu {background-image:url(../images/icons/calculator.png) !important;}
+.btn_ico_calcu_add {background-image:url(../images/icons/calculator_add.png) !important;}
+.btn_ico_calcu_dele {background-image:url(../images/icons/calculator_delete.png) !important;}
+.btn_ico_calcu_edit {background-image:url(../images/icons/calculator_edit.png) !important;}
+.btn_ico_calcu_link {background-image:url(../images/icons/calculator_link.png) !important;}
+
+.btn_ico_calendar {background-image:url(../images/icons/calendar.png) !important;}
+.btn_ico_calendar_xp {background-image:url(../images/icons/calendar.gif) !important;}
+.btn_ico_calendar_link {background-image:url(../images/icons/calendar_link.png) !important;}
+.btn_ico_calendar_add  {background-image:url(../images/icons/calendar_add.png) !important;}
+.btn_ico_calendar_edit {background-image:url(../images/icons/calendar_edit.png) !important;}
+.btn_ico_calendar_dele {background-image:url(../images/icons/calendar_delete.png) !important;}
+.btn_ico_calendar_view {background-image:url(../images/icons/calendar_view_day.png) !important;}
+.btn_ico_calendar_month{background-image:url(../images/icons/calendar_view_month.png) !important;}
+.btn_ico_calendar_week{background-image:url(../images/icons/calendar_view_week.png) !important;}
+.btn_ico_calendar_down{background-image:url(../images/icons/icon_download.gif) !important;}
+
+.btn_ico_transmit {background-image:url(../images/icons/transmit.png) !important;}
+.btn_ico_transmit_blue {background-image:url(../images/icons/transmit_blue.png) !important;}
+.btn_ico_transmit_add  {background-image:url(../images/icons/transmit_add.png) !important;}
+.btn_ico_transmit_edit {background-image:url(../images/icons/transmit_edit.png) !important;}
+.btn_ico_transmit_dele {background-image:url(../images/icons/transmit_delete.png) !important;}
+.btn_ico_transmit_err {background-image:url(../images/icons/transmit_error.png) !important;}
+.btn_ico_transmit_go {background-image:url(../images/icons/transmit_go.png) !important;}
+.btn_ico_transmit_check{background-image:url(../images/icons/transmit_check.png) !important;}
+.btn_ico_ipod_cast {background-image:url(../images/icons/ipod_cast.png) !important;}
+.btn_ico_ipod_add {background-image:url(../images/icons/ipod_cast_add.png) !important;}
+.btn_ico_ipod_dele {background-image:url(../images/icons/ipod_cast_delete.png) !important;}
+
+.btn_ico_takeback {background-image:url(../images/icons/takeback.gif) !important;}
+.btn_ico_takeoff {background-image:url(../images/icons/takeoff.gif) !important;}
+.btn_ico_takeup {background-image:url(../images/icons/takeup.gif) !important;}
+.btn_ico_takedown {background-image:url(../images/icons/takedown.gif) !important;}
+.btn_ico_takeall {background-image:url(../images/icons/del.gif) !important;}
+.btn_order_asc {background-image:url(../images/icons/order_asc.gif) !important; height: 7; width: 12;}
+.btn_order_desc{background-image:url(../images/icons/order_desc.gif) !important; height: 7; width: 12;}
+
+.btn_ico_db {background-image:url(../images/icons/database.png) !important;}
+.btn_ico_db_go {background-image:url(../images/icons/database_go.png) !important;}
+.btn_ico_db_refresh {background-image:url(../images/icons/database_refresh.png) !important;}
+.btn_ico_db_gear {background-image:url(../images/icons/database_gear.png) !important;}
+.btn_ico_db_save {background-image:url(../images/icons/database_save.png) !important;}
+.btn_ico_db_table{background-image:url(../images/icons/database_table.png) !important;}
+.btn_ico_db_link {background-image:url(../images/icons/database_link.png) !important;}
+.btn_ico_db_conn {background-image:url(../images/icons/database_connect.png) !important;}
+.btn_ico_db_add {background-image:url(../images/icons/database_add.png) !important;}
+.btn_ico_db_dele {background-image:url(../images/icons/database_delete.png) !important;}
+.btn_ico_db_edit {background-image:url(../images/icons/database_edit.png) !important;}
+.btn_ico_db_key {background-image:url(../images/icons/database_key.png) !important;}
+.btn_ico_db_mnu {background-image:url(../images/icons/mnuDB.gif) !important;}
+
+.btn_ico_server_add {background-image:url(../images/icons/server_add.png) !important;}
+.btn_ico_server_chart {background-image:url(../images/icons/server_chart.png) !important;}
+.btn_ico_server_compr {background-image:url(../images/icons/server_compressed.png) !important;}
+.btn_ico_server_conn {background-image:url(../images/icons/server_connect.png) !important;}
+.btn_ico_server_db {background-image:url(../images/icons/server_database.png) !important;}
+.btn_ico_server_dele {background-image:url(../images/icons/server_delete.png) !important;}
+.btn_ico_server_edit {background-image:url(../images/icons/server_edit.png) !important;}
+.btn_ico_server_err {background-image:url(../images/icons/server_error.png) !important;}
+.btn_ico_server_go {background-image:url(../images/icons/server_go.png) !important;}
+.btn_ico_server_key {background-image:url(../images/icons/server_key.png) !important;}
+.btn_ico_server_light {background-image:url(../images/icons/server_lightning.png) !important;}
+.btn_ico_server_link {background-image:url(../images/icons/server_link.png) !important;}
+.btn_ico_server_uncomp {background-image:url(../images/icons/server_uncompressed.png) !important;}
+.btn_ico_server {background-image:url(../images/icons/server.png) !important;}
+
+.btn_ico_note {background-image:url(../images/icons/note.png) !important;}
+.btn_ico_note_add {background-image:url(../images/icons/note_add.png) !important;}
+.btn_ico_note_dele {background-image:url(../images/icons/note_delete.png) !important;}
+.btn_ico_note_edit {background-image:url(../images/icons/note_edit.png) !important;}
+.btn_ico_note_err {background-image:url(../images/icons/note_error.png) !important;}
+.btn_ico_note_go {background-image:url(../images/icons/note_go.png) !important;}
+.btn_ico_note2 {background-image:url(../images/icons/note.gif) !important;}
+.btn_ico_note2_new {background-image:url(../images/icons/note_new.gif) !important;}
+.btn_ico_note2_dele {background-image:url(../images/icons/note_delete.gif) !important;}
+
+.btn_ico_package {background-image:url(../images/icons/package.png) !important;}
+.btn_ico_package_add {background-image:url(../images/icons/package_add.png) !important;}
+.btn_ico_package_edit {background-image:url(../images/icons/package_edit.png) !important;}
+.btn_ico_package_dele {background-image:url(../images/icons/package_delete.png) !important;}
+.btn_ico_package_link {background-image:url(../images/icons/package_link.png) !important;}
+.btn_ico_package_go {background-image:url(../images/icons/package_go.png) !important;}
+.btn_ico_package_green{background-image:url(../images/icons/package_green.png) !important;}
+
+.btn_ico_plugin {background-image:url(../images/icons/plugin.png) !important;}
+.btn_ico_plugin_add {background-image:url(../images/icons/plugin_add.gif) !important;}
+.btn_ico_plugin_dele {background-image:url(../images/icons/plugin_delete.png) !important;}
+.btn_ico_plugin_edit {background-image:url(../images/icons/plugin_edit.png) !important;}
+.btn_ico_plugin_err {background-image:url(../images/icons/plugin_error.png) !important;}
+.btn_ico_plugin_link {background-image:url(../images/icons/plugin_link.png) !important;}
+.btn_ico_plugin_go {background-image:url(../images/icons/plugin_go.png) !important;}
+.btn_ico_plugin_dis {background-image:url(../images/icons/plugin_disabled.png) !important;}
+.btn_ico_plugin_disable {background-image:url(../images/icons/plugin_disabled.png) !important;}
+
+.btn_text_list_numb {background-image:url(../images/icons/text_list_numbers.png) !important;}
+.btn_text_list_bull {background-image:url(../images/icons/text_list_bullets.png) !important;}
+.btn_text_list_line {background-image:url(../images/icons/text_linespacing.png) !important;}
+
+.btn_ico_table {background-image:url(../images/icons/table.png) !important;}
+.btn_ico_table_add {background-image:url(../images/icons/table_add.png) !important;}
+.btn_ico_table_dele {background-image:url(../images/icons/table_delete.png) !important;}
+.btn_ico_table_del {background-image:url(../images/icons/table_delete.gif) !important;}
+.btn_ico_table_edit {background-image:url(../images/icons/table_edit.png) !important;}
+.btn_ico_table_go {background-image:url(../images/icons/table_go.png) !important;}
+.btn_ico_table_gear {background-image:url(../images/icons/table_gear.png) !important;}
+.btn_ico_table_key {background-image:url(../images/icons/table_key.png) !important;}
+.btn_ico_table_light {background-image:url(../images/icons/table_lightning.png) !important;}
+.btn_ico_table_link {background-image:url(../images/icons/table_link.png) !important;}
+.btn_ico_table_mult {background-image:url(../images/icons/table_multiple.png) !important;}
+.btn_ico_table_refresh {background-image:url(../images/icons/table_refresh.png) !important;}
+.btn_ico_table_reship {background-image:url(../images/icons/table_relationship.png) !important;}
+.btn_ico_table_row_del {background-image:url(../images/icons/table_row_delete.png) !important;}
+.btn_ico_table_row_ins {background-image:url(../images/icons/table_row_insert.png) !important;}
+.btn_ico_table_save {background-image:url(../images/icons/table_save.png) !important;}
+.btn_ico_table_sort {background-image:url(../images/icons/table_sort.png) !important;}
+.btn_ico_table_grid {background-image:url(../images/icons/mnuGrid.gif) !important;}
+.btn_ico_table_menu {background-image:url(../images/icons/mnuTable.gif) !important;}
+.btn_ico_table_col {background-image:url(../images/icons/column.gif) !important;}
+.btn_ico_table_query {background-image:url(../images/icons/table_query.png) !important;}
+
+.btn_ico_date {background-image:url(../images/icons/date.png) !important;}
+.btn_ico_date_add {background-image:url(../images/icons/date_add.png) !important;}
+.btn_ico_date_delete {background-image:url(../images/icons/date_delete.png) !important;}
+.btn_ico_date_edit {background-image:url(../images/icons/date_edit.png) !important;}
+.btn_ico_date_error {background-image:url(../images/icons/date_error.png) !important;}
+.btn_ico_date_go {background-image:url(../images/icons/date_go.png) !important;}
+.btn_ico_date_link {background-image:url(../images/icons/date_link.png) !important;}
+.btn_ico_date_magnify {background-image:url(../images/icons/date_magnify.png) !important;}
+.btn_ico_date_next {background-image:url(../images/icons/date_next.png) !important;}
+.btn_ico_date_previous {background-image:url(../images/icons/date_previous.png) !important;}
+
+.btn_ico_contrast {background-image:url(../images/icons/contrast.png) !important;}
+.btn_ico_contrast_dec {background-image:url(../images/icons/contrast_decrease.png) !important;}
+.btn_ico_contrast_inc {background-image:url(../images/icons/contrast_increase.png) !important;}
+.btn_ico_contrast_high{background-image:url(../images/icons/contrast_high.png) !important;}
+.btn_ico_contrast_low {background-image:url(../images/icons/contrast_low.png) !important;}
+
+.btn_ico_lightbulb {background-image:url(../images/icons/lightbulb.png) !important;}
+.btn_ico_lightbulb_add {background-image:url(../images/icons/lightbulb_add.png) !important;}
+.btn_ico_lightbulb_dele{background-image:url(../images/icons/lightbulb_delete.png) !important;}
+.btn_ico_lightbulb_off {background-image:url(../images/icons/lightbulb_off.png) !important;}
+.btn_ico_mnuhelp {background-image:url(../images/icons/mnuHelp.gif) !important;}
+.btn_ico_mnuinfo {background-image:url(../images/icons/icon_info.gif) !important;}
+.btn_ico_mnuhelp1 {background-image:url(../images/icons/help1.gif) !important;}
+.btn_ico_concfg{background-image:url(../images/icons/concfg.gif) !important;}
+.btn_ico_concfg_add{background-image:url(../images/icons/concfg_add.gif) !important;}
+.btn_ico_concfg_edit{background-image:url(../images/icons/concfg_edit.gif) !important;}
+.btn_ico_concfg_dele{background-image:url(../images/icons/concfg_delete.gif) !important;}
+
+.btn_arrow_join {background-image: url(../images/icons/arrow_join.png) !important;}
+.btn_arrow_divide {background-image: url(../images/icons/arrow_divide.png) !important;}
+
+
+.btn_app_form {background-image:url(../images/icons/application_form.png) !important;}
+.btn_app_form_add {background-image:url(../images/icons/application_form_add.png) !important;}
+.btn_app_form_dele{background-image:url(../images/icons/application_form_delete.png) !important;}
+.btn_app_form_edit{background-image:url(../images/icons/application_form_edit.png) !important;}
+.btn_app_magnify {background-image:url(../images/icons/application_form_magnify.png) !important;}
+.btn_app_key   {background-image:url(../images/icons/application_key.png) !important;}
+.btn_app_go {background-image:url(../images/icons/application_go.png) !important;}
+.btn_app_columns {background-image:url(../images/icons/application_view_columns.png) !important;}
+.btn_app_list {background-image:url(../images/icons/application_view_list.png) !important;}
+.btn_app_detail {background-image:url(../images/icons/application_view_detail.png) !important;}
+.btn_app_tilehor {background-image:url(../images/icons/application_tile_horizontal.png) !important;}
+.btn_app_tilever {background-image:url(../images/icons/application_tile_vertical.png) !important;}
+.btn_app_sidelist {background-image:url(../images/icons/application_side_list.png) !important;}
+.btn_app_query {background-image:url(../images/icons/application_query_columns.png) !important;}
+.btn_app_expand {background-image:url(../images/icons/application_side_expand.png) !important;}
+.btn_app_contract {background-image:url(../images/icons/application_side_contract.png) !important;}
+
+.btn_upload_ico {background: url(../images/icons/image_add.png) no-repeat 0 0 !important;}
+
+.x-icon-alert {background-image: url(../images/icons/caution.gif) !important;}
+.x-icon-information {background-image: url(../images/icons/quote.gif) !important;}
+.x-icon-waiting {background-image: url(../images/icons/hourglass.gif) !important;}
+.x-icon-done {background-image: url(../images/icons/clock.gif) !important;}
+.x-icon-oksmall {background-image: url(../images/icons/ok_small.gif) !important;}
+.x-icon-oksmall-dis {background-image: url(../images/icons/ok_dis_small.gif) !important;}
+.x-icon-about {background-image: url(../images/icons/about.gif) !important;}
+
+.btn_ico_link {background-image:url(../images/icons/link.png) !important;}
+.btn_ico_link_dele {background-image:url(../images/icons/link_delete.png) !important;}
+.btn_ico_link_add {background-image:url(../images/icons/link_add.png) !important;}
+.btn_ico_link_edit {background-image:url(../images/icons/link_edit.png) !important;}
+.btn_ico_link_break {background-image:url(../images/icons/link_break.png) !important;}
+.btn_ico_link_go {background-image:url(../images/icons/link_go.png) !important;}
+.btn_ico_link_err {background-image:url(../images/icons/link_error.png) !important;}
+
+.btn_ico_tv {background-image:url(../images/icons/television.png) !important;}
+.btn_ico_tv_add {background-image:url(../images/icons/television_add.png) !important;}
+.btn_ico_tv_del {background-image:url(../images/icons/television_delete.png) !important;}
+.btn_ico_tv_node{background-image:url(../images/icons/television_node.png) !important;}
+.btn_ico_tv_check{background-image:url(../images/icons/television_check.png) !important;}
+.btn_ico_tv_ye {background-image:url(../images/icons/television_ye.png) !important;}
+.btn_ico_tv_add_ye {background-image:url(../images/icons/television_add_ye.png) !important;}
+.btn_ico_tv_del_ye {background-image:url(../images/icons/television_delete_ye.png) !important;}
+.btn_ico_tv_node_ye{background-image:url(../images/icons/television_node_ye.png) !important;}
+.btn_ico_tv_deft{background-image:url(../images/icons/cur_activity.gif) !important;}
+.btn_ico_tv_undeft{background-image:url(../images/icons/cur_activity_none.gif) !important;}
+.btn_ico_tags {background-image:url(../images/icons/tag_blue.png) !important;}
+.btn_ico_tags_add {background-image:url(../images/icons/tag_blue_add.png) !important;}
+.btn_ico_tags_del {background-image:url(../images/icons/tag_blue_delete.png) !important;}
+.btn_ico_tags_edit{background-image:url(../images/icons/tag_blue_edit.png) !important;}
+.btn_ico_tags_red {background-image:url(../images/icons/tag_red.png) !important;}
+
+.btn_ico_shapesq {background-image:url(../images/icons/shape_square.png) !important;}
+.btn_ico_shapesq_add {background-image:url(../images/icons/shape_square_add.png) !important;}
+.btn_ico_shapesq_del {background-image:url(../images/icons/shape_square_delete.png) !important;}
+.btn_ico_shapesq_edit {background-image:url(../images/icons/shape_square_edit.png) !important;}
+.btn_ico_shapesq_err {background-image:url(../images/icons/shape_square_error.png) !important;}
+.btn_ico_shapesq_go {background-image:url(../images/icons/shape_square_go.png) !important;}
+.btn_ico_shapesq_key {background-image:url(../images/icons/shape_square_key.png) !important;}
+.btn_ico_shapesq_link {background-image:url(../images/icons/shape_square_link.png) !important;}
+.btn_ico_shapesq_ungrp {background-image:url(../images/icons/shape_ungroup.png) !important;}
+
+.btn_ico_photos {background-image:url(../images/icons/photos.png) !important;}
+.btn_ico_photo {background-image:url(../images/icons/photo.png) !important;}
+.btn_ico_photo_add {background-image:url(../images/icons/photo_add.png) !important;}
+.btn_ico_photo_dele {background-image:url(../images/icons/photo_delete.png) !important;}
+.btn_ico_photo_link {background-image:url(../images/icons/photo_link.png) !important;}
+
+.btn_ico_images {background-image:url(../images/icons/images.png) !important;}
+.btn_ico_image {background-image:url(../images/icons/image.png) !important;}
+.btn_ico_image_add {background-image:url(../images/icons/image_add.png) !important;}
+.btn_ico_image_dele {background-image:url(../images/icons/image_delete.png) !important;}
+.btn_ico_image_edit {background-image:url(../images/icons/image_edit.png) !important;}
+.btn_ico_image_link {background-image:url(../images/icons/image_link.png) !important;}
+.btn_ico_image_gif {background-image:url(../images/icons/image.gif) !important;}
+.btn_ico_image_new {background-image:url(../images/icons/image_new.gif) !important;}
+
+.btn_ico_pictures {background-image:url(../images/icons/pictures.png) !important;}
+.btn_ico_picture {background-image:url(../images/icons/picture.png) !important;}
+.btn_ico_picture_add {background-image:url(../images/icons/picture_add.png) !important;}
+.btn_ico_picture_dele {background-image:url(../images/icons/picture_delete.png) !important;}
+.btn_ico_picture_edit {background-image:url(../images/icons/picture_edit.png) !important;}
+.btn_ico_picture_empty {background-image:url(../images/icons/picture_empty.png) !important;}
+.btn_ico_picture_error {background-image:url(../images/icons/picture_error.png) !important;}
+.btn_ico_picture_go {background-image:url(../images/icons/picture_go.png) !important;}
+.btn_ico_picture_key {background-image:url(../images/icons/picture_key.png) !important;}
+.btn_ico_picture_link {background-image:url(../images/icons/picture_link.png) !important;}
+.btn_ico_picture_save {background-image:url(../images/icons/picture_save.png) !important;}
+
+.btn_ico_bricks_add{background-image:url(../images/icons/bricks_add.png) !important;}
+.btn_ico_bricks_dele{background-image:url(../images/icons/bricks_delete.png) !important;}
+.btn_ico_bricks_edit{background-image:url(../images/icons/bricks_edit.png) !important;}
+
+.chk_ico_all {background-image:url(../images/icons/all.gif) !important;}
+.chk_ico_none{background-image:url(../images/icons/none.gif) !important;}
+.chk_ico_all_ok {background-image:url(../images/icons/ok.gif) !important;}
+.chk_ico_all_clear {background-image:url(../images/icons/clears.png) !important;}
+
+.btn_ico_file_acrobat {background-image:url(../images/icons/file_acrobat.gif) !important;}
+.btn_ico_file_font {background-image:url(../images/icons/file_font.gif) !important;}
+.btn_ico_file_font_tt {background-image:url(../images/icons/file_font_truetype.gif) !important;}
+.btn_ico_file_font_ch {background-image:url(../images/icons/file_font_change.png) !important;}
+.btn_ico_file_uploading {background-image:url(../images/icons/file-uploading.gif) !important;}
+
+.tie_ico_class {background-image:url(../images/icons/class.gif) !important;}
+.tie_ico_cmp {background-image:url(../images/icons/cmp.gif) !important;}
+.tie_ico_config {background-image:url(../images/icons/config.gif) !important;}
+.tie_ico_docs {background-image:url(../images/icons/docs.gif) !important;}
+.tie_ico_event {background-image:url(../images/icons/event.gif) !important;}
+.tie_ico_method {background-image:url(../images/icons/method.gif) !important;}
+.tie_ico_pkg {background-image:url(../images/icons/pkg.gif) !important;}
+.tie_ico_pkgsrc {background-image:url(../images/icons/pkg_src.gif) !important;}
+.tie_ico_pkgtrg {background-image:url(../images/icons/pkg_trg.gif) !important;}
+.tie_ico_prop {background-image:url(../images/icons/prop.gif) !important;}
+.tie_ico_static {background-image:url(../images/icons/static.gif) !important;}
+.tie_ico_static {background-image:url(../images/icons/static.gif) !important;}
+.tie_ico_refer {background-image:url(../images/icons/reference.gif) !important;}
+.tie_ico_docs {background-image:url(../images/icons/docs.gif) !important;}
+
+.x-tree-node-expanded .node-ico-docs {
+    background-image:url(../images/icons/docs-open.gif);
+}
+.x-tree-node-collapsed .node-ico-docs, .x-tree-node-leaf .node-ico-docs {
+    background-image:url(../images/icons/docs-close.gif);
+}
+.x-tree-node-expanded .node-ico-folder {
+    background-image:url(../images/icons/folder-open.gif);
+}
+.x-tree-node-collapsed .node-ico-folder, .x-tree-node-leaf .node-ico-folder {
+    background-image:url(../images/icons/folder-close.gif);
+}
+.x-tree-node-expanded .node-ico-folder2k {
+    background-image:url(../images/icons/folder-open-2k.gif);
+}
+.x-tree-node-collapsed .node-ico-folder2k, .x-tree-node-leaf .node-ico-folder2k {
+    background-image:url(../images/icons/folder-close-2k.gif);
+}
+
+
+
+
+.bg-img-no-repeat{
+    background-repeat: no-repeat !important;
+}
+
+.input_ico_lock {
+    background: #FFFFFF url(../images/icons/lock.gif) no-repeat scroll left !important;
+    padding-left: 18px;
+}
+.input_ico_user {
+    background: #FFFFFF url(../images/icons/user.gif) no-repeat scroll left !important;
+    padding-left: 18px;
+}
+
+.x-statusbar .x-status-anchor {
+    padding-left: 25px;
+    background: transparent url(../images/icons/anchor.png) no-repeat 3px 3px;
+}
+
+.x-statusbar .x-status-error {
+    padding-left: 25px;
+    background: transparent url(../images/icons/exclamation.png) no-repeat 3px 3px;
+}
+
+.x-grid3-cell-text-visible .x-grid3-cell-inner{
+    overflow:visible;
+    /*padding:3px 3px 3px 4px;*/
+    white-space:normal;
+    word-wrap:break-word;
+    word-break:normal;
+}
+
+.x-grid-compare{background-color: #ffcc00;} /*#f7f7f7*/
+.x-grid-comp-add{background-color: #c6e26e;}
+.x-grid-comp-delete{background-color: #e54c5b;}
+.x-grid-left-header {
+    background-color: #eeeeee;
+    BORDER-LEFT: #ffffff 1px solid;
+    BORDER-RIGHT: #cccccc 1px solid;
+}
+
+.ux-btn-pressed .x-btn-left{
+    background-position:0 -63px;
+}
+.ux-btn-pressed .x-btn-right{
+    background-position:0 -84px;
+}
+.ux-btn-pressed .x-btn-center{
+    background-position:0 -105px;
+}
+.ux-btn-pressed{
+    border: inset thick #008000;
+}
+
+.x-ajax-loading div {
+    padding:5px 10px 5px 25px;
+    background: #fbfbfb url( '../images/icons/big-ajax-loader.gif' ) no-repeat 35px 35px;
+    line-height: 70px;
+}
+
+.x-mask-pointer-x div{
+    padding:5px 10px 5px 25px;
+    background: #fbfbfb url('../images/icons/information.png') no-repeat 5px 5px;
+    line-height: 16px;
+    cursor: default;
+}
+
+.x-form-field-wrap .x-form-tree-trigger{
+    background-image: url(../images/icons/expand-all.gif);
+    cursor:pointer;
+}
+
+/* change grid over row bgcolor */
+.x-grid3-row-over {
+    border:1px solid #dddddd;
+    background: #e0f0ff repeat-x left top;
+}
+
+/* in IE6,7 DIV with height=0 allows displays height>0 */
+.x-panel-hidebody div.x-panel-body{
+    height:0px; font-size: 0;
+}
+
+.cls-edit-header {
+    font-size:13px;
+}
+
+.x-grid3-cell-inner A{
+    text-decoration: none !important;
+}
+
+.x-grid-icon-mmodel {
+    width:16px;
+    height:16px;
+    vertical-align:-3px;
+    margin-right:2px;
+    background-repeat:no-repeat;
+    float:left;
+}
+

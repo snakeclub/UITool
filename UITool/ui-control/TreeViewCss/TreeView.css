@@ -1,0 +1,288 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：TreeView
+说明：树结构
+文件：TreeView.css
+
+资源文件：../TreeViewImg/
+
+
+<ul selftype='TreeView' class='TreeView_ULMain_Normal TreeView_ULMain_Disable' data='TreeViewOpts'  enable='true'>
+	<li TreeViewType='LIItem' 
+      class='TreeView_LIItem_Normal TreeView_LIItem_Disable' 
+	  isTitle=’是否标题项,true/false，如果是标题项，不显示展开图片’
+      value='选项值' 
+	  tips=’提示信息’
+      index='选项的索引位置，从0开始' 
+      level='选项的层级，从0开始'
+      parentindex='父选项的索引，根列表为-1'
+      selectable='是否可选,true/false'
+      expanded='是否已展开,true/false'
+      selected='是否被选中,true/false'
+	  data='TreeViewItemOpts'>
+		<div TreeViewType='DIVExpand' class='TreeView_DIVExpand'>
+			<img TreeViewType='IMGExpand' class='TreeView_IMGExpand'/>
+			or
+			<div TreeViewType='DIVImgExpand' class='TreeView_DIVImgExpand'></div>
+			…… --根据层级有多个图片来实现缩进，0层为1，1层为2
+   	    </div>
+		<div TreeViewType='DIVNoExpand' class='TreeView_DIVNoExpand'>
+			<img TreeViewType='IMGNoExpand' class='TreeView_IMGNoExpand'/>
+			or
+			<div TreeViewType='DIVImgNoExpand' class='TreeView_DIVImgNoExpand'></div>
+			…… --根据层级有多个图片来实现缩进，0层为1，1层为2
+		</div>
+		<div TreeViewType='DIVRadio' class='TreeView_DIVRadio_Normal TreeView_DIVRadio_Disable'>
+			<input type='radio' name='树id'>
+		</div>
+		<div TreeViewType='DIVCheckBox' class='TreeView_DIVCheckBox_Normal TreeView_DIVCheckBox_Disable'>
+			<input type='checkbox' name='树id'>
+		</div>
+		<div TreeViewType='DIVImg' class='TreeView_DIVImg_Normal TreeView_DIVImg_Disable'>
+			<img TreeViewType='IMGPic' class='TreeView_IMGPic'/>
+			or
+			<div TreeViewType='DIVPic' class='TreeView_DIVPic'></div>
+   	    </div>
+		<div TreeViewType='DIVText' class='TreeView_DIVText_Normal TreeView_DIVText_Disable TreeView_DIVText_Focus TreeView_DIVText_Selected TreeView_DIVText_SelectedDisable TreeView_DIVText_SelectedFocus'>
+			<a TreeViewType='AText' class='TreeView_AText_Normal TreeView_AText_Disable TreeView_AText_Focus TreeView_AText_Selected TreeView_AText_SelectedDisable TreeView_AText_SelectedFocus'>
+				选项文字
+			</a>
+		</div>
+	</li>
+</ul>
+-----------------------*/
+
+/* 树型控件主样式 */
+/* 公共样式 */
+.TreeView_ULMain_Normal, .TreeView_ULMain_Disable
+{
+	/* 不建议修改的样式 */
+	padding:0px;
+	font-size:0px; /* 让LI项可以控制最小高度 */
+	overflow:auto; /* 让菜单可以控制宽度，不会被撑大 */
+	cursor:default;
+	
+	/* 可修改的样式 */
+	padding-left:4px;
+	padding-top:4px;
+	/* 滚动条 */
+	SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+	SCROLLBAR-SHADOW-COLOR: #33BAFF;
+	SCROLLBAR-3DLIGHT-COLOR: #33BAFF; 
+	SCROLLBAR-TRACK-COLOR: #E0F4FF; 
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff; 
+	SCROLLBAR-BASE-COLOR: #65CBFF;
+}
+
+/* 正常状态 */
+.TreeView_ULMain_Normal
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-color:#FFFFFF; /* 总额控件背景色 */
+	border:1px solid #868686; /* 边框 */
+}
+
+/* 屏蔽状态 */
+.TreeView_ULMain_Disable
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-color:#CCCCCC; /* 总额控件背景色 */
+	border:1px solid #868686; /* 边框 */
+}
+
+
+/* 选项的li容器样式 */
+/* 公共样式 */
+.TreeView_LIItem_Normal, .TreeView_LIItem_Disable
+{
+	/* 不建议修改的样式 */
+	margin:0px;
+	list-style-type:none; /* 不显示列表图标 */
+	
+	/* 可修改的样式 */
+	height:20px;
+}
+
+
+/* 展开图片容器样式 */
+.TreeView_DIVExpand
+{
+	/* 不建议修改的样式 */
+	padding:0px; 
+	float:left; 
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	margin:0px;
+	height:20px;
+}
+
+/* 展开图片的样式 */
+.TreeView_IMGExpand, .TreeView_DIVImgExpand
+{
+	/* 不建议修改的样式 */
+	border:0px solid #868686; /* 边框 */
+	padding:0px;
+	margin:0px;
+	float:left; 
+	
+	/* 可修改的样式 */
+	width:18px;
+	height:20px;
+}
+
+
+/* 不显示展开图片时，空白图片容器的样式 */
+.TreeView_DIVNoExpand
+{
+	/* 不建议修改的样式 */
+	padding:0px; 
+	float:left; 
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	margin:0px;
+	height:20px;
+}
+
+/* 不展开图片的样式 */
+.TreeView_IMGNoExpand, .TreeView_DIVImgNoExpand
+{
+	/* 不建议修改的样式 */
+	border:0px solid #868686; /* 边框 */
+	padding:0px;
+	margin:0px;
+	float:left; 
+	
+	/* 可修改的样式 */
+	width:18px;
+	height:20px;
+}
+
+/* 单选容器的样式 */
+.TreeView_DIVRadio_Normal, .TreeView_DIVRadio_Disable
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	padding:0px; 
+	float:left; 
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	width:20px;
+	height:20px;
+}
+
+/* 复选容器的样式 */
+.TreeView_DIVCheckBox_Normal, .TreeView_DIVCheckBox_Disable
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	padding:0px; 
+	float:left; 
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	width:20px;
+	height:20px;
+}
+
+/* 选项图片容器的样式 */
+.TreeView_DIVImg_Normal,.TreeView_DIVImg_Disable
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	padding:0px; 
+	float:left; 
+	overflow:hidden;
+	
+	/* 可修改的样式 */
+	width:16px;
+	height:20px;
+}
+
+/* 选项图片样式 */
+.TreeView_IMGPic,.TreeView_DIVPic
+{
+	/* 不建议修改的样式 */
+	border:0px solid #868686; /* 边框 */
+	padding:0px;
+	float:left; 
+	
+	/* 可修改的样式 */
+	margin-top:2px;
+	width:16px;
+	height:16px;
+}
+
+
+/* 文字容器的样式 */
+/* 公共样式 */
+.TreeView_DIVText_Normal, .TreeView_DIVText_Disable,
+.TreeView_DIVText_Focus, .TreeView_DIVText_Selected,
+.TreeView_DIVText_SelectedDisable, .TreeView_DIVText_SelectedFocus
+{
+	/* 不建议修改的样式 */
+	margin:0px; 
+	padding:0px; 
+	float:left; 
+	white-space:nowrap;
+	
+	/* 可修改的样式 */
+	padding-left:4px;
+	padding-right:4px;
+	padding-top:4px;
+	height:16px;
+}
+
+.TreeView_DIVText_Focus
+{
+	/* 不建议修改的样式 */
+	/* 可修改的样式 */
+	background-color:#95d5f1;
+}
+
+.TreeView_DIVText_Selected
+{
+	/* 不建议修改的样式 */
+	/* 可修改的样式 */
+	background-color:#3399FF;
+}
+
+.TreeView_DIVText_SelectedFocus
+{
+	/* 不建议修改的样式 */
+	/* 可修改的样式 */
+	background-color:#05E5A0;
+}
+
+
+/* 文字的样式 */
+/* 公共样式 */
+.TreeView_AText_Normal, .TreeView_AText_Disable, 
+.TreeView_AText_Focus, .TreeView_AText_Selected,
+.TreeView_AText_SelectedDisable, .TreeView_AText_SelectedFocus
+{
+	/* 不建议修改的样式 */
+	white-space:nowrap;
+
+	/* 可修改的样式 */
+	font-size:11px;  /* 字体大小 */
+	color:#000000;  /* 字体颜色 */
+}
+
+.TreeView_AText_Selected
+{
+	/* 不建议修改的样式 */
+	/* 可修改的样式 */
+	color:#ffffff;
+}

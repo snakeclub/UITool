@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/ToolBarCss/ToolBar.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/ButtonCss/Button.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/BarScrollDivCss/BarScrollDiv.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/PageSplitCss/PageSplit.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../../ui-control/Button.js"></script>
+     <script type="text/javascript" src="../../ui-core/TimerControl.js"></script>
+    <script type="text/javascript" src="../../ui-control/BarScrollDiv.js"></script>
+    <script type="text/javascript" src="../../ui-control/ToolBar.js"></script>
+    <script type="text/javascript" src="../../ui-control/PageSplit.js"></script>
+    
+    <script type="text/javascript">
+        function AddPageSplit(){
+            $("#Div").CreatePageSplit("page",{
+                //样式前缀
+                CssBefore : "PageSplit",
+                
+                //按钮的Css样式前缀
+                ButtonCssBefore : "Button",
+                
+                //工具栏的Css样式前缀
+                ToolBarCssBefore : "ToolBar",
+                
+                //翻页控件类型，支持类型如下
+                //Icon - 图标按钮分页符
+                Type : "Icon",
+                
+                //控件(工具栏)宽度,可以为百分比，也可以象素
+                //如果包含在容器中，则容器宽度与这个相同
+                Width: "100%",
+                
+                //是否包含在滚动容器中
+                InScrollDiv : true,
+                
+                //滚动容器的样式前缀
+                ScrollDivCssBefore : "BarScrollDiv",
+                
+                //滚动容器滚动每一下的距离，单位为px
+                ScrollDivScrollStep : 2,
+                
+                //是否显示刷新按钮
+                ShowRefresh : true,
+                
+                //每页的记录数
+                NumPerPage : 15,
+                
+                //页数显示文本，显示在按钮中间，可用以下内容替换变量
+                //[CurrentPageInput] - 可输入的当前页数，input text
+                //[CurrentPage] - 当前页数文本
+                //[TotalPage] - 总页数文本
+                //[TotalCount]  -  总记录数文本
+                PageShowText : "第[CurrentPageInput]页  共[TotalPage]页",
+                
+                //输入页数的输入框宽度，单位为px
+                CurrentPageInputWidth : 20,
+                
+                //输入页数的输入框自动扩展大小，设置页数时，如果发现显示不全，自动扩大
+                CurrentPageInputAutoWidth : true,
+                
+                //是否显示每页记录数设置
+                ShowNumPerPage : true,
+                
+                //每页记录数设置文本
+                //[NumPerPageInput] - 每页记录数输入
+                NumPerPageText : "每页[NumPerPageInput]条记录",
+                
+                //每页记录数的输入框宽度，单位为px
+                NumPerPageInputWidth : 20,
+                
+                //是否显示右手提示信息
+                ShowRightTip : true,
+                
+                //右手提示信息显示文本，可用以下内容替换变量
+                //[CurrentPage] - 当前页数文本
+                //[TotalPage] - 总页数文本
+                //[TotalCount]  -  总记录数文本
+                //[NumPerPage]  -每页记录数文本
+                RightTip : "第[CurrentPage]页  共[TotalPage]页",
+                
+                //翻页操作执行的函数（点击上一页、下一页等按钮）
+                //传入的参数依次为ToolBar对象，请求的页码，当前PageInfo变量，操作按钮类型：prev\next\first\last\refresh\skip
+                //执行函数返回true代表按钮状态转入loading，返回false代表直接还是Refresh按钮状态
+                OnButtonClick : function(obj,RequestPage,PageInfo,Type){
+                    $("#OnButtonClick").get(0).innerHTML="OnButtonClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   RequestPage:"+RequestPage+"   Type:"+Type + "    <br />PageInfo.Key:"+PageInfo.Key + "    <br />PageInfo.TotalCount:" + PageInfo.TotalCount + "    <br />PageInfo.NumPerPage:" + PageInfo.NumPerPage + "   <br />PageInfo.TotalPage:" + PageInfo.TotalPage + "   <br />PageInfo.CurrentPage:" +  PageInfo.CurrentPage;
+                    PageInfo.CurrentPage = RequestPage;
+                    obj.PageSplitSetPageInfo(PageInfo);
+                    return false;
+                }
+            });
+            
+        };
+        
+        function SetPara(){
+            var PageInfo = new Object();$.PageSplitGetTotalPage
+            PageInfo.Key = "Key";
+            PageInfo.TotalCount = 100;
+            PageInfo.NumPerPage = 15;
+            PageInfo.TotalPage = $.PageSplitGetTotalPage(PageInfo.TotalCount,PageInfo.NumPerPage);
+            PageInfo.CurrentPage = 1;
+            $("#page").PageSplitSetPageInfo(PageInfo);
+        };
+    </script>
+</head>
+<body onload="$.cssAdapter();">
+     <p id='OnButtonClick'>&nbsp;</p>
+	<p> <input id="Button4" type="button" value="创建分页控件" onclick="AddPageSplit();" /> &nbsp;&nbsp;&nbsp;
+	    <input id="Button1" type="button" value="停止Loading" onclick="$('#page').PageSplitRefreshStat(true);" />  &nbsp;&nbsp;&nbsp;
+	    <input id="Button2" type="button" value="设置分页参数" onclick="SetPara();" />  &nbsp;&nbsp;&nbsp;
+	</p>
+	<p id="Div"></p>
+
+</body>
+</html>

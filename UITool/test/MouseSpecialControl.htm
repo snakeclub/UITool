@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../ui-core/TimerControl.js"></script>
+    <script type="text/javascript" src="../ui-core/MouseSpecialControl.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //在这里写你的代码..
+            $("#Div1").BindMouseHovering("job1",
+                function(obj,x,y){
+                   document.getElementById("HoveringInFun").innerHTML="HoveringInFun("+Date().toString()+"):对象id:" + obj.attr("id");
+                   $("#Div3").css({left:x+3+"px",top:y+3 +"px"});$("#Div3").show();},
+                function(obj,x,y){
+                   document.getElementById("HoveringOutFun").innerHTML="HoveringOutFun("+Date().toString()+"):对象id:" + obj.attr("id");
+                   $("#Div3").hide();},
+                3000);
+                
+            $("#Div2").BindMouseClick("job1",
+                function(obj,sobj,e,jr){
+                    document.getElementById("ClickFun").innerHTML="ClickFun("+Date().toString()+"):对象id:" + obj.attr("id") + "  事件源对象id:" + sobj.attr("id") + "  event.ClientX:" + e.clientX + "   SearchResult:" + jr.attr("id");
+                    $("#Div4").css({left:e.clientX-5+"px",top:e.clientY-5 +"px"});$("#Div4").show();
+                },
+                {
+                    //鼠标按下类型，包括R-右键，L-左键，M-中键，A-3个键的其中一个被按下，EX-扩展类型，使用event.button的值判断，例如E7代表左中右键同时按下，默认为A
+                    buttonType : "A",
+                    
+                    //匹配到鼠标按键后，是否停止消息冒泡，默认为false
+                    messageBreak : false,
+                    
+                    //在对象的子孙节点中搜索，搜索结果是否包含自身
+                    withSelf : true,
+                    
+                    //搜索子孙节点的jquery条件
+                    jqueryStr : "*",
+                    
+                    //搜索方向,self - 从对象自身开始往下搜索，child - 子节点往根节点方向
+                    searchPath : "child"
+                }
+             );
+             
+             $("#Div5").BindMouseClick("job1",
+                function(obj,sobj,e,jr){
+                    document.getElementById("ClickFun").innerHTML="ClickFun("+Date().toString()+"):对象id:" + obj.attr("id") + "  事件源对象id:" + sobj.attr("id") + "  event.ClientX:" + e.clientX + "   SearchResult:" + jr.attr("id");
+                    $("#Div4").css({left:e.clientX-5+"px",top:e.clientY-5 +"px"});$("#Div4").show();
+                },
+                {
+                    //鼠标按下类型，包括R-右键，L-左键，M-中键，A-3个键的其中一个被按下，EX-扩展类型，使用event.button的值判断，例如E7代表左中右键同时按下，默认为A
+                    buttonType : "L",
+                    
+                    //匹配到鼠标按键后，是否停止消息冒泡，默认为false
+                    messageBreak : false,
+                    
+                    //在对象的子孙节点中搜索，搜索结果是否包含自身
+                    withSelf : true,
+                    
+                    //搜索子孙节点的jquery条件
+                    jqueryStr : "*",
+                    
+                    //搜索方向,self - 从对象自身开始往下搜索，child - 子节点往根节点方向
+                    searchPath : "child"
+                }
+             );
+        });
+        
+        function stopmouseover(){
+            $("#Div1").UnBindMouseHovering();
+            //$("#Div1").UnBindMouseHovering("job1");
+        }
+        
+        function stopClick(){
+            $("#Div2").UnBindMouseClick("job1");
+            $("#Div5").UnBindMouseClick();
+        }
+        
+    </script>
+</head>
+<body>
+    <p>
+        <input type=button value="结束鼠标悬停特效" onclick="stopmouseover()" />
+        <input type=button value="结束鼠标右键特效" onclick="stopClick()" />
+    </p>
+    <p id="HoveringInFun"></p>
+    <p id="HoveringOutFun"></p>
+    <p id="ClickFun"></p>
+    <Div id="Div1" style="width:100px; height:100px; background-color:Green; overflow:hidden; position:absolute; left:200px; top:300px;">Div1把鼠标停在上方3秒</Div>
+    <Div id="Div2" style="width:100px; height:100px; background-color:Red; overflow:hidden; position:absolute; left:400px; top:300px;">Div2点击鼠标按键</Div>
+</body>
+    <Div id="Div3" style="width:100px; height:100px; background-color:Gold; overflow:hidden; position:absolute; left:200px; top:300px; display:none;">鼠标悬停的提示</Div>
+    <Div id="Div4" style="width:100px; height:100px; background-color:Gold; overflow:hidden; position:absolute; left:200px; top:300px; display:none; z-index:10;" onmouseout="$(this).hide();">鼠标右键的提示</Div>
+    <Div id="Div5" style="width:200px; height:200px; background-color:ButtonFace; overflow:hidden; position:absolute; left:600px; top:300px;">Div5点击鼠标左键
+    <div id="Div6" style="width:150px; height:150px; background-color:Blue; overflow:hidden;">Div6<div id="Div7" style="width:100px; height:100px; background-color:Green; overflow:hidden;">Div7</div></div></Div>
+</body>
+    
+</html>

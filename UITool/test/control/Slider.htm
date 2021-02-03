@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-core/PositionControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../../ui-control/Slider.js"></script>
+    <link href="../../ui-control/SliderCss/Slider.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/SliderCss/SliderBlue.css" type="text/css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+        function init(){
+            //公共的处理函数
+            $.Slider.defaults.BeforeChangeValue = function(obj,isBegin,showVal,Val){$("#BeforeChangeValue").get(0).innerHTML = "BeforeChangeValue("+Date().toString()+"):ObjID:" + obj.attr("id") + "  isBegin:" + isBegin.toString() + "   showVal:"+showVal + "   Val:" + Val; return true;};
+            $.Slider.defaults.AfterChangeValue = function(obj,isBegin,showVal,Val){$("#AfterChangeValue").get(0).innerHTML = "AfterChangeValue("+Date().toString()+"):ObjID:" + obj.attr("id") + "  isBegin:" + isBegin.toString() + "   showVal:"+showVal + "   Val:" + Val};
+            
+            //示例
+            $("#DemoSlider").CreateSlider("Demo",{});
+        };
+        
+        //设置滑动条样式
+        function SetDemoOpts(){
+            var opts = {   
+                //样式前缀
+                CssBefore : document.getElementById("txt_CssBefore").value,
+                 
+                //范围开始值，必须为正整数
+                From : parseInt(document.getElementById("txt_From").value),
+                
+                //范围结束值,必须为正整数，且> From，注意如果范围和Step不匹配，则会根据Step更新范围的结束值
+                To : parseInt(document.getElementById("txt_To").value),
+                
+                //每步长度，必须为正整数
+                Step : parseInt(document.getElementById("txt_Step").value),
+                
+                //每步的显示宽度(单位为px),必须为正整数，将决定最终控件的总宽度
+                StepWidth : parseInt(document.getElementById("txt_StepWidth").value),
+                
+                //滑动值的转义计算函数，该函数将当前的滑动块数值转义为输出值
+                //例如可以设置为function(value){return "StringValue" + value;} 将数值类型的滑动值变成字符类型的选项
+                ValueCalculate : function(value){return value;},
+                
+                //单位前缀，只控制头尾值和滑动块提示值(刻度值不处理)，例如可在数字前加“$”
+                UnitBefore : document.getElementById("txt_UnitBefore").value,
+                
+                //单位后缀，只控制头尾值和滑动块提示值(刻度值不处理)，例如可在数字后加“%”
+                UnitTail : document.getElementById("txt_UnitTail").value,
+                
+                //滑动条是否横向,true-横向，false-纵向
+                Horiz : document.getElementById("cb_Horiz").checked,
+                
+                //单值滑动(1个滑动块)还是范围滑动(两个滑动块)
+                SingleValue : document.getElementById("cb_SingleValue").checked,
+                
+                //是否显示拖动进度(如果不显示，则只有滑动块在背景条上滑动，不会有前端的值颜色显示)
+                ShowBarF : document.getElementById("cb_ShowBarF").checked,
+                
+                //是否反向显示，反向显示代表头尾值在下面（右面），刻度值在上面（左面）
+                ReverseShow : document.getElementById("cb_ReverseShow").checked,
+                
+                //是否显示头尾值
+                ShowHeadTailValue : document.getElementById("cb_ShowHeadTailValue").checked,
+                
+                //是否显示刻度值
+                ShowScale : document.getElementById("cb_ShowScale").checked,
+                
+                //刻度参数，数组个数必须是可被(To - From)/Step平均拆分的
+                //null则不显示刻度
+                //""-该位置没有刻度，"|"-长刻度且没有文字，"#"-短刻度且没有文字，"|3dd"-长刻度且文字为3dd，"#3dd"-短刻度且文字为3dd
+                //数组模式，如果没有被长度整除则会自动增加后续的"",例如["|1","#","|","","#3"]
+                //函数模式，从from开始到to，每一个step都会执行该函数，传入的值为value，并根据返回值确定该位置的刻度为多少
+                Scale : [],
+                
+                //是否显示滑动块值提示
+                ShowMoveTip : document.getElementById("cb_ShowMoveTip").checked,
+                
+                //滑动块提示是否自动隐藏，true-只有拖动滑动块时才显示提示
+                MoveTipAutoHide : document.getElementById("cb_MoveTipAutoHide").checked,
+                
+                //只显示被拖动的滑动块提示
+                JustMovingTip : document.getElementById("cb_JustMovingTip").checked,
+                
+                //设置滑动块值前的确认函数
+                //传入的参数依次为滑动条控件、isBegin(是否前滑动条－如果是单值滑动固定为false)、新的滑动值(显示值)、新的滑动值(真实值)
+                //函数必须返回是否允许滑动true/false，控制滑动效果是否生效
+                BeforeChangeValue : $.Slider.defaults.BeforeChangeValue,
+                
+                //滑动值改变后的回调函数
+                //传入的参数依次为滑动条控件、isBegin(是否前滑动条－如果是单值滑动固定为false)、新的滑动值(显示值)、新的滑动值(真实值)
+                AfterChangeValue : $.Slider.defaults.AfterChangeValue
+            };
+            
+            //设置对象类
+            var js="opts.ValueCalculate = " + document.getElementById("txt_ValueCalculate").value + ";"
+                 + "opts.Scale = " + document.getElementById("txt_Scale").value + ";"
+                 + "opts.BeforeChangeValue = " + document.getElementById("txt_BeforeChangeValue").value + ";"
+                 + "opts.AfterChangeValue = " + document.getElementById("txt_AfterChangeValue").value + ";";
+            eval(js);
+            
+            $("#Demo").RetSetSliderOpts(opts);
+        };
+        
+        //恢复默认设置
+        function SetDefaultOpts(){
+            document.getElementById("txt_CssBefore").value = "Slider";
+            document.getElementById("txt_From").value = "0";
+            document.getElementById("txt_To").value = "100";
+            document.getElementById("txt_Step").value = "1";
+            document.getElementById("txt_StepWidth").value = "2";
+            document.getElementById("txt_ValueCalculate").value = "function(value){return value;}";
+            document.getElementById("txt_UnitBefore").value = "";
+            document.getElementById("txt_UnitTail").value = "";
+            document.getElementById("cb_Horiz").checked = true;
+            document.getElementById("cb_SingleValue").checked = true;
+            document.getElementById("cb_ShowBarF").checked = true;
+            document.getElementById("cb_ReverseShow").checked = false;
+            document.getElementById("cb_ShowHeadTailValue").checked = true;
+            document.getElementById("cb_ShowScale").checked = true;
+            document.getElementById("txt_Scale").value = "[]";
+            document.getElementById("cb_ShowMoveTip").checked = true;
+            document.getElementById("cb_MoveTipAutoHide").checked = true;
+            document.getElementById("cb_JustMovingTip").checked = true;
+            document.getElementById("txt_BeforeChangeValue").value = "$.Slider.defaults.BeforeChangeValue";
+            document.getElementById("txt_AfterChangeValue").value = "$.Slider.defaults.AfterChangeValue";
+        };
+        
+        //启用和屏蔽
+        function SetEnable(obj){
+            if(obj.value == "屏蔽"){
+                $("#Demo").SliderEnable(false);
+                obj.value = "启用";
+            }
+            else{
+                $("#Demo").SliderEnable(true);
+                obj.value = "屏蔽";
+            }
+        };
+        
+        //获得显示值
+        function GetShowText(){
+            var demo = $("#Demo");
+            var opts = demo.data("SliderOpts");
+            if(opts.SingleValue){
+                alert(demo.GetSliderShowValue());
+            }
+            else{
+                var ret = demo.GetSliderShowValue();
+                alert("开始值："+ret[0]+ "   结束值："+ret[1]);
+            }
+        };
+        
+        //获得转义值
+        function GetValue(){
+            var demo = $("#Demo");
+            var opts = demo.data("SliderOpts");
+            if(opts.SingleValue){
+                alert(demo.GetSliderValue());
+            }
+            else{
+                var ret = demo.GetSliderValue();
+                alert("开始值："+ret[0]+ "   结束值："+ret[1]);
+            }
+        };
+        
+        //获得真实值
+        function GetRealValue(){
+            //alert(getStyleValue(0,".Slider_DivMoveValue_H","width"));
+            //alert($.getStyleSheetsStyle(".PopMenu_DivItemTail","background-image"));
+            //alert(getStyle());
+            var demo = $("#Demo");
+            var opts = demo.data("SliderOpts");
+            if(opts.SingleValue){
+                alert(demo.GetSliderRealValue());
+            }
+            else{
+                var ret = demo.GetSliderRealValue();
+                alert("开始值："+ret[0]+ "   结束值："+ret[1]);
+            }
+        };
+
+    </script>
+    
+    <style type="text/css">
+        .style1
+        {
+            width: 100%;
+        }
+        #txt_ValueCalculate,#txt_Scale,#txt_BeforeChangeValue,#txt_AfterChangeValue
+        {
+            width: 100%;
+            height: 60px;
+        }
+    </style>
+</head>
+<body onload="init();">
+    <p id="BeforeChangeValue">BeforeChangeValue : </p>
+    <p id="AfterChangeValue">BeforeChangeValue : </p>
+    <table border=1 width=100%>
+        <tr>
+            <td colspan=5>
+                样式前缀<input id="txt_CssBefore" type="text" value='Slider' />&nbsp;&nbsp;&nbsp;&nbsp;
+                范围开始值<input id="txt_From" type="text" value='0' />&nbsp;&nbsp;&nbsp;&nbsp;
+                范围结束值<input id="txt_To" type="text" value='100' /><br />
+                每步长度<input id="txt_Step" type="text" value='1' />&nbsp;&nbsp;&nbsp;&nbsp;
+                每步的显示宽度<input id="txt_StepWidth" type="text" value='2' />px<br />
+                滑动值的转义计算函数<br />
+                <textarea id="txt_ValueCalculate" name="S1">function(value){return value;}</textarea><br />
+                单位前缀<input id="txt_UnitBefore" type="text" value='' />&nbsp;&nbsp;&nbsp;&nbsp;
+                单位后缀<input id="txt_UnitTail" type="text" value='' /><br />
+                <input id="cb_Horiz" type="checkbox" checked=checked />横向&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_SingleValue" type="checkbox" checked=checked />单值&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_ShowBarF" type="checkbox" checked=checked />显示拖动进度&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_ReverseShow" type="checkbox" />反向显示&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_ShowHeadTailValue" type="checkbox" checked=checked />显示头尾值&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_ShowScale" type="checkbox" checked=checked />显示刻度值<br />
+                <input id="cb_ShowMoveTip" type="checkbox" checked=checked />显示滑动块值提示&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_MoveTipAutoHide" type="checkbox" checked=checked />滑动块提示自动隐藏&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_JustMovingTip" type="checkbox" checked=checked />只显示被拖动的滑动块提示<br />
+                刻度参数数组
+                <br />
+                <textarea id="txt_Scale" name="S1">[]</textarea><br />
+                滑动块值前的确认函数
+                <br />
+                <textarea id="txt_BeforeChangeValue" name="S1">$.Slider.defaults.BeforeChangeValue</textarea><br />
+                滑动值改变后的回调函数
+                <br />
+                <textarea id="txt_AfterChangeValue" name="S1">$.Slider.defaults.AfterChangeValue</textarea><br />
+                <br />
+                预设测试参数：  刻度值
+                <select id="sl_Scale" name="D1" style="width:100px;" onchange='document.getElementById("txt_Scale").value=this.options[this.selectedIndex].value;'>
+                    <option value="[]">没有刻度</option>
+                    <option value='["|0","#","|20","#","|40","#","|60","#","|80","#","|100"]'>刻度样式1</option>
+                </select> &nbsp;&nbsp;&nbsp;&nbsp;
+                滑动值转换
+                <select id="sl_ValueCalculate" name="D1" style="width:100px;" onchange='document.getElementById("txt_ValueCalculate").value=this.options[this.selectedIndex].value;'>
+                    <option value="function(value){return value;}">不转换</option>
+                    <option value='function(value){return 100-value;}'>从大到小</option>
+                    <option value='function(value){return "$"+value/1000+"M";}'>金额</option>
+                </select>
+                <br />
+                <br />
+                <input id="btn_SetOpts" type="button" value="设置滑动条参数" onclick='SetDemoOpts();' />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Button1" type="button" value="恢复默认设置" onclick='SetDefaultOpts();' />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan=5 id="DemoSlider">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan=5>
+                <input id="Button2" type="button" value="屏蔽" onclick='SetEnable(this);' />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Button3" type="button" value="设置开始值" onclick='$("#Demo").SetSliderValue(parseInt($("#SetBeginValue").get(0).value),true);' /><input id="SetBeginValue" type="text" value='10' />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Button4" type="button" value="设置结束值" onclick='$("#Demo").SetSliderValue(parseInt($("#SetEndValue").get(0).value),false);' /><input id="SetEndValue" type="text" value='10' />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Button5" type="button" value="获得显示值" onclick='GetShowText(this);' />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Button6" type="button" value="获得转义值" onclick='GetValue(this);' />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Button7" type="button" value="获得真实值" onclick='GetRealValue(this);' />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Button8" type="button" value="获得屏蔽状态" onclick='alert($("#Demo").SliderEnable());' />
+            </td>
+        </tr>
+    </table>
+    
+
+</body>
+</html>

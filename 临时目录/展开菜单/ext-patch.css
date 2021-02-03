@@ -1,0 +1,115 @@
+/* Ext 2.0 */
+.x-window-footer {
+    position: relative;
+    top: 0;
+    right: 0;
+}
+.x-tab-strip SPAN.x-tab-strip-text  {
+    font-size: 12px;
+}
+.x-panel-header {
+    font-size: 12px;
+}
+.x-panel-mc {
+    font: normal 12px tahoma,arial,helvetica,sans-serif;
+}
+.x-tree-node {
+    font-size: 12px;
+}
+.x-grid3-row-body {
+	font: 12px tahoma,arial,verdana,sans-serif;
+}
+.x-grid3-hd-row td {
+    font-size: 12px;
+}
+.x-grid3-row td {
+    font: 12px tahoma,arial,verdana,sans-serif;
+    line-height:14px;
+}
+.x-grid3-cell-inner, .x-grid3-hd-inner{
+    font: 12px tahoma,arial,verdana,sans-serif;
+}
+.x-tip .x-tip-bd {
+    font-size: 12px;
+}
+.x-tip h3{
+    font-size: 12px;
+}
+.x-tip .x-tip-bd-inner{
+    font-size:12px;
+}
+.x-tip .x-tip-body {
+    font-size: 12px;
+}
+.x-tip .x-tip-header-text{
+	font-size: 12px;
+}
+.x-panel-tl .x-panel-header {
+    font-size: 12px;
+}
+.x-form-field {
+    FONT: 12px tahoma,arial,helvetica,sans-serif
+}
+.x-small-editor .x-form-field {
+    FONT: 12px tahoma,arial,helvetica,sans-serif
+}
+.x-combo-list-hd{
+    FONT: bold 12px tahoma,arial,helvetica,sans-serif;
+}
+.x-combo-list-item {
+    FONT: 12px tahoma,arial,helvetica,sans-serif;
+}
+.x-menu-list-item {
+    FONT: 12px tahoma,arial,sans-serif;
+}
+.x-window-tl .x-window-header {
+    FONT: bold 12px tahoma,arial,verdana,sans-serif;
+}
+.ext-ie .x-form-text {
+    margin-top:1px;
+} /* the textField missing bottom line */
+.x-form-item {
+    FONT: 12px tahoma,arial,helvetica,sans-serif
+}
+.x-grid-group-hd DIV {
+    FONT: bold 12px tahoma,arial,helvetica,sans-serif;
+}
+.loading-indicator {
+    font-size: 12px;
+}
+button.x-btn-text{
+	font: 12px tahoma,arial,sans-serif;
+}
+
+.x-toolbar .ytb-text{
+	font: 12px tahoma,arial,sans-serif;
+	padding: 0;
+}
+div.x-paging-info {
+	font: 12px tahoma,arial,sans-serif;
+}
+.x-statusbar .x-status-text {
+    font: 12px tahoma,arial,sans-serif;
+    height: 21px;
+    line-height: 21px;
+    padding: 0 4px;
+    cursor: default;
+}
+.ext-el-mask-msg div {
+	font: 12px tahoma,arial,sans-serif;
+}
+
+.x-grid-empty {
+    font: 12px tahoma,arial,sans-serif;
+}
+
+.x-form-invalid-msg {
+    font: 12px tahoma,arial,sans-serif;
+}
+
+.x-fieldset legend {
+    font:bold 12px tahoma,arial,helvetica,sans-serif;
+    color:#15428b;
+}
+
+/* END */

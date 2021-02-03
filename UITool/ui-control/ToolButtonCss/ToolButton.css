@@ -1,0 +1,31 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：工具栏小按钮类型样式
+说明：按钮控件
+文件：ToolButton.css
+
+资源文件：../ToolButtonImg/
+
+<DIV selftype='ToolButton' class='ToolButton_Main' data='ToolButtonOpts'>
+	&nbsp;
+</DIV>
+
+
+-----------------------*/
+
+/* -------------主要的样式------------- */
+.ToolButton_Main
+{
+	overflow:hidden;
+	width:15px;
+	height:15px;
+	float:right;
+	cursor:pointer;
+	background:transparent url(../../ui-control/ToolButtonImg/ToolButton_Sprites.gif) no-repeat;
+	margin-left:2px;
+}

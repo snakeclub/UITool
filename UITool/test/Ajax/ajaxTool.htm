@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-ajax/json2.js"></script>
+    <script type="text/javascript" src="../../ui-ajax/AjaxTool.js"></script>
+    <script type="text/javascript" src="../../Crypto/des.js"></script>
+    <script type="text/javascript" src="../../Crypto/crypto.js"></script>
+    <script type="text/javascript">
+        function SendTextN(){
+            //发送文本-不加密
+            $.AjaxEFun("SendText","测试发送\"文本",
+                {
+                    //ajax发送前执行的函数,null代表不执行，函数传入一个参数：XMLHttpRequest 对象
+                    beforeSend : function(){alert("beforeSend调用!");},
+                    
+                    //ajax发送成功后执行的函数，null代表不执行，传入两个参数：data-服务器返回的数据, textStatus-执行状态
+                    success : function(data,textStatus){
+                        alert("success调用-发送状态:"+textStatus+"   返回值:"+$.AjaxAnalysData(data));
+                    },
+                    
+                    //ajax发送失败后执行的函数，null代表不执行，传入三个参数：XMLHttpRequest-XMLHttpRequest 对象, textStatus-执行状态, errorThrown-捕获的异常对象
+                    error : function(XMLHttpRequest,textStatus,errorThrown){
+                        alert("error调用-发送状态:"+textStatus+"   errorThrown:"+errorThrown + "   this.option.url:" + this.url);
+                    },
+                    
+                    //ajax发送完成后执行的函数，null代表不执行，传入两个参数：XMLHttpRequest-XMLHttpRequest 对象, textStatus-执行状态
+                    //textStatus包括以下状态：null,"success"，"timeout", "error", "notmodified" 和 "parsererror"
+                    complete : function(XMLHttpRequest,textStatus){
+                        alert("complete调用-发送状态:"+textStatus + "   this.option.url:" + this.url);
+                    },
+                    
+                    //要访问的ajax服务器页面地址，默认为"AjaxServer.aspx"
+                    url : "AjaxServer.ashx"
+                }
+            );
+        };
+        
+        function SendObjectN(){
+            //发送对象-不加密
+            var SendData = new Object();
+            SendData.ParaStr = "ParaStr";
+            SendData.ParaNum = 19.33;
+            SendData.ParaObject = new Object();
+            SendData.ParaObject.val = "SendData.ParaObject.val";
+            
+            $.AjaxEFun("SendObject",SendData,
+                {
+                    //ajax发送前执行的函数,null代表不执行，函数传入一个参数：XMLHttpRequest 对象
+                    beforeSend : function(){alert("beforeSend调用!");},
+                    
+                    //ajax发送成功后执行的函数，null代表不执行，传入两个参数：data-服务器返回的数据, textStatus-执行状态
+                    success : function(data,textStatus){
+                        var Adata = $.AjaxAnalysData(data);
+                        alert("success调用-发送状态:"+textStatus+"   返回值boolVal:"+Adata.boolVal + "   StrVal:" + Adata.StrVal + "  IntVal:"+ Adata.IntVal);
+                    },
+                    
+                    //ajax发送失败后执行的函数，null代表不执行，传入三个参数：XMLHttpRequest-XMLHttpRequest 对象, textStatus-执行状态, errorThrown-捕获的异常对象
+                    error : function(XMLHttpRequest,textStatus,errorThrown){
+                        alert("error调用-发送状态:"+textStatus+"   errorThrown:"+errorThrown + "   this.option.url:" + this.url);
+                    },
+                    
+                    //ajax发送完成后执行的函数，null代表不执行，传入两个参数：XMLHttpRequest-XMLHttpRequest 对象, textStatus-执行状态
+                    //textStatus包括以下状态：null,"success"，"timeout", "error", "notmodified" 和 "parsererror"
+                    complete : function(XMLHttpRequest,textStatus){
+                        alert("complete调用-发送状态:"+textStatus + "   this.option.url:" + this.url);
+                    },
+                    
+                    //要访问的ajax服务器页面地址，默认为"AjaxServer.aspx"
+                    url : "AjaxServer.ashx"
+                }
+            );
+        };
+        
+        function SendObject(){
+            //发送对象-加密
+            var SendData = new Object();
+            SendData.ParaStr = "ParaStr";
+            SendData.ParaNum = 19.33;
+            SendData.ParaObject = new Object();
+            SendData.ParaObject.val = "SendData.ParaObject.val";
+            
+            $.AjaxEFun("SendObject",SendData,
+                {
+                    //加密函数，默认为null，加密函数需返回加密的字符串，依次传入2个参数，加密串、密钥
+                    Encode : DESEncode,
+                    
+                    //加密算法名称,
+                    EncodeName : "DES",
+                    
+                    //加密密钥，默认为""
+                    Encodekey : "DESkey",
+                    
+                    //加密的其他参数(有些加密算法会附带)
+                    EncodePara : "",
+                    
+                    //是否同时发送密钥到服务器，默认为false
+                    SendKey : false,
+                    
+                    //ajax发送前执行的函数,null代表不执行，函数传入一个参数：XMLHttpRequest 对象
+                    beforeSend : function(){alert("beforeSend调用!");},
+                    
+                    //ajax发送成功后执行的函数，null代表不执行，传入两个参数：data-服务器返回的数据, textStatus-执行状态
+                    success : function(data,textStatus){
+                        var Adata = $.AjaxAnalysData(data,
+                            function(dstr,key){
+                                return DES(0,Crypto.util.hexToUtf8String(dstr),key,0);
+                            },
+                            "DESkey");
+                        alert("success调用-发送状态:"+textStatus+"   返回值boolVal:"+Adata.boolVal + "   StrVal:" + Adata.StrVal + "  IntVal:"+ Adata.IntVal);
+                    },
+                    
+                    //ajax发送失败后执行的函数，null代表不执行，传入三个参数：XMLHttpRequest-XMLHttpRequest 对象, textStatus-执行状态, errorThrown-捕获的异常对象
+                    error : function(XMLHttpRequest,textStatus,errorThrown){
+                        alert("error调用-发送状态:"+textStatus+"   errorThrown:"+errorThrown + "   this.option.url:" + this.url);
+                    },
+                    
+                    //ajax发送完成后执行的函数，null代表不执行，传入两个参数：XMLHttpRequest-XMLHttpRequest 对象, textStatus-执行状态
+                    //textStatus包括以下状态：null,"success"，"timeout", "error", "notmodified" 和 "parsererror"
+                    complete : function(XMLHttpRequest,textStatus){
+                        alert("complete调用-发送状态:"+textStatus + "   this.option.url:" + this.url);
+                    },
+                    
+                    //要访问的ajax服务器页面地址，默认为"AjaxServer.aspx"
+                    url : "AjaxServer.ashx"
+                }
+            );
+        };
+        
+        function DESEncode(str,key){
+            //DES加密
+            return Crypto.util.utf8StringToHex(DES(1,str,key,0)); 
+        }
+        
+        function testJSON()
+        {
+            var test = new Object();
+            test.xstr = "1000";
+            test.xint = 19;
+            test.xfloat = 33.33;
+            test.xarray = new Array();
+            test.xarray.push("xx");
+            test.xarray.push(1);
+            var xx = new Object();
+            xx.arrayobj = "aaa";
+            test.xarray.push(xx);
+            test.xobj = new Object();
+            test.xobj.xxxobj = "{ddddddd'aaaa':\"dddddd}";
+            
+            document.getElementById("exejs").value = JSON.stringify(test) + "\r\n\r\n" + JSON.parse("{\"IsEncode\":false,\"EncodeName\":\"\",\"WithKey\":false,\"EncodeKey\":\"\",\"EncodePara\":\"\",\"Data\":\"{\\\"FunName\\\":\\\"\\\",\\\"Para\\\":\\\"返回的内容\\\"!\"}\"}");
+        }
+        
+    </script>
+</head>
+<body>
+    <p>
+        <input type=button value='发送文本-不加密-返回文本' onclick="SendTextN();" />
+        <input type=button value='发送对象-不加密-返回对象' onclick="SendObjectN();" />
+        <input type=button value='发送对象-DES加密-返回对象' onclick="SendObject();" />
+        <input type=button value='生成json格式' onclick="testJSON();" />
+    </p>
+    
+<p>
+                <textarea id="exejs" cols="20" name="S1" rows="2" 
+                    style="width: 100%; height: 300px;"></textarea></p>
+    
+</body>
+</html>

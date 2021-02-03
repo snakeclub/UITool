@@ -1,0 +1,169 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：圆角阴影控件类型样式
+说明：圆角阴影控件
+文件：CornerShadow.css
+
+资源文件：../CornerShadowImg/
+
+<!-- IE浏览器，本身已经有渲染的功能，只需用一个DIV实现 -->
+<DIV selftype='CornerShadow' class='CornerShadow_IE' 
+	data=CornerShadowOpts
+	style="Z-INDEX: 9002; FILTER: progid:DXImageTransform.Microsoft.alpha(opacity=50) progid:DXImageTransform.Microsoft.Blur(pixelradius=4); 
+	WIDTH: 292px;
+	HEIGHT: 192px;">
+</DIV>
+
+<!-- 非IE浏览器，利用图片实现 -->
+ <DIV selftype='CornerShadow' class='CornerShadow_PicShadow' 
+	data=CornerShadowOpts
+	style="Z-INDEX: 9002; WIDTH: 300px; HEIGHT: 200px;">
+        <table CornerShadowType='Table' class='CornerShadowTable' cellpadding='0' cellspacing='0'>
+            <tr CornerShadowType='TopTr' class='CornerShadowTopTr'>
+                <td CornerShadowType='TopTdLeft' class='CornerShadowTopTdLeft'>&nbsp;</td>
+                <td CornerShadowType='TopTdCenter' class='CornerShadowTopTdCenter'>&nbsp;</td>
+                <td CornerShadowType='TopTdRight' class='CornerShadowTopTdRight'>&nbsp;</td>
+            </tr>
+            <tr CornerShadowType='MidTr' class='CornerShadowMidTr'>
+                <td CornerShadowType='MidTdLeft' class='CornerShadowMidTdLeft'>&nbsp;</td>
+                <td CornerShadowType='MidTdCenter' class='CornerShadowMidTdCenter' style="height:188px;">&nbsp;</td>
+                <td CornerShadowType='MidTdRight' class='CornerShadowMidTdRight'>&nbsp;</td>
+            </tr>
+            <tr CornerShadowType='BtmTr' class='CornerShadowBtmTr'>
+                <td CornerShadowType='BtmTdLeft' class='CornerShadowBtmTdLeft'>&nbsp;</td>
+                <td CornerShadowType='BtmTdCenter' class='CornerShadowBtmTdCenter'>&nbsp;</td>
+                <td CornerShadowType='BtmTdRight' class='CornerShadowBtmTdRight'>&nbsp;</td>
+            </tr>
+        </table>
+    </DIV>
+
+-----------------------*/
+
+/* ------------- IE，可以直接通过渲染实现阴影 ------------- */
+.CornerShadow_IE
+{
+	position:absolute;
+	overflow:hidden;
+	background:#777;
+	zoom:1;
+}
+
+
+/* ------------- 其他浏览器，需通过背景图实现 ------------- */
+/* ########  最外面的Div框架 ######## */
+.CornerShadow_PicShadow
+{
+	position:absolute;
+	overflow:hidden;
+	background-color:Transparent;
+	zoom:1;
+}
+
+/* ########  阴影样式表格 ######## */
+.CornerShadow_PicShadow .CornerShadowTable
+{
+	width:100%;
+	padding:0px;
+	margin:0px;
+	table-layout:fixed;
+	border-width:0px;
+}
+
+
+/* -------------上面一行------------- */
+.CornerShadow_PicShadow .CornerShadowTopTr td
+{
+	margin:0px;
+	font-size:0px;
+	overflow:hidden;
+}
+
+/* ######## 左边 ######## */
+.CornerShadow_PicShadow .CornerShadowTopTdLeft
+{
+	width:6px;
+	height:6px;
+	background:transparent url(../../ui-control/CornerShadowImg/shadow.png ) no-repeat 0 0;
+}
+
+/* ######## 右边 ######## */
+.CornerShadow_PicShadow .CornerShadowTopTdRight
+{
+	width:6px;
+	height:6px;
+	background:transparent url( ../../ui-control/CornerShadowImg/shadow.png ) repeat-x 0 -18px;
+}
+
+/* ######## 中间 ######## */
+.CornerShadow_PicShadow .CornerShadowTopTdCenter
+{
+	width:100%;
+	height:6px;
+	background:transparent url(../../ui-control/CornerShadowImg/shadow.png ) repeat-x 0 -30px;
+}
+
+/* -------------中间一行------------- */
+.CornerShadow_PicShadow .CornerShadowMidTr td
+{
+	margin:0px;
+	font-size:0px;
+	overflow:hidden;
+}
+
+/* ######## 左边 ######## */
+.CornerShadow_PicShadow .CornerShadowMidTdLeft
+{
+	width:6px;
+	background:transparent url( ../../ui-control/CornerShadowImg/shadow-lr.png ) repeat-y 0 0;
+}
+
+/* ######## 右边 ######## */
+.CornerShadow_PicShadow .CornerShadowMidTdRight
+{
+	width:6px;
+	background:transparent url(../../ui-control/CornerShadowImg/shadow-lr.png ) repeat-y -6px 0;
+}
+
+/* ######## 中间 ######## */
+.CornerShadow_PicShadow .CornerShadowMidTdCenter
+{
+	width:100%;
+	background:transparent url(../../ui-control/CornerShadowImg/shadow-c.png );
+}
+
+/* -------------下面一行------------- */
+.CornerShadow_PicShadow .CornerShadowBtmTr td
+{
+	margin:0px;
+	font-size:0px;
+	overflow:hidden;
+}
+
+/* ######## 左边 ######## */
+.CornerShadow_PicShadow .CornerShadowBtmTdLeft
+{
+	width:6px;
+	height:6px;
+	background:transparent url(../../ui-control/CornerShadowImg/shadow.png ) no-repeat 0 -12px;
+}
+
+/* ######## 右边 ######## */
+.CornerShadow_PicShadow .CornerShadowBtmTdRight
+{
+	width:6px;
+	height:6px;
+	background:transparent url( ../../ui-control/CornerShadowImg/shadow.png ) repeat-x 0 -6px;
+}
+
+/* ######## 中间 ######## */
+.CornerShadow_PicShadow .CornerShadowBtmTdCenter
+{
+	width:100%;
+	height:6px;
+	background:transparent url(../../ui-control/CornerShadowImg/shadow.png ) repeat-x 0 -36px;
+}

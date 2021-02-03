@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+
+.x-toolbar .icon-bar {
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    font-size: 1px;
+    height: 16px;
+    width:14px;
+    overflow: hidden;
+    cursor:default;
+    margin: 0 2px 0;
+    border:0;
+}
+
+.x-toolbar .icon-sep {
+    background-image: url(images/detail.gif);
+}
+.x-toolbar .icon-dot1 {
+    background-image: url(images/toolbar-dot1.gif);
+}
+.x-toolbar .icon-dot2 {
+    background-image: url(images/toolbar-dot2.gif);
+}
+.x-toolbar .icon-info {
+    background-image: url(images/information.png);
+}
+
+.ico_column_head {background-image:url(images/column_head.png) !important;}
+
+.x-tool-user {
+    overflow:hidden;
+    width:15px;
+    height:15px;
+    float:right;
+    cursor:pointer;
+    background:transparent url(images/tool-user.gif) no-repeat;
+    margin-left:2px;
+    background-position:0 -0;
+}
+.x-tool-user-over {
+    background-position:-15px 0;
+}
+
+.x-tool-cleaner {
+    overflow:hidden;
+    width:15px;
+    height:15px;
+    float:right;
+    cursor:pointer;
+    background:transparent url(images/tool-cleaner.gif) no-repeat;
+    margin-left:2px;
+    background-position:0 -0;
+}
+.x-tool-cleaner-over {
+    background-position:-15px 0;
+}
+
+.x-tool-mail {
+    overflow:hidden;
+    width:15px;
+    height:15px;
+    float:right;
+    cursor:pointer;
+    background:transparent url(images/tool-mail.gif) no-repeat;
+    margin-left:2px;
+    background-position:0 -0;
+}
+.x-tool-mail-over {
+    background-position:-15px 0;
+}
+
+.x-form-field-wrap .x-form-search-tree{
+    background-image: url(images/tree.gif);
+    cursor:pointer;
+}
+
+.x-form-field-wrap .x-form-column-trigger{
+    background-image: url(images/column-trigger.gif);
+    cursor:pointer;
+}
+
+.x-dd-drag-ghost .x-tree-node-indent,.x-dd-drag-ghost .x-tree-ec-icon {
+	display: inline !important;
+}

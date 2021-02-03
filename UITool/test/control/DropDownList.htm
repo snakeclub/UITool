@@ -1,0 +1,440 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-control/DropDownList.js"></script>
+    <script type="text/javascript" src="../../ui-core/TimerControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/SelectionTool.js"></script>
+    
+    <link href="../../ui-control/DropDownListCss/DropDownList.css" type="text/css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+        //修改默认创建参数
+        $.DropDownList.defaults.OnItemClick = function(tree,item){$("#OnItemClick").get(0).innerHTML="OnItemClick("+Date().toString()+"):downlist ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        $.DropDownList.defaults.OnItemFocus = function(tree,item){$("#OnItemFocus").get(0).innerHTML="OnItemFocus("+Date().toString()+"):downlist ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        $.DropDownList.defaults.OnItemFoucsOut = function(tree,item){$("#OnItemFoucsOut").get(0).innerHTML="OnItemFoucsOut("+Date().toString()+"):downlist ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        $.DropDownList.defaults.OnItemChecked = function(tree,item){$("#OnItemChecked").get(0).innerHTML="OnItemChecked("+Date().toString()+"):downlist ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        $.DropDownList.defaults.OnItemUnChecked = function(tree,item){$("#OnItemUnChecked").get(0).innerHTML="OnItemUnChecked("+Date().toString()+"):downlist ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        
+        $.DropDownList.defaults.ShowNum = 9;
+        $.DropDownList.defaults.ShowItemPic = true;
+        $.DropDownList.defaults.ClickCancle = true;
+        $.DropDownList.defaults.AutoHideList = false;
+        
+        //创建初始的下拉框
+        function CreateDownList(){
+            $("#tdDropDownList").CreateDropDownList("testDownList",
+            {
+                Width : "60%"
+            });
+            
+            //创建选项1
+            $("#testDownList").DropDownListAddItem("item1",
+            {
+                Text : "a选项1",
+                Value : "选项1-值",
+                Tips : "选项1-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList").DropDownListAddItem("item2",
+            {
+                Text : "b选项2",
+                Value : "选项2-值",
+                Tips : "选项2-提示",
+                PicPath : "",
+                Pic : ""
+            });
+            
+            $("#testDownList").DropDownListAddItem("item3",
+            {
+                Text : "c选项3",
+                Value : "选项3-值",
+                Tips : "选项3-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList").DropDownListAddItem("item4",
+            {
+                Text : "d选项4",
+                Value : "选项4-值",
+                Tips : "选项4-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList").DropDownListAddItem("item5",
+            {
+                Text : "d选项5",
+                Value : "选项5-值",
+                Tips : "选项5-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList").DropDownListAddItem("item6",
+            {
+                Text : "e选项6-超长顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶",
+                Value : "选项6-值",
+                Tips : "选项6-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList").DropDownListAddItem("item7",
+            {
+                Text : "d选项7",
+                Value : "选项7-值",
+                Tips : "选项7-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList").DropDownListAddItem("item8",
+            {
+                Text : "d选项8",
+                Value : "选项8-值",
+                Tips : "选项8-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList").DropDownListAddItem("item9",
+            {
+                Text : "d选项9",
+                Value : "选项9-值",
+                Tips : "选项9-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList").DropDownListAddItem("item10",
+            {
+                Text : "d选项10",
+                Value : "选项10-值",
+                Tips : "选项10-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+        };
+        
+        
+        function CreateDownList1(){
+            $("#tdDropDownList1").CreateDropDownList("testDownList1",
+            {
+                Width : "100%"
+            });
+            
+            //创建选项1
+            $("#testDownList1").DropDownListAddItem("item1",
+            {
+                Text : "a选项1",
+                Value : "选项1-值",
+                Tips : "选项1-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList1").DropDownListAddItem("item2",
+            {
+                Text : "b选项2",
+                Value : "选项2-值",
+                Tips : "选项2-提示",
+                PicPath : "",
+                Pic : ""
+            });
+            
+            $("#testDownList1").DropDownListAddItem("item3",
+            {
+                Text : "c选项3",
+                Value : "选项3-值",
+                Tips : "选项3-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList1").DropDownListAddItem("item4",
+            {
+                Text : "d选项4",
+                Value : "选项4-值",
+                Tips : "选项4-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+            
+            $("#testDownList1").DropDownListAddItem("item5",
+            {
+                Text : "d选项5",
+                Value : "选项5-值",
+                Tips : "选项5-提示",
+                PicPath : "",
+                Pic : "PopMenu_TestIcon_letter.gif"
+            });
+         };
+         
+         
+         //修改下拉框参数
+         function SetDropDownListType(obj){
+            //类型
+            if(document.getElementById("rd_list").checked){
+                $("#testDownList").DropDownListReSetOpts({Type : "list"});
+            }
+            
+            if(document.getElementById("rd_multiplelist").checked){
+                $("#testDownList").DropDownListReSetOpts({Type : "multiplelist"});
+            }
+            
+            if(document.getElementById("rd_text").checked){
+                $("#testDownList").DropDownListReSetOpts({Type : "text"});
+            }
+            
+            if(document.getElementById("rd_search").checked){
+                $("#testDownList").DropDownListReSetOpts({Type : "search"});
+            }
+         };
+         
+         //修改下拉框选项样式
+         function SetDropDownListOpts(){
+            var opts = {
+                //菜单宽,可以为""、100px，100%
+                Width : $("#txt_Width").val(),
+                
+                //显示的列表数,超过这个数量将以滚动条的方式显示
+                ShowNum : $("#txt_ShowNum").val(),
+                
+                //Css样式前缀，可通过改写TreeView.css来创建多套样式（将TreeView_替换为自定义的样式类）
+                CssBefore : $("#txt_CssBefore").val(),
+                
+                //是否显示选项图标
+                ShowItemPic : $("#cb_ShowItemPic").get(0).checked,
+                
+                //是否显示提示
+                ShowTips : $("#cb_ShowTips").get(0).checked,
+                
+                //是否显示下拉箭头
+                ShowDropDownArrow : $("#cb_ShowDropDownArrow").get(0).checked,
+                
+                //list、text和search情况下，选中项的点击动作是否代表取消选择，默认为false
+                ClickCancle : $("#cb_ClickCancle").get(0).checked,
+                
+                //multiplelist的情况下，是否对选中项排序（按index升序）
+                IsOrderSelected : $("#cb_IsOrderSelected").get(0).checked,
+                
+                //点击选项后是否自动隐藏选项
+                AutoHideList : $("#cb_AutoHideList").get(0).checked,
+                
+                //搜索模式，start-前匹配，like-包含匹配，full－全匹配，self-自定义匹配函数，默认是start
+                SearchMode : $("#sl_SearchMode").get(0).options[$("#sl_SearchMode").get(0).selectedIndex].text,
+                
+                //自定义匹配函数，传入的参数为Item对象，返回true则代表匹配上，fasle代表匹配失败
+                SelfSearchFun : null,
+                
+                //检索状态时是否进行选项的过滤,false－不过滤选项，true－过滤选项
+                IsFilter : $("#cb_IsFilter").get(0).checked,
+                
+                //多项选中时显示文本的分隔符，默认为","
+                TextSplitStr : $("#txt_TextSplitStr").val()
+            };
+            
+            if($("#txt_SelfSearchFun").val() == ""){
+                opts.SelfSearchFun = null;
+            }
+            else{
+                eval("opts.SelfSearchFun = " + $("#txt_SelfSearchFun").val() + ";");
+            }
+            
+            //设置
+            $("#testDownList").DropDownListReSetOpts(opts);
+         };
+         
+         //在选项结尾添加/删除选项
+         function AddItemEnd(obj){
+            if(obj.val() == "在结尾添加选项"){
+                $("#testDownList").DropDownListAddItem("itemTail",
+                {
+                    Text : "结尾添加的选项",
+                    Value : "结尾添加的选项-值",
+                    Tips : "结尾添加的选项-提示",
+                    PicPath : "",
+                    Pic : "PopMenu_TestIcon_letter.gif"
+                });
+                obj.val("删除结尾的选项");
+            }
+            else{
+                $("#testDownList").DropDownListGetItem("itemTail").DropDownListItemDelete();
+                obj.val("在结尾添加选项");
+            }
+         };
+         
+         //在第3个选项后添加选项
+         function AddItemAfter3(obj){
+            if(obj.val() == "在第3个选项后添加选项"){
+                $("#testDownList").DropDownListAddItem("itemAfter3",
+                {
+                    Text : "第3个选项后添加的选项",
+                    Value : "第3个选项后添加的选项-值",
+                    Tips : "第3个选项后添加的选项-提示",
+                    PicPath : "",
+                    Pic : "PopMenu_TestIcon_letter.gif"
+                },3);
+                obj.val("删除新添加的选项");
+            }
+            else{
+                $("#testDownList").DropDownListGetItem("itemAfter3").DropDownListItemDelete();
+                obj.val("在第3个选项后添加选项");
+            }
+         };
+         
+         //修改第3个选项参数
+         function Change3Opts(obj){
+            if(obj.val() == "修改第3个选项参数"){
+                $("#testDownList").DropDownListGetItem("item3").DropDownListItemChange(null,
+                    {
+                        Text : "c选项3-修改",
+                        Value : "c选项3-修改-值",
+                        Tips : "c选项3-修改-提示",
+                        PicPath : "",
+                        Pic : ""
+                    }
+                );
+                obj.val("恢复第3个选项参数");
+            }
+            else{
+               $("#testDownList").DropDownListGetItem("item3").DropDownListItemChange(null,
+                    {
+                        Text : "c选项3",
+                        Value : "选项3-值",
+                        Tips : "选项3-提示",
+                        PicPath : "",
+                        Pic : "PopMenu_TestIcon_letter.gif"
+                    }
+                );
+                obj.val("修改第3个选项参数");
+            }
+         };
+         
+         //获得当前选中项
+         function GetSelectedItems(){
+            var list = $("#testDownList").DropDownListSeletedItem();
+            if(list.length == 0)
+                alert("没有选中！");
+            else{
+                for(var i = 0;i<list.length;i++){
+                    alert($(list.get(i)).DropDownListItemGetAttr().id);
+                }
+            }
+         };
+         
+         //随机索引
+         function AjaxFilterFun(obj,searchtext,searchmode){
+            alert(obj.attr("id") + ":" + searchtext + ":" + searchmode);
+         }
+         
+         //设置自定义过滤函数
+         function SetAjaxFilterFun(obj){
+            if(obj.val() == "设置自定义过滤函数"){
+                $("#testDownList").DropDownListReSetOpts({AjaxFilterFun : AjaxFilterFun});
+                obj.val("取消自定义过滤函数");
+            }
+            else{
+               $("#testDownList").DropDownListReSetOpts({AjaxFilterFun : null});
+               obj.val("设置自定义过滤函数");
+            }
+         };
+         
+    </script>
+    <style type="text/css">
+        #txt_Width
+        {
+            width: 77px;
+        }
+        #Select1
+        {
+            width: 94px;
+        }
+        #sl_SearchMode
+        {
+            width: 105px;
+        }
+    </style>
+</head>
+<body onload="CreateDownList();CreateDownList1();">
+
+    <table style="width:100%;" border="1">
+        <tr>
+            <td>
+                <p id="OnItemClick">OnItemClick：</p>
+                <p id="OnItemFocus">OnItemFocus：</p>
+                <p id="OnItemFoucsOut">OnItemFoucsOut：</p>
+                <p id="OnItemChecked">OnItemChecked：</p>
+                <p id="OnItemUnChecked">OnItemUnChecked：</p>
+            </td>
+            <td style="width:30%;" id="tdDropDownList">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="Button1" type="button" value="button" onclick="alert($('ul').get(0).clientWidth);" /></td>
+            <td id="tdDropDownList1"></td>
+        </tr>   
+        <tr>
+            <td>
+                <p>类型：<input id="rd_list" checked="checked" name="Type" type="radio" value="V1" onclick="SetDropDownListType(this);" />list&nbsp;
+                    <input id="rd_multiplelist" name="Type" type="radio" value="V1" onclick="SetDropDownListType(this);"  />multiplelist
+                    <input id="rd_text" name="Type" type="radio" value="V1" onclick="SetDropDownListType(this);"  />text
+                    <input id="rd_search" name="Type" type="radio" value="V1" onclick="SetDropDownListType(this);"  />search</p>
+                <p>
+                    下拉框选项
+                    <br />
+                    宽度<input id="txt_Width" type="text" value="60%" />&nbsp;&nbsp;
+                    显示选项数<input id="txt_ShowNum" type="text" value="9" />&nbsp;&nbsp;
+                    CSS样式前缀<input id="txt_CssBefore" type="text" value="DropDownList" />&nbsp;&nbsp;
+                    <br />
+                    <br />
+                    <input id="cb_ShowItemPic" type="checkbox" checked=checked />显示选项图标&nbsp;&nbsp;
+                    <input id="cb_ShowTips" type="checkbox" />显示提示信息&nbsp;&nbsp;
+                    <input id="cb_ShowDropDownArrow" type="checkbox" checked=checked />显示下拉箭头&nbsp;&nbsp;
+                    <input id="cb_ClickCancle" type="checkbox" checked=checked />允许点击取消&nbsp;&nbsp;
+                    <input id="cb_IsOrderSelected" type="checkbox" checked=checked />多选结果排序&nbsp;&nbsp;
+                    <input id="cb_AutoHideList" type="checkbox" />自动隐藏列表&nbsp;&nbsp;
+                    <br />
+                    <br />
+                    搜索模式：
+                 
+                    <select id="sl_SearchMode" name="D1">
+                        <option>start</option>
+                        <option>like</option>
+                        <option>full</option>
+                        <option>self</option>
+                    </select>
+                     <br />
+                    自定义搜索函数<textarea id="txt_SelfSearchFun" cols="20" rows="3" style="width:400px;">function(liobj){var attr=liobj.DropDownListItemGetAttr();if(attr.text.indexOf('d')== 0){return true;}else{return false;}}</textarea>
+                    <br />
+                    <input id="cb_IsFilter" type="checkbox" />过滤选项&nbsp;&nbsp;
+                    多选分隔符<input id="txt_TextSplitStr" type="text" value="," />&nbsp;&nbsp;
+                    
+                    <br />
+                    <input id="Button2" type="button" value="修改下拉框选项" onclick="SetDropDownListOpts();" />
+                    
+                </p>
+                <p>
+                对选项做操作：<br />
+                    <input id="Button3" type="button" value="在结尾添加选项" onclick="AddItemEnd($(this));" />
+                    <input id="Button4" type="button" value="在第3个选项后添加选项" onclick="AddItemAfter3($(this));"  />
+                    <input id="Button5" type="button" value="修改第3个选项参数" onclick="Change3Opts($(this));"  />
+                 </p>
+                <p><input id="Button6" type="button" value="获得当前选中项" onclick="GetSelectedItems($(this));" />
+                    <input id="Button7" type="button" value="获得当前选中值" onclick="alert($('#testDownList').DropDownListSeletedValue());" />
+                    <input id="Button8" type="button" value="获得当前选中文本" onclick="alert($('#testDownList').DropDownListSeletedText());" />
+                </p>
+                <p><input id="Button9" type="button" value="设置自定义过滤函数" onclick="SetAjaxFilterFun($(this));" /></p>
+            <td id="td1"></td>
+        </tr>   
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/ToolButtonCss/ToolButton.css" type="text/css" rel="stylesheet" />
+    <link href="../../ui-control/PanelCss/Panel.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../../ui-control/ToolButton.js"></script>
+    <script type="text/javascript" src="../../ui-control/Panel.js"></script>
+    
+    <script type="text/javascript">
+        function test(){
+            $(window).CreatePanel("test",{
+                //样式前缀
+                CssBefore : "Panel",
+                
+                //是否圆角
+                IsCorner : true,
+                
+                //标题位置,Up Down Left Right
+                TitleDirect : "Right",
+                
+                //标题文字
+                TitleText : "Panel",
+                
+                //是否显示标题图片
+                ShowTitlePic : true,
+                
+                //标题图片src
+                TitlePicSrc : "../../ui-control/WindowImg/grid.png",
+                
+                //是否显示内容滚动条
+                ShowScrollBar : false,
+                
+                //窗口大小类型,fixed - 固定设置大小，fit － 根据内容大小自适应（内容div不出现滚动条），fitX - 横向自适应，fitY - 纵向自适应
+                SizeType : "fit",
+                
+                //是否可改变大小，如果窗口大小类型为fit，则不允许改变大小，fitX不允许改变宽度，fitY不允许改变高度
+                ResizeAble : true,
+                
+                //宽度,px，对于fit类型则为百分比的数值（填-1则代表根据内容大小自动设置宽度）
+                //Width : 20,
+                
+                //高度,px，对于fit类型则为百分比的数值（填-1则代表根据内容大小自动设置宽度）
+                Height : -1,
+                
+                //最小宽度，px
+                MinWidth : 130,
+                
+                //最小高度，px
+                MinHeight : 75,
+                
+                //Panel位置的Css
+                CssPosition : "static",
+                
+                //Panel初始位置类型,center - 居中，letftop － 相对左上角
+                StartPosition : "center",
+                
+                //Panel初始位置，px，对于center类型无效
+                Left : 10,
+                
+                //Panel初始位置，px，对于center类型无效
+                Top : 10,
+                
+                //窗口事件
+                //启动（创建）Panel时执行的函数，传入参数依次为Panel对象、Panel的内容容器对象、Panel的标题容器对象、Panel的创建参数
+                OnLoading : null,
+                
+                //关闭窗口前时执行的函数，传入参数依次为窗口对象、窗口的内容容器对象，如果想禁止窗口关闭，则需返回false
+                OnClose : null,
+                
+                //显示窗口时执行的函数，传入参数依次为窗口对象、窗口的内容容器对象，传入的显示参数
+                OnShow : null,
+                
+                //隐藏窗口时执行的函数，传入参数依次为窗口对象、窗口的内容容器对象
+                OnHide : null
+            },"<div style='word-break:break-all'>ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</div>",true)
+        };
+        
+        function t(){
+            var PanelTitleBar = $("#test").data("PanelTitleBar");
+            alert(PanelTitleBar.outerHeight(true) - PanelTitleBar.height());
+            alert(PanelTitleBar.height());
+            alert($("#test").innerHeight(true)+":"+$("#test").find("table[PanelType='TopTable']").outerHeight(true)+":"+$("#test").find("div[PanelType='ScrollDiv']").outerHeight(true));
+        };
+    </script>
+</head>
+<body onload="test();">
+<input type=button value='test' onclick='t();' />
+<p></p>
+<p>HTML测试--简单模式</p>
+<table>
+    <tr>
+        <td>
+            <!-- 标题在上  -->
+            <DIV style='width:200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv'>
+                    <DIV PanelType='Header' class='PanelHeader'>
+                        <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                        <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                    </DIV>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv'>
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                </DIV>
+            </DIV>
+        </td>
+        <td>
+            <!-- 标题在下  -->
+            <DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv PanelBottom'>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv'>
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                    <DIV PanelType='Header' class='PanelHeader'>
+                        <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                        <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                    </DIV>
+                </DIV>
+            </DIV>
+        </td>
+        <td>
+            <!-- 标题在左  -->
+            <DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv PanelLeft'>
+                    <DIV PanelType='Header' class='PanelHeader' style="height:130px;">
+                        <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                        <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                    </DIV>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv' style="width:173px; height:138px;">
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                </DIV>
+            </DIV>
+        </td>
+        <td>
+            <!-- 标题在右  -->
+            <DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv PanelRight'>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv' style="width:173px; height:138px;">
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                    <DIV PanelType='Header' class='PanelHeader' style="height:130px;">
+                        <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                        <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                    </DIV>
+                </DIV>
+            </DIV>
+        </td>
+    </tr>
+</table>
+
+<p>HTML测试--圆角模式</p>
+<table>
+    <tr>
+        <td>
+            <!-- 标题在上  -->
+            <DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv'>
+                    <table WindowType='TopTable' class='PanelTopTable' cellpadding='0' cellspacing='0'>
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdLeft' class='PanelTopTdLeft'>&nbsp;</td>
+                            <td PanelType='TopTdCenter' class='PanelTopTdCenter'>
+                                <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                                <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                            </td>
+                            <td PanelType='TopTdRight' class='PanelTopTdRight'>&nbsp;</td>
+                        </tr>
+                    </table>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv'>
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                </DIV>
+            </DIV>
+        </td>
+        <td>
+            <!-- 标题在下  -->
+            <DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv PanelBottom'>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv'>
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                    <table WindowType='TopTable' class='PanelTopTable' cellpadding='0' cellspacing='0'>
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdLeft' class='PanelTopTdLeft'>&nbsp;</td>
+                            <td PanelType='TopTdCenter' class='PanelTopTdCenter'>
+                                <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                                <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                            </td>
+                            <td PanelType='TopTdRight' class='PanelTopTdRight'>&nbsp;</td>
+                        </tr>
+                    </table>
+                </DIV>
+            </DIV>
+        </td>
+        <td>
+            <!-- 标题在左  -->
+            <DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv PanelLeft'>
+                    <table WindowType='TopTable' class='PanelTopTable' cellpadding='0' cellspacing='0' style="height:140px;">
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdLeft' class='PanelTopTdLeft'>&nbsp;</td>
+                        </tr>
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdCenter' class='PanelTopTdCenter'>
+                                <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                                <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                            </td>
+                        </tr>
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdRight' class='PanelTopTdRight'>&nbsp;</td>
+                        </tr>
+                    </table>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv' style="width:173px; height:138px;">
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                </DIV>
+            </DIV>
+        </td>
+        <td>
+            <!-- 标题在右  -->
+            <DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv PanelRight'>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv' style="width:173px; height:138px;">
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                    <table WindowType='TopTable' class='PanelTopTable' cellpadding='0' cellspacing='0' style="height:140px;">
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdLeft' class='PanelTopTdLeft'>&nbsp;</td>
+                        </tr>
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdCenter' class='PanelTopTdCenter'>
+                                <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                                <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                            </td>
+                        </tr>
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdRight' class='PanelTopTdRight'>&nbsp;</td>
+                        </tr>
+                    </table>
+                </DIV>
+            </DIV>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

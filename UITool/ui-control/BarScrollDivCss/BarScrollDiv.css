@@ -1,0 +1,106 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：工具条滚动展示容器
+说明：用于放置横向的工具条，例如ToolBar和Tab标签页等，支持超过宽度可滚动显示
+文件：BarScrollDiv.css
+
+资源文件：
+
+<TABLE selftyp='BarScrollDiv' class='BarScrollDiv_Main BarScrollDiv_Hidden BarScrollDiv_LeftOver/Disable BarScrollDiv_RightOver/Disable' border=0 cellSpacing=0 cellPadding=0>
+	<TD BarScrollDivType='LeftButton' class='BarScrollDiv_LeftButton'>&nbsp;</TD>
+	<TD BarScrollDivType='ContentTd' class='BarScrollDiv_ConterntTd'>
+		<DIV BarScrollDivType='ContentDiv' class='BarScrollDiv_ConterntDiv'>这里放置要放到容器中的对象</DIV>
+	</TD>
+	<TD BarScrollDivType='RightButton' class='BarScrollDiv_RightButton'>&nbsp;</TD>
+</TABLE>
+
+-----------------------*/
+
+/* -------------最外层的DIV------------ */
+.BarScrollDiv_Main
+{
+	table-layout:fixed;
+	margin:0px;
+}
+
+
+/* -------------按钮样式------------- */
+.BarScrollDiv_LeftButton, .BarScrollDiv_RightButton
+{
+	width: 16px;
+	overflow: hidden;
+	cursor: pointer;
+	border:1px solid #8db2e3;
+}
+
+/* 隐藏滚动 */
+.BarScrollDiv_Hidden .BarScrollDiv_LeftButton,
+.BarScrollDiv_Hidden .BarScrollDiv_RightButton
+{
+	display:none;
+	width:0px;
+}
+
+/* 左边按钮  */
+.BarScrollDiv_LeftButton
+{
+	background:transparent url(../../ui-control/BarScrollDivImg/BarScrollDiv_Left.gif) no-repeat -19px -3px;
+}
+
+/* 左边鼠标Over效果 */
+.BarScrollDiv_LeftOver .BarScrollDiv_LeftButton
+{
+	background-position:-1px -3px;
+}
+
+/* 左边屏蔽效果 */
+.BarScrollDiv_LeftDisable .BarScrollDiv_LeftButton
+{
+	background-position:-19px -3px;
+	opacity:.5;
+	-moz-opacity:.5;
+	filter:alpha(opacity=50);
+	cursor:default;
+}
+
+/* 右边按钮  */
+.BarScrollDiv_RightButton
+{
+	background:transparent url(../../ui-control/BarScrollDivImg/BarScrollDiv_Right.gif) no-repeat -1px -3px;
+}
+
+/* 右边鼠标Over效果 */
+.BarScrollDiv_RightOver .BarScrollDiv_RightButton
+{
+	background-position:-19px -3px;
+}
+
+/* 右边屏蔽效果 */
+.BarScrollDiv_RightDisable .BarScrollDiv_RightButton
+{
+	background-position:-1px -3px;
+	opacity:.5;
+	-moz-opacity:.5;
+	filter:alpha(opacity=50);
+	cursor:default;
+	z-index:1;
+}
+
+
+/* -------------中间容器样式------------- */
+.BarScrollDiv_ConterntTd
+{
+	width:100%;
+	overflow:hidden;
+}
+
+.BarScrollDiv_ConterntDiv
+{
+	width:100%;
+	overflow:hidden;
+}

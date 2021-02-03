@@ -1,0 +1,4 @@
+;(function($){var $a=false;$.setDebug=function($b){$a=$b;v
+eval("Test = '1234';");v
+$c=300;};$.debugOutput=function($d){if($a){var $e=$("#JQuery_UITool_DebugSpan");if($e.length==0){$(document.body).append("<span id='JQuery_UITool_DebugSpan'></span>");$e=$("#JQuery_UITool_DebugSpan");};var $f="<p />????&nbsp;("+Date().toString()+"):";for(var i=0;i<arguments.length;i++){var $g;if(arguments[i]===undefined){$g="undefined";}else if(arguments[i]==null){$g="null";}else{$g=arguments[i].toString();};$f+="<br />&nbsp;&nbsp;&nbsp;&nbsp;INFO"+i.toString()+"&nbsp;:&nbsp;"+$g.replace("&","&amp;").replace(" ","&nbsp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace("\"","&$h;");};$e.append($f);}};$.debugClear=function(){var $e=$("#JQuery_UITool_DebugSpan");if($e.length>0){$e.get(0).innerHTML="";}};})(jQuery);
+

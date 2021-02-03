@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/TimerControl.js"></script>
+    <script type="text/javascript">
+        function timer1(){
+            $.AddTimer("timer1",function(){alert("timer1 - loop");},5000,true);
+        }
+        
+        function cleartimer1(){
+            $.ClearTimer("timer1");
+        }
+        
+        function timer2(){
+            $.AddTimer("timer2",function(){alert("timer2 - noloop");},5000,false);
+        }
+        
+        function cleartimer2(){
+            $.ClearTimer("timer2");
+        }
+    </script>
+    <style type="text/css">
+        #Select1
+        {
+            width: 99px;
+        }
+        #Select2
+        {
+            width: 99px;
+        }
+        #sl_XPosition
+        {
+            width: 90px;
+        }
+        #sl_YPosition
+        {
+            width: 87px;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <input type=button value="循环每5秒弹出警告" onclick="timer1();" />
+        <input type=button value="解除循环每5秒弹出的警告" onclick="cleartimer1();" />
+        <input type=button value="5秒后弹出一次警告" onclick="timer2();" />
+        <input type=button value="解除秒后弹出一次警告" onclick="cleartimer2();" />
+    </p>
+    
+</body>
+</html>

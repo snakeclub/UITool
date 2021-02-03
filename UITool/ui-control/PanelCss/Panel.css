@@ -1,0 +1,320 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：Panel容器
+说明：Panel容器
+文件：Panel.css
+
+资源文件：../PanelImg/
+
+可选参数(放到StyleDiv对象的类中)：
+        PanelNoScroll - 不出现滚动条
+		PanelLeft - 标题在左边
+		PanelRight - 标题在右边
+		PanelBottom - 标题在下边
+		
+不含圆角的简单模式：
+			<DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv PanelNoScroll PanelLeft PanelRight PanelBottom'>
+                    <DIV PanelType='Header' class='PanelHeader'>
+                        <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                        <a PanelType='HeaderText' class='PanelHeaderText'>标题</a>
+                    </DIV>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv'>
+                        <DIV PanelType='Body' class='PanelBody'>
+                            内容
+                        </DIV>
+                    </div>
+                </DIV>
+            </DIV>
+
+含圆角的复杂模式：
+			<DIV style='WIDTH: 200px;' class='Panel_MainDiv'>
+                <DIV PanelType='StyleDiv' class='PanelStyleDiv'>
+                    <table PanelType='TopTable' class='PanelTopTable' cellpadding='0' cellspacing='0'>
+                        <tr PanelType='TopTr' class='PanelTopTr'>
+                            <td PanelType='TopTdLeft' class='PanelTopTdLeft'>&nbsp;</td>
+                            <td PanelType='TopTdCenter' class='PanelTopTdCenter'>
+                                <img PanelType='HeaderPic' class='PanelHeaderPic' src="../../ui-control/WindowImg/grid.png" />
+                                <a PanelType='HeaderText' class='PanelHeaderText'>Panel Demo</a>
+                            </td>
+                            <td PanelType='TopTdRight' class='PanelTopTdRight'>&nbsp;</td>
+                        </tr>
+                    </table>
+                    <div PanelType='ScrollDiv' class='PanelScrollDiv'>
+                        <DIV PanelType='Body' class='PanelBody'>
+                            <div style="margin:10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl.</div>
+                        </DIV>
+                    </div>
+                </DIV>
+            </DIV>
+
+-----------------------*/
+
+/* -------------最外层Div------------- */
+.Panel_MainDiv 
+{
+	border:0px solid #99bbe8;
+	padding:0px;
+	overflow:hidden;
+}
+
+/* -------------样式嵌套Div，主要用于嵌套不同的样式定义------------- */
+.PanelStyleDiv
+{
+	border:0px solid #99bbe8;
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+}
+
+/* -------------标题------------- */
+
+/* ######## 标题容器 ######## */
+.PanelHeader
+{
+	overflow:hidden;
+    zoom:1;
+}
+
+.Panel_MainDiv .PanelHeader 
+{
+	overflow:hidden;
+	color:#15428b;
+	font:bold 11px tahoma,arial,verdana,sans-serif;
+    padding:5px 3px 4px 5px;
+    border:1px solid #99bbe8;
+    line-height: 15px;
+    background: transparent url(../../ui-control/PanelImg/white-top-bottom.gif) repeat-x 0 -1px;
+}
+
+.Panel_MainDiv .PanelLeft .PanelHeader,.Panel_MainDiv .PanelRight .PanelHeader
+{
+	float:left;
+	width:15px;
+	padding:5px 4px 3px 5px;
+	background: transparent url(../../ui-control/PanelImg/white-top-bottom-r.gif) repeat-y -1px 0;
+}
+
+
+/* ######## 标题图片 ######## */
+.PanelHeaderPic
+{
+	margin:0px;
+	border-width:0px;
+	overflow:hidden;
+	float:left;
+}
+
+.Panel_MainDiv .PanelHeaderPic
+{
+	width:16px;
+	height:16px;
+	margin-right:3px;
+}
+
+.Panel_MainDiv .PanelLeft .PanelHeaderPic,.Panel_MainDiv .PanelRight .PanelHeaderPic
+{
+	margin:0px;
+	margin-bottom:3px;
+	float:none;
+}
+
+.Panel_MainDiv .PanelLeft .PanelTopTable .PanelHeaderPic,.Panel_MainDiv .PanelRight .PanelTopTable .PanelHeaderPic
+{
+	float:left;
+}
+
+/* ######## 标题文字 ######## */
+.PanelHeaderText
+{
+	float:left;
+}
+
+.Panel_MainDiv .PanelHeaderText
+{
+	margin:0px;
+}
+
+.Panel_MainDiv .PanelLeft .PanelHeaderText,.Panel_MainDiv .PanelRight .PanelHeaderText
+{
+	margin:0px;
+	font:bold 12px tahoma,arial,verdana,sans-serif;
+	
+	-webkit-transform: rotate(-90deg); /* for Safari, Chrome */    
+	-moz-transform: rotate(-90deg);    /* for Firefox */    
+	-o-transform: rotate(-90deg);       /* for Opera */    
+	writing-mode: tb-rl;                     /* for IE */           　　
+	filter: flipv fliph; 
+}
+
+/* -------------包裹内容容器，用于滚动收起------------- */
+.PanelScrollDiv
+{
+	overflow:hidden;
+    zoom:1;
+    padding:0px;
+    margin:0px;
+}
+
+.Panel_MainDiv .PanelScrollDiv
+{
+	border:1px solid #99bbe8;
+    border-top:0 none;
+    background-color:#ffffff;
+}
+
+.Panel_MainDiv .PanelBottom .PanelScrollDiv
+{
+	border:1px solid #99bbe8;
+	border-bottom:0 none;
+}
+
+.Panel_MainDiv .PanelLeft .PanelScrollDiv
+{
+	float:left;
+	border:1px solid #99bbe8;
+	border-left:0 none;
+}
+
+.Panel_MainDiv .PanelRight .PanelScrollDiv
+{
+	float:left;
+	border:1px solid #99bbe8;
+	border-right:0 none;
+}
+
+/* -------------内容容器------------- */
+.PanelBody {
+    overflow:auto;
+    position: relative; /* added for item scroll positioning */
+    zoom:1;
+    border:0px solid #99bbe8;
+}
+
+.Panel_MainDiv .PanelBody
+{
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-shadow-color: #999;
+	scrollbar-3dlight-color: #999;
+	scrollbar-track-color: #E0F4FF;
+	scrollbar-darkshadow-color: #ffffff;
+	scrollbar-base-color: #CAD9EC;
+}
+
+.Panel_MainDiv .PanelNoScroll .PanelBody 
+{
+	overflow:hidden;
+}
+
+
+/* -------------圆角情况-TopTable------------- */
+.PanelTopTable
+{
+	width:100%;
+	padding:0px;
+	margin:0px;
+	table-layout:fixed;
+	border-width:0px;
+	white-space: nowrap;
+}
+
+.PanelLeft .PanelTopTable,.PanelRight .PanelTopTable
+{
+	width:auto;
+	float:left;
+}
+
+/* -------------圆角情况-TopTr------------- */
+.PanelTopTr td
+{
+	margin:0px;
+}
+
+/* ######## 左边 ######## */
+.Panel_MainDiv .PanelTopTdLeft
+{
+	font-size:0px;
+	width:6px;
+	background: transparent url(../../ui-control/PanelImg/corners-sprite.gif) no-repeat 0 0;	
+}
+
+.Panel_MainDiv .PanelBottom .PanelTopTdLeft
+{
+	background: transparent url(../../ui-control/PanelImg/corners-sprite-b.gif) no-repeat 0 bottom;	
+}
+
+.Panel_MainDiv .PanelLeft .PanelTopTdLeft
+{
+	height:6px;
+	background: transparent url(../../ui-control/PanelImg/corners-sprite-l.gif) no-repeat 0 0;	
+}
+
+.Panel_MainDiv .PanelRight .PanelTopTdLeft
+{
+	height:6px;
+	background: transparent url(../../ui-control/PanelImg/corners-sprite-r.gif) no-repeat right 0;	
+}
+
+/* ######## 右边 ######## */
+.Panel_MainDiv .PanelTopTdRight
+{
+	font-size:0px;
+	width:6px;
+	background: transparent url(../../ui-control/PanelImg/corners-sprite.gif) no-repeat right 0;
+}
+
+.Panel_MainDiv .PanelBottom .PanelTopTdRight
+{
+	background: transparent url(../../ui-control/PanelImg/corners-sprite-b.gif) no-repeat right bottom;	
+}
+
+.Panel_MainDiv .PanelLeft .PanelTopTdRight
+{
+	height:6px;
+	background: transparent url(../../ui-control/PanelImg/corners-sprite-l.gif) no-repeat 0 bottom;	
+}
+
+.Panel_MainDiv .PanelRight .PanelTopTdRight
+{
+	height:6px;
+	background: transparent url(../../ui-control/PanelImg/corners-sprite-r.gif) no-repeat right bottom;	
+}
+
+/* ######## 中间 ######## */
+.PanelTopTdCenter
+{
+	overflow:hidden;
+}
+.Panel_MainDiv .PanelTopTdCenter
+{
+	color:#15428b;
+	font:bold 11px tahoma,arial,verdana,sans-serif;
+    padding:5px 0px 4px 0px;
+    border:0px solid #99bbe8;
+    line-height: 15px;
+	background: transparent url(../../ui-control/PanelImg/top-bottom.gif) repeat-x 0 0;
+}
+
+.Panel_MainDiv .PanelBottom .PanelTopTdCenter
+{
+	background: transparent url(../../ui-control/PanelImg/top-bottom-b.gif) repeat-x 0 bottom;
+}
+
+.Panel_MainDiv .PanelLeft .PanelTopTdCenter
+{
+	padding:0px 4px 0px 6px;
+	background: transparent url(../../ui-control/PanelImg/top-bottom-l.gif) repeat-y 0 0;
+	vertical-align:top;
+}
+
+.Panel_MainDiv .PanelRight .PanelTopTdCenter
+{
+	padding:0px 4px 0px 6px;
+	background: transparent url(../../ui-control/PanelImg/top-bottom-r.gif) repeat-y right 0;
+	vertical-align:top;
+}

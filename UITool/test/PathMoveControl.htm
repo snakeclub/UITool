@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/FloatControl.js"></script>
+    <script type="text/javascript" src="../ui-core/PathMoveControl.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //处理代码
+            document.getElementById("txt_MovePath").value="3:5,100:200,100:50,300:200,10:150";
+        });
+        
+        function setPathMove(){
+            var path = CreatePathMoveArray(document.getElementById("txt_MovePath").value);
+            var obj = "window";
+            if(document.getElementById('rd_Document').checked){
+                obj = "document";
+            }
+            else if(document.getElementById('rd_Obj').checked){
+                obj = "#Div2";
+            }
+            
+            $('#Div1').SetPathMove(path,
+                {
+                    //是否循环，默认为true，执行完后自动从头开始执行；false-执行结束后停止
+                    Loop : document.getElementById('cb_Loop').checked,
+                    
+                    //移动速度，以完成所有移动的总毫秒数为单位，默认为5000（5秒）
+                    Speed : document.getElementById('txt_Speed').value,
+                    
+                    //位置的参考对象，默认为"window" - 浏览器窗口-浮动； "document" - 页面文档， "#objid .classname" - jquery的搜索条件，搜索出来的元素的第1个
+                    RefObj : obj,
+                    
+                    //对象移动完成后执行的函数，函数传入的参数为对象自身的JQuery对象，默认为null，该执行函数若返回值为false，则停止后续的处理，若为其他值，则按原过程处理
+                    CallBack : function(){document.getElementById("CallBack").innerHTML = "CallBack("+Date().toString()+"):Obj.attr('id'):"+arguments[0].attr("id");return true;}
+                }
+            );
+        }
+    </script>
+</head>
+<body>
+    <p>移动路径<textarea id="txt_MovePath" name="S1" style="width: 100%; height: 100px;"></textarea></p>
+    <p>
+        参照物 ：<input id="rd_Window" checked="checked" name="R1" type="radio" 
+            value="window" />Window&nbsp;
+        <input id="rd_Document" name="R1" type="radio" value="Document" />Document&nbsp;
+        <input id="rd_Obj" name="R1" type="radio" value="Obj" />参照对象&nbsp;
+    </p>
+    <p>速度<input id="txt_Speed" type="text" value='5000' /></p>
+    <p>是否循环<input id="cb_Loop" type="checkbox" /></p>
+    <p id='CallBack'></p>
+    <p>
+        <input id="Button1" type="button" value="设置移动路径" onclick="setPathMove();" />
+        <input id="Button2" type="button" value="清除移动路径" onclick="$('#Div1').ClearPathMove();" />
+        <input id="Button4" type="button" value="设置移动状态" onclick="$('#Div1').SetPathMoveStat(document.getElementById('sl_stat').options[document.getElementById('sl_stat').selectedIndex].text);" />
+        <select id="sl_stat" name="D1">
+            <option>stop</option>
+            <option>resume</option>
+            <option>restart</option>
+        </select>
+    </p>
+    <Div id="Div2" style="width:50px; height:50px; background-color:Red; overflow:hidden; position:absolute; left:400px; top:600px;">我是参照物</Div>
+    <Div id="Div1" style="width:80px; height:80px; background-color:Green; overflow:hidden; position:absolute; left:400px; top:400px;">设置的对象</Div>
+</body>
+
+
+</html>

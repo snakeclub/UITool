@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/DivDockControl.js"></script>
+
+    <script type="text/javascript">
+        var opts = {
+            //是否自动扩展填充整个版面，默认为false，该参数对于center无效
+            fullSize : false,
+            
+            //对象的最小宽度，默认为0
+            minWidth : 10,
+            
+            //对象的最小高度，默认为0
+            minHeight : 10,
+            
+            //改变大小控件div的宽度，默认为0（即没有改变大小控件），同时该控件与Pos相关，例如top时则创建紧连top的控件,注意，如果对象有边框的情况，将可能导致改变大小控件无法选中（透明的情况）
+            resizeBarWidth : 3,
+            
+            //改变大小控件div的位置，inner-在对象内部，outer-在对象外部,center-在对象边框正中间
+            resizeBarPos : "center",
+            
+            //改变大小控件的样式，注意不要在该样式里设置大小等样式，否则可能显示会不准确
+            resizeBarCss : {
+                //背景颜色
+                "background-color" : "Red"
+            }
+        };
+        
+        function DockTop(){
+            $("#Div2").DivSetDock("top",opts);
+        }
+        
+        function ClearDockTop(){
+            $("#Div2").DivClearDock();
+        }
+        
+        function ResizeDockTop(){
+            var height = parseInt(500*Math.random());
+            var width = parseInt(600*Math.random());
+            $("#Div2").DockChildResize(width,height,true);
+        }
+        
+        function ShowDockTop(){
+            $("#Div2").DockChildShow();
+        }
+        
+        function HideDockTop(){
+            $("#Div2").DockChildHide();
+        }
+        
+        
+        function DockLeft(){
+            $("#Div3").DivSetDock("left",opts);
+        }
+        
+        function ClearDockLeft(){
+            $("#Div3").DivClearDock();
+        }
+        
+        function ResizeDockLeft(){
+            var height = parseInt(500*Math.random());
+            var width = parseInt(600*Math.random());
+            $("#Div3").DockChildResize(width,height,true);
+        }
+        
+        function ShowDockLeft(){
+            $("#Div3").DockChildShow();
+        }
+        
+        function HideDockLeft(){
+            $("#Div3").DockChildHide();
+        }
+        
+        
+        function DockRight(){
+            $("#Div4").DivSetDock("right",opts);
+        }
+        
+        function ClearDockRight(){
+            $("#Div4").DivClearDock();
+        }
+        
+        function ResizeDockRight(){
+            var height = parseInt(500*Math.random());
+            var width = parseInt(600*Math.random());
+            $("#Div4").DockChildResize(width,height,true);
+        }
+        
+        function ShowDockRight(){
+            $("#Div4").DockChildShow();
+        }
+        
+        function HideDockRight(){
+            $("#Div4").DockChildHide();
+        }
+       
+        
+        function DockCenter(){
+            $("#Div5").DivSetDock("center",opts);
+        }
+        
+        function ClearDockCenter(){
+            $("#Div5").DivClearDock();
+        }
+        
+        function ResizeDockCenter(){
+            var height = parseInt(500*Math.random());
+            var width = parseInt(600*Math.random());
+            $("#Div5").DockChildResize(width,height,true);
+        }
+        
+        function ShowDockCenter(){
+            $("#Div5").DockChildShow();
+        }
+        
+        function HideDockCenter(){
+            $("#Div5").DockChildHide();
+        }
+        
+        function DockBottom(){
+            $("#Div6").DivSetDock("bottom",opts);
+        }
+        
+        function ClearDockBottom(){
+            $("#Div6").DivClearDock();
+        }
+        
+        function ResizeDockBottom(){
+            var height = parseInt(500*Math.random());
+            var width = parseInt(600*Math.random());
+            $("#Div6").DockChildResize(width,height,true);
+        }
+        
+        function ShowDockBottom(){
+            $("#Div6").DockChildShow();
+        }
+        
+        function HideDockBottom(){
+            $("#Div6").DockChildHide();
+        }
+        
+        function ClearDocks(){
+            $("#Div1").DivClearDock(true);
+        }
+        
+    </script>
+    
+</head>
+<body>
+
+    <p>
+        <input id="Button1" type="button" value="DockTop" onclick="DockTop();" />
+        <input id="Button2" type="button" value="ClearDockTop" onclick="ClearDockTop();" />
+        <input id="Button3" type="button" value="ResizeDockTop" onclick="ResizeDockTop();" />
+        <input id="Button4" type="button" value="ShowDockTop" onclick="ShowDockTop();" />
+        <input id="Button5" type="button" value="HideDockTop" onclick="HideDockTop();" />
+    </p>
+    <p>
+        <input id="Button11" type="button" value="DockLeft" onclick="DockLeft();" />
+        <input id="Button12" type="button" value="ClearDockLeft" onclick="ClearDockLeft();" />
+        <input id="Button13" type="button" value="ResizeDockLeft" onclick="ResizeDockLeft();" />
+        <input id="Button14" type="button" value="ShowDockLeft" onclick="ShowDockLeft();" />
+        <input id="Button15" type="button" value="HideDockLeft" onclick="HideDockLeft();" />
+    </p>
+    <p>
+        <input id="Button6" type="button" value="DockCenter" onclick="DockCenter();" />
+        <input id="Button7" type="button" value="ClearDockCenter" onclick="ClearDockCenter();" />
+        <input id="Button8" type="button" value="ResizeDockCenter" onclick="ResizeDockCenter();" />
+        <input id="Button9" type="button" value="ShowDockCenter" onclick="ShowDockCenter();" />
+        <input id="Button10" type="button" value="HideDockCenter" onclick="HideDockCenter();" />
+    </p>
+    <p>
+        <input id="Button16" type="button" value="DockRight" onclick="DockRight();" />
+        <input id="Button17" type="button" value="ClearDockRight" onclick="ClearDockRight();" />
+        <input id="Button18" type="button" value="ResizeDockRight" onclick="ResizeDockRight();" />
+        <input id="Button19" type="button" value="ShowDockRight" onclick="ShowDockRight();" />
+        <input id="Button20" type="button" value="HideDockRight" onclick="HideDockRight();" />
+    </p>
+    <p>
+        <input id="Button21" type="button" value="DockBottom" onclick="DockBottom();" />
+        <input id="Button22" type="button" value="ClearDockBottom" onclick="ClearDockBottom();" />
+        <input id="Button23" type="button" value="ResizeDockBottom" onclick="ResizeDockBottom();" />
+        <input id="Button24" type="button" value="ShowDockBottom" onclick="ShowDockBottom();" />
+        <input id="Button25" type="button" value="HideDockBottom" onclick="HideDockBottom();" />
+    </p>
+    <p>
+        <input id="Button26" type="button" value="ClearDocks" onclick="ClearDocks();" />
+    </p>
+
+<Div id="Div1" style="width:600px; height:500px; background-color:Green; overflow:hidden; position:absolute; left:200px; top:250px;">mainDiv
+    <Div id="Div2" style="width:200px; height:100px; background-color:YellowGreen; overflow:hidden; position:absolute; left:220px; top:20px;">topDiv</Div>
+    <Div id="Div3" style="width:200px; height:100px; background-color:Yellow; overflow:hidden; position:absolute; left:10px; top:120px;">leftDiv</Div>
+    <Div id="Div4" style="width:200px; height:100px; background-color:BlueViolet; overflow:hidden; position:absolute; left:410px; top:120px;">rightDiv</Div>
+    <Div id="Div5" style="width:200px; height:100px; background-color:Orange; overflow:hidden; position:absolute; left:220px; top:220px;">centerDiv</Div>
+    <Div id="Div6" style="width:200px; height:100px; background-color:DeepPink; overflow:hidden; position:absolute; left:220px; top:350px;">bottomDiv</Div>
+</Div>
+</body>
+</html>

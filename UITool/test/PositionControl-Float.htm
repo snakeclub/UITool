@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/PositionControl.js"></script>
+    <script type="text/javascript" src="../ui-core/FloatControl.js"></script>
+    <script type="text/javascript">
+        function setPosition(){
+            var PositionDesc = document.getElementById("sl_XPosition").options[document.getElementById("sl_XPosition").selectedIndex].text + ":" + document.getElementById("sl_YPosition").options[document.getElementById("sl_YPosition").selectedIndex].text;
+            
+            var ObjRefer = "window";
+            
+            var SelfRefer = document.getElementById("sl_SelfReferX").options[document.getElementById("sl_SelfReferX").selectedIndex].text + ":" + document.getElementById("sl_SelfReferY").options[document.getElementById("sl_SelfReferY").selectedIndex].text;
+            
+            if(document.getElementById("rd_Document").checked){
+                ObjRefer = "document";
+            }
+            else if(document.getElementById("rd_Obj").checked){
+                ObjRefer = "#Div2";
+            }
+            
+            $("#Div1").SetPosition(PositionDesc,ObjRefer,SelfRefer);
+        }
+        
+        function setfloat(){
+            var SelfRefer = document.getElementById("sl_SelfReferX").options[document.getElementById("sl_SelfReferX").selectedIndex].text + ":" + document.getElementById("sl_SelfReferY").options[document.getElementById("sl_SelfReferY").selectedIndex].text;
+            $("#Div1").SetFloat(SelfRefer); 
+        }
+    </script>
+    <style type="text/css">
+        #Select1
+        {
+            width: 99px;
+        }
+        #Select2
+        {
+            width: 99px;
+        }
+        #sl_XPosition
+        {
+            width: 90px;
+        }
+        #sl_YPosition
+        {
+            width: 87px;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        参照物 ：<input id="rd_Window" checked="checked" name="R1" type="radio" 
+            value="window" />Window&nbsp;
+        <input id="rd_Document" name="R1" type="radio" value="Document" />Document&nbsp;
+        <input id="rd_Obj" name="R1" type="radio" value="Obj" />参照对象&nbsp;
+    </p>
+    <p>
+        相对参照物位置：X： 
+        <select id="sl_XPosition" name="D1">
+            <option>center</option>
+            <option>left</option>
+            <option>right</option>
+            <option>null</option>
+            <option>10</option>
+        </select>&nbsp;&nbsp; Y：<select id="sl_YPosition" name="D2">
+            <option>center</option>
+            <option>top</option>
+            <option>bottom</option>
+            <option>null</option>
+            <option>10</option>
+        </select></p>
+    <p>
+    <p>
+        相对自身位置(自由浮动参数)：X： 
+        <select id="sl_SelfReferX" name="D1">
+            <option>center</option>
+            <option>left</option>
+            <option>right</option>
+            <option>null</option>
+            <option>10</option>
+        </select>&nbsp;&nbsp; Y：<select id="sl_SelfReferY" name="D2">
+            <option>center</option>
+            <option>top</option>
+            <option>bottom</option>
+            <option>null</option>
+            <option>10</option>
+        </select>
+        相对父节点位置<input id="relpos" type=text style="width:50px;" value="0,0" />
+        </p>
+    <p>
+        <input id="Button1" type="button" value="设置位置" onclick="setPosition();" />
+        <input id="Button2" type="button" value="设置当前位置浮动" onclick="$('#Div1').SetFloat();" />
+        <input id="Button4" type="button" value="设置自由浮动" onclick="setfloat();" />
+        <input id="Button3" type="button" value="取消浮动" onclick="$('#Div1').ClearFloat();" />
+        <input id="Button5" type="button" value="设置相对父节点的位置" onclick="eval('$(\'#TestRel\').SetStaticPos('+document.getElementById('relpos').value+');')" />
+    </p>
+    <Div id="Div2" style="width:200px; height:200px; background-color:Red; overflow:hidden; position:absolute; left:200px; top:200px;">我是参照物</Div>
+    <Div id="Div1" style="width:80px; height:80px; background-color:Green; overflow:hidden; position:absolute; left:400px; top:400px;">设置的对象</Div>
+    
+    <div id="TestRelativePos" style="width:300px; height:400px; margin:30px; padding:40px; background-color:SkyBlue;">
+        <div style="width:40px; height:40px; margin:0px; background-color:Red;">参照物</div>
+        <div id="TestRel" style="width:40px; height:40px; margin:5px; background-color:Yellow;"></div>
+    </div>
+</body>
+</html>

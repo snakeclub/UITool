@@ -1,0 +1,696 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-control/TreeView.js"></script>
+    <script type="text/javascript" src="../../ui-core/JFuntionMgr.js"></script>
+    <script type="text/javascript" src="../../ui-control/Radio.js"></script>
+    <script type="text/javascript" src="../../ui-control/CheckBox.js"></script>
+    
+    <link href="../../ui-control/TreeViewCss/TreeView.css" type="text/css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+        //修改默认创建参数
+        $.TreeView.defaults.Type = "list";  //类型：radio、checkbox、list、multiplelist
+        
+        $.TreeView.defaults.EnableFocusStyle = true; //是否启动Focus样式
+        $.TreeView.defaults.EnableSelectedStyle = true; //是否启用选中后的样式
+        $.TreeView.defaults.ShowCollapsePic = true; //是否显示展开的图标
+        $.TreeView.defaults.ShowItemPic = true; //是否显示选项图标
+        $.TreeView.defaults.ShowTips = true; //是否显示提示
+        $.TreeView.defaults.ShowTitleItem = true; //是否显示标题选项,
+        
+        $.TreeView.defaults.ClickCancle = false; //list和radio的情况下，选中项的点击动作是否代表取消选择
+        $.TreeView.defaults.ClickWithChild = false; //checkbox和multiplelist的情况下，点击动作是否代表将子节点也做同样选择
+        
+        $.TreeView.defaults.RadioAndCheckBoxStyle = false; //是否开启Radio和heckBox美化
+        
+        //事件
+        $.TreeView.defaults.OnItemClick = function(tree,item){$("#OnItemClick").get(0).innerHTML="OnItemClick("+Date().toString()+"):tree ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        $.TreeView.defaults.OnItemFocus = function(tree,item){$("#OnItemFocus").get(0).innerHTML="OnItemFocus("+Date().toString()+"):tree ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        $.TreeView.defaults.OnItemFoucsOut = function(tree,item){$("#OnItemFoucsOut").get(0).innerHTML="OnItemFoucsOut("+Date().toString()+"):tree ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        $.TreeView.defaults.OnItemChecked = function(tree,item){$("#OnItemChecked").get(0).innerHTML="OnItemChecked("+Date().toString()+"):tree ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        $.TreeView.defaults.OnItemUnChecked = function(tree,item){$("#OnItemUnChecked").get(0).innerHTML="OnItemUnChecked("+Date().toString()+"):tree ID is:"+tree.attr("id") + "  item ID:" + item.attr("id");};
+        
+        function CreateTreeView(){
+            //创建树
+            $(document.body).CreateTreeView("testTree",
+                {
+                    //菜单宽,可以为""、100px，100%
+                    Width : "200px",
+                    
+                    //菜单高,可以为""、100px
+                    Height : "400px"
+                },
+                {
+                    //选项文本
+                    Text : "标题选项",
+                    
+                    //选项值
+                    Value : "值－标题选项",
+                    
+                    //是否可选中
+                    SelectAble : true,
+                    
+                    //提示文字
+                    Tips : "提示－标题选项",
+                    
+                    //选项图片样式
+                    PicType : {
+                        //参数类型，img-图片，div-使用定义的Div样式,none-无图片
+                        Type : "img",
+                        
+                        //以下为图片定义
+                        //图片路径前缀
+                        ImgPath : "",
+                        
+                        //正常状态的图片
+                        ImgNormal : "PopMenu_TestIcon_letter.gif",
+                        
+                        //展开状态的图片
+                        ImgExpand : "PopMenu_TestIcon_letter.gif"
+                    }
+                });
+                
+                //添加基础项
+                $("#testTree").AddTreeViewItem("Base1",
+                    {
+                        //选项文本
+                        Text : "基础项1",
+                        
+                        //选项值
+                        Value : "值－基础项1",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项1"
+                    });
+                    
+                  $("#testTree").AddTreeViewItem("Base2",
+                    {
+                        //选项文本
+                        Text : "基础项2",
+                        
+                        //选项值
+                        Value : "值－基础项2",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项2"
+                    });
+                    
+                  $("#testTree").AddTreeViewItem("Base3",
+                    {
+                        //选项文本
+                        Text : "基础项3-不可选的展开项",
+                        
+                        //选项值
+                        Value : "值－基础项3",
+                        
+                        //是否可选中
+                        SelectAble : false,
+                        
+                        //提示文字
+                        Tips : "提示－基础项3"
+                    });
+                  
+                  $("#testTree").AddTreeViewItem("Base4",
+                    {
+                        //选项文本
+                        Text : "基础项4－可选的展开项",
+                        
+                        //选项值
+                        Value : "值－基础项4",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项4"
+                    });
+                    
+                 $("#testTree").AddTreeViewItem("Base5",
+                    {
+                        //选项文本
+                        Text : "基础项5",
+                        
+                        //选项值
+                        Value : "值－基础项5",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项5"
+                    });
+                    
+                  //第2级选项
+                  $("#testTree").AddTreeViewItem("Base3Sub1",
+                    {
+                        //选项文本
+                        Text : "基础项3-子项1",
+                        
+                        //选项值
+                        Value : "值－基础项3-子项1",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项3-子项1"
+                    },
+                    "Base3");
+                  
+                    
+                  $("#testTree").AddTreeViewItem("Base3Sub2",
+                    {
+                        //选项文本
+                        Text : "基础项3-子项2",
+                        
+                        //选项值
+                        Value : "值－基础项3-子项2",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项3-子项2"
+                    },
+                    3);
+                  
+                  $("#testTree").AddTreeViewItem("Base3Sub1",
+                    {
+                        //选项文本
+                        Text : "基础项3-子项3",
+                        
+                        //选项值
+                        Value : "值－基础项3-子项3",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项3-子项3"
+                    },
+                    "Base3");
+                  
+                  
+                  $("#testTree").AddTreeViewItem("Base4Sub1",
+                    {
+                        //选项文本
+                        Text : "基础项4-子项1",
+                        
+                        //选项值
+                        Value : "值－基础项4-子项1",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项4-子项1"
+                    },
+                    "Base4");
+                  
+                  $("#testTree").AddTreeViewItem("Base4Sub2",
+                    {
+                        //选项文本
+                        Text : "基础项4-子项2",
+                        
+                        //选项值
+                        Value : "值－基础项4-子项2",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项4-子项2"
+                    },
+                    "Base4");
+                  
+                  $("#testTree").AddTreeViewItem("Base4Sub3",
+                    {
+                        //选项文本
+                        Text : "基础项4-子项3",
+                        
+                        //选项值
+                        Value : "值－基础项4-子项3",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项4-子项3"
+                    },
+                    "Base4");
+                    
+                    $("#testTree").AddTreeViewItem("Base4Sub3Sub1",
+                    {
+                        //选项文本
+                        Text : "基础项4-子项3-子项1",
+                        
+                        //选项值
+                        Value : "值－基础项4-子项3-子项1",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项4-子项3-子项1"
+                    },
+                    "Base4Sub3");
+                    
+                    $("#testTree").AddTreeViewItem("Base4Sub3Sub2",
+                    {
+                        //选项文本
+                        Text : "基础项4-子项3-子项2",
+                        
+                        //选项值
+                        Value : "值－基础项4-子项3-子项2",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项4-子项3-子项2"
+                    },
+                    "Base4Sub3");
+        };
+        
+        function ChangeTreeType(objdom){
+            //修改树类型
+            if(document.getElementById("rd_list").checked){
+                $("#testTree").TreeViewReSetOpts({Type : "list"});
+            }
+            else if(document.getElementById("rd_radio").checked){
+                $("#testTree").TreeViewReSetOpts({Type : "radio"});
+            }
+            else if(document.getElementById("rd_multiplelist").checked){
+                $("#testTree").TreeViewReSetOpts({Type : "multiplelist"});
+            }
+            else if(document.getElementById("rd_checkbox").checked){
+                $("#testTree").TreeViewReSetOpts({Type : "checkbox"});
+            }
+        };
+        
+        function SetTreeOptions(){
+            //树显示项
+            var opts = {
+                //是否显示展开的图标
+                ShowCollapsePic : false,
+                
+                //是否显示选项图标
+                ShowItemPic : false,
+                
+                //是否显示提示
+                ShowTips : false,
+                
+                //list和radio的情况下，选中项的点击动作是否代表取消选择，默认为false
+                ClickCancle : false,
+                
+                //checkbox和multiplelist的情况下，点击动作是否代表将子节点也做同样选择，默认为false
+                ClickWithChild : false,
+                
+                //是否启动Focus样式，如不启用，鼠标移动到选项上样式变化
+                EnableFocusStyle : false,
+                
+                //是否启用选中后的样式，如不启用，选中后样式与正常样式一致，对于list和multiplelist不启用无法看出选中项
+                EnableSelectedStyle : false,
+                
+                //是否开启Radio和heckBox美化
+                RadioAndCheckBoxStyle : false,
+                
+                //是否显示标题选项,请在显示前通过$("TreeView").TreeViewSetTitleItem函数设置样式
+                ShowTitleItem : false
+            };
+            
+            if(document.getElementById("cb_ShowCollapsePic").checked){
+                opts.ShowCollapsePic = true;
+            }
+            
+            if(document.getElementById("cb_ShowItemPic").checked){
+                opts.ShowItemPic = true;
+            }
+            
+            if(document.getElementById("cb_ShowTips").checked){
+                opts.ShowTips = true;
+            }
+            
+            if(document.getElementById("cb_ClickCancle").checked){
+                opts.ClickCancle = true;
+            }
+            
+            if(document.getElementById("cb_ClickWithChild").checked){
+                opts.ClickWithChild = true;
+            }
+            
+            if(document.getElementById("cb_EnableFocusStyle").checked){
+                opts.EnableFocusStyle = true;
+            }
+            
+            if(document.getElementById("cb_EnableSelectedStyle").checked){
+                opts.EnableSelectedStyle = true;
+            }
+            
+            if(document.getElementById("cb_RadioAndCheckBoxStyle").checked){
+                opts.RadioAndCheckBoxStyle = true;
+            }
+            
+            if(document.getElementById("cb_ShowTitleItem").checked){
+                opts.ShowTitleItem = true;
+            }
+            
+            //修改
+            $("#testTree").TreeViewReSetOpts(opts);
+        };
+        
+        function ChangeTitleOpts(){
+            //修改标题项参数
+            var opts = {
+                //选项文本
+                Text : document.getElementById("txt_TitleString").value,
+                
+                //选项值
+                Value : "值—"+document.getElementById("txt_TitleString").value,
+                
+                //提示文字
+                Tips : "提示—"+document.getElementById("txt_TitleString").value,
+                
+                //是否可选中
+                SelectAble : false
+            };
+            
+            if(document.getElementById("cb_TitleSelectable").checked){
+                opts.SelectAble = true;
+            }
+            //设置参数
+            $("#testTree").TreeViewSetTitleItem(opts);
+        };
+        
+        function AddLongItem(obj){
+            //在最后一位添加超长选项
+            if(obj.value == "在最后一位添加超长选项"){
+                $("#testTree").AddTreeViewItem("LastLongItem",
+                    {
+                        //选项文本
+                        Text : "最后一位超长选项dddddddddddd大幅度发大奋斗到底对等代大幅度发发大幅度发大反对法",
+                        
+                        //选项值
+                        Value : "值－超长选项",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－超长选项"
+                    });
+                obj.value = "删除最后一位的超长选项";
+            }
+            else{
+                $("#testTree").TreeViewGetItem("LastLongItem").TreeViewItemDelete();
+                obj.value = "在最后一位添加超长选项";
+            }
+        };
+        
+        function AddSunItemOnBase1(obj){
+            if(obj.value == "在基础项1上添加子选项"){
+                $("#testTree").AddTreeViewItem("Base1Sub1",
+                    {
+                        //选项文本
+                        Text : "新添加的子选项",
+                        
+                        //选项值
+                        Value : "值－新添加的子选项",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－新添加的子选项"
+                    },"Base1");
+                obj.value = "删除基础项1上的子选项";
+            }
+            else{
+                $("#testTree").TreeViewGetItem("Base1Sub1").TreeViewItemDelete();
+                obj.value = "在基础项1上添加子选项";
+            }
+        };
+        
+        function AddSunItemOnBase4(obj){
+            if(obj.value == "在基础项4上添加选项集"){
+                $("#testTree").AddTreeViewItem("Base4SubX",
+                    {
+                        //选项文本
+                        Text : "新添加的选项集",
+                        
+                        //选项值
+                        Value : "值－新添加的选项集",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－新添加的选项集"
+                    },"Base4",1);
+                  $("#testTree").AddTreeViewItem("Base4SubXSub1",
+                    {
+                        //选项文本
+                        Text : "新添加的选项集-子项1",
+                        
+                        //选项值
+                        Value : "值－新添加的选项集-子项1",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－新添加的选项集-子项1"
+                    },"Base4SubX");
+                   $("#testTree").AddTreeViewItem("Base4SubXSub2",
+                    {
+                        //选项文本
+                        Text : "新添加的选项集-子项2",
+                        
+                        //选项值
+                        Value : "值－新添加的选项集-子项2",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－新添加的选项集-子项2"
+                    },"Base4SubX");
+                    $("#testTree").AddTreeViewItem("Base4SubXSub1Sub1",
+                    {
+                        //选项文本
+                        Text : "新添加的选项集-子项1-子项1",
+                        
+                        //选项值
+                        Value : "值－新添加的选项集-子项1-子项1",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－新添加的选项集-子项1-子项1"
+                    },"Base4SubXSub1");
+                   
+                obj.value = "删除基础项4上的选项集";
+            }
+            else{
+                $("#testTree").TreeViewGetItem("Base4SubX").TreeViewItemDelete();
+                obj.value = "在基础项4上添加选项集";
+            }
+        };
+        
+        function EnableTree(obj){
+            if(obj.value == "屏蔽树结构"){
+                $("#testTree").TreeViewEnable(false);
+                obj.value = "启用树结构";
+            }
+            else{
+                $("#testTree").TreeViewEnable(true);
+                obj.value = "屏蔽树结构";
+            }
+        };
+        
+        
+        function ChangeBase1(obj){
+            if(obj.value == "修改基础项1"){
+                $("#testTree").TreeViewGetItem("Base1").TreeViewItemChange("Base1NewId",{
+                        //选项文本
+                        Text : "基础项1-修改，不可选中",
+                        
+                        //选项值
+                        Value : "值－基础项1-修改，不可选中",
+                        
+                        //是否可选中
+                        SelectAble : false,
+                        
+                        //提示文字
+                        Tips : "提示－基础项1-修改，不可选中",
+                        
+                        //选项图片样式
+                        PicType : {
+                            //参数类型，img-图片，div-使用定义的Div样式,none-无图片
+                            Type : "img",
+                            
+                            //以下为图片定义
+                            //图片路径前缀
+                            ImgPath : "",
+                            
+                            //正常状态的图片
+                            ImgNormal : "PopMenu_TestIcon_letter.gif",
+                            
+                            //展开状态的图片
+                            ImgExpand : "PopMenu_TestIcon_letter.gif"
+                        }
+                    });
+                obj.value = "恢复基础项1";
+            }
+            else{
+                $("#testTree").TreeViewGetItem("Base1NewId").TreeViewItemChange("Base1",
+                    {
+                        //选项文本
+                        Text : "基础项1",
+                        
+                        //选项值
+                        Value : "值－基础项1",
+                        
+                        //是否可选中
+                        SelectAble : true,
+                        
+                        //提示文字
+                        Tips : "提示－基础项1",
+                        
+                        //选项图片样式
+                        PicType : {
+                            //参数类型，img-图片，div-使用定义的Div样式,none-无图片
+                            Type : "img",
+                            
+                            //以下为图片定义
+                            //图片路径前缀
+                            ImgPath : "../../ui-control/TreeViewImg/",
+                            
+                            //正常状态的图片
+                            ImgNormal : "TreeView_Folder.gif",
+                            
+                            //展开状态的图片
+                            ImgExpand : "PopMenu_TestIcon_letter.gif"
+                        }
+                    });
+                obj.value = "修改基础项1";
+            }
+        };
+        
+         function ExpandBase4WithChild(obj){
+            var base4obj = $("#testTree").TreeViewGetItem("Base4");
+            if(obj.value == "展开基础项4-同时展开子节点"){
+                base4obj.TreeViewItemExpand(true,true);
+                obj.value = "收缩基础项4-同时收缩子节点";
+            }
+            else{
+                base4obj.TreeViewItemExpand(false,true);
+                obj.value = "展开基础项4-同时展开子节点";
+            }
+        };
+        
+        function ExpandBase4WithChild(obj){
+            var base4obj = $("#testTree").TreeViewGetItem("Base4");
+            if(obj.value == "展开基础项4-不展开子节点"){
+                base4obj.TreeViewItemExpand(true,false);
+                obj.value = "收缩基础项4-不收缩子节点";
+            }
+            else{
+                base4obj.TreeViewItemExpand(false,false);
+                obj.value = "展开基础项4-不展开子节点";
+            }
+        };
+        
+        function GetSelectedItem(){
+            var selectedobjs = $("#testTree").TreeViewGetSeletedItem();
+            if(selectedobjs.length == 0){
+                alert("没有选中对象！");
+            }
+            else{
+                for(var i = 0;i<selectedobjs.length;i++){
+                    var obj = $(selectedobjs.get(i));
+                    var Obj = obj.TreeViewItemGetAttr();
+                    var str = "共"+selectedobjs.length+"个，第"+(i+1)+"个为：\r\n"
+                        + "Obj.id = " +Obj.id + "\r\n"
+                        + "Obj.isTitle = " +Obj.isTitle + "\r\n"
+                       + "Obj.itemValue = " +Obj.itemValue + "\r\n"
+	                   + "Obj.tips = " +Obj.tips + "\r\n"
+                       + "Obj.index = " +Obj.index + "\r\n"
+                       + "Obj.level = " + Obj.level+ "\r\n"
+                       + "Obj.parentindex = " + Obj.parentindex+ "\r\n"
+                       + "Obj.selectable = " +Obj.selectable + "\r\n"
+                       + "Obj.expanded = " + Obj.expanded+ "\r\n"
+                       + "Obj.selected = " + Obj.selected;
+                   alert(str);
+                }
+            }
+        };
+        
+    </script>
+    
+</head>
+<body onload="CreateTreeView();">
+
+<p>
+
+    修改树类型：<input id="rd_list" name="TreeType" type="radio" value="V1" 
+        onclick="ChangeTreeType(this);" checked="checked" />list
+    <input id="rd_radio" name="TreeType" type="radio" value="V1" onclick="ChangeTreeType(this);"  />radio
+    <input id="rd_multiplelist" name="TreeType" type="radio" value="V1" onclick="ChangeTreeType(this);"  />multiplelist
+    <input id="rd_checkbox" name="TreeType" type="radio" value="V1" onclick="ChangeTreeType(this);" />checkbox
+    &nbsp; &nbsp;&nbsp; 显示项：
+ 
+    <input id="cb_ShowCollapsePic" type="checkbox" onclick="SetTreeOptions();" 
+        checked="checked" />展开图片 
+    <input id="cb_ShowItemPic" type="checkbox" onclick="SetTreeOptions();" 
+        checked="checked" />选项图片 
+    <input id="cb_ShowTips" type="checkbox" onclick="SetTreeOptions();" />提示信息
+    
+    <br><br>
+    <input id="cb_ClickCancle" type="checkbox" onclick="SetTreeOptions();" />单选点击取消
+    <input id="cb_ClickWithChild" type="checkbox" onclick="SetTreeOptions();" />多选选取子项
+    <input id="cb_EnableFocusStyle" type="checkbox" onclick="SetTreeOptions();" 
+        checked="checked" />开启焦点样式 
+    <input id="cb_EnableSelectedStyle" type="checkbox" onclick="SetTreeOptions();" 
+        checked="checked" />开启选中样式 
+    <input id="cb_RadioAndCheckBoxStyle" type="checkbox" onclick="SetTreeOptions();" />开启Radio/CheckBox美化
+    
+    <br><br>
+    <input id="cb_ShowTitleItem" type="checkbox" onclick="SetTreeOptions();" 
+        checked="checked" />显示标题项  &nbsp; &nbsp;
+    <input id="Button1" type="button" value="修改标题项参数"  onclick="ChangeTitleOpts();" /> &nbsp; &nbsp;
+    标题文字:<input id="txt_TitleString" type="text" value='标题选项' /> &nbsp; &nbsp;
+    <input id="cb_TitleSelectable" type="checkbox" checked="checked" /> 是否可选标题
+    
+    <br><br>
+    <input id="Button2" type="button" value="在最后一位添加超长选项"  onclick="AddLongItem(this);" />
+    <input id="Button3" type="button" value="在基础项1上添加子选项"  onclick="AddSunItemOnBase1(this);" />
+    <input id="Button4" type="button" value="在基础项4上添加选项集"  onclick="AddSunItemOnBase4(this);" />
+    <input id="Button5" type="button" value="屏蔽树结构"  onclick="EnableTree(this);" />
+    
+    <br><br>
+    <input id="Button6" type="button" value="修改基础项1"  onclick="ChangeBase1(this);" />
+    <input id="Button7" type="button" value="展开基础项4-同时展开子节点"  onclick="ExpandBase4WithChild(this);" />
+    <input id="Button8" type="button" value="展开基础项4-不展开子节点"  onclick="ExpandBase4WithChild(this);" />
+    <input id="Button9" type="button" value="获得当前选中节点信息"  onclick="GetSelectedItem(this);" />
+    
+    </p>
+<p id="OnItemClick">OnItemClick</p>
+<p id="OnItemFocus">OnItemFocus</p>
+<p id="OnItemFoucsOut">OnItemFoucsOut</p>
+<p id="OnItemChecked">OnItemChecked</p>
+<p id="OnItemUnChecked">OnItemUnChecked</p>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+.nav_folder {background-image:url(../images/icons/folder_go.png) !important;}
+.nav_set {background-image:url(../images/icons/folder_wrench.png) !important;}
+.nav_use {background-image:url(../images/icons/folder_user.png) !important;}
+.nav_docs {background-image: url(../images/icons/docs.gif) !important;}
+.nav_class {background-image: url(../images/icons/class.gif) !important;}
+.nav_cog {background-image:url(../images/icons/cog_go.png) !important;}
+.nav_plugin {background-image:url(../images/icons/plugin_link.png) !important;}
+.nav_tool {background-image:url(../images/icons/tool_auth.gif) !important;}
+.nav_anchor {background-image:url(../images/icons/anchor.png) !important;}
+.nav_world {background-image:url(../images/icons/world_go.png) !important;}
+.nav_bar {background-image:url(../images/icons/chart_bar.png) !important;}
+.nav_curve {background-image:url(../images/icons/chart_curve_go.png) !important;}
+.nav_line {background-image:url(../images/icons/chart_line.png) !important;}
+.nav_md_t {background-image:url(../images/icons/folder_wrench.png);}
+.nav_pie {background-image:url(../images/icons/chart_pie.png);}
+.nav_md_c {background-image:url(../images/icons/folder_go.png);}
+.nav_find {background-image:url(../images/icons/find.png);}
+.nav_user {background-image:url(../images/icons/user.gif) !important;}
+.nav_role {background-image:url(../images/icons/group.png) !important;}
+.nav_group {background-image:url(../images/icons/chart_organisation.png) !important;}
+.nav_tv {background-image:url(../images/icons/television.png) !important;}
+.nav_trans {background-image:url(../images/icons/transmit_blue.png) !important;}
+.nav_view {background-image:url(../images/icons/view.gif) !important;}
+.nav_mapping{background-image:url(../images/icons/action_mappingdb.png) !important;}
+.nav_check{background-image:url(../images/icons/dbfx.gif) !important;}
+.nav_version {background-image:url(../images/icons/anchor_blue.png) !important;}
+.nav_version_release {background-image:url(../images/icons/anchor_blue.png) !important;}
+.ico_m_sys {background-image: url(../images/icons/bullet_wrench.png) !important;}
+.ico_m_help {background-image: url(../images/icons/help.png) !important;}
+.ico_db_gear {background-image: url(../images/icons/database_gear.png) !important;}
+.ico_tab_default {background-image: url(../images/icons/comments.png) !important;}
+.ico_tab_list {background-image: url(../images/icons/grid.png) !important;}
+.btn_ico_home {background-image:url(../images/icons/house.png) !important;}
+
+.x-menu_close {background: url(../images/icons/bullet_delete.png) !important;}
+.x-menu_close_other {background: url(../images/icons/bullet_blue.png) !important;}
+.x-menu_close_all {background: url(../images/icons/bullet_purple.png) !important;}

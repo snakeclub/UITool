@@ -1,0 +1,73 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：工具栏
+说明：工具栏，可以放按钮、文本、分隔条、输入框
+文件：ToolBar.css
+
+资源文件：../ToolBarImg/
+
+	<TABLE selftype='ToolBar' class='ToolBar_Main' border=0 cellSpacing=0 cellPadding=0>
+		<TR>
+			<TD class='ToolBarTD'>放置对象</TD>
+			<TD  class='ToolBarTD'><SPAN class='ToolBar_Split'></SPAN></TD>
+			<TD ToolBarType='CenterTd' class='ToolBar_CenterTd'>&nbsp;</TD>  --定位中间分隔的格子
+			<TD  class='ToolBarTD'>放置对象</TD>
+		</TR>
+	</TABLE>
+
+-----------------------*/
+
+/* -------------最外层Table------------- */
+.ToolBar_Main
+{
+	border-color:#a9bfd3;
+    border-style:solid;
+    border-width:0 0 1px 0;
+    display: block;
+	padding:3px 0px 2px 0px;
+    background:#d0def0 url(../../ui-control/ToolBarImg/bg.gif) repeat-x top left;
+    zoom:1;
+    overflow:hidden;
+}
+
+
+/* -------------通用基本元素样式------------- */
+.ToolBar_Main .ToolBarTD,.ToolBar_Main .ToolBar_CenterTd
+{
+	vertical-align:middle;
+	height:23px;
+	padding:0px 2px 0px 2px;
+}
+
+.ToolBar_Main td,.ToolBar_Main,.ToolBar_Main input,.ToolBar_Main div,.ToolBar_Main select,.ToolBar_Main label{
+	white-space: nowrap;
+    font:normal 11px tahoma, arial, helvetica, sans-serif;
+}
+
+
+/* -------------中间隔开对象的样式------------- */
+.ToolBar_CenterTd
+{
+	width:100%;
+}
+
+/* -------------分隔符的样式------------- */
+.ToolBar_Split
+{
+	background-image: url(../../ui-control/ToolBarImg/grid-blue-split.gif);
+	        background-position: center;
+	        background-repeat: no-repeat;
+	        display: block;
+	        font-size: 1px;
+	        height: 16px;
+	        width:4px;
+	        overflow: hidden;
+	        cursor:default;
+	        margin: 0 2px 0;
+	        border:0;
+}

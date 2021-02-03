@@ -1,0 +1,2704 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/ButtonCss/Button.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+     <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../../ui-control/Button.js"></script>
+    <style type="text/css">
+        /* toolbar 分隔符 */
+        .ytb-sep {
+	        background-image: url(grid-blue-split.gif);
+	        background-position: center;
+	        background-repeat: no-repeat;
+	        display: block;
+	        font-size: 1px;
+	        height: 16px;
+	        width:4px;
+	        overflow: hidden;
+	        cursor:default;
+	        margin: 0 2px 0;
+	        border:0;
+        }
+        
+        /* 工具栏 */
+        .x-toolbar{
+	        border-color:#a9bfd3;
+            border-style:solid;
+            border-width:0 0 1px 0;
+            display: block;
+	        padding:2px;
+            background:#d0def0 url(toolBarbg.gif) repeat-x top left;
+            position:relative;
+            zoom:1;
+        }
+        
+    </style>
+    
+    <script type="text/javascript">
+    
+    $.Button.defaults.OnClick = function(obj,status,text){$("#OnClickShow").get(0).innerHTML="OnClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+    
+    $.Button.defaults.OnMouseOver = function(obj,status,text){$("#OnMouseOverShow").get(0).innerHTML="OnMouseOver("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+    
+     $.Button.defaults.OnMouseOut = function(obj,status,text){$("#OnMouseOutShow").get(0).innerHTML="OnMouseOut("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+     
+      $.Button.defaults.OnMouseDown = function(obj,status,text){$("#OnMouseDownShow").get(0).innerHTML="OnMouseDown("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+      
+      $.Button.defaults.OnMouseUp = function(obj,status,text){$("#OnMouseUpShow").get(0).innerHTML="OnMouseUp("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text;};
+      
+    
+    /* 按界面选项设置按钮初始选项 */
+    function GetOpts(){
+        var opts = {
+            //样式前缀
+            CssBefore : $("#txt_CssBefore").get(0).value,
+            
+            //按钮类型，支持类型如下
+            //Text - 纯文字按钮-或带图标的按钮
+            //Icon - 纯图标按钮
+            //SplitArrow - 分隔下拉按钮（用于组合分隔下拉菜单）
+            Type : $("#sle_Type").get(0).options[$("#sle_Type").get(0).selectedIndex].value,
+            
+            //是否支持按下效果
+            SupportDownStatus : $("#cb_SupportDownStatus").get(0).checked,
+            
+            //开启鼠标移动上去的效果，仅Input、Div类型有效
+            MouseOverEfect : $("#cb_MouseOverEfect").get(0).checked,
+            
+            //开启按钮点击的效果，仅Input、Div类型有效
+            MouseClickEfect :  $("#cb_MouseClickEfect").get(0).checked,
+            
+            //是否指定定按钮宽度
+            SetWidth : $("#cb_SetWidth").get(0).checked,
+            
+            //按钮中Button对象的宽度,不包括两边的各3px的圆角部分
+            Width : $("#txt_Width").get(0).value,
+            
+            //是否有Icon，只有Text类型使用
+            WithIcon : $("#cb_WithIcon").get(0).checked,
+            
+            //图标的位置,Left - 在左边，Right-在右边
+            IconPositon : $("#sle_IconPositon").get(0).options[$("#sle_IconPositon").get(0).selectedIndex].value,
+            
+            //是否工具栏图标
+            InToolBar : $("#cb_InToolBar").get(0).checked,
+            
+            //是否带下拉框
+            WithArrow : $("#cb_WithArrow").get(0).checked,
+            
+            //下拉框位置,Left - 在左边，Right-在右边
+            ArrowPositon : $("#sle_ArrowPositon").get(0).options[$("#sle_ArrowPositon").get(0).selectedIndex].value,
+            
+            //是否分隔按钮
+            IsSplit : $("#cb_IsSplit").get(0).checked,
+            
+            //分隔的位置，Left - 按钮在左边，Right-按钮在右边  
+            //如果按钮类型为SplitArrow，该参数也代表按钮所在的位置
+            SplitPositon : $("#sle_SplitPositon").get(0).options[$("#sle_SplitPositon").get(0).selectedIndex].value,
+            
+            //有Icon的情况下，图标的background属性，主要是为了指定图片准备，空代表不使用该参数
+            //例如"url(../../ui-control/ButtonImg/Button_Table_Sprite.gif) no-repeat 0 -21px"
+            //正常状态图标
+            IconBgNormal : "url(list-items.gif) no-repeat 0 0",
+            
+            //屏蔽状态
+            IconBgDisable : "",
+            
+            //正常状态鼠标移过
+            IconBgOver : "url(user.gif) no-repeat 0 0",
+            
+            //正常状态鼠点击
+            IconBgClick : "url(PopMenu_TestIcon_login.gif) no-repeat 0 0",
+            
+            //按下状态
+            IconBgDown : "url(PopMenu_TestIcon_letter.gif) no-repeat 0 0",
+            
+            //按下状态鼠标移过
+            IconBgDownOver : "url(user.gif) no-repeat 0 0",
+            
+            //按下状态鼠标点击
+            IconBgDownClick :  "url(PopMenu_TestIcon_login.gif) no-repeat 0 0",
+            
+            //按下状态屏蔽
+            IconBgDownDisable : ""
+        };
+        
+        return opts;
+    };
+    
+    /* 添加按钮 */
+    function AddButton(){
+        $("#ButtonDiv").empty();
+        var clickFun = $.Button.defaults.OnClick;
+        if($("#cb_SupportDownStatus").get(0).checked){
+            clickFun = function(obj,status,text){$("#OnClickShow").get(0).innerHTML="OnClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text; obj.ButtonIsUp(status=="Down");};
+        }
+        
+        var opts = GetOpts();
+        opts.OnClick = clickFun;
+        
+        $("#ButtonDiv").CreateButton("demobotton",
+            opts,
+            $("#txt_Text").get(0).value);
+    };
+    
+    function AddSplitButton(){
+        $("#ButtonDiv").empty();
+        var clickFun = $.Button.defaults.OnClick;
+        if($("#cb_SupportDownStatus").get(0).checked){
+            clickFun = function(obj,status,text){$("#OnClickShow").get(0).innerHTML="OnClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text; obj.ButtonIsUp(status=="Down");};
+        }
+        
+        var opts = GetOpts();
+        opts.OnClick = clickFun;
+        
+        $("#ButtonDiv").CreateButtonSplit("demobotton",
+            opts,
+            $("#txt_Text").get(0).value,
+            function(obj,status,text){$("#OnSplitClickShow").get(0).innerHTML="OnSplitClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   status:"+status+"   text:"+text; obj.ButtonIsUp(status=="Down");});
+    };
+    
+    
+    /* 获取/设置按钮显示文本  */
+    function GetText(){
+        alert($("#demobotton").ButtonValue());
+    };
+    
+    function SetText(){
+        $("#demobotton").ButtonValue($("#txt_Text").get(0).value);
+    };
+    
+    /* 设置或获取Button的Up/Down状态 */
+    function GetUpDown(){
+        alert($("#demobotton").ButtonIsUp());
+    };
+    
+    function SetUpDown(obj){
+        if(obj.value=="取消按下"){
+            $("#demobotton").ButtonIsUp(true);
+            obj.value = "按下";
+        }else{
+            $("#demobotton").ButtonIsUp(false);
+            obj.value = "取消按下";
+        }
+    };
+    
+    /*获取/设置Button是否开启*/
+    function GetEnable(){
+        alert($("#demobotton").ButtonEnable());
+    };
+    
+    function SetEnable(obj){
+        if(obj.value=="屏蔽按钮"){
+            $("#demobotton").ButtonEnable(false);
+            obj.value = "启用按钮";
+        }else{
+            $("#demobotton").ButtonEnable(true);
+            obj.value = "屏蔽按钮";
+        }
+    };
+    
+    </script>
+    
+    <style type="text/css">
+        #sle_Type
+        {
+            width: 70px;
+        }
+        #txt_CornerSize
+        {
+            width: 40px;
+        }
+        #txt_CornerSize0
+        {
+            width: 40px;
+        }
+        #txt_Width
+        {
+            width: 37px;
+        }
+        #txt_Width0
+        {
+            width: 37px;
+        }
+        #sle_Type0
+        {
+            width: 70px;
+        }
+        </style>
+</head>
+<body onload="$.cssAdapter();">
+<!--
+<table cellpadding="0" cellspacing="0" width="72%" height="30" border="0">
+<tr>
+<td width="33%" height="300" style="filter:progid:DXImageTransform.Microsoft.Gradient
+(startColorStr='#FFFFFF', endColorStr='#3568CC', gradientType='0')">1</td>
+<td width="33%" height="300" style="filter:progid:DXImageTransform.Microsoft.Gradient
+(startColorStr='#FFFFFF', endColorStr='#3568CC', gradientType='1')">2</td>
+<td width="33%" height="300" style="filter:progid:DXImageTransform.Microsoft.Gradient
+(startColorStr='#FFFFFF', endColorStr='#3568CC', gradientType='2')">3</td>
+</tr>
+</table>
+-->
+
+
+
+    <table style="width:100%;">
+         <tr>
+            <td> <p id='OnClickShow'>&nbsp;</p>
+            <p id='OnMouseOverShow'>&nbsp;</p>
+            <p id='OnMouseOutShow'>&nbsp;</p>
+            <p id='OnMouseDownShow'>&nbsp;</p>
+            <p id='OnMouseUpShow'>&nbsp;</p>
+            <p id='OnSplitClickShow'>&nbsp;</p>
+            
+            </td>
+        </tr>
+        <tr>
+            <td>
+                样式前缀:<input id="txt_CssBefore" type="text" value="Button" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                按钮类型<select id="sle_Type" name="D1">
+                    <option value="Text" selected="selected">Text</option>
+                    <option value="Icon" >Icon</option>
+                    <option value="SplitArrow">SplitArrow</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_SupportDownStatus" type="checkbox" />支持按下效果&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <input id="cb_MouseOverEfect" checked="checked" type="checkbox" />鼠标移动上去的效果<br />
+                <input id="cb_MouseClickEfect" checked="checked" type="checkbox" />按钮点击的效果&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_SetWidth" type="checkbox" />指定定按钮宽度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 宽<input id="txt_Width" type="text" 
+                    value="70" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_WithIcon" type="checkbox" />有Icon&nbsp;&nbsp; Icon位置<select 
+                    id="sle_IconPositon" name="D2">
+                    <option value="Left" selected="selected">Left</option>
+                    <option value="Right" >Right</option>
+                </select><br />
+                <input id="cb_InToolBar" type="checkbox" />工具栏图标&nbsp;
+                <input id="cb_WithArrow" type="checkbox" />带下拉框&nbsp;&nbsp; 下拉框位置<select 
+                    id="sle_ArrowPositon" name="D3">
+                    <option value="Left">Left</option>
+                    <option value="Right"  selected="selected" >Right</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cb_IsSplit" type="checkbox" />分隔按钮&nbsp;&nbsp; 分隔的位置<select 
+                    id="sle_SplitPositon" name="D4">
+                    <option value="Left" selected="selected">Left</option>
+                    <option value="Right" >Right</option>
+                </select></td>
+        </tr>
+        <tr>
+            <td>
+                <input id="btn_AddButton" type="button" value="创建按钮" onclick="AddButton();" />&nbsp;&nbsp;
+                <input id="Button7" type="button" value="创建分隔按钮" onclick="AddSplitButton();" />&nbsp;&nbsp;
+                <input id="btn_GetValue" type="button" value="获取按钮显示文本" onclick="GetText();" />&nbsp;&nbsp;
+                <input id="Button1" type="button" value="获取按下状态" onclick="GetUpDown();" />&nbsp;&nbsp;
+                <input id="Button2" type="button" value="获取启用状态" onclick="GetEnable();" />&nbsp;&nbsp;
+                <input id="Button3" type="button" value="模拟点击按钮" onclick="$('#demobotton').ButtonClick();" />&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="Button4" type="button" value="设置按钮文本" onclick="SetText();" />
+                <input id="txt_Text" type="text" value="按钮Demo" />&nbsp;&nbsp;
+                <input id="Button5" type="button" value="取消按下" onclick="SetUpDown(this);" />&nbsp;&nbsp;
+                <input id="Button6" type="button" value="屏蔽按钮" onclick="SetEnable(this);" />&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="ButtonDiv">&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;</td>
+        </tr>
+        
+        <tr>
+            <td>
+            	<table>
+                <tr>
+                    <td>
+                				固定宽度的测试
+                        <TABLE class='Button_Table' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="width:60px; width:60px!important; overflow:hidden;">文字按钮ddddddddddddddddddddd</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>
+                				固定宽度的测试 - 带图标
+                        <TABLE class='Button_Table Button_IconText Button_IconR Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字dddddddd</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                        
+                    </td>
+                </tr>
+              </table>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                Table文字按钮类型HTML测试</td>
+        </tr>
+        <tr>
+            <td>
+            <table>
+                <tr>
+                    <td>Normal
+                        <TABLE class='Button_Table' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'  style="width:60px; width:100px!important; overflow:hidden;">文字按钮</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Over
+                        <TABLE class='Button_Table' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Over'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Click&Down&DownClick
+                        <TABLE class='Button_Table' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Down'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownOver
+                        <TABLE class='Button_Table' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_DownOver'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Disable
+                        <TABLE class='Button_Table' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Disable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownDisable
+                        <TABLE class='Button_Table' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_DownDisable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                </tr>
+                
+                
+                <tr>
+                    <td>Normal
+                        <TABLE class='Button_Table Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Over
+                        <TABLE class='Button_Table Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Over'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Click&Down&DownClick
+                        <TABLE class='Button_Table Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Down'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownOver
+                        <TABLE class='Button_Table Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_DownOver'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Disable
+                        <TABLE class='Button_Table Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Disable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownDisable
+                        <TABLE class='Button_Table Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_DownDisable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Normal
+                        <TABLE class='Button_Table Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-左箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Over
+                        <TABLE class='Button_Table Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Over'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-左箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Click&Down&DownClick
+                        <TABLE class='Button_Table Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Down'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-左箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownOver
+                        <TABLE class='Button_Table Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_DownOver'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-左箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Disable
+                        <TABLE class='Button_Table Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Disable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-左箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownDisable
+                        <TABLE class='Button_Table Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_DownDisable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'>文字按钮-左箭头</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                </tr>
+                
+            </table>
+            
+                <p></p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                Table带图标情况</td>
+        </tr>
+        <tr>
+            <td>
+            <table>
+                <tr>
+                    <td>Normal
+                        <TABLE class='Button_Table Button_IconText' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字over</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Over
+                        <TABLE class='Button_Table Button_IconText' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Over'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Click&Down&DownClick
+                        <TABLE class='Button_Table Button_IconText' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Down'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownOver
+                        <TABLE class='Button_Table Button_IconText' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_DownOver'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Disable
+                        <TABLE class='Button_Table Button_IconText' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Disable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownDisable
+                        <TABLE class='Button_Table Button_IconText' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_DownDisable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Normal
+                        <TABLE class='Button_Table Button_IconText Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Over
+                        <TABLE class='Button_Table Button_IconText Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Over'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Click&Down&DownClick
+                        <TABLE class='Button_Table Button_IconText Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Down'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownOver
+                        <TABLE class='Button_Table Button_IconText Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_DownOver'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button Button_Arrow' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Disable
+                        <TABLE class='Button_Table Button_IconText Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Disable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button Button_Arrow' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownDisable
+                        <TABLE class='Button_Table Button_IconText Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_DownDisable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Normal
+                        <TABLE class='Button_Table Button_IconText Button_IconR' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Over
+                        <TABLE class='Button_Table Button_IconText Button_IconR ' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Over'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Click&Down&DownClick
+                        <TABLE class='Button_Table Button_IconText Button_IconR' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Down'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownOver
+                        <TABLE class='Button_Table Button_IconText Button_IconR' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_DownOver'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Disable
+                        <TABLE class='Button_Table Button_IconText Button_IconR' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Disable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownDisable
+                        <TABLE class='Button_Table Button_IconText Button_IconR' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_DownDisable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                </tr>
+                
+                
+                <tr>
+                    <td>Normal
+                        <TABLE class='Button_Table Button_IconText Button_IconR Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class=''>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Over
+                        <TABLE class='Button_Table Button_IconText Button_IconR Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Over'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Click&Down&DownClick
+                        <TABLE class='Button_Table Button_IconText Button_IconR Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_Down'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownOver
+                        <TABLE class='Button_Table Button_IconText Button_IconR Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR  class='Button_DownOver'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>Disable
+                        <TABLE class='Button_Table Button_IconText Button_IconR Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_Disable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                    <td>DownDisable
+                        <TABLE class='Button_Table Button_IconText Button_IconR Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                        <TBODY>
+		                        <TR class='Button_DownDisable'>
+			                        <TD class='Button_Left'>
+				                        <I class='Button_LeftI'>&nbsp;</I>
+			                        </TD>
+			                        <TD class='Button_Center'>
+				                        <EM class='Button_EM'>
+					                        <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">图标文字</BUTTON>
+				                        </EM>
+			                        </TD>
+			                        <TD class='Button_Right'>
+				                        <I class='Button_RightI'>&nbsp;</I>
+			                        </TD>
+		                        </TR>
+	                        </TBODY>
+                        </TABLE>
+                    </td>
+                </tr>
+                
+                
+            </table>
+                
+                <p></p>
+            </td>
+        </tr>
+        <tr>
+            <td>Table工具栏按钮</td>
+        </tr>
+        <tr>
+            <td>
+                <DIV id=toolbar>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR  class=''>
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'  disabled=disabled>工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                     <TABLE class='Button_Table Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Table工具栏按钮-带下拉菜单</td>
+        </tr>
+        
+        <tr>
+            <td>
+                <DIV id=DIV1>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR  class=''>
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'  disabled=disabled>工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                     <TABLE class='Button_Table Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+         <tr>
+            <td>
+                <DIV id=DIV3>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR  class=''>
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'  disabled=disabled>工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                     <TABLE class='Button_Table Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Table工具栏纯图标按钮</td>
+        </tr>
+        
+        <tr>
+            <td>
+                <DIV id=DIV7>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_Icon Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR  class=''>
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_Icon Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_Icon Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_Icon Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                     <TABLE class='Button_Table Button_Icon Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled style="background-image: url(list-items.gif) !important;">&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+         <tr>
+            <td>Table工具栏图标按钮</td>
+        </tr>
+        
+        <tr>
+            <td>
+                <DIV id=DIV2>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR  class=''>
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                     <TABLE class='Button_Table Button_IconText Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled style="background-image: url(list-items.gif) !important;">工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <DIV id=DIV4>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR  class=''>
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                     <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled style="background-image: url(list-items.gif) !important;">工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <DIV id=DIV5>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR  class=''>
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                     <TABLE class='Button_Table Button_IconText Button_ToolBar Button_Arrow' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled style="background-image: url(list-items.gif) !important;">工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+         <tr>
+            <td>
+                <DIV id=DIV6>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR  class=''>
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' style="background-image: url(list-items.gif) !important;">工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                    <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'  disabled=disabled style="background-image: url(list-items.gif) !important;">工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD style="vertical-align:middle;">
+                                     <TABLE class='Button_Table Button_IconText Button_IconR Button_ToolBar Button_ArrowL' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled style="background-image: url(list-items.gif) !important;">工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Table工具栏按钮 － 带分隔的下拉菜单 - 实际上是由2个按钮组成要做按钮的对应关系</td>
+        </tr>
+        <tr>
+            <td>
+                <DIV id=toolbar>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                 <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_Split Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrow Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                    
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                 <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_Split Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrow Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                    
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_Split Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrow Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                    
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_Split Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrow Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                    
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_Split Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrow Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                    
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <DIV id=toolbar>
+                    <DIV class="x-toolbar">
+                        <TABLE cellSpacing=0>
+                        <TBODY>
+                            <TR>
+                                 <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrowL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    <TABLE class='Button_Table Button_SplitL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Normal</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                    
+                                    
+                                </TD>
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                 <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrowL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    <TABLE class='Button_Table Button_SplitL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Over">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Over</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                    
+                                    
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrowL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    
+                                    <TABLE class='Button_Table Button_SplitL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Down">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button'>工具栏文字Down</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrowL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    
+                                    <TABLE class='Button_Table Button_SplitL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_Disable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>工具栏文字Disable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                                 <!-- 分隔符 -->
+                                <TD style="vertical-align:middle;"><SPAN class=ytb-sep></SPAN></TD>
+                                
+                                <TD  style="vertical-align:middle; margin-right:0px; padding-right:0px;">
+                                    <TABLE class='Button_Table Button_SplitArrowL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>&nbsp;</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                <TD style="vertical-align:middle; margin-left:0px; padding-left:0px;">
+                                    
+                                    <TABLE class='Button_Table Button_SplitL Button_ToolBar' border=0 cellSpacing=0 cellPadding=0>
+	                                    <TBODY>
+		                                    <TR class="Button_DownDisable">
+			                                    <TD class='Button_Left'>
+				                                    <I class='Button_LeftI'>&nbsp;</I>
+			                                    </TD>
+			                                    <TD class='Button_Center'>
+				                                    <EM class='Button_EM'>
+					                                    <BUTTON class='Button_Button' disabled=disabled>工具栏文字DownDisable</BUTTON>
+				                                    </EM>
+			                                    </TD>
+			                                    <TD class='Button_Right'>
+				                                    <I class='Button_RightI'>&nbsp;</I>
+			                                    </TD>
+		                                    </TR>
+	                                    </TBODY>
+                                    </TABLE>
+                                </TD>
+                                
+                            </TR>
+                        </TBODY>
+                        </TABLE>
+                    </DIV>
+                </DIV>
+            </td>
+        </tr>
+       
+    </table>
+
+</body>
+</html>

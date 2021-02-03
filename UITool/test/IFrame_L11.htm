@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+     <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+     <script type="text/javascript" src="../ui-core/IFrame.js"></script>
+     <script type="text/javascript" src="../ui-ajax/json2.js"></script>
+    
+    <script language=javascript>
+        function test(){
+            var obj = $($(window).IFrameParent().get(0).document.body).find("#TopP");
+            obj.attr("test","testobj''''''haha\"\"");
+        };
+        function ChangeParentStyle(){
+            var obj = $($(window).IFrameParent().get(0).document.body).find("#TopP");
+            obj.get(0).innerHTML = obj.get(0).innerHTML + " by L11Changed";
+            obj.css("color","Red");
+        };
+        
+        function ChangeSStyle(){
+            var obj = $($(window).IFrameSiblings().get(0).document.body).find("#L12P");
+            obj.get(0).innerHTML = obj.get(0).innerHTML + " by L11Changed";
+            obj.css("color","Red");
+        };
+        
+        function L21AutoHeight(){
+            $(window).IFrameChildren("L21").IFrameAutoHeight("L21");
+        };
+        
+        function TopCallFun(a,b){
+            alert("a:"+a + "  b:"+b);
+            return "back";
+        };
+    </script>
+</head>
+<body  onload="$.IFrameInitFunBase('L11')"; style="background-color:Yellow;">
+    <p>IFrame_L11</p>
+    
+    <p><input id="Button5" type="button" value="test" onclick="test();" />
+    <input id="Button1" type="button" value="改变父节点内容和样式" onclick="ChangeParentStyle();" />
+    <input id="Button2" type="button" value="改变同级节点内容和样式" onclick="ChangeSStyle();" />
+    <input id="Button3" type="button" value="是否顶级窗口" onclick="alert($(window).IsTopWindow());" />
+    <input id="Button4" type="button" value="L21自适应高度" onclick="L21AutoHeight();" />
+    </p>
+    <iframe id='L21' name='L21Name' style="width:100%; height:auto;" src=IFrame_L21.htm></iframe>
+     <p>IFrame_L11</p>
+      <p>IFrame_L11</p>
+       <p>IFrame_L11</p>
+        <p>IFrame_L11</p>
+         <p>IFrame_L11</p>
+          <p>IFrame_L11</p>
+           <p>IFrame_L11</p>
+            <p>IFrame_L11</p>
+             <p>IFrame_L11</p>
+              <p>IFrame_L11</p>
+     <p>IFrame_L11</p>
+</body>
+</html>

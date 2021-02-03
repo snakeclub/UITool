@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/ResizeControl.js"></script>
+    <script type="text/javascript" src="../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            //处理代码
+            setresize(); 
+        });
+
+        
+        function setresize(){
+            $("#Div1").SetResizeAble(
+                {
+                    //是否显示右下角的改变大小的工具块
+                    showConnerTool : true,
+                    
+                    //改变大小的方式，div - 用一虚线的div框来显示最终的大小，obj - 直接对对象改变大小
+                    resizeType : "div",
+                    
+                    //div框的样式
+                    divStyle : {
+                        "z-index" : 10000,
+                        border : "1px dashed #0099FF"
+                    },
+                    
+                    //允许改变大小的方向
+                    direction : {left:true,top:true,right:true,bottom:true},
+                    
+                    //改变大小的限制,-1代表无限制
+                    limit : {maxWidth:-1,maxHeight:-1,minWidth:-1,minHeight:-1},
+                    
+                    //Resize工具的z-index，-1默认为对象z-index+10,其他数值为指定z-index
+                    zIndex : -1,
+                    
+                    //改变大小框的位置，inner-紧贴对象内部，outer-紧贴对象外部，默认为inner
+                    position : "inner",
+                    
+                    //边框大小，默认为3
+                    borderWidth: 3,
+                    
+                    //边框的颜色，如果是inner的情况，对象又有边框，就必须设置颜色才能正常使用改变大小控件。例如"#ff0000"，""代表透明色，默认为""
+                    borderColor : "",
+                    
+                    //边角处宽度,默认为14
+                    connerWidth : 14,
+                    
+                    //右下角的改变大小的工具块的Css样式名，例如"SizeControlConnerClass"，默认为""
+                    connerClass : "",
+                    
+                    //开始改变大小前执行的函数，传入的参数依次为对象本身、改变大小参数、event（mousedown），必须返回true/false，若返回false，则终止改变大小操作
+                    beginResizeFun : function(){$("#beginResizeFun").get(0).innerHTML = "beginResizeFun("+Date().toString()+"):Obj.attr('id'):"+arguments[0].attr("id") + "  opts.position:"+arguments[1].position + "  event.clientX:"+arguments[2].clientX;return true;},
+                    
+                    //拖动改变大小过程中执行的函数，传入的参数依次为对象本身、改变大小参数、event（mousemove）、objpos{left,top}、objsize{width,height}，必须返回true/false，若返回false，则不调整对象大小
+                    resizeMoveFun : function(){$("#resizeMoveFun").get(0).innerHTML = "resizeMoveFun("+Date().toString()+"):Obj.attr('id'):"+arguments[0].attr("id") + "  opts.position:"+arguments[1].position + "  event.clientX:"+arguments[2].clientX+"  objpos.left:"+arguments[3].left+"  objsize.width:"+arguments[4].width;return true;},
+                    
+                    //确认是否改变大小的函数，传入的参数依次为对象本身、改变大小参数、event（mousemove）、objpos{left,top}、objsize{width,height}，必须返回true/false，若返回false，则不调整对象大小
+                    confirmResizeFun : function(){$("#confirmResizeFun").get(0).innerHTML = "confirmResizeFun("+Date().toString()+"):Obj.attr('id'):"+arguments[0].attr("id") + "  opts.position:"+arguments[1].position + "  event.clientX:"+arguments[2].clientX+"  objpos.left:"+arguments[3].left+"  objsize.width:"+arguments[4].width;return true;},
+                    
+                    //结束改变大小后执行的函数，传入的参数依次为confirmResizeFun返回结果、对象本身、改变大小参数、event（mouseup）
+                    endResizeFun : function(){$("#endResizeFun").get(0).innerHTML = "endResizeFun("+Date().toString()+"):confirmret:"+arguments[0]+"  Obj.attr('id'):"+arguments[1].attr("id") + "  opts.position:"+arguments[2].position + "  event.clientX:"+arguments[3].clientX;}
+                }
+            );
+        };
+        
+    </script>
+</head>
+<body>
+    <Div id="Div1" style="width:200px; height:200px; background-color:Green; overflow:hidden; position:absolute; left:200px; top:200px; margin:100px;">Resize me!</Div>
+    <input id="Button2" type="button" value="SetResizeAble" onclick="setresize();" />
+    <input id="Button1" type="button" value="ClearResizeAble" onclick="$('#Div1').ClearResizeAble();" />
+    <p id="beginResizeFun"></p>
+    <p id="resizeMoveFun"></p>
+    <p id="confirmResizeFun"></p>
+    <p id="endResizeFun"></p>
+</body>
+</html>

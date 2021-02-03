@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+
+    <script type="text/javascript" src="crypto.js"></script>
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript" src="sha1.js"></script>
+    <script type="text/javascript" src="sha256.js"></script>
+    <script type="text/javascript" src="ofb.js"></script>
+    <script type="text/javascript" src="aes.js"></script>
+    <script type="text/javascript" src="rabbit.js"></script>
+    <script type="text/javascript" src="pbkdf2.js"></script>
+    <script type="text/javascript" src="hmac.js"></script>
+    <script type="text/javascript" src="marc4.js"></script>
+    
+    <script type="text/javascript" src="des.js"></script>
+    
+    <script type="text/javascript" src="Barrett.js"></script>
+    <script type="text/javascript" src="BigInt.js"></script>
+    <script type="text/javascript" src="RSA.js"></script>
+    
+    <script type="text/javascript" src="xxtea.js"></script>
+    
+    <script type="text/javascript">
+    function test(){
+        var helloHex = Crypto.util.utf8StringToHex("aaadd中文");
+        alert( helloHex);
+      var helloString = Crypto.util.hexToUtf8String(helloHex);
+      alert(helloString);
+      
+      
+    }
+    
+    function RSACryt(){
+        setMaxDigits(parseInt(document.getElementById("RSA_MAXD").value));
+        var key = new RSAKeyPair(
+         document.getElementById("RSA_EKEY").value,
+         "",
+         document.getElementById("RSA_PARA").value
+        );
+        
+        document.getElementById('CrytString').value = RSAencrypted(key,document.getElementById('BaseString').value);
+    }
+    
+     function RSADec(){
+        setMaxDigits(parseInt(document.getElementById("RSA_MAXD").value));
+        var key = new RSAKeyPair(
+         "",
+         document.getElementById("RSA_DKEY").value,
+         document.getElementById("RSA_PARA").value
+        );
+        
+        document.getElementById('BaseString').value = RSAdecrypted(key,document.getElementById('CrytString').value);
+    }
+    </script>
+</head>
+<body>
+<table id=tableid border=1 bordercolor=blue style=" table-layout: fixed;" width="100%">
+        <tr>
+            <td width="100">
+                原文</td>
+            <td colspan="2">
+                <textarea id="BaseString" cols="20" name="S1" rows="2" 
+                    style="width: 100%; height: 300px">Message</textarea></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+             <input id="btn_toHex" type="button" value="原始字符转HEX串" onclick="document.getElementById('BaseString').value = Crypto.util.utf8StringToHex(document.getElementById('BaseString').value);" />&nbsp;&nbsp;
+             <input id="btn_toUTF" type="button" value="HEX串转原始字符" onclick="document.getElementById('BaseString').value = Crypto.util.hexToUtf8String(document.getElementById('BaseString').value);" />&nbsp;&nbsp;
+             </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input id="btn_MD5_Cryt" type="button" value="MD5加密" onclick="document.getElementById('CrytString').value = Crypto.MD5(document.getElementById('BaseString').value);" />&nbsp;&nbsp;
+                <input id="btn_SHA1_Cryt" type="button" value="SHA1加密" onclick="document.getElementById('CrytString').value = Crypto.SHA1(document.getElementById('BaseString').value);" />&nbsp;&nbsp;
+                <input id="btn_SHA256_Cryt" type="button" value="SHA256加密" onclick="document.getElementById('CrytString').value = Crypto.SHA256(document.getElementById('BaseString').value);" />&nbsp;&nbsp;
+                <input id="btn_AES_Cryt" type="button" value="AES加密" onclick="document.getElementById('CrytString').value = Crypto.AES.encrypt(document.getElementById('BaseString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_Rabbit_Cryt" type="button" value="Rabbit加密" onclick="document.getElementById('CrytString').value = Crypto.Rabbit.encrypt(document.getElementById('BaseString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_MARC4_Cryt" type="button" value="MARC4加密" onclick="document.getElementById('CrytString').value = Crypto.MARC4.encrypt(document.getElementById('BaseString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_HMAC-MD5_Cryt" type="button" value="HMAC-MD5加密" onclick="document.getElementById('CrytString').value = Crypto.HMAC(Crypto.MD5,document.getElementById('BaseString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_HMAC-SHA1_Cryt" type="button" value="HMAC-SHA1加密" onclick="document.getElementById('CrytString').value = Crypto.HMAC(Crypto.SHA1,document.getElementById('BaseString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_HMAC-SHA256_Cryt" type="button" value="HMAC-SHA256加密" onclick="document.getElementById('CrytString').value = Crypto.HMAC(Crypto.SHA256,document.getElementById('BaseString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_DES_Cryt" type="button" value="DES加密" onclick="document.getElementById('CrytString').value = DES(1,document.getElementById('BaseString').value,document.getElementById('key').value,0);" />&nbsp;&nbsp;
+                <input id="btn_RSA_Cryt" type="button" value="RSA加密" onclick="RSACryt();" />&nbsp;&nbsp;
+                <input id="btn_Xxtea_Cryt" type="button" value="Xxtea加密" onclick="document.getElementById('CrytString').value = XxteaEncode(document.getElementById('key').value,document.getElementById('BaseString').value);" />&nbsp;&nbsp;
+                <input id="Button1" type="button" value="test" onclick="test();" />&nbsp;&nbsp;
+            </td>
+            <td>
+                <input id="btn_AES_Dec" type="button" value="AES解密" onclick="document.getElementById('BaseString').value = Crypto.AES.decrypt(document.getElementById('CrytString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_Rabbit_Dec" type="button" value="Rabbit解密" onclick="document.getElementById('BaseString').value = Crypto.Rabbit.decrypt(document.getElementById('CrytString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_MARC4_Dec" type="button" value="MARC4解密" onclick="document.getElementById('BaseString').value = Crypto.MARC4.decrypt(document.getElementById('CrytString').value,document.getElementById('key').value);" />&nbsp;&nbsp;
+                <input id="btn_DES_Dec" type="button" value="DES解密" onclick="document.getElementById('BaseString').value = DES(0,document.getElementById('CrytString').value,document.getElementById('key').value,0);" />&nbsp;&nbsp;
+                <input id="btn_RSA_Dec" type="button" value="RSA解密" onclick="RSADec();" />&nbsp;&nbsp;
+                <input id="btn_Xxtea_Dec" type="button" value="Xxtea解密" onclick="document.getElementById('BaseString').value = XxteaDecode(document.getElementById('key').value,document.getElementById('CrytString').value);" />&nbsp;&nbsp;
+                </td>
+        </tr>
+        <tr>
+            <td>
+                密钥</td>
+            <td class="style1" colspan="2">
+                <input id="key" style="width: 516px" type="text" value="Secret Passphrase" /></td>
+        </tr>
+        <tr>
+            <td>
+                RSA加密参数</td>
+            <td class="style1" colspan="2">
+                MaxDigits<input id="RSA_MAXD" style="width: 516px" type="text" 
+                    value="19" /><br />
+                公钥<input id="RSA_EKEY" style="width: 516px" type="text" 
+                    value="82786068c60c2b84bdfe7a1e61be9c69" /><br />
+                私钥<input id="RSA_DKEY" style="width: 516px" type="text" 
+                    value="73189b2ebe7cde2fa0af1f4ce84b8fd9" /><br />
+                参数<input id="RSA_PARA" style="width: 516px" type="text" 
+                    value="89242ae2b4036f219c90a4ac7ac47757" /></td>
+        </tr>
+        <tr>
+            <td>
+                密文</td>
+            <td class="style1" colspan="2">
+                <textarea id="CrytString" cols="20" name="S2" rows="2" 
+                    style="width: 100%; height: 300px"></textarea></td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;</td>
+            <td class="style1">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+    </table>
+
+    <p>
+        &nbsp;</p>
+</body>
+</html>

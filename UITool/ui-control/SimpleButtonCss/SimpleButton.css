@@ -1,0 +1,518 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：Input类型的Button
+说明：按钮控件
+文件：SimpleButton.css
+
+资源文件：../SimpleButtonImg/SimpleButton_A_A.gif
+		  ../SimpleButtonImg/SimpleButton_A_Span.gif
+
+
+Input按钮类型样式
+<input type='button' selftype='SimpleButton' ButtonType='Input'  value='按钮文本' 
+ enable='true/false'  status='Up/Down' 
+class='SimpleButton_Input_Normal/Disable/Over/Click/Down/DownOver/DownClick/DownDisable' 
+ data='SimpleButtonOpts'
+ disabled=disabled  --屏蔽状态,对应enable参数
+>
+</input>
+
+
+Div按钮类型样式
+<div selftype='SimpleButton' ButtonType='Div'  value='按钮显示文字'  enable='true/false'
+    status='Up/Down'
+    stylestatus='Normal/Disable/Over/Click/Down'  --当前样式的状态
+    class='SimpleButton_Div_Normal/Disable/Over/Click/Down/DownOver/DownClick/DownDisable '
+    data='SimpleButtonOpts'
+>
+	  <div ButtonType='DivIcon' 
+    class='SimpleButton_DivIconImg_Normal/Disable/Over/Click/Down/DownDisable'>
+    </div>
+    <a>按钮显示文字</a>
+</div>
+
+A按钮类型样式
+<A  selftype='SimpleButton' ButtonType='Div'  
+	class='SimpleButton_A_Normal/Disable/Down/DownDisable'
+	enable='true/false'  status='Up/Down'
+	data='SimpleButtonOpts'
+	href="#">
+	<SPAN>按钮显示文字</SPAN>
+</A>
+
+-----------------------*/
+
+/*****************  Input按钮类型样式  *****************/
+/* 通用样式 */
+.SimpleButton_Input_Normal,.SimpleButton_Input_Over,.SimpleButton_Input_Click,.SimpleButton_Input_Disable,.SimpleButton_Input_Down,.SimpleButton_Input_DownOver,.SimpleButton_Input_DownClick,.SimpleButton_Input_DownDisable
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	cursor:hand;
+	color:#000000;
+	padding:1px 2px 1px 2px;
+	font:12px sans-serif; /* 字体样式 */
+}
+
+/* Normal样式 */
+.SimpleButton_Input_Normal
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#2C59AA 1px solid;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); /* 渐变效果 */
+}
+
+/* MouseOver样式 */
+.SimpleButton_Input_Over
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#2C59AA 1px solid;
+	background-color:#D7E7FA;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#D7E7FA);/* 渐变效果 */
+}
+
+/* Click样式 */
+.SimpleButton_Input_Click
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+}
+
+/* Down样式 */
+.SimpleButton_Input_Down
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+}
+
+/* MouseOver样式 */
+.SimpleButton_Input_DownOver
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	background-color:#D7E7FA;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#D7E7FA);/* 渐变效果 */
+}
+
+/* Click样式 */
+.SimpleButton_Input_DownClick
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+}
+
+/* Disable样式 */
+.SimpleButton_Input_Disable
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#2C59AA 1px solid;
+	background-color:#C3DAF5;
+	cursor:default;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); /* 渐变效果 */
+}
+
+/* DownDisable样式 */
+.SimpleButton_Input_DownDisable
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	cursor:default;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+}
+
+
+/*****************  DivIcon按钮类型样式  *****************/
+/* 通用样式 */
+.SimpleButton_Div_Normal,.SimpleButton_Div_Over,.SimpleButton_Div_Click,.SimpleButton_Div_Disable,.SimpleButton_Div_Down,.SimpleButton_Div_DownOver,.SimpleButton_Div_DownClick,.SimpleButton_Div_DownDisable
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	float:left;
+	margin:3px;
+	cursor:hand;
+	color:#000000;
+	padding:3px;
+	font:12px sans-serif; /* 字体样式 */
+	
+	width:70px;
+	height:16px;
+	text-align:center;
+}
+
+.SimpleButton_DivIconImg_Normal,.SimpleButton_DivIconImg_Over,.SimpleButton_DivIconImg_Click,.SimpleButton_DivIconImg_Disable,.SimpleButton_DivIconImg_Down,.SimpleButton_DivIconImg_DownOver,.SimpleButton_DivIconImg_DownClick,.SimpleButton_DivIconImg_DownDisable
+{
+	/* 不建议修改的样式 */
+	float:left;
+	
+	/* 可修改的样式 */
+	margin:0px 0px 0px 0px;
+	width:16px;
+	height:16px;
+	background-image:url(../../test/control/user.gif);
+	background-repeat:no-repeat;
+}
+
+/* Normal样式 */
+.SimpleButton_Div_Normal
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#2C59AA 1px solid;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); /* 渐变效果 */
+}
+
+.SimpleButton_DivIconImg_Normal
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-image:url(../../test/control/user.gif);
+}
+
+/* MouseOver样式 */
+.SimpleButton_Div_Over
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#2C59AA 1px solid;
+	background-color:#D7E7FA;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#D7E7FA);/* 渐变效果 */
+}
+
+.SimpleButton_DivIconImg_Over
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-image:url(../../test/control/arrow_next.gif);
+}
+
+/* Click样式 */
+.SimpleButton_Div_Click
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	background-color:#C3DAF5;
+	padding:4px 2px 2px 4px;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+}
+
+/* Down样式 */
+.SimpleButton_Div_Down
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+}
+
+/* MouseOver样式 */
+.SimpleButton_Div_DownOver
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	background-color:#D7E7FA;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#D7E7FA);/* 渐变效果 */
+}
+
+/* Click样式 */
+.SimpleButton_Div_DownClick
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#2C59AA 1px solid;
+	padding:4px 2px 2px 4px;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+}
+
+/* Disable样式 */
+.SimpleButton_Div_Disable
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#2C59AA 1px solid;
+	background-color:#C3DAF5;
+	color:Gray;
+	cursor:default;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); /* 渐变效果 */
+}
+
+/* DownDisable样式 */
+.SimpleButton_Div_DownDisable
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	border:#FFE400 1px solid;
+	cursor:default;
+	color:Gray;
+	background-color:#C3DAF5;
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+}
+
+
+
+/*****************  A按钮类型样式  *****************/
+
+/* A按钮类型-Normal样式 */
+A.SimpleButton_A_Normal 
+{
+	/* 不建议修改的样式 */
+	display:block;
+	float:left;
+	
+	/* 可修改的样式 */
+	padding-right:10px;
+	margin-right:10px;
+	font:12px sans-serif; /* 字体样式 */
+	background:url(../../ui-control/SimpleButtonImg/SimpleButton_A_A.gif) no-repeat right top; /* 按钮背景图片 */
+	height:24px;
+	color:White;
+	text-decoration:none;
+}
+
+A.SimpleButton_A_Normal SPAN 
+{
+	/* 不建议修改的样式 */
+	display:block;
+	
+	/* 可修改的样式 */
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:11px;
+	padding-right:1px;
+	line-height:14px;
+	background:url(../../ui-control/SimpleButtonImg/SimpleButton_A_Span.gif) no-repeat;
+}
+
+A.SimpleButton_A_Normal:hover 
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-position:right -24px;  /* 鼠标在上面时，背景图片变化 */
+}
+
+A.SimpleButton_A_Normal:hover SPAN 
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-position:left -24px;  /* 鼠标在上面时，背景图片变化 */
+}
+
+A.SimpleButton_A_Normal:active 
+{
+	/* 不建议修改的样式 */
+	outline-style:none;
+	
+	/* 可修改的样式 */
+	background-position:right -48px; /* 点击鼠标、鼠标按下时 */
+}
+
+A.SimpleButton_A_Normal:active SPAN 
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	padding-top: 6px;
+	padding-bottom:4px;
+	padding-left:12px;
+	padding-right:0px;
+	background-position:left -48px;
+}
+
+/* A按钮类型-Down样式 */
+A.SimpleButton_A_Down
+{
+	/* 不建议修改的样式 */
+	display:block;
+	float:left;
+	
+	/* 可修改的样式 */
+	padding-right:10px;
+	margin-right:10px;
+	font:12px sans-serif; /* 字体样式 */
+	background:url(../../ui-control/SimpleButtonImg/SimpleButton_A_A.gif) no-repeat right top; /* 按钮背景图片 */
+	background-position:right -48px;
+	height:24px;
+	color:White;
+	text-decoration:none;
+}
+
+A.SimpleButton_A_Down SPAN 
+{
+	/* 不建议修改的样式 */
+	display:block;
+	
+	/* 可修改的样式 */
+	line-height:14px;
+	background:url(../../ui-control/SimpleButtonImg/SimpleButton_A_Span.gif) no-repeat;
+	padding-top: 6px;
+	padding-bottom:4px;
+	padding-left:12px;
+	padding-right:0px;
+	background-position:left -48px;
+}
+
+A.SimpleButton_A_Down:hover 
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-position:right -24px;  /* 鼠标在上面时，背景图片变化 */
+}
+
+A.SimpleButton_A_Down:hover SPAN 
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	background-position:left -24px;  /* 鼠标在上面时，背景图片变化 */
+}
+
+A.SimpleButton_A_Down:active 
+{
+	/* 不建议修改的样式 */
+	outline-style:none;
+	
+	/* 可修改的样式 */
+	background-position:right -48px; /* 点击鼠标、鼠标按下时 */
+}
+
+A.SimpleButton_A_Down:active SPAN 
+{
+	/* 不建议修改的样式 */
+	
+	/* 可修改的样式 */
+	padding-top: 6px;
+	padding-bottom:4px;
+	padding-left:12px;
+	padding-right:0px;
+	background-position:left -48px;
+}
+
+/* A按钮类型-Disable样式 */
+A.SimpleButton_A_Disable
+{
+	/* 不建议修改的样式 */
+	display:block;
+	float:left;
+	
+	/* 可修改的样式 */
+	padding-right:10px;
+	margin-right:10px;
+	font:12px sans-serif; /* 字体样式 */
+	background:url(../../ui-control/SimpleButtonImg/SimpleButton_A_A.gif) no-repeat right top; /* 按钮背景图片 */
+	height:24px;
+	color:#C0C0C0;
+	text-decoration:none;
+	cursor:default;
+}
+
+A.SimpleButton_A_Disable SPAN 
+{
+	/* 不建议修改的样式 */
+	display:block;
+	
+	/* 可修改的样式 */
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:11px;
+	padding-right:1px;
+	line-height:14px;
+	background:url(../../ui-control/SimpleButtonImg/SimpleButton_A_Span.gif) no-repeat;
+}
+
+/* A按钮类型-DownDisable样式 */
+A.SimpleButton_A_DownDisable
+{
+	/* 不建议修改的样式 */
+	display:block;
+	float:left;
+	
+	/* 可修改的样式 */
+	padding-right:10px;
+	margin-right:10px;
+	font:12px sans-serif; /* 字体样式 */
+	background:url(../../ui-control/SimpleButtonImg/SimpleButton_A_A.gif) no-repeat right top; /* 按钮背景图片 */
+	background-position:right -48px;
+	height:24px;
+	color:#C0C0C0;
+	text-decoration:none;
+	cursor:default;
+}
+
+A.SimpleButton_A_DownDisable SPAN 
+{
+	/* 不建议修改的样式 */
+	display:block;
+	
+	/* 可修改的样式 */
+	line-height:14px;
+	background:url(../../ui-control/SimpleButtonImg/SimpleButton_A_Span.gif) no-repeat;
+	padding-top: 6px;
+	padding-bottom:4px;
+	padding-left:12px;
+	padding-right:0px;
+	background-position:left -48px;
+}

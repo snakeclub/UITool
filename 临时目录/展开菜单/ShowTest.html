@@ -1,0 +1,471 @@
+<HTML class=" x-viewport" id=ext-gen37><HEAD><TITLE>元数据管理系统</TITLE><LINK href="http://10.2.47.30:8015/metamanager/ext/resources/css/ext-all.css;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/css rel=stylesheet><LINK href="http://10.2.47.30:8015/metamanager/ext/resources/css/extend.css;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/css rel=stylesheet><LINK href="http://10.2.47.30:8015/metamanager/ext/resources/css/ext-patch.css;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/css rel=stylesheet><LINK href="http://10.2.47.30:8015/metamanager/ext/uxresources/Ext.ux.layout.css;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/css rel=stylesheet><LINK href="http://10.2.47.30:8015/metamanager/ext/uxresources/Ext.ux.upload.css;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/css rel=stylesheet><LINK href="http://10.2.47.30:8015/metamanager/ext/uxresources/Ext.ux.Spinner.css;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/css rel=stylesheet><LINK href="http://10.2.47.30:8015/metamanager/ext/uxresources/Ext.ux.basecss.css;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/css rel=stylesheet><LINK href="http://10.2.47.30:8015/metamanager/css/public.css;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/css rel=stylesheet>
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/js/ext-base.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/js/ext-all.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/js/ExtendExt.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/locale/ext-lang-zh_CN.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.TabCloseMenu.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.grid.TableGrid.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.layout.BorderLayoutOverride.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.layout.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.Spinner.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.form.SpinnerField.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.ToolbarFilter.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.Toolbar.Icon.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.Whether.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.StoreStatusBar.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.grid.ToggleHeader.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.TreeCheckNodeUI.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.mm.TreeCombo.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.form.DateTimeFieldUx.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.form.ComboMultiSelectGridBox.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/locale/Ext.ux.lang-zh_CN.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/js/locale/public-all-zh_CN.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/js/public-all.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT>
+Ext.BLANK_IMAGE_URL = '/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1';
+Ext.app.PermissionManager = new Ext.app.Permission({
+    ps:["MM_BIZ_USERVIEW:1","MM_BIZ_USERVIEW:2","MM_ANALYSE_DIFFERENCE:1","MM_DATAMAP:0","MM_DIR_MAPPING:1","MM_BIZ_DATAVIEW:1","MM_METADATA_MGR:0","MM_METADATA_MGR:21","MM_METADATA_MGR:5","MM_METADATA_MGR:6","MM_EXTRACT_MAN:1","MM_MM_MAPPING:1","MM_ALTERATION_SUB:1","MM_ALTERATION_SUB:2","MM_ALTERATION_SUB:3","MM_ALTERATION_SUB:4","MM_ALTERATION_SUB:5","MM_ALTERATION_SUB:6"],
+    gr:null
+});
+Ext.page.pageSize = 15;
+</SCRIPT>
+
+<META http-equiv=Content-Type content="text/html; charset=UTF-8"><LINK href="http://10.2.47.30:8015/metamanager/css/menu.css" type=text/css rel=stylesheet><LINK href="http://10.2.47.30:8015/metamanager/css/portal.css" type=text/css rel=stylesheet>
+<SCRIPT src="http://10.2.47.30:8015/metamanager/i18n.js.jsp;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.plugin.NoArrow.js" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.layout.CardLayoutAnimate.js" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.ux.tree.TreeLoader.js" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/metamodel/MetamodelTree.Public.js" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/bizview/MM.ViewPublic.js" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/metadata/Metadata.PublicAction.js;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/metadata/MetadataTree.Public.js" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/metadata/MetadataTree.Locate.js" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/metadata/MetadataTree.Filter.js" type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/ext/ux/Ext.form.DisplayFieldUx.js" type=text/javascript></SCRIPT>
+
+<SCRIPT type=text/javascript>
+var allmenus = ["MM_ALTERATION_REP","MM_VERSION","MM_VERSION_MGR","MM_METAEXPORT","MM_BIZ_DATAVIEW","MM_MAPPING","MM_MM_MAPPING","MM_DIR_MAPPING","MM_METADATA_MGR","MM_DICTIONARY_EXPORT","MM_EXTRACT_MAN","MM_ALTERATION","MM_ALTERATION_QRY","MM_ALTERATION_SUB","MM_ANALYSE","MM_DATAMAP","MM_EXP","MM_ANALYSE_DIFFERENCE","MM_ANALYSE_TABLERANK","MM_BIZVIEW","MM_BIZ_USERVIEW"];
+var topmenus = [{"menuCls":"nav_line","menuCode":"MM_ANALYSE","menuIcon":"","menuName":"元数据分析","menuOrder":2,"menuQtip":"","menuUri":"","menuVisibility":"","parentMenuCode":"ROOT","visible":true},{"menuCls":"nav_trans","menuCode":"MM_ALTERATION","menuIcon":"","menuName":"元数据变更管理","menuOrder":4,"menuQtip":"","menuUri":"","menuVisibility":"","parentMenuCode":"ROOT","visible":true},{"menuCls":"nav_version","menuCode":"MM_VERSION","menuIcon":"","menuName":"元数据版本管理","menuOrder":6,"menuQtip":"","menuUri":"","menuVisibility":"","parentMenuCode":"ROOT","visible":true},{"menuCls":"nav_bar","menuCode":"MM_EXP","menuIcon":"","menuName":"元数据导出","menuOrder":8,"menuQtip":"","menuUri":"","menuVisibility":"","parentMenuCode":"ROOT","visible":true},{"menuCls":"nav_tv","menuCode":"MM_BIZVIEW","menuIcon":"","menuName":"视图管理","menuOrder":15,"menuQtip":"","menuUri":"","menuVisibility":"","parentMenuCode":"ROOT","visible":true},{"menuCls":"nav_mapping","menuCode":"MM_MAPPING","menuIcon":"","menuName":"映射管理","menuOrder":31,"menuQtip":"","menuUri":"","menuVisibility":"","parentMenuCode":"ROOT","visible":true}];
+var userViews = []||[];
+var dataViews = [{"viewId":"8a82af9e35e7254e01362893f95c0043","viewName":"信息技术部","userId":"admin","defaultShow":false,"viewType":"3","displayOrder":12,"empty":true},{"viewId":"8a82af9e369a748d01369add1e550002","viewName":"一户通","userId":"admin","defaultShow":false,"viewType":"3","displayOrder":13,"empty":true},{"viewId":"8a82af9e369a748d0136bfa3b67500cc","viewName":"数据地图","userId":"admin","defaultShow":false,"viewType":"3","displayOrder":14,"empty":true},{"viewId":"8a82af9e369a748d0136c3206ab100f7","viewName":"ETL2","userId":"admin","defaultShow":false,"viewType":"3","displayOrder":15,"empty":true}]||[];
+var PageContext = {
+    logoDisplay: false,
+    copyrightDisplay: false,
+    redirectFile: null
+};
+</SCRIPT>
+
+<SCRIPT type=text/javascript>(function(){(window.hostMIF = parent.document.getElementById("ext-gen21").ownerCt)._windowContext=window;})()</SCRIPT>
+</HEAD>
+<BODY class=" x-border-layout-ct" id=ext-gen14 style="POSITION: relative" scroll=no>
+<DIV class="logo-style x-hide-display x-border-panel" id=x-north>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" background=/metamanager/images/bg/00.jpg border=0>
+<TBODY>
+<TR class=x-combo-list-hd>
+<TD height=40>
+<DIV class=logo onclick="javascript:goHomePage();return false;"><IMG height=30 alt=元数据管理系统 src="http://10.2.47.30:8015/metamanager/images/skin/default/logo-zh.png" align=absMiddle> &nbsp; <SPAN style="FONT-SIZE: 16px">元数据管理系统</SPAN> </DIV></TD>
+<TD style="FONT-WEIGHT: normal; FONT-SIZE: 12px" align=right width="50%">|&nbsp; 登录用户：黎慧剑 &nbsp;|&nbsp; 登录时间：2012-04-20 08:21 &nbsp;|&nbsp; <SPAN style="CURSOR: pointer" onclick=logout();>退出系统</SPAN>&nbsp;|&nbsp;&nbsp;</TD></TR></TBODY></TABLE></DIV>
+<DIV class="copyright-style x-hide-display x-border-panel" id=x-south>版权所有?东南融通（中国）系统工程有限公司 </DIV>
+<DIV class="x-tab-panel x-border-panel" id=west-panel style="LEFT: 0px; WIDTH: 240px; TOP: 0px">
+<DIV class="x-tab-panel-header x-unselectable" id=ext-gen33 style="WIDTH: 240px; MozUserSelect: none; KhtmlUserSelect: none" unselectable="on">
+<DIV class=x-tab-strip-wrap id=ext-gen37>
+<UL class="x-tab-strip x-tab-strip-top" id=ext-gen39>
+<LI class=" " id=west-panel__TreePortal><A class=x-tab-strip-close onclick="return false;"></A><A class=x-tab-right onclick="return false;" href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><EM class=x-tab-left><SPAN class=x-tab-strip-inner><SPAN class="x-tab-strip-text ">浏览</SPAN></SPAN></EM></A></LI>
+<LI class=" " id=west-panel__SearchPortal><A class=x-tab-strip-close onclick="return false;"></A><A class=x-tab-right onclick="return false;" href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><EM class=x-tab-left><SPAN class=x-tab-strip-inner><SPAN class="x-tab-strip-text ">查询</SPAN></SPAN></EM></A></LI>
+<LI class=" x-tab-strip-active" id=west-panel__advancePanel><A class=x-tab-strip-close onclick="return false;"></A><A class=x-tab-right onclick="return false;" href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><EM class=x-tab-left><SPAN class=x-tab-strip-inner><SPAN class="x-tab-strip-text ">高级功能</SPAN></SPAN></EM></A></LI>
+<LI class=x-tab-edge id=ext-gen40></LI>
+<DIV class=x-clear id=ext-gen41></DIV></UL></DIV>
+<DIV class=x-tab-strip-spacer id=ext-gen38></DIV></DIV>
+<DIV class=x-tab-panel-bwrap id=ext-gen34>
+<DIV class="x-tab-panel-body x-tab-panel-body-top" id=ext-gen35 style="WIDTH: 240px; HEIGHT: 780px">
+<DIV class="x-panel x-panel-noborder  x-hide-display" id=TreePortal style="WIDTH: 238px">
+<DIV class=x-panel-bwrap id=ext-gen48>
+<DIV class="x-panel-tbar x-panel-tbar-noheader x-panel-tbar-noborder" id=ext-gen49>
+<DIV class="x-toolbar x-small-editor" id=ext-comp-1029>
+<TABLE cellSpacing=0>
+<TBODY>
+<TR>
+<TD style="WIDTH: 100%">
+<DIV class=ytb-spacer id=ext-gen51></DIV></TD>
+<TD id=ext-gen52>
+<TABLE class="x-btn-wrap x-btn x-btn-icon " id=ext-comp-1030 style="WIDTH: auto" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_collapseall" id=ext-gen54 qtip="全部折叠">&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD>
+<TD><SPAN class=ytb-sep id=ext-gen60></SPAN></TD>
+<TD class=" x-hide-display" id=ext-gen61>
+<TABLE class="x-btn-wrap x-btn x-btn-icon x-item-disabled" id=TreePortal-add-rootmd style="WIDTH: auto" disabled cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_iplus" id=ext-gen63 qtip="新建元数据">&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD>
+<TD style="DISPLAY: none"><SPAN class=ytb-sep id=ext-gen69></SPAN></TD>
+<TD id=ext-gen70>
+<TABLE class="x-btn-wrap x-btn x-btn-icon " id=ext-comp-1031 style="WIDTH: auto" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR class=" " id=ext-gen78>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_ctrl_down" id=ext-gen72 qtip="切换视图">&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD>
+<TD><SPAN class=ytb-sep id=ext-gen79></SPAN></TD>
+<TD id=ext-gen80>
+<TABLE class="x-btn-wrap x-btn x-btn-icon " id=ext-comp-1032 style="WIDTH: auto" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_refresh" id=ext-gen82 qtip="刷新">&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD>
+<TD><SPAN class=ytb-sep id=ext-gen88></SPAN></TD>
+<TD id=ext-gen89>
+<TABLE class="x-btn-wrap x-btn x-btn-icon " id=TreePortal-filter style="WIDTH: auto" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_filter" id=ext-gen91 qtip="过滤">&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD>
+<TD><SPAN class=ytb-sep id=ext-gen97></SPAN></TD>
+<TD id=ext-gen98>
+<TABLE class="x-btn-wrap x-btn x-btn-icon" id=ext-comp-1033 style="WIDTH: auto" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_file_font_ch" id=ext-gen100 qtip="切换名称">&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD>
+<TD><SPAN class=ytb-sep id=ext-gen106></SPAN></TD>
+<TD id=ext-gen107>
+<TABLE class="x-btn-wrap x-btn x-btn-icon" id=ext-comp-1034 style="WIDTH: auto" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_synced" id=ext-gen109 qtip="定位">&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen50 style="WIDTH: 238px; HEIGHT: 753px">
+<DIV class="x-panel x-tree" id=dataview-tree style="LEFT: auto; VISIBILITY: visible; WIDTH: 238px; POSITION: static; TOP: auto">
+<DIV class=x-panel-bwrap id=ext-gen115>
+<DIV class="x-panel-body x-panel-body-noheader" id=ext-gen116 style="OVERFLOW: auto; WIDTH: 238px; HEIGHT: 753px">
+<UL class="x-tree-root-ct x-tree-lines" id=ext-gen117>
+<DIV class=x-tree-root-node>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="ynode-424"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon node-ico-docs" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">信息技术部</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-unselectable  x-tree-node-collapsed" unselectable="on" ext:tree-node-id="ynode-425"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-plus" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon node-ico-docs" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">一户通</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-unselectable  x-tree-node-collapsed" unselectable="on" ext:tree-node-id="ynode-426"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-plus" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon node-ico-docs" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">数据地图</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-unselectable  x-tree-node-collapsed" unselectable="on" ext:tree-node-id="ynode-427"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-end-plus" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon node-ico-docs" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">ETL2</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI></DIV></UL></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-panel x-panel-noborder x-hide-display" id=SearchPortal>
+<DIV class=x-panel-bwrap id=ext-gen125>
+<DIV class="x-panel-tbar x-panel-tbar-noheader x-panel-tbar-noborder" id=ext-gen126>
+<DIV class="x-toolbar x-small-editor" id=ext-comp-1035>
+<TABLE cellSpacing=0>
+<TBODY>
+<TR>
+<TD style="WIDTH: 100%">
+<DIV class=ytb-spacer id=ext-gen128></DIV></TD>
+<TD><SPAN class=ytb-text id=ext-gen129><A id=search-switch-id hideFocus onclick=MM.Portal.Search.activeSearchPortal(); href="javascript:void(0);">高级查询?</A></SPAN></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen127>
+<DIV class=x-panel id=comm_panel style="LEFT: auto; VISIBILITY: visible; WIDTH: 238px; POSITION: static; TOP: auto">
+<DIV class=x-panel-bwrap id=ext-gen130>
+<DIV class="x-panel-body x-panel-body-noheader x-table-layout-ct" id=ext-gen131 style="WIDTH: 238px; HEIGHT: 16px">
+<TABLE class="x-table-layout portal-search-table" id=ext-gen209 cellSpacing=0>
+<TBODY>
+<TR>
+<TD class="x-table-layout-cell portal-search-cell portal-search-text" id=ext-gen191><INPUT class=" x-form-text x-form-field lst x-form-empty-field" id=instanceName style="WIDTH: 100%" value=默认查询所有元数据 name=instanceName autocomplete="off"></TD></TR>
+<TR>
+<TD class="x-table-layout-cell portal-search-cell portal-search-btn" id=ext-gen197>
+<TABLE class="x-btn-wrap x-btn" id=ext-comp-1003 style="WIDTH: auto" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class=x-btn-text id=ext-gen199>&nbsp;查询&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD></TR>
+<TR class=" portal-search-row" id=ext-gen208>
+<TD class="x-table-layout-cell portal-search-cell" id=ext-gen205>
+<DIV class="x-panel x-panel-noborder x-form-label-left" id=ext-comp-1004>
+<DIV class=x-panel-bwrap id=ext-gen206>
+<FORM class="x-panel-body x-panel-body-noheader x-panel-body-noborder x-form" id=ext-gen24 style="HEIGHT: auto" method=post>
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=ext-comp-1005>:</LABEL>
+<DIV class=x-form-element id=x-form-el-ext-comp-1005 style="PADDING-LEFT: 105px">
+<DIV class=" x-form-display-field" id=ext-comp-1005 name="ext-comp-1005">
+<TABLE class=x-table-layout cellSpacing=0 cellPadding=0>
+<TBODY>
+<TR>
+<TD nowarp="">
+<DIV class=portal-scop-txt style="WIDTH: 100px"><SPAN>查询范围(可选):</SPAN></DIV></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV>
+<FIELDSET class=" x-fieldset x-fieldset-noborder x-form-label-left" id=ext-formset-dataview>
+<DIV class=x-fieldset-bwrap id=ext-gen210>
+<DIV class="x-fieldset-body x-fieldset-body-noheader x-fieldset-body-noborder" id=ext-gen211 style="HEIGHT: auto">
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=ext-comp-1006>:</LABEL>
+<DIV class=x-form-element id=x-form-el-ext-comp-1006 style="PADDING-LEFT: 105px">
+<DIV class="x-panel x-form-check-group x-panel-noborder x-form-field" id=ext-comp-1040>
+<DIV class=x-panel-bwrap id=ext-gen214>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder x-column-layout-ct" id=ext-gen215>
+<DIV class=x-column-inner id=ext-gen216>
+<DIV class="x-panel x-panel-noborder x-column" id=ext-comp-1041>
+<DIV class=x-panel-bwrap id=ext-gen218>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen219>
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=cbx-all-dataview>:</LABEL>
+<DIV class="x-form-element x-form-checkbox-delimit" id=x-form-el-cbx-all-dataview style="PADDING-LEFT: 105px">
+<DIV class=x-form-check-wrap id=ext-gen221>
+<DIV class=x-form-check-wrap-inner id=ext-gen220 tabIndex=0><IMG class=x-form-check id=ext-gen223 src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><INPUT class=" x-form-checkbox x-form-field x-hidden" id=cbx-all-dataview tabIndex=0 type=checkbox name=cbx-all-dataview autocomplete="off"><LABEL class=x-form-cb-label id=ext-gen222 for=cbx-all-dataview>全选系统视图</LABEL></DIV></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV>
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=ext-comp-1042>:</LABEL>
+<DIV class=x-form-element id=x-form-el-ext-comp-1042 style="PADDING-LEFT: 105px">
+<DIV class=x-form-check-wrap id=ext-gen234>
+<DIV class=x-form-check-wrap-inner id=ext-gen233 tabIndex=0><IMG class=x-form-check id=ext-gen236 src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><INPUT class=" x-form-checkbox x-form-field x-hidden" id=ext-comp-1042 tabIndex=0 type=checkbox value=8a82af9e35e7254e01362893f95c0043 name=dataview autocomplete="off"><LABEL class=x-form-cb-label id=ext-gen235 for=ext-comp-1042>信息技术部</LABEL></DIV></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV>
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=ext-comp-1043>:</LABEL>
+<DIV class=x-form-element id=x-form-el-ext-comp-1043 style="PADDING-LEFT: 105px">
+<DIV class=x-form-check-wrap id=ext-gen247>
+<DIV class=x-form-check-wrap-inner id=ext-gen246 tabIndex=0><IMG class=x-form-check id=ext-gen249 src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><INPUT class=" x-form-checkbox x-form-field x-hidden" id=ext-comp-1043 tabIndex=0 type=checkbox value=8a82af9e369a748d01369add1e550002 name=dataview autocomplete="off"><LABEL class=x-form-cb-label id=ext-gen248 for=ext-comp-1043>一户通</LABEL></DIV></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV>
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=ext-comp-1044>:</LABEL>
+<DIV class=x-form-element id=x-form-el-ext-comp-1044 style="PADDING-LEFT: 105px">
+<DIV class=x-form-check-wrap id=ext-gen260>
+<DIV class=x-form-check-wrap-inner id=ext-gen259 tabIndex=0><IMG class=x-form-check id=ext-gen262 src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><INPUT class=" x-form-checkbox x-form-field x-hidden" id=ext-comp-1044 tabIndex=0 type=checkbox value=8a82af9e369a748d0136bfa3b67500cc name=dataview autocomplete="off"><LABEL class=x-form-cb-label id=ext-gen261 for=ext-comp-1044>数据地图</LABEL></DIV></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV>
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=ext-comp-1045>:</LABEL>
+<DIV class=x-form-element id=x-form-el-ext-comp-1045 style="PADDING-LEFT: 105px">
+<DIV class=x-form-check-wrap id=ext-gen273>
+<DIV class=x-form-check-wrap-inner id=ext-gen272 tabIndex=0><IMG class=x-form-check id=ext-gen275 src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><INPUT class=" x-form-checkbox x-form-field x-hidden" id=ext-comp-1045 tabIndex=0 type=checkbox value=8a82af9e369a748d0136c3206ab100f7 name=dataview autocomplete="off"><LABEL class=x-form-cb-label id=ext-gen274 for=ext-comp-1045>ETL2</LABEL></DIV></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV></DIV></DIV></DIV>
+<DIV class=x-clear id=ext-gen217></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV></DIV></DIV></FIELDSET>
+<FIELDSET class=" x-fieldset x-fieldset-noborder x-hide-display x-form-label-left" id=ext-formset-userview>
+<DIV class=x-fieldset-bwrap id=ext-gen212>
+<DIV class="x-fieldset-body x-fieldset-body-noheader x-fieldset-body-noborder" id=ext-gen213 style="HEIGHT: auto">
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=ext-comp-1007>:</LABEL>
+<DIV class=x-form-element id=x-form-el-ext-comp-1007 style="PADDING-LEFT: 105px">
+<DIV class="x-panel x-form-check-group x-panel-noborder x-form-field" id=ext-comp-1046>
+<DIV class=x-panel-bwrap id=ext-gen288>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder x-column-layout-ct" id=ext-gen289>
+<DIV class=x-column-inner id=ext-gen290>
+<DIV class="x-panel x-panel-noborder x-column" id=ext-comp-1047>
+<DIV class=x-panel-bwrap id=ext-gen292>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen293>
+<DIV class="x-form-item  x-hide-label" tabIndex=-1><LABEL class=x-form-item-label style="WIDTH: 100px" for=cbx-all-userview>:</LABEL>
+<DIV class="x-form-element x-form-checkbox-delimit" id=x-form-el-cbx-all-userview style="PADDING-LEFT: 105px">
+<DIV class=x-form-check-wrap id=ext-gen295>
+<DIV class=x-form-check-wrap-inner id=ext-gen294 tabIndex=0><IMG class=x-form-check id=ext-gen297 src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><INPUT class=" x-form-checkbox x-form-field x-hidden" id=cbx-all-userview tabIndex=0 type=checkbox name=cbx-all-userview autocomplete="off"><LABEL class=x-form-cb-label id=ext-gen296 for=cbx-all-userview>全选用户视图</LABEL></DIV></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV></DIV></DIV></DIV>
+<DIV class=x-clear id=ext-gen291></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class=x-form-clear-left></DIV></DIV></DIV></DIV></FIELDSET></FORM></DIV></DIV></TD></TR></TBODY></TABLE></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-panel x-panel-noborder " id=advancePanel style="WIDTH: 238px">
+<DIV class=x-panel-bwrap id=ext-gen134>
+<DIV class="x-panel-tbar x-panel-tbar-noheader x-panel-tbar-noborder" id=ext-gen135>
+<DIV class="x-toolbar x-small-editor" id=ext-comp-1036>
+<TABLE cellSpacing=0>
+<TBODY>
+<TR>
+<TD style="WIDTH: 100%">
+<DIV class=ytb-spacer id=ext-gen137></DIV></TD>
+<TD id=ext-gen138>
+<TABLE class="x-btn-wrap x-btn x-btn-icon" id=ext-comp-1037 style="WIDTH: auto" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_eye" id=ext-gen140 title=我的视图>&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD>
+<TD><SPAN class=ytb-sep id=ext-gen146></SPAN></TD>
+<TD class=" x-hide-display" id=ext-gen147>
+<TABLE class="x-btn-wrap x-btn x-btn-icon x-item-disabled" id=ext-comp-1038 style="WIDTH: auto" disabled cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_zip_up" id=ext-gen149 title=元数据采集>&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD>
+<TD style="DISPLAY: none"><SPAN class=ytb-sep id=ext-gen155></SPAN></TD>
+<TD class=" x-hide-display" id=ext-gen156>
+<TABLE class="x-btn-wrap x-btn x-btn-icon x-item-disabled" id=ext-comp-1039 style="WIDTH: auto" disabled cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD class=x-btn-left><I>&nbsp;</I></TD>
+<TD class=x-btn-center><EM unselectable="on"><BUTTON class="x-btn-text btn_ico_bricks" id=ext-gen158 title=元数据类型管理>&nbsp;</BUTTON></EM></TD>
+<TD class=x-btn-right><I>&nbsp;</I></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen136 style="WIDTH: 238px; HEIGHT: 753px">
+<DIV class="x-panel " id=ext-comp-1020 style="WIDTH: auto">
+<DIV class="x-panel-header x-unselectable x-accordion-hd" id=ext-gen310 style="CURSOR: pointer; MozUserSelect: none; KhtmlUserSelect: none" unselectable="on">
+<DIV class="x-tool x-tool-toggle" id=ext-gen315>&nbsp;</DIV><IMG class="x-panel-inline-icon nav_line" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><SPAN class=x-panel-header-text id=ext-gen319>元数据分析</SPAN></DIV>
+<DIV class=x-panel-bwrap id=ext-gen311 style="DISPLAY: block; LEFT: 0px; VISIBILITY: visible; POSITION: static; TOP: 0px">
+<DIV class=x-panel-body id=ext-gen312 style="OVERFLOW: auto; WIDTH: auto; HEIGHT: 615px">
+<DIV class="x-panel x-panel-noborder x-tree" id=ext-comp-1014>
+<DIV class=x-panel-bwrap id=ext-gen370>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen371 style="OVERFLOW: auto">
+<UL class="x-tree-root-ct x-tree-lines" id=ext-gen372>
+<DIV class=x-tree-root-node>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable  x-tree-node-over" unselectable="on" ext:tree-node-id="MM_ANALYSE_TABLERANK"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/medal_gold_2.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">表关联度分析</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_ANALYSE_DIFFERENCE"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-end" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/i_col.gif" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">属性值差异分析</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI></DIV></UL></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-panel x-panel-collapsed" id=ext-comp-1021 style="WIDTH: auto">
+<DIV class="x-panel-header x-unselectable x-accordion-hd" id=ext-gen320 style="CURSOR: pointer; MozUserSelect: none; KhtmlUserSelect: none" unselectable="on">
+<DIV class="x-tool x-tool-toggle" id=ext-gen325>&nbsp;</DIV><IMG class="x-panel-inline-icon nav_trans" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><SPAN class=x-panel-header-text id=ext-gen329>元数据变更管理</SPAN></DIV>
+<DIV class=x-panel-bwrap id=ext-gen321 style="DISPLAY: none; LEFT: 0px; VISIBILITY: visible; POSITION: static; TOP: 0px">
+<DIV class=x-panel-body id=ext-gen322 style="OVERFLOW: auto; WIDTH: auto; HEIGHT: 615px">
+<DIV class="x-panel x-panel-noborder x-tree" id=ext-comp-1015>
+<DIV class=x-panel-bwrap id=ext-gen379>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen380 style="OVERFLOW: auto">
+<UL class="x-tree-root-ct x-tree-lines" id=ext-gen381>
+<DIV class=x-tree-root-node>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_ALTERATION_REP"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/transmit.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">元数据变更报表</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_ALTERATION_QRY"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/transmit.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">元数据变更查询</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_ALTERATION_SUB"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-end" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/transmit_check.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">元数据变更订阅</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI></DIV></UL></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-panel x-panel-collapsed" id=ext-comp-1022 style="WIDTH: auto">
+<DIV class="x-panel-header x-unselectable x-accordion-hd" id=ext-gen330 style="CURSOR: pointer; MozUserSelect: none; KhtmlUserSelect: none" unselectable="on">
+<DIV class="x-tool x-tool-toggle" id=ext-gen335>&nbsp;</DIV><IMG class="x-panel-inline-icon nav_version" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><SPAN class=x-panel-header-text id=ext-gen339>元数据版本管理</SPAN></DIV>
+<DIV class=x-panel-bwrap id=ext-gen331 style="DISPLAY: none; LEFT: 0px; VISIBILITY: visible; POSITION: static; TOP: 0px">
+<DIV class=x-panel-body id=ext-gen332 style="OVERFLOW: auto; WIDTH: auto; HEIGHT: 615px">
+<DIV class="x-panel x-panel-noborder x-tree" id=ext-comp-1016>
+<DIV class=x-panel-bwrap id=ext-gen388>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen389 style="OVERFLOW: auto">
+<UL class="x-tree-root-ct x-tree-lines" id=ext-gen390>
+<DIV class=x-tree-root-node>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_VERSION_MGR"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-end" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/anchor_find.gif" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">版本查询</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI></DIV></UL></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-panel x-panel-collapsed" id=ext-comp-1023 style="WIDTH: auto">
+<DIV class="x-panel-header x-unselectable x-accordion-hd" id=ext-gen340 style="CURSOR: pointer; MozUserSelect: none; KhtmlUserSelect: none" unselectable="on">
+<DIV class="x-tool x-tool-toggle" id=ext-gen345>&nbsp;</DIV><IMG class="x-panel-inline-icon nav_bar" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><SPAN class=x-panel-header-text id=ext-gen349>元数据导出</SPAN></DIV>
+<DIV class=x-panel-bwrap id=ext-gen341 style="DISPLAY: none; LEFT: 0px; VISIBILITY: visible; POSITION: static; TOP: 0px">
+<DIV class=x-panel-body id=ext-gen342 style="OVERFLOW: auto; WIDTH: auto; HEIGHT: 615px">
+<DIV class="x-panel x-panel-noborder x-tree" id=ext-comp-1017>
+<DIV class=x-panel-bwrap id=ext-gen397>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen398 style="OVERFLOW: auto">
+<UL class="x-tree-root-ct x-tree-lines" id=ext-gen399>
+<DIV class=x-tree-root-node>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_METAEXPORT"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/database_save.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">元数据导出</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_DICTIONARY_EXPORT"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-end" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/database_save.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">数据字典导出</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI></DIV></UL></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-panel x-panel-collapsed" id=ext-comp-1024 style="WIDTH: auto">
+<DIV class="x-panel-header x-unselectable x-accordion-hd" id=ext-gen350 style="CURSOR: pointer; MozUserSelect: none; KhtmlUserSelect: none" unselectable="on">
+<DIV class="x-tool x-tool-toggle" id=ext-gen355>&nbsp;</DIV><IMG class="x-panel-inline-icon nav_tv" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><SPAN class=x-panel-header-text id=ext-gen359>视图管理</SPAN></DIV>
+<DIV class=x-panel-bwrap id=ext-gen351 style="DISPLAY: none; LEFT: 0px; VISIBILITY: visible; POSITION: static; TOP: 0px">
+<DIV class=x-panel-body id=ext-gen352 style="OVERFLOW: auto; WIDTH: auto; HEIGHT: 615px">
+<DIV class="x-panel x-panel-noborder x-tree" id=ext-comp-1018>
+<DIV class=x-panel-bwrap id=ext-gen406>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen407 style="OVERFLOW: auto">
+<UL class="x-tree-root-ct x-tree-lines" id=ext-gen408>
+<DIV class=x-tree-root-node>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_BIZ_USERVIEW"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/cur_activity.gif" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">用户视图</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_BIZ_DATAVIEW"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-end" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/photos.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">系统视图</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI></DIV></UL></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-panel x-panel-collapsed" id=ext-comp-1025 style="WIDTH: auto">
+<DIV class="x-panel-header x-unselectable x-accordion-hd" id=ext-gen360 style="CURSOR: pointer; MozUserSelect: none; KhtmlUserSelect: none" unselectable="on">
+<DIV class="x-tool x-tool-toggle" id=ext-gen365>&nbsp;</DIV><IMG class="x-panel-inline-icon nav_mapping" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><SPAN class=x-panel-header-text id=ext-gen369>映射管理</SPAN></DIV>
+<DIV class=x-panel-bwrap id=ext-gen361 style="DISPLAY: none; LEFT: 0px; VISIBILITY: visible; POSITION: static; TOP: 0px">
+<DIV class=x-panel-body id=ext-gen362 style="OVERFLOW: auto; WIDTH: auto; HEIGHT: 615px">
+<DIV class="x-panel x-panel-noborder x-tree" id=ext-comp-1019>
+<DIV class=x-panel-bwrap id=ext-gen415>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen416 style="OVERFLOW: auto">
+<UL class="x-tree-root-ct x-tree-lines" id=ext-gen417>
+<DIV class=x-tree-root-node>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_MM_MAPPING"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/action_mappingdb.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">元数据类型映射管理</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI>
+<LI class=x-tree-node>
+<DIV class="x-tree-node-el x-tree-node-leaf x-unselectable " unselectable="on" ext:tree-node-id="MM_DIR_MAPPING"><SPAN class=x-tree-node-indent></SPAN><IMG class="x-tree-ec-icon x-tree-elbow-end" src="http://10.2.47.30:8015/metamanager/ext/resources/images/default/s.gif;jsessionid=E19237F2CD9CBCBD41AE7DBB7EA997C1"><IMG class="x-tree-node-icon x-tree-node-inline-icon" src="http://10.2.47.30:8015/metamanager/images/icons/action_mapping.png" unselectable="on"><A class=x-tree-node-anchor hideFocus tabIndex=1 href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><SPAN unselectable="on">元数据映射管理</SPAN></A></DIV>
+<UL class=x-tree-node-ct style="DISPLAY: none"></UL></LI></DIV></UL></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-tab-panel x-border-panel" id=centerZone style="LEFT: 245px; WIDTH: 1021px; TOP: 0px">
+<DIV class="x-tab-panel-header x-unselectable" id=ext-gen174 style="WIDTH: 1021px; MozUserSelect: none; KhtmlUserSelect: none" unselectable="on">
+<DIV class=x-tab-strip-wrap id=ext-gen178 style="WIDTH: 1019px">
+<UL class="x-tab-strip x-tab-strip-top" id=ext-gen180>
+<LI class=" x-tab-with-icon x-tab-strip-active" id=centerZone__x-home><A class=x-tab-strip-close onclick="return false;"></A><A class=x-tab-right onclick="return false;" href="http://10.2.47.30:8015/metamanager/login.do?invoke=login&amp;userId=lihuijian&amp;sessionId=00F2DCFD27BE42B7494E7B54A4E14261#"><EM class=x-tab-left><SPAN class=x-tab-strip-inner><SPAN class="x-tab-strip-text btn_ico_home">首页</SPAN></SPAN></EM></A></LI>
+<LI class=x-tab-edge id=ext-gen181></LI>
+<DIV class=x-clear id=ext-gen182></DIV></UL></DIV>
+<DIV class=x-tab-strip-spacer id=ext-gen179></DIV></DIV>
+<DIV class=x-tab-panel-bwrap id=ext-gen175>
+<DIV class="x-tab-panel-body x-tab-panel-body-top" id=ext-gen176 style="WIDTH: 1021px; HEIGHT: 780px">
+<DIV class="x-panel x-panel-noborder" id=x-home style="WIDTH: 1019px">
+<DIV class=x-panel-bwrap id=ext-gen189>
+<DIV class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id=ext-gen190 style="OVERFLOW: auto; WIDTH: 1019px; HEIGHT: 779px">
+<DIV id=x-home-content><IFRAME id=home-content src="home.do?invoke=goHome" frameBorder=0 width="100%" height="100%"></IFRAME></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<FORM id=x-export-form style="diplay: none" action=# method=post><INPUT type=hidden name=exportData> </FORM>
+<FORM id=x-download-form style="diplay: none" action=# method=post target=x-download-frame><INPUT type=hidden value=1334881292487 name=_ts> <INPUT id=expData type=hidden name=expData><!-- 2012/3/4 翁能新增 --> </FORM><IFRAME style="DISPLAY: none" name=x-download-frame src="#"></IFRAME>
+<SCRIPT src="http://10.2.47.30:8015/metamanager/fulltextsearch/Portal.left.js" defer type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/meta.js" defer type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/portal.js" defer type=text/javascript></SCRIPT>
+
+<SCRIPT src="http://10.2.47.30:8015/metamanager/main.js" defer type=text/javascript></SCRIPT>
+
+<SCRIPT defer type=text/javascript>
+window.onclose = function() {
+    Ext.Ajax.request({
+        url: '/metamanager/logout.do?invoke=logout'
+    });
+}
+</SCRIPT>
+
+<DIV class=x-ie-shadow id=ext-gen430 style="DISPLAY: none; Z-INDEX: 19999; FILTER: progid:DXImageTransform.Microsoft.alpha(opacity=50) progid:DXImageTransform.Microsoft.Blur(pixelradius=4); LEFT: 156px; WIDTH: 38px; TOP: 51px; HEIGHT: 32px"></DIV>
+<DIV class="x-tip " id=ext-comp-1001 style="DISPLAY: none; Z-INDEX: 20000; LEFT: 158px; VISIBILITY: hidden; WIDTH: 40px; POSITION: absolute; TOP: 53px">
+<DIV class=x-tip-tl>
+<DIV class=x-tip-tr>
+<DIV class=x-tip-tc>
+<DIV class="x-tip-header x-unselectable" id=ext-gen15 style="MozUserSelect: none; KhtmlUserSelect: none" unselectable="on"><SPAN class=x-tip-header-text id=ext-gen429></SPAN>&nbsp;</DIV></DIV></DIV></DIV>
+<DIV class=x-tip-bwrap id=ext-gen16>
+<DIV class=x-tip-ml>
+<DIV class=x-tip-mr>
+<DIV class=x-tip-mc>
+<DIV class=x-tip-body id=ext-gen17 style="WIDTH: 28px; HEIGHT: auto">刷新</DIV></DIV></DIV></DIV>
+<DIV class="x-tip-bl x-panel-nofooter">
+<DIV class=x-tip-br>
+<DIV class=x-tip-bc></DIV></DIV></DIV></DIV></DIV>
+<DIV class="x-layout-split x-layout-split-west x-splitbar-h" id=west-panel-xsplit style="LEFT: 240px; TOP: 0px; HEIGHT: 808px" unselectable="on">&nbsp;
+<DIV class="x-layout-mini x-layout-mini-west" id=ext-gen166>&nbsp;</DIV></DIV>
+<DIV class=" x-unselectable x-splitbar-proxy x-splitbar-proxy-h" id=ext-gen170 style="MozUserSelect: none; KhtmlUserSelect: none" unselectable="on"></DIV>
+<DIV id=ext-gen432 style="FONT-WEIGHT: 400; FONT-SIZE: 12px; LEFT: -1000px; VISIBILITY: hidden; TEXT-TRANSFORM: none; WIDTH: auto; LINE-HEIGHT: 14px; FONT-STYLE: normal; FONT-FAMILY: tahoma,arial,helvetica,sans-serif; LETTER-SPACING: normal; POSITION: absolute; TOP: -1000px"></DIV></BODY></HTML>

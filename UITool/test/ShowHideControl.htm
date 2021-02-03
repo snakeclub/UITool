@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../ui-core/ShowHideControl.js"></script>
+
+    <script type="text/javascript">
+        function Show(){
+            $("#Div1").TShow(document.getElementById('show_hidetype').options[document.getElementById('show_hidetype').selectedIndex].text,document.getElementById("showtime").value,function(){document.getElementById("EndFun").innerHTML="Show EndFun("+Date().toString()+"):Obj.attr('id'):"+arguments[0].attr("id");});
+        }
+        
+        function Hide(){
+            $("#Div1").THide(document.getElementById('show_hidetype').options[document.getElementById('show_hidetype').selectedIndex].text,document.getElementById("showtime").value,function(){document.getElementById("EndFun").innerHTML="Hide EndFun("+Date().toString()+"):Obj.attr('id'):"+arguments[0].attr("id");});
+        }
+    </script>
+    <style>
+        .Test{ border:1px solid #f00;}
+        
+    </style>
+</head>
+<body>
+
+    <p>
+        <input id="Button1" type="button" value="Show" onclick="Show();" />
+        <input id="Button2" type="button" value="Hide" onclick="Hide();" />
+        <select id="show_hidetype" name="D1">
+            <option>normal</option>
+            <option>left</option>
+            <option>right</option>
+            <option>top</option>
+            <option>bottom</option>
+            <option>topleft</option>
+            <option>topright</option>
+            <option>bottomleft</option>
+            <option>bottomright</option>
+            <option>center</option>
+            <option>alpha</option>
+            <option>left-move</option>
+            <option>right-move</option>
+            <option>top-move</option>
+            <option>bottom-move</option>
+            <option>topleft-move</option>
+            <option>topright-move</option>
+            <option>bottomleft-move</option>
+            <option>bottomright-move</option>
+        </select>
+        延续时间<input type=text id="showtime" value="5000" />
+        
+    </p>
+    <p id="EndFun"></p>
+
+<Div id="Div1" style="width:200px; height:200px; background-color:Green; overflow:hidden; position:absolute; left:200px; top:200px;">ShowHide</Div>
+</body>
+</html>

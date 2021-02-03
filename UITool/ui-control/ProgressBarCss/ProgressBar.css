@@ -1,0 +1,117 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：进度条
+说明：进度条控件
+文件：ProgressBar.css
+
+资源文件：../ProgressBar/ProgressBar_BarBg.gif
+          ../ProgressBar/ProgressBar_Bg.gif
+
+<DIV selftype='ProgressBar' style='width: 300px(或60%);' data=' ProgressBarOpts' >
+	<DIV class='ProgressBar_Div (ProgressBar_TextLeft/TextRight)' ProgressBarType= 'Div'>
+		<DIV class='ProgressBar_Inner' ProgressBarType= ' Inner'>
+			<DIV class='ProgressBar_Bar' style='width: 130px(进度条宽);' ProgressBarType= 'Bar'>
+				<DIV class='ProgressBar_Text' style='width:130px(进度文本宽);' ProgressBarType= 'Text'>
+					<DIV class='ProgressBar_TextDiv' style='width:298px(进度条宽-注意减去边框);' ProgressBarType= 'TextDiv'>
+						Loading item 7 of 10...（显示的进度文字）
+					</DIV>
+				</DIV>
+				<DIV class='ProgressBar_Text ProgressBar_TextBack' ProgressBarType= 'TextBack'>
+					<DIV class='ProgressBar_TextDiv'  style='width:298px; (进度条宽-注意减去边框)' ProgressBarType= 'TextBackDiv'>
+						Loading item 7 of 10...（显示的进度文字）
+					</DIV>
+				</DIV>
+			</DIV>
+		</DIV>
+	</DIV>
+</DIV>
+
+
+-----------------------*/
+
+/* -------------外层容器DIV － 边框------------- */
+.ProgressBar_Div
+{
+	border:1px solid #6593cf;
+    overflow:hidden;
+    width:auto;
+    height:auto;
+}
+
+
+/* -------------内容器------------- */
+.ProgressBar_Inner
+{
+	height:18px;
+    background: #e0e8f3 url(../../ui-control/ProgressBarImg/ProgressBar_Bg.gif) repeat-x;
+    overflow:hidden;
+}
+
+
+/* -------------进度条------------- */
+.ProgressBar_Bar
+{
+	height:18px;
+    float:left;
+    width:0;
+    background:#9CBFEE url( ../../ui-control/ProgressBarImg/ProgressBar_BarBg.gif ) repeat-x left center;
+    border-left: 0px;
+    border-top:1px solid #D1E4FD;
+    border-bottom:1px solid #7FA9E4;
+    border-right:1px solid #7FA9E4;
+}
+
+/* -------------进度文字-进度条上的------------- */
+.ProgressBar_Text
+{
+	 font-size:11px;
+    font-weight:bold;
+    color:#fff;
+    padding:1px 5px;
+    overflow:hidden;
+    position:absolute;
+    left:0;
+    text-align:center;
+    z-index:99;
+}
+
+/* 内部文字在左边 */
+.ProgressBar_TextLeft .ProgressBar_Text
+{
+	text-align:left;
+}
+
+/* 内部文字在右边 */
+.ProgressBar_TextRight .ProgressBar_Text
+{
+	text-align:right;
+}
+
+/* -------------后面的进度文字-深色------------- */
+.ProgressBar_TextBack
+{
+	color:#396095;
+    line-height:14px;
+    z-index:auto;
+}
+
+/* -------------进度文字容器------------- */
+.ProgressBar_TextDiv
+{
+	padding:0px;
+	height:18px;
+}
+
+/* 内部文字在左边 */
+.ProgressBar_TextLeft .ProgressBar_TextDiv
+{
+	padding-left:10px;
+}
+
+
+

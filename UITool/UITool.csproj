@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{13CD0621-C88D-4E09-BFB9-C722F0A849EA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UITool</RootNamespace>
+    <AssemblyName>UITool</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test\Ajax\AjaxServer.ashx.cs">
+      <DependentUpon>AjaxServer.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="uploadify\UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="jquery-1.6.4.min.js" />
+    <Content Include="jquery-1.7.2.min.js" />
+    <Content Include="test\Ajax\AjaxServer.ashx" />
+    <Content Include="Crypto\aes.js" />
+    <Content Include="Crypto\Barrett.js" />
+    <Content Include="Crypto\BigInt.js" />
+    <Content Include="Crypto\cbc-nopad.js" />
+    <Content Include="Crypto\cbc.js" />
+    <Content Include="Crypto\crypto.js" />
+    <Content Include="Crypto\des.js" />
+    <Content Include="Crypto\hmac.js" />
+    <Content Include="Crypto\marc4.js" />
+    <Content Include="Crypto\md5.js" />
+    <Content Include="Crypto\ofb.js" />
+    <Content Include="Crypto\pbkdf2.js" />
+    <Content Include="Crypto\pbkdf2async.js" />
+    <Content Include="Crypto\rabbit.js" />
+    <Content Include="Crypto\RSA.js" />
+    <Content Include="Crypto\RSAKeyGenerator.exe" />
+    <Content Include="Crypto\sha1.js" />
+    <Content Include="Crypto\sha256.js" />
+    <Content Include="Crypto\testCrypto.htm" />
+    <Content Include="Crypto\xxtea.js" />
+    <Content Include="test\Ajax\ajaxTool.htm" />
+    <Content Include="test\control\Panel.htm" />
+    <Content Include="test\control\Window.htm" />
+    <Content Include="test\control\CornerShadow.htm" />
+    <Content Include="test\IFrame_L11.htm" />
+    <Content Include="test\IFrame_L12.htm" />
+    <Content Include="test\IFrame_L21.htm" />
+    <Content Include="test\IFrame_Top.htm" />
+    <Content Include="test\JSLoader.htm" />
+    <Content Include="test\bg1.gif" />
+    <Content Include="test\control\arrow_down.gif" />
+    <Content Include="test\control\arrow_next.gif" />
+    <Content Include="test\control\BarScrollDiv.htm" />
+    <Content Include="test\control\ProgressBar.htm" />
+    <Content Include="test\control\ToolBar.htm" />
+    <Content Include="test\control\toolBarbg.gif" />
+    <Content Include="test\control\Button.htm" />
+    <Content Include="test\control\CheckBoxRadio.htm" />
+    <Content Include="test\control\DropDownList.htm" />
+    <Content Include="test\control\grid-blue-split.gif" />
+    <Content Include="test\control\list-items.gif" />
+    <Content Include="test\control\PopMenu.htm" />
+    <Content Include="test\control\Slider.htm" />
+    <Content Include="test\control\TextBox.htm" />
+    <Content Include="test\control\ToolButton.htm" />
+    <Content Include="test\control\TreeView.htm" />
+    <Content Include="test\control\user.gif" />
+    <Content Include="test\control\WebStyleClawl.htm" />
+    <Content Include="test\control\WebStyleClawlNoJQuery.htm" />
+    <Content Include="test\control\SimpleButton.htm" />
+    <Content Include="test\control\PageSplit.htm" />
+    <Content Include="test\CornerControl.htm" />
+    <Content Include="test\DragControl.htm" />
+    <Content Include="test\girl-1.jpg" />
+    <Content Include="test\girl-2.jpg" />
+    <Content Include="test\JFuntionMgr.htm" />
+    <Content Include="test\PathMoveControl.htm" />
+    <Content Include="test\PositionControl-Float.htm" />
+    <Content Include="test\ResizeControl.htm" />
+    <Content Include="test\ShadowTool.htm" />
+    <Content Include="test\ToolFunction.htm" />
+    <Content Include="test\UITool-min-1.0.js" />
+    <Content Include="test\ShowHideControl.htm" />
+    <Content Include="test\AreaSelectControl.htm" />
+    <Content Include="test\HotKeyControl.htm" />
+    <Content Include="test\TimerControl.htm" />
+    <Content Include="test\MouseSpecialControl.htm" />
+    <Content Include="test\DivDockControl.htm" />
+    <Content Include="test\DivBoxesControl.htm" />
+    <Content Include="ui-ajax\AjaxTool.js" />
+    <Content Include="ui-ajax\DataCollectTool.js" />
+    <Content Include="ui-ajax\json2.js" />
+    <Content Include="ui-control\BarScrollDivCss\BarScrollDiv.css" />
+    <Content Include="ui-control\BarScrollDivImg\BarScrollDiv_Left.gif" />
+    <Content Include="ui-control\BarScrollDivImg\BarScrollDiv_Right.gif" />
+    <Content Include="ui-control\BarScrollDivImg\scroll-left.gif" />
+    <Content Include="ui-control\BarScrollDivImg\scroll-right.gif" />
+    <Content Include="ui-control\CornerShadowImg\shadow-c.png" />
+    <Content Include="ui-control\CornerShadowImg\shadow-lr.png" />
+    <Content Include="ui-control\PageSplitCss\PageSplit.css" />
+    <Content Include="ui-control\PageSplitImg\loading.gif" />
+    <Content Include="ui-control\PageSplitImg\page-first-disabled.gif" />
+    <Content Include="ui-control\PageSplitImg\page-first.gif" />
+    <Content Include="ui-control\PageSplitImg\page-last-disabled.gif" />
+    <Content Include="ui-control\PageSplitImg\page-last.gif" />
+    <Content Include="ui-control\PageSplitImg\page-next-disabled.gif" />
+    <Content Include="ui-control\PageSplitImg\page-next.gif" />
+    <Content Include="ui-control\PageSplitImg\page-prev-disabled.gif" />
+    <Content Include="ui-control\PageSplitImg\page-prev.gif" />
+    <Content Include="ui-control\PageSplitImg\refresh.gif" />
+    <Content Include="ui-control\PanelCss\Panel.css" />
+    <Content Include="ui-control\PanelImg\corners-sprite-b.gif" />
+    <Content Include="ui-control\PanelImg\corners-sprite-l.gif" />
+    <Content Include="ui-control\PanelImg\corners-sprite-r.gif" />
+    <Content Include="ui-control\PanelImg\corners-sprite.gif" />
+    <Content Include="ui-control\PanelImg\top-bottom-b.gif" />
+    <Content Include="ui-control\PanelImg\top-bottom-l.gif" />
+    <Content Include="ui-control\PanelImg\top-bottom-r.gif" />
+    <Content Include="ui-control\PanelImg\top-bottom.gif" />
+    <Content Include="ui-control\PanelImg\top-bottom.png" />
+    <Content Include="ui-control\PanelImg\white-top-bottom-r.gif" />
+    <Content Include="ui-control\PanelImg\white-top-bottom.gif" />
+    <Content Include="ui-control\ProgressBarCss\ProgressBar.css" />
+    <Content Include="ui-control\ProgressBarImg\ProgressBar_BarBg.gif" />
+    <Content Include="ui-control\ProgressBarImg\ProgressBar_Bg.gif" />
+    <Content Include="ui-control\SimpleButtonCss\SimpleButton.css" />
+    <Content Include="ui-control\ButtonCss\Button.css" />
+    <Content Include="ui-control\ButtonImg\Button_Arrow.gif" />
+    <Content Include="ui-control\SimpleButtonImg\SimpleButton_A_A.gif" />
+    <Content Include="ui-control\SimpleButtonImg\SimpleButton_A_Span.gif" />
+    <Content Include="ui-control\ButtonImg\Button_Sprite.gif" />
+    <Content Include="ui-control\ButtonImg\Button_BarSprite.gif" />
+    <Content Include="ui-control\ButtonImg\Button_Split.gif" />
+    <Content Include="ui-control\CheckBoxImg\checkbox_green.gif" />
+    <Content Include="ui-control\CheckBoxImg\checkbox_black.gif" />
+    <Content Include="ui-control\CheckBoxImg\checkbox.gif" />
+    <Content Include="ui-control\CheckBoxImg\checkbox_gray.gif" />
+    <Content Include="ui-control\Button.js" />
+    <Content Include="ui-control\DropDownList.js" />
+    <Content Include="ui-control\DropDownListCss\DropDownList.css" />
+    <Content Include="ui-control\DropDownListImg\DropDownList_DownArrow.gif" />
+    <Content Include="ui-control\DropDownListImg\DropDownList_Null.gif" />
+    <Content Include="ui-control\PopMenu.js" />
+    <Content Include="ui-control\PopMenuCss\PopMenu.css" />
+    <Content Include="ui-control\PopMenuImg\PopMenu_rightarrow.gif" />
+    <Content Include="test\control\PopMenu_TestIcon_letter.gif" />
+    <Content Include="test\control\PopMenu_TestIcon_login.gif" />
+    <Content Include="ui-control\Radio.js" />
+    <Content Include="ui-control\RadioImg\radio.gif" />
+    <Content Include="ui-control\RadioImg\radio_black.gif" />
+    <Content Include="ui-control\RadioImg\radio_gray.gif" />
+    <Content Include="ui-control\RadioImg\radio_green.gif" />
+    <Content Include="ui-control\Slider.js" />
+    <Content Include="ui-control\SliderCss\Slider.css" />
+    <Content Include="ui-control\SliderCss\SliderBlue.css" />
+    <Content Include="ui-control\SliderImg\Slider.gif" />
+    <Content Include="ui-control\SliderImg\SliderBlue.gif" />
+    <Content Include="ui-control\SliderImg\SliderBlueV.gif" />
+    <Content Include="ui-control\SliderImg\SliderV.gif" />
+    <Content Include="ui-control\TextBox.js" />
+    <Content Include="ui-control\ToolBarCss\ToolBar.css" />
+    <Content Include="ui-control\ToolBarImg\bg.gif" />
+    <Content Include="ui-control\ToolBarImg\grid-blue-split.gif" />
+    <Content Include="ui-control\ToolBarImg\mso-hd.gif" />
+    <Content Include="ui-control\ToolButtonCss\ToolButton.css" />
+    <Content Include="ui-control\ToolButtonImg\ToolButton_Sprites.gif" />
+    <Content Include="ui-control\ToolButtonImg\ToolButton_SpritesTrans.gif" />
+    <Content Include="ui-control\TreeView.js" />
+    <Content Include="ui-control\TreeViewCss\TreeView.css" />
+    <Content Include="ui-control\TreeViewImg\TreeView_Null.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_Bottom.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_Line.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_Normal.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_Minus.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_MinusBottom.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_Plus.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_PlusBottom.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_File.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_Folder.gif" />
+    <Content Include="ui-control\TreeViewImg\TreeView_FolderOpen.gif" />
+    <Content Include="ui-control\CheckBox.js" />
+    <Content Include="ui-control\SimpleButton.js" />
+    <Content Include="ui-control\ProgressBar.js" />
+    <Content Include="ui-control\ToolButton.js" />
+    <Content Include="ui-control\BarScrollDiv.js" />
+    <Content Include="ui-control\ToolBar.js" />
+    <Content Include="ui-control\PageSplit.js" />
+    <Content Include="ui-control\WindowCss\Window.css" />
+    <Content Include="ui-control\WindowImg\grid.png" />
+    <Content Include="ui-control\WindowImg\icon-error.gif" />
+    <Content Include="ui-control\WindowImg\icon-info.gif" />
+    <Content Include="ui-control\WindowImg\icon-question.gif" />
+    <Content Include="ui-control\WindowImg\icon-warning.gif" />
+    <Content Include="ui-control\WindowImg\left-corners.png" />
+    <Content Include="ui-control\WindowImg\left-right.png" />
+    <Content Include="ui-control\WindowImg\right-corners.png" />
+    <Content Include="ui-control\CornerShadowImg\shadow.png" />
+    <Content Include="ui-control\WindowImg\top-bottom.png" />
+    <Content Include="ui-control\CornerShadowCss\CornerShadow.css" />
+    <Content Include="ui-control\CornerShadow.js" />
+    <Content Include="ui-control\Window.js" />
+    <Content Include="ui-control\Panel.js" />
+    <Content Include="ui-core\AreaSelectControl.js" />
+    <Content Include="ui-core\blockUI.js" />
+    <Content Include="ui-core\Clipboard.js" />
+    <Content Include="ui-core\cookie.js" />
+    <Content Include="ui-core\CornerControl.js" />
+    <Content Include="ui-core\Debug.js" />
+    <Content Include="ui-core\DivBoxesControl.js" />
+    <Content Include="ui-core\DivDockControl.js" />
+    <Content Include="ui-core\DragControl.js" />
+    <Content Include="ui-core\FloatControl.js" />
+    <Content Include="ui-core\HotKeyControl.js" />
+    <Content Include="ui-core\JFuntionMgr.js" />
+    <Content Include="ui-core\MouseSpecialControl.js" />
+    <Content Include="ui-core\PathMoveControl.js" />
+    <Content Include="ui-core\PositionControl.js" />
+    <Content Include="ui-core\PowerDate.js" />
+    <Content Include="ui-core\PowerString.js" />
+    <Content Include="ui-core\ResizeControl.js" />
+    <Content Include="ui-core\SelectionTool.js" />
+    <Content Include="ui-core\ShadowTool.js" />
+    <Content Include="ui-core\ShowHideControl.js" />
+    <Content Include="ui-core\TimerControl.js" />
+    <Content Include="ui-core\ToolFunction.js" />
+    <Content Include="ui-core\WebStyleClawl.js" />
+    <Content Include="ui-core\WebStyleClawlNoJQuery.js" />
+    <Content Include="ui-core\JSLoader.js" />
+    <Content Include="ui-core\IFrame.js" />
+    <Content Include="ui-core\PowerNumber.js" />
+    <Content Include="ui-validate\BaseValidateFun.js" />
+    <Content Include="ui-validate\CheckAssistFun.js" />
+    <Content Include="ui-validate\FieldCheckFun.js" />
+    <Content Include="ui-validate\LimitInputFun.js" />
+    <Content Include="uploadify\cancel.png" />
+    <Content Include="uploadify\jquery.uploadify.v2.1.4.js" />
+    <Content Include="uploadify\swfobject.js" />
+    <Content Include="uploadify\testUploadFile.htm" />
+    <Content Include="uploadify\UploadHandler.ashx" />
+    <Content Include="uploadify\uploadify.css" />
+    <Content Include="uploadify\uploadify.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Crypto\Crypto.csproj">
+      <Project>{10586696-3E7B-4E7C-A36A-EE738A18DA6C}</Project>
+      <Name>Crypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JSONParse\JSONParse.csproj">
+      <Project>{4C01F8FF-EB7A-4922-B57E-DC100F659730}</Project>
+      <Name>JSONParse</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImgDesign\Button\A.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1410</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../ui-core/AreaSelectControl.js"></script>
+    <script type="text/javascript">
+        function startSelect(){
+            $.StartAreaSelect({
+                //true-等待鼠标落下时才开始选择，fasle-从鼠标当前位置开始选择，鼠标释放时结束
+                WaitMouseClick : true,
+                
+                //true-结束时自动停止选择，false－结束时可以直接进行下一个选择，如果WaitMouseClick为false，则无论该参数是什么，结束时都会自动停止选择
+                AutoHide : false,
+                
+                //选择结束时执行的函数，null-代表不执行任何函数，默认为null
+                //执行函数时，会传入的参数顺序如下：arguments[0]  :  选取的位置参数,arguments[0].left，arguments[0].top，arguments[0].width，arguments[0].height
+                //                                  arguments[1]  :  选中的JQuery对象列表数组
+                EndFun : function(){document.getElementById("EndFun").innerHTML="EndFun("+Date().toString()+"):选区的位置信息:left-"+arguments[0].left+" top-" + arguments[0].top + " width-" + arguments[0].width + " height-" + arguments[0].height + "  ; 选中对象数量:"+ arguments[1].length;},
+                
+                //要选择的对象的过滤器，使用jquery规则，默认为""，代表不选择对象
+                SelectFilter : "div",
+                
+                //选区的div的css样式
+                AreaCss : {
+                      border:"1px solid #000",
+                      background :"#ffffff",
+                      filter:"alpha(opacity=60)"
+                    },
+                
+                //是否对象全在里面才能选中，默认为true
+                FullSelect : true
+            });
+        }
+        
+        
+        function stopSelect(){
+            $.StopAreaSelect();
+        }
+    </script>
+    <style type="text/css">
+        #Select1
+        {
+            width: 99px;
+        }
+        #Select2
+        {
+            width: 99px;
+        }
+        #sl_XPosition
+        {
+            width: 90px;
+        }
+        #sl_YPosition
+        {
+            width: 87px;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <input type=button value="开始选择" onclick="startSelect();" />
+        <input type=button value="结束选择" onclick="stopSelect();" />
+    </p>
+    <p id="EndFun"></p>
+    <Div id="Div2" style="width:200px; height:200px; background-color:Red; overflow:hidden; position:absolute; left:200px; top:200px;">Div2</Div>
+    <Div id="Div1" style="width:80px; height:80px; background-color:Green; overflow:hidden; position:absolute; left:400px; top:400px;">Div1</Div>
+</body>
+</html>

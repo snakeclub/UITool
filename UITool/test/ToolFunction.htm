@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../ui-core/debug.js"></script>
+    <script type="text/javascript" src="../ui-core/PowerString.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.setDebug(true);
+           $(document.body).bind("mousemove",function(){$.debugClear();$.debugOutput($.getObjByPos(event.clientX,event.clientY,{searchPath:"child",rootObj:$("#Div1"),withRoot:true}).attr("id"));});
+        }); 
+        
+        function GetUrlPara(){
+            if($("#txt_paraName").get(0).value == ""){
+                var paraList = $.getRequest();
+                if(paraList === undefined){
+                    alert(paraList);
+                }
+                else{
+                    //遍历对象的所有属性
+                    var liststr = "";
+                    for(var key in paraList){
+                        liststr += key + ":" + paraList[key] + "\r\n";
+                    }
+                    alert(liststr);
+                }
+            }
+            else{
+                alert($.getRequest($("#txt_paraName").get(0).value));
+            }
+        };
+        
+        function TestPowerString(){
+            //alert("abc你好".existChinese());
+            alert($("#test").attr("style"));
+        };
+    </script>
+</head>
+<body>
+    <Div id="Div1" style="width:600px; height:400px; background-color:Red; overflow:hidden;">
+        <Div id="Div2" style="width:500px; height:300px; background-color:Blue; overflow:hidden;">
+            <Div id="Div3" style="width:400px; height:200px; background-color:Yellow; overflow:hidden;">
+            </Div>
+        </Div>
+    </Div>
+    
+    <div id='test' style="width:100px;"></div>
+    
+    <p>
+        <input id="Button1" type="button" value="获取Url参数" onclick="GetUrlPara();" /><input id="txt_paraName" 
+            type="text" /></p>
+        <input id="Button2" type="button" value="测试PowerString" onclick="TestPowerString();" />
+        
+        </p>
+    
+</body>
+</html>

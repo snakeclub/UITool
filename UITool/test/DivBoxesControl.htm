@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/DivBoxesControl.js"></script>
+    <script type="text/javascript" src="../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../ui-core/DragControl.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //处理代码
+             $.DivBoxes("<tr height='200px'><td width='300px'></td><td width='150px'></td></tr><tr height='200px'><td></td><td></td></tr>",
+                        $("#Div1"),
+                        {
+                            //主容器的样式，只有在新建容器对象的情况才使用
+                            mainDivCSS:{
+                            padding: "0px",
+                            margin: "0px",
+                            width:"800px",
+                            height:"600px",
+                            top:"0px",
+                            left:"0px",
+                            border:"0px solid #aaa"
+                            },
+
+                            // X方向是否固定大小
+                            fixedX:false,
+
+                            // Y方向是否固定大小
+                            fixedY:false,
+
+                            //是否为编辑模式
+                            editMode:false,
+
+                            //内容窗口的样式
+                            boxDivCSS:{
+                             padding: "0px",
+                             margin: "0px",
+                             border:"1px solid #aaa"
+                            },
+
+                            //内容窗口的Hover样式，编辑模式才生效，鼠标移动到内容容器上的样式
+                            boxDivHoverCSS:{border:"1px solid #ff0"},
+
+                            //内容窗口的选中样式，编辑模式才生效
+                            boxDivSelectedCSS:{border:"1px solid #f0f"},
+
+                            //是否显示清除内容按钮，如果为true，则在鼠标在内容窗口上时显示清除的按钮
+                            showDeleteDiv:true,
+
+                            //仅编辑模式使用，删除按钮点击时执行的函数，传入该函数的参数依次为：主容器的Jquery对象，原内容容器的Jquery对象
+                            deleteDivClickFun:null,
+
+                            //编辑模式时鼠标移到内容div上的清除内容按钮样式
+                            deleteDivCSS:{
+                             padding: "0px",
+                            margin: "0px",
+                            width: "10px",
+                            height: "10px",
+                            border:"1px solid #aaa"
+                            },
+
+                            //编辑模式时鼠标移到清除内容按钮上的样式
+                            deleteDivHoverCSS:{
+                            padding: "0px",
+                            margin: "0px",
+                            width: "10px",
+                            height: "10px",
+                            border:"1px solid #FFa"
+                            },
+
+                            //删除按钮中的内容，可以为html/text/dom对象/jquery对象
+                            deleteDivContent: "X",
+
+                            //删除按钮距离右上角的像素距离
+                            deleteDivPosOfRightTop:10,
+
+                            //编辑模式有效，是否允许拖动
+                            dragAble:true,
+
+                            //仅编辑模式使用，拖动动作结束时的判断函数，传入函数的值为主容器的Jquery对象、源内容div的jquery对象、目标div的jquery对象，该函数若返回false，则不执行后续的内容换格操作；可以在这个函数中返回false以终止默认动作，并执行自定义的拖动事件
+                            dragConfirmFun : function(maindiv,sdiv,ddiv){
+                                $("#dragConfirmFun").get(0).innerHTML = "dragConfirmFun("+Date().toString()+"):主容器id"+maindiv.attr("id")+"     源内容容器位置:" + sdiv.attr("DivBoxesPos") + "    目标内容容器位置:" + ddiv.attr("DivBoxesPos");
+                                if(confirm("是否移动容器？")){
+                                    return true;
+                                }
+                                else{
+                                    return false;
+                                }
+                            },
+
+                            //仅编辑模式使用，拖动完成后（对象换了位置后）执行的函数，可用于改变内容容器内的对象的大小，默认为null。传入该函数的参数依次为：主容器的Jquery对象，原内容容器的Jquery对象，目标内容容器的Jquery对象
+                            dragEndFun : function(maindiv,sdiv,ddiv){
+                                $("#dragEndFun").get(0).innerHTML = "dragEndFun("+Date().toString()+"):主容器id"+maindiv.attr("id")+"     源内容容器位置:" + sdiv.attr("DivBoxesPos") + "    目标内容容器位置:" + ddiv.attr("DivBoxesPos");
+                            },
+
+
+                            //编辑模式有效，是否允许选中，如果为true，则点击鼠标左键为选中，再点击一次为取消选中
+                            selectAble:true,
+
+                            //编辑模式有效，是否允许多项选中，
+                            mupitalSelect:true,
+
+
+                            //仅编辑模式使用，选中内容容器时的执行的函数，传入该函数的参数依次为：主容器的Jquery对象，选中内容容器的Jquery对象
+                            selectedFun:null,
+
+                            //仅编辑模式使用，取消选中内容容器时的执行的函数，传入该函数的参数依次为：主容器的Jquery对象，取消选中内容容器的Jquery对象
+                            unSelectedFun:null,
+
+                            //仅编辑模式使用，内容容器mouseover时执行的函数，传入该函数的参数依次为：主容器的Jquery对象，鼠标在内容容器的Jquery对象
+                            mouseOverFun:function(main,content){
+                                $("#mouseOverFun").get(0).innerHTML = "mouseOverFun("+Date().toString()+"):主容器id"+main.attr("id")+"     ;内容容器位置:" + content.attr("DivBoxesPos");
+                            },
+
+                            //仅编辑模式使用，内容容器mouseout时执行的函数，传入该函数的参数依次为：主容器的Jquery对象，鼠标在内容容器的Jquery对象，事件event
+                            mouseOutFun:function(main,content){
+                                $("#mouseOutFun").get(0).innerHTML = "mouseOutFun("+Date().toString()+"):主容器id"+main.attr("id")+"     ;内容容器位置:" + content.attr("DivBoxesPos");
+                            }
+                            
+                            });
+                            
+
+            //设置内容测试对象的拖动
+            $("#Div2").bind("mousedown",function(){$(this).Drag(
+                {
+                    //鼠标移动上或结束拖动时判断鼠标位置上匹配到对象的参数，参见ToolFunction中的getObjByPos函数
+                    dragOnObjPara : {
+                        //搜索的根节点（最顶层节点）
+                        rootObj : $("#Div1"),
+                        
+                        //搜索结果是否包含根节点
+                        withRoot : false,
+                        
+                        //搜索的jquery条件
+                        jqueryStr : "div[selftype='DivBoxes_Content']",
+                        
+                        //搜索方向,root - 根节点开始往下搜索，child - 子节点往根节点方向，该参数只有在justFirst为true时才有效
+                        searchPath : "child",
+                        
+                        //是否只返回第1个匹配节点
+                        justFirst : true
+                    },
+                    
+                    //DragControl_EndDrag()时执行的确认函数，可在函数中增加确认判断条件来确定拖动是否最终生效。传入的参数为JQuery_UITool_DragControl、移动上的对象。函数必须返回true/fasle，若返回false则代表拖动无效，将对象置回原位置
+                    confirmFun : function(dragtool,contentobj){
+                        if(contentobj.length != 1){
+                            return false;
+                        }
+                        if(confirm("确认移动到该内容窗口?")){
+                            return true;
+                        }
+                        else{
+                            return false;
+                        }
+                    },
+                    
+                    //拖动结束后执行的函数，传入的参数为：是否生效、拖动对象的清单，结束拖动时鼠标位置上匹配到的dragOn对象
+                    endDragFun : function(isComfirm,dragtool,contentobj){
+                        if(isComfirm){
+                            dragtool.List[0].Obj.unbind("mousedown");
+                            dragtool.List[0].Obj.css({left:"0px",top:"0px"});
+                            contentobj.AddDivBoxContent(dragtool.List[0].Obj);
+                        }
+                    }
+                }
+            );
+            });
+            
+            //设置内容测试对象的拖动
+            $("#Div3").bind("mousedown",function(){$(this).Drag(
+                {
+                    //鼠标移动上或结束拖动时判断鼠标位置上匹配到对象的参数，参见ToolFunction中的getObjByPos函数
+                    dragOnObjPara : {
+                        //搜索的根节点（最顶层节点）
+                        rootObj : $("#Div1"),
+                        
+                        //搜索结果是否包含根节点
+                        withRoot : false,
+                        
+                        //搜索的jquery条件
+                        jqueryStr : "div[selftype='DivBoxes_Content']",
+                        
+                        //搜索方向,root - 根节点开始往下搜索，child - 子节点往根节点方向，该参数只有在justFirst为true时才有效
+                        searchPath : "child",
+                        
+                        //是否只返回第1个匹配节点
+                        justFirst : true
+                    },
+                    
+                    //DragControl_EndDrag()时执行的确认函数，可在函数中增加确认判断条件来确定拖动是否最终生效。传入的参数为JQuery_UITool_DragControl、移动上的对象。函数必须返回true/fasle，若返回false则代表拖动无效，将对象置回原位置
+                    confirmFun : function(dragtool,contentobj){
+                        if(contentobj.length != 1){
+                            return false;
+                        }
+                        if(confirm("确认移动到该内容窗口?")){
+                            return true;
+                        }
+                        else{
+                            return false;
+                        }
+                    },
+                    
+                    //拖动结束后执行的函数，传入的参数为：是否生效、拖动对象的清单，结束拖动时鼠标位置上匹配到的dragOn对象
+                    endDragFun : function(isComfirm,dragtool,contentobj){
+                        if(isComfirm){
+                            dragtool.List[0].Obj.unbind("mousedown");
+                            dragtool.List[0].Obj.css({left:"0px",top:"0px"});
+                            contentobj.AddDivBoxContent(dragtool.List[0].Obj);
+                        }
+                    }
+                }
+            );
+            });
+       }); 
+       
+
+       
+    </script>
+    <style>
+        .Test{ border:1px solid #f00;}
+        
+    </style>
+</head>
+<body>
+<p>
+    <input type=button value="开启编辑模式" onclick="$('#Div1').DivBoxesModeSwitch(true);" />
+    <input type=button value="关闭编辑模式" onclick="$('#Div1').DivBoxesModeSwitch(false);" />
+</p>
+<p id="mouseOverFun"></p>
+<p id="mouseOutFun"></p>
+<p id="dragConfirmFun"></p>
+<p id="dragEndFun"></p>
+<p id="P3"></p>
+
+<Div id="Div1" style="width:600px; height:400px; background-color:SkyBlue; position:absolute; left:200px; top:200px; border:3px solid #000; padding:10px; overflow:hidden;"></Div>
+
+<Div id="Div2" style="width:200px; height:100px; background-color:Yellow; position:absolute; left:700px; top:200px; border:3px solid #000; padding:10px; overflow:auto;">TestContentfdfdfdfdfafdfdfd<p>fdfdfdfdsfs</p></Div>
+
+<Div id="Div3" style="width:200px; height:100px; background-color:Blue; position:absolute; left:700px; top:400px; border:3px solid #000; padding:10px; overflow:auto;">TestContentfdfdfdfdfafdfdfd<p>fdfdfdfdsfs</p></Div>
+</body>
+</html>

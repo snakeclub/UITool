@@ -1,0 +1,313 @@
+﻿/*-----------------------
+JQuery-UITool v1.0.0
+完成时间：2011-
+作者：黎慧剑
+联系方式:snakeclub@163.com
+程序说明：基于JQuery框架的Web界面便捷工具,基于该工具，可以通过简单的函数调用实现各类Web界面效果，简化Web开发
+
+当前样式表：窗口控件类型样式
+说明：窗口控件
+文件：Window.css
+
+资源文件：../WindowImg/
+
+
+可选参数(放到Table对象的类中)：
+        WindowMoveAble - 可移动
+        WindowPlain - 素色，窗口内容的背景色深一点
+        WindowWithStatusBar - 窗口下方是状态栏
+		WindowNoScroll - 不显示滚动条
+		WindowDialog - 消息窗口
+
+<DIV selftype='Window' class='Window_MainDiv' style='Z-INDEX: 9003; WIDTH: 688px; height:385px; TOP: 97px; LEFT: 266px'>
+        <table WindowType='Table' class='WindowTable WindowMoveAble WindowWithStatusBar' cellpadding='0' cellspacing='0'>
+            <tr WindowType='TopTr' class='WindowTopTr'>
+                <td WindowType='TopTdLeft' class='WindowTopTdLeft'>&nbsp;</td>
+                <td WindowType='TopTdCenter' class='WindowTopTdCenter'>
+                    <img WindowType='TitlePic' class='WindowTitlePic' src='../../ui-control/WindowImg/grid.png' />
+                    <a WindowType='TitleText' class='WindowTitleText'>Window Demo</a>
+                </td>
+                <td WindowType='TopTdRight' class='WindowTopTdRight'>&nbsp;</td>
+            </tr>
+            <tr WindowType='MidTr' class='WindowMidTr'>
+                <td WindowType='MidTdLeft' class='WindowMidTdLeft'>&nbsp;</td>
+                <td WindowType='MidTdCenter' class='WindowMidTdCenter'>
+                    <div WindowType='Body' class='WindowBody' style='height:330px;'>窗口内容</div>
+                </td>
+                <td WindowType='MidTdRight' class='WindowMidTdRight'>&nbsp;</td>
+            </tr>
+            <tr WindowType='BtmTr' class='WindowBtmTr'>
+                <td WindowType='BtmTdLeft' class='WindowBtmTdLeft'>&nbsp;</td>
+                <td WindowType='BtmTdCenter' class='WindowBtmTdCenter'>&nbsp;</td>
+                <td WindowType='BtmTdRight' class='WindowBtmTdRight'>&nbsp;</td>
+            </tr>
+        </table>
+   </DIV>
+
+-----------------------*/
+
+/* -------------窗口主容器------------- */
+.Window_MainDiv
+{
+	position:absolute;
+	overflow:hidden;
+	background-color:Transparent;
+	padding:0px;
+	margin:0px;
+	zoom:1;
+}
+
+/* -------------具体窗口的显示TABLE------------- */
+.WindowTable
+{
+	width:100%;
+	padding:0px;
+	margin:0px;
+	table-layout:fixed;
+	border-width:0px;
+	white-space: nowrap;
+}
+
+/* -------------标题行------------- */
+.Window_MainDiv .WindowTopTr td
+{
+	margin:0px;
+}
+
+
+/* ######## 左边 ######## */
+.Window_MainDiv .WindowTopTdLeft
+{
+	font-size:0px;
+	width:6px;
+	background: transparent url(../../ui-control/WindowImg/left-corners.png) no-repeat 0 0;
+}
+
+/* ######## 右边 ######## */
+.Window_MainDiv .WindowTopTdRight
+{
+	font-size:0px;
+	width:6px;
+	background: transparent url(../../ui-control/WindowImg/right-corners.png) no-repeat 0 0;
+}
+
+/* ######## 中间 ######## */
+.WindowTopTdCenter
+{
+	overflow:hidden;
+}
+
+.Window_MainDiv .WindowMoveAble .WindowTopTdCenter
+{
+	cursor:move;
+}
+
+.Window_MainDiv .WindowTopTdCenter
+{
+	background: transparent url(../../ui-control/WindowImg/top-bottom.png) repeat-x 0 0;
+	color:#15428b;
+	font:bold 11px tahoma,arial,verdana,sans-serif;
+    padding:4px 0 3px 0;
+}
+
+/* ######## 标题图片 ######## */
+.WindowTitlePic
+{
+	margin:0px;
+	border-width:0px;
+	overflow:hidden;
+	float:left;
+}
+
+.Window_MainDiv .WindowTitlePic
+{
+	width:16px;
+	height:16px;
+	margin-right:3px;
+}
+
+/* ######## 标题文字 ######## */
+.WindowTitleText
+{
+	float:left;
+}
+
+.Window_MainDiv .WindowTitleText
+{
+	margin-top:1px;
+}
+
+
+/* -------------窗体内容行------------- */
+.Window_MainDiv .WindowMidTr td
+{
+	margin:0px;
+
+}
+
+
+/* ######## 左边 ######## */
+.Window_MainDiv .WindowMidTdLeft
+{
+	font-size:0px;
+	background: transparent url(../../ui-control/WindowImg/left-right.png) repeat-y 0 0;
+}
+
+/* ######## 右边 ######## */
+.Window_MainDiv .WindowMidTdRight
+{
+	font-size:0px;
+	background: transparent url(../../ui-control/WindowImg/left-right.png) repeat-y right 0;
+}
+
+/* ######## 中间 ######## */
+.WindowMidTdCenter
+{
+	padding:0;
+    margin:0;
+}
+
+.Window_MainDiv .WindowMidTdCenter
+{
+	border:1px solid #99bbe8;
+    font-size:0px;
+    background:#dfe8f6;
+}
+
+.Window_MainDiv .WindowPlain .WindowMidTdCenter {
+    background: #CAD9EC;
+    border-right:1px solid #DFE8F6;
+    border-bottom:1px solid #DFE8F6;
+    border-top:1px solid #a3bae9;
+    border-left:1px solid #a3bae9;
+}
+
+.Window_MainDiv .WindowDialog .WindowMidTdCenter {
+    background: #CAD9EC;
+    border:0px solid #99bbe8;
+}
+
+/* ######## 内容容器 ######## */
+.WindowBody
+{
+	margin: 0px;
+	width: 100%;
+	overflow: auto;
+	word-wrap: break-word;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-shadow-color: #999;
+	scrollbar-3dlight-color: #999;
+	scrollbar-track-color: #E0F4FF;
+	scrollbar-darkshadow-color: #ffffff;
+	scrollbar-base-color: #CAD9EC;
+}
+
+
+.Window_MainDiv .WindowBody
+{
+	font: normal 11px tahoma,arial,helvetica,sans-serif;
+}
+
+.Window_MainDiv .WindowPlain .WindowBody {
+    border-left:1px solid #DFE8F6;
+    border-top:1px solid #DFE8F6;
+    border-bottom:1px solid #a3bae9;
+    border-right:1px solid #a3bae9;
+    background:transparent !important;
+}
+
+.Window_MainDiv .WindowNoScroll .WindowBody 
+{
+	overflow:hidden;
+}
+
+/* ######## 消息内容 ######## */
+.Window_MainDiv .WindowDialogDiv
+{
+	background-color:Transparent;
+	border:0px solid #a3bae9;
+	padding:10px;
+}
+
+.Window_MainDiv .WindowDialogPic
+{
+	width:32px;
+	height:32px;
+	float:left;
+	border:0px solid #a3bae9;
+	margin:0px;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+
+.Window_MainDiv .WindowDialogText
+{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.Window_MainDiv .WindowDialogPrompt
+{
+	width:95%;
+}
+
+.Window_MainDiv .WindowDialogMultilinePrompt
+{
+	width:95%;
+	font:normal 12px tahoma,arial,helvetica,sans-serif;
+}
+
+
+/* -------------下面行------------- */
+.Window_MainDiv .WindowBtmTr td
+{
+	margin:0px;
+}
+
+
+/* ######## 左边 ######## */
+.Window_MainDiv .WindowBtmTdLeft
+{
+	font-size:6px;
+	background: transparent url(../../ui-control/WindowImg/left-corners.png) no-repeat 0 bottom;
+}
+
+/* ######## 右边 ######## */
+.Window_MainDiv .WindowBtmTdRight
+{
+	font-size:6px;
+	background: transparent url(../../ui-control/WindowImg/right-corners.png)  no-repeat right bottom;
+}
+
+/* ######## 中间 ######## */
+.WindowBtmTdCenter
+{
+	overflow:hidden;
+	font-size:6px;
+}
+
+.Window_MainDiv .WindowBtmTdCenter
+{
+	background: transparent url(../../ui-control/WindowImg/top-bottom.png) repeat-x 0 bottom;
+}
+
+.Window_MainDiv .WindowWithStatusBar .WindowBtmTdCenter
+{
+	padding:3px 0 4px 0;
+	color:#15428b;
+	font: 11px tahoma,arial,verdana,sans-serif;
+}
+
+.Window_MainDiv .WindowDialog .WindowBtmTdCenter
+{
+	text-align:center;
+	padding-top:5px;
+	height:30px;
+}
+
+/* 目的是实现居中 */
+.Window_MainDiv .WindowDialog .DialogBtnDiv
+{
+	margin:0 auto;
+	overflow:visible;
+}

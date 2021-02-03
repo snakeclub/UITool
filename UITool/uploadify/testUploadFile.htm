@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="uploadify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="swfobject.js"></script>
+    <script type="text/javascript" src="jquery.uploadify.v2.1.4.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#file_upload').uploadify({
+        'uploader'  : 'uploadify.swf', //指定上传控件的主体文件，默认‘uploader.swf’
+        'script'    : 'UploadHandler.ashx', //指定服务器端上传处理文件 
+        'cancelImg' : 'cancel.png', //指定取消上传的图片，默认‘cancel.png’
+        'folder'    : '/uploads', //要上传到的服务器路径，默认‘/’
+        'auto'      : false,  //选定文件后是否自动上传，默认false
+        'simUploadLimit' : 3
+      });
+    });
+    </script>
+</head>
+<body>
+<input id="file_upload" name="file_upload" type="file" />
+<a href="javascript:$('#file_upload').uploadifyUpload();">上传文件</a>
+<a href="javascript:$('#file_upload').uploadifyClearQueue();">取消上传队列</a>
+</body>
+</html>

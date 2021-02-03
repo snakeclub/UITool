@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../ui-core/DragControl.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+           $("#Div1").bind("mousedown",function(){$(this).Drag(
+                {
+                //直接移动对象还是移动透明复制对象，默认为false-直接移动对象
+                moveCopy : false,
+                
+                //透明复制对象的透明度
+                opacity : 50,
+                
+                //是否在页面上自由移动，true-将对象的父节点修改为document.body，并将position设置为absolute，并进行拖动；false-在对象的原父节点层中移动对象，默认为false
+                overPage : false,
+                
+                //是否自动停止拖动，若为true则在mouseup时停止拖动，若为false则需执行$.EndDrag()来结束拖动
+                autoEndDrag : true,
+                
+                //拖拽开始前执行的函数，传入的参数为：JQuery_UITool_DragControl；函数必须返回true/fasle，若返回false则不执行拖动操作
+                beginDragFun : function(){$("#beginDragFun").get(0).innerHTML = "beginDragFun("+Date().toString()+"):Obj ID is:"+arguments[0].List[0].Obj.attr("id");return true;},
+                
+                //拖拽过程中鼠标移动时执行的函数，传入参数为JQuery_UITool_DragControl、event；函数必须返回true/fasle，若返回false则不执行对象位置的变化动作
+                mouseMoveFun: function(){$("#mouseMoveFun").get(0).innerHTML = "mouseMoveFun("+Date().toString()+"):Obj ID is:"+arguments[0].List[0].Obj.attr("id")+"  eventXY:"+arguments[1].clientX + ":" + arguments[1].clientY;return true;},
+                
+                //托拽过程中鼠标在匹配对象上移动时执行的函数,传入的参数为：JQuery_UITool_DragControl、移动上的对象、event
+                mouseOverFun : function(){$("#mouseOverFun").get(0).innerHTML = "mouseOverFun("+Date().toString()+"):Obj ID is:"+arguments[0].List[0].Obj.attr("id") + ";  dragOnObj ID:" + (arguments[1].length>0?(arguments[1].length==1?arguments[1].attr("id"):"count="+arguments[1].length):"no dragon obj;") + ";    eventXY:"+arguments[2].clientX + ":" + arguments[2].clientY;},
+                
+                //托拽过程中鼠标移出匹配对象时执行的函数,传入的参数为：JQuery_UITool_DragControl、移出的对象、event
+                mouseOutFun : function(){$("#mouseOutFun").get(0).innerHTML = "mouseOutFun("+Date().toString()+"):Obj ID is:"+arguments[0].List[0].Obj.attr("id") + ";  dragOnObj ID:" + (arguments[1].length>0?(arguments[1].length==1?arguments[1].attr("id"):"count="+arguments[1].length):"no dragon obj;") + ";    eventXY:"+arguments[2].clientX + ":" + arguments[2].clientY;},
+                
+                //DragControl_EndDrag()时执行的确认函数，可在函数中增加确认判断条件来确定拖动是否最终生效。传入的参数为拖动对象的清单、拖动Copy对象的清单、结束拖动时鼠标位置上匹配到的dragOn对象。函数必须返回true/fasle，若返回false则代表拖动无效，将对象置回原位置
+                confirmFun : function(){$("#confirmFun").get(0).innerHTML = "confirmFun("+Date().toString()+"):Obj ID is:"+arguments[0].List[0].Obj.attr("id") + ";  dragOnObj ID:" + (arguments[1].length>0?(arguments[1].length==1?arguments[1].attr("id"):"count="+arguments[1].length):"no dragon obj;") + ";";return true;},
+                
+                //拖动结束后执行的函数，传入的参数为：是否生效、拖动对象的清单，结束拖动时鼠标位置上匹配到的dragOn对象
+                endDragFun : function(){$("#endDragFun").get(0).innerHTML = "endDragFun("+Date().toString()+"):是否生效"+arguments[0]+"     ;Obj ID is:"+arguments[1].List[0].Obj.attr("id") + ";  dragOnObj ID:" + (arguments[2].length>0?(arguments[2].length==1?arguments[2].attr("id"):"count="+arguments[2].length):"no dragon obj;") + ";";},
+                
+                //鼠标移动上或结束拖动时判断鼠标位置上匹配到对象的参数，参见ToolFunction中的getObjByPos函数
+                dragOnObjPara : {
+                    //搜索的根节点（最顶层节点）
+                    rootObj : $(document.body),
+                    
+                    //搜索结果是否包含根节点
+                    withRoot : false,
+                    
+                    //搜索的jquery条件
+                    jqueryStr : "div[dragon='true']",
+                    
+                    //搜索方向,root - 根节点开始往下搜索，child - 子节点往根节点方向，该参数只有在justFirst为true时才有效
+                    searchPath : "child",
+                    
+                    //是否只返回第1个匹配节点
+                    justFirst : true
+                }
+                }
+            );});
+        }); 
+    </script>
+</head>
+<body>
+    <Div id="Div1" style="width:200px; height:200px; background-color:Red; overflow:hidden; position:absolute; left:0px; top:0px;">Drag Me</Div>
+    <p id="beginDragFun">1</p>
+    <p id="mouseMoveFun">2</p>
+    <p id="mouseOverFun">3</p>
+    <p id="mouseOutFun">4</p>
+    <p id="confirmFun">5</p>
+    <p id="endDragFun">6</p>
+    <p>7</p>
+    <Div id="Div2" dragon="true" style="width:400px; height:400px; background-color:Green; overflow:hidden; position:static; left:0px; top:0px;">Drag on Obj:Div2
+    <Div id="Div3" dragon="true" style="width:200px; height:200px; background-color:Yellow; overflow:hidden; position:static; left:0px; top:0px;">Drag on Obj:Div3</Div>
+    </Div>
+   
+    
+</body>
+</html>

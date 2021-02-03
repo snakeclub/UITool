@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="../../ui-control/ToolButtonCss/ToolButton.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-control/ToolButton.js"></script>
+    
+    <script type="text/javascript">
+    function AddButton(){
+        $("#Div").empty();
+        
+        $("#Div").CreateToolButton("demoButton","paraString",
+            $.ToolButtonGetStyle($("#sle_Type").get(0).options[$("#sle_Type").get(0).selectedIndex].value,$("#sle_Name").get(0).options[$("#sle_Name").get(0).selectedIndex].value),
+            {
+                //按下鼠标时执行的函数，传入的参数依次为：按钮本身对象、按钮参数、event
+                OnClick : function(obj,para,e){$("#OnClickShow").get(0).innerHTML="OnClick("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   para:"+para;},
+                
+                //鼠标移上去时执行的函数，传入的参数依次为：按钮本身对象、按钮参数、event
+                OnMouseOver : function(obj,para,e){$("#OnMouseOverShow").get(0).innerHTML="OnMouseOver("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   para:"+para;},
+                
+                //鼠标移出去时执行的函数，传入的参数依次为：按钮本身对象、按钮参数、event
+                OnMouseOut : function(obj,para,e){$("#OnMouseOutShow").get(0).innerHTML="OnMouseOut("+Date().toString()+"):obj ID is:"+obj.attr("id") + "   para:"+para;}
+            }
+        );
+        
+        $("#demoButton").css("float","none");
+    };
+    
+    </script>
+    
+    <style type="text/css">
+
+        #sle_Type
+        {
+            width: 70px;
+        }
+        #sle_Type0
+        {
+            width: 70px;
+        }
+        </style>
+    
+</head>
+<body>
+    <p id='OnClickShow'>&nbsp;</p>
+    <p id='OnMouseOverShow'>&nbsp;</p>
+    <p id='OnMouseOutShow'>&nbsp;</p>
+    
+    <p>按钮类型<select id="sle_Type" name="D1">
+                    <option value="" selected="selected">默认空</option>
+                    <option value="TRANS" >透明</option>
+                </select>&nbsp;&nbsp; 按钮图标<select id="sle_Name" name="D2">
+                    <option value="close" selected="selected">close-关闭</option>
+                    <option value="minimize">minimize-最小化</option>
+                    <option value="maximize">maximize-最大化</option>
+                    <option value="restore">restore-重置</option>
+                    <option value="arrowup">arrowup-上箭头</option>
+                    <option value="arrowdown">arrowdown-下箭头</option>
+                    <option value="gear">gear-齿轮</option>
+                    <option value="arrowleft">arrowleft-左箭头</option>
+                    <option value="arrowright">arrowright-右箭头</option>
+                    <option value="pin">pin-固定图钉</option>
+                    <option value="unpin">unpin-不固定图钉</option>
+                    <option value="right">right-双箭头向右</option>
+                    <option value="left">left-双箭头向左</option>
+                    <option value="up">up-双箭头向上</option>
+                    <option value="down">down-双箭头向下</option>
+                    <option value="refresh">refresh-刷新</option>
+                    <option value="minus">minus-减号</option>
+                    <option value="plus">plus-加号</option> 
+                    <option value="search">search-查询（TRANS无）</option>
+                    <option value="save">save-保存（TRANS无）</option>
+                    <option value="help">help-帮助（TRANS无）</option>
+                    <option value="print">print-打印（TRANS无）</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input id="Button1" type="button" value="创建按钮" onclick="AddButton();" /></p>
+    
+    <p id='Div'></p>
+
+<table>
+    <tr>
+        <td><DIV class="x-tool x-tool-close" id=ext-gen59 style="DISPLAY: block" onmouseover="$(this).attr('class','x-tool x-tool-close-over');" onmouseout="$(this).attr('class','x-tool x-tool-close');">&nbsp;</DIV></td>
+    </tr>
+</table>
+</body>
+</html>

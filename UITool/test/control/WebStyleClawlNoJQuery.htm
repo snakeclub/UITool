@@ -1,0 +1,565 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="../../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../ui-control/PopMenu.js"></script>
+    <script type="text/javascript" src="../../ui-core/ToolFunction.js"></script>
+    <script type="text/javascript" src="../../ui-core/HotKeyControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/WebStyleClawlNoJQuery.js"></script>
+    
+    <script type="text/javascript" src="../../ui-core/MouseSpecialControl.js"></script>
+    <script type="text/javascript" src="../../ui-core/TimerControl.js"></script>
+    
+    <link href="../../ui-control/PopMenuCss/PopMenu.css" type="text/css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+        //菜单的默认参数
+        $.PopMenu.defaults.BeforeShow = function(menu){$("#MenuBeforeShow").get(0).innerHTML="MenuBeforeShow("+Date().toString()+"):menu ID is:"+menu.attr("id");};
+        $.PopMenu.defaults.AfterShow = function(menu){$("#MenuAfterShow").get(0).innerHTML="MenuAfterShow("+Date().toString()+"):menu ID is:"+menu.attr("id");};
+        $.PopMenu.defaults.BeforeHide = function(menu){$("#MenuBeforeHide").get(0).innerHTML="MenuBeforeHide("+Date().toString()+"):menu ID is:"+menu.attr("id");};
+        $.PopMenu.defaults.AfterHide = function(menu){$("#MenuAfterHide").get(0).innerHTML="MenuAfterHide("+Date().toString()+"):menu ID is:"+menu.attr("id");};
+        
+        //标题默认参数
+        $.PopMenuTitlePara.defaults.TitlePicTyle = "img";
+        $.PopMenuTitlePara.defaults.ImgOrHtml = "PopMenu_TestIcon_login.gif";
+        
+        //选项的默认参数
+        $.PopMenuItemPara.defaults.MouseOver = function(menu,li,ent){$("#over").get(0).innerHTML="MouseOver("+Date().toString()+"):menu ID is:"+menu.attr("id") + "  Item ID:" + li.attr("id");};
+        $.PopMenuItemPara.defaults.MouseOut = function(menu,li,ent){$("#out").get(0).innerHTML="MouseOut("+Date().toString()+"):menu ID is:"+menu.attr("id") + "  Item ID:" + li.attr("id");};
+        $.PopMenuItemPara.defaults.Click = function(menu,li,ent){$("#click").get(0).innerHTML="Click("+Date().toString()+"):menu ID is:"+menu.attr("id") + "  Item ID:" + li.attr("id");return true;};
+        $.PopMenuItemPara.defaults.NormalImg.ItemPicTyle = "img";
+        $.PopMenuItemPara.defaults.NormalImg.ImgOrHtml = "PopMenu_TestIcon_letter.gif";
+        $.PopMenuItemPara.defaults.OverImg.ItemPicTyle = "img";
+        $.PopMenuItemPara.defaults.OverImg.ImgOrHtml = "PopMenu_TestIcon_letter.gif";
+        $.PopMenuItemPara.defaults.DisImg.ItemPicTyle = "img";
+        $.PopMenuItemPara.defaults.DisImg.ImgOrHtml = "PopMenu_TestIcon_letter.gif";
+        
+        
+        function CreateMenu(){
+            //创建根菜单
+            $.CreatePopMenu("root",
+                {
+                    //Css样式前缀，可通过改写PopMenu.css来创建多套样式（将PopMenu_替换为自定义的样式类）
+                    CssBefore : "PopMenu",
+                    //菜单的最小宽度，FixWidth为true时，该参数为固定宽度
+                    Width : 200,
+                    //是否显示选项图片
+                    ShowItemPic : true,
+                    //是否显示提示
+                    ShowTips : true,
+                    //菜单的默认z-index
+                    zindex : 999
+                }
+            );
+            
+            $("#root").AddPopMenuTitle("rootTitle1",
+                {
+                    //标题文字
+                    Text : "根标题1",
+                    //提示文字
+                    Tips : "根标题1提示"
+                }
+            );
+            
+            $("#root").AddPopMenuItem("rootItem1",
+                {
+                    //选项文字
+                    Text:"根选项1-带图片",
+                    //提示文字
+                    Tips : "根选项1-带图片提示",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "R"
+                }
+            );
+            
+            $("#root").AddPopMenuItem("rootItem2",
+                {
+                    //选项文字
+                    Text:"根选项2-不带图片",
+                    //提示文字
+                    Tips : "根选项2-不带图片提示",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "K",
+                    
+                    NormalImg : {
+                        ItemPicTyle : "none"
+                    },
+                    
+                    OverImg : {
+                        ItemPicTyle : "none"
+                    },
+                    
+                    DisImg : {
+                        ItemPicTyle : "none"
+                    }
+                }
+            );
+            
+            $("#root").AddPopMenuSplit("rootSpilt1");
+            
+            $("#root").AddPopMenuItem("rootItem3",
+                {
+                    //选项文字
+                    Text:"根选项3-子菜单",
+                    //提示文字
+                    Tips : "根选项3-子菜单提示",
+                    //是否有子菜单
+                    HasSubMenu : true,
+                    //子菜单id
+                    SubMenuId : "subMenu1",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "S",
+                    
+                    Click : null,
+                    
+                    OverImg : {
+                        ItemPicTyle : "none"
+                    }
+                }
+            );
+            
+            $("#root").AddPopMenuItem("rootItem4",
+                {
+                    //选项文字
+                    Text:"根选项4-屏蔽",
+                    //提示文字
+                    Tips : "根选项4-屏蔽提示",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "D",
+                    //是否被屏蔽
+                    Disable : true,
+                    //菜单是否开启新窗口，如果是，则在菜单项文字结尾自动加上...
+                    OpenWin : true
+                }
+            );
+            
+            $("#root").AddPopMenuItem("rootItem5",
+                {
+                    //选项文字
+                    Text:"根选项5-隐藏",
+                    //提示文字
+                    Tips : "根选项5-隐藏提示",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "X",
+                    //是否显示
+                    Visibility : false
+                }
+            );
+            
+            
+            //创建子菜单
+            $.CreatePopMenu("subMenu1",
+                {
+                    //Css样式前缀，可通过改写PopMenu.css来创建多套样式（将PopMenu_替换为自定义的样式类）
+                    CssBefore : "PopMenu",
+                    //菜单的最小宽度，FixWidth为true时，该参数为固定宽度
+                    Width : 150,
+                    //是否显示选项图片
+                    ShowItemPic : false,
+                    //是否显示提示
+                    ShowTips : false,
+                    //菜单的默认z-index
+                    zindex : 1000
+                }
+             );
+             
+             $("#subMenu1").attr("parentMenuId","root");
+             
+             $("#subMenu1").AddPopMenuItem("sub1Item1",
+                {
+                    //选项文字
+                    Text:"子菜单1选项1",
+                    //提示文字
+                    Tips : "子菜单1选项1",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "R"
+                }
+            );
+            
+            $("#subMenu1").AddPopMenuSplit("sub1Spilt1");
+            
+            $("#subMenu1").AddPopMenuItem("sub1Item2",
+                {
+                    //选项文字
+                    Text:"子菜单1选项2",
+                    //提示文字
+                    Tips : "子菜单1选项2",
+                    //是否有子菜单
+                    HasSubMenu : true,
+                    //子菜单id
+                    SubMenuId : "subMenu2",
+                    
+                    Click : null,
+                    
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "C"
+                }
+            );
+            
+            $("#subMenu1").AddPopMenuTitle("sub1Title1",
+                {
+                    //标题文字
+                    Text : "子菜单1标题1",
+                    //提示文字
+                    Tips : "子菜单1标题1提示"
+                }
+            );
+            
+            //创建子菜单
+            $.CreatePopMenu("subMenu2",
+                {
+                    //Css样式前缀，可通过改写PopMenu.css来创建多套样式（将PopMenu_替换为自定义的样式类）
+                    CssBefore : "PopMenu",
+                    //菜单的最小宽度
+                    Width : 180,
+                    //菜单的默认z-index
+                    zindex : 1001
+                }
+             );
+             
+             $("#subMenu2").attr("parentMenuId","subMenu1");
+             
+             $("#subMenu2").AddPopMenuItem("sub2Item1",
+                {
+                    //选项文字
+                    Text:"子菜单2选项1",
+                    //提示文字
+                    Tips : "子菜单2选项1",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "R"
+                }
+            );
+            
+            $("#subMenu2").AddPopMenuItem("sub2Item2",
+                {
+                    //选项文字
+                    Text:"子菜单2选项2",
+                    //提示文字
+                    Tips : "子菜单2选项2",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "C"
+                }
+            );
+            
+            $("#subMenu2").AddPopMenuSplit("sub2Spilt1");
+            
+            $("#subMenu2").AddPopMenuItem("sub2Item3",
+                {
+                    //选项文字
+                    Text:"子菜单2选项3",
+                    //提示文字
+                    Tips : "子菜单2选项3",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "D"
+                }
+            );
+            
+        }
+        
+        function BindMouseEvent(){
+            $(document).BindMouseClick("ShowMenu",
+                function(bindobj,scrobj,ent){$("#root").PopMenuHide(); //先隐藏自身
+                    $("#root").PopMenuShow(ent.clientX+$(window).scrollLeft(),ent.clientY+$(window).scrollTop());},
+                {
+                    buttonType : "R",
+                    messageBreak : true,
+                    jqueryStr : ""
+                }
+            );
+        }
+        
+        function RemoveRootSubMenu(obj){
+            if(obj.value == "清除root的子菜单subMenu1"){
+                $("#root").PopMenuGetItem("rootItem3").PopMenuSub(false);
+                obj.value = "绑定root的子菜单subMenu1";
+            }
+            else{
+                //重新绑定子菜单
+                $("#root").PopMenuGetItem("rootItem3").PopMenuSub(true,"subMenu1");
+                obj.value = "清除root的子菜单subMenu1";
+            }
+        }
+        
+        function ChangeRootMenuPara(obj){
+            if(obj.value == "修改root的菜单参数"){
+                $("#root").PopMenuChangePara({
+                    //Css样式前缀，可通过改写PopMenu.css来创建多套样式（将PopMenu_替换为自定义的样式类）
+                    CssBefore : "PopMenu",
+                    //菜单的最小宽度，FixWidth为true时，该参数为固定宽度
+                    Width : 300,
+                    //是否显示选项图片
+                    ShowItemPic : false,
+                    //是否显示提示
+                    ShowTips : false,
+                    //菜单的默认z-index
+                    zindex : 50
+                });
+                obj.value = "恢复root的菜单参数";
+            }
+            else{
+                //重新绑定子菜单
+                $("#root").PopMenuChangePara({
+                    //Css样式前缀，可通过改写PopMenu.css来创建多套样式（将PopMenu_替换为自定义的样式类）
+                    CssBefore : "PopMenu",
+                    //菜单的最小宽度，FixWidth为true时，该参数为固定宽度
+                    Width : 150,
+                    //是否显示选项图片
+                    ShowItemPic : true,
+                    //是否显示提示
+                    ShowTips : true,
+                    //菜单的默认z-index
+                    zindex : 999
+                });
+                obj.value = "修改root的菜单参数";
+            }
+        }
+        
+        function ChangeRootItem1Style(obj){
+            if(obj.value == "修改root菜单1的选项样式"){
+                $("#root").PopMenuGetItem("rootItem1").PopMenuItemChangePara({
+                    //选项文字
+                    Text:"根选项1-带图片-修改",
+                    //提示文字
+                    Tips : "根选项1-带图片提示-修改",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "X",
+                    //
+                    NormalImg : {
+                        ItemPicTyle : "none"
+                    }
+                });
+                obj.value = "恢复root菜单1的选项样式";
+            }
+            else{
+                //重新绑定子菜单
+                 $("#root").PopMenuGetItem("rootItem1").PopMenuItemChangePara({
+                    //选项文字
+                    Text:"根选项1-带图片",
+                    //提示文字
+                    Tips : "根选项1-带图片提示",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "R",
+                     NormalImg : {
+                        ItemPicTyle : "img"
+                    }
+                });
+                obj.value = "修改root菜单1的选项样式";
+            }
+        }
+        
+        function ChangeRootTitlePic(obj){
+            if(obj.value == "修改root菜单标题图片"){
+                $("#root").PopMenuGetItem(0).PopMenuTitleChangePara({
+                    //标题文字
+                    Text : "根标题1-修改",
+                    //提示文字
+                    Tips : "根标题1提示-修改",
+                    
+                    ImgOrHtml : "PopMenu_TestIcon_letter.gif"
+                    
+                });
+                obj.value = "恢复root菜单标题图片";
+            }
+            else{
+                $("#root").PopMenuGetItem(0).PopMenuTitleChangePara({
+                    //标题文字
+                    Text : "根标题1",
+                    //提示文字
+                    Tips : "根标题1提示",
+                    
+                    ImgOrHtml : "PopMenu_TestIcon_login.gif"
+                    
+                });
+                obj.value = "修改root菜单标题图片";
+            }
+        }
+        
+        function ChangeRootTitleHide(obj){
+            if(obj.value == "隐藏root菜单标题"){
+                $("#root").PopMenuGetItem(0).PopMenuItemVisible(false);
+                obj.value = "显示root菜单标题";
+            }
+            else{
+                $("#root").PopMenuGetItem(0).PopMenuItemVisible(true);
+                obj.value = "隐藏root菜单标题";
+            }
+        }
+        
+        function ChangeRootItemHide(obj){
+            if(obj.value == "隐藏root菜单第1个选项"){
+                $("#root").PopMenuGetItem(1).PopMenuItemVisible(false);
+                obj.value = "显示root菜单第1个选项";
+            }
+            else{
+                $("#root").PopMenuGetItem(1).PopMenuItemVisible(true);
+                obj.value = "隐藏root菜单第1个选项";
+            }
+        }
+        
+        function ChangeRootSplitHide(obj){
+            if(obj.value == "隐藏root菜单分隔项"){
+                $("#root").PopMenuGetItem("rootSpilt1").PopMenuItemVisible(false);
+                obj.value = "显示root菜单分隔项";
+            }
+            else{
+                $("#root").PopMenuGetItem("rootSpilt1").PopMenuItemVisible(true);
+                obj.value = "隐藏root菜单分隔项";
+            }
+        }
+        
+        function ChangeRootItemEnable(obj){
+            if(obj.value == "屏蔽root菜单第1个选项"){
+                $("#root").PopMenuGetItem(1).PopMenuItemEnable(false);
+                obj.value = "启用root菜单第1个选项";
+            }
+            else{
+                $("#root").PopMenuGetItem(1).PopMenuItemEnable(true);
+                obj.value = "屏蔽root菜单第1个选项";
+            }
+        }
+        
+        function SwitchSubMenu(obj){
+            if(obj.value == "切换选项3的子菜单到选项2"){
+                $("#root").PopMenuGetItem("rootItem2").PopMenuSub(true,"subMenu1");
+                obj.value = "切换选项2的子菜单到选项3";
+            }
+            else{
+                $("#root").PopMenuGetItem("rootItem3").PopMenuSub(true,"subMenu1");
+                obj.value = "切换选项3的子菜单到选项2";
+            }
+        }
+        
+        function RemoveSubMenu(obj){
+            if(obj.value == "移除选项3的子菜单"){
+                $("#root").PopMenuGetItem("rootItem3").PopMenuSub(false);
+                obj.value = "恢复选项3的子菜单";
+            }
+            else{
+                $("#root").PopMenuGetItem("rootItem3").PopMenuSub(true,"subMenu1");
+                obj.value = "移除选项3的子菜单";
+            }
+        }
+        
+        function DeleteItem3(){
+            $("#root").PopMenuGetItem("rootItem3").PopMenuItemDel(false);
+            $("#root").PopMenuGetItem("rootItem2").PopMenuSub(true,"subMenu1");
+        }
+        
+        function DeleteItem2(){
+            $("#root").PopMenuGetItem("rootItem2").PopMenuItemDel(true);
+            $("#root").PopMenuGetItem("rootItem1").PopMenuSub(true,"subMenu1");
+        }
+        
+        function AddTitle(obj){
+            $("#root").AddPopMenuTitle("rootTitleX",
+                {
+                    //标题文字
+                    Text : "新添加的标题",
+                    //提示文字
+                    Tips : "新添加的标题提示"
+                },
+                1
+            );
+        }
+        
+        function AddSplit(){
+            $("#root").AddPopMenuSplit("rootSpiltX",1);
+        }
+        
+        function AddItem(){
+            $("#root").AddPopMenuItem("rootItemX",
+                {
+                    //选项文字
+                    Text:"新添加选项",
+                    //提示文字
+                    Tips : "新添加选项提示",
+                    //菜单快捷键，空代表无快捷键
+                    HotKey : "X"
+                },
+                1
+            );
+        }
+        
+    </script>
+
+</head>
+<body onload="WebStyleClawlInit();CreateMenu();BindMouseEvent();">
+<p>菜单对象:#root</p>
+<p>第1个标题对象:#rootTitle1</p>
+<p>测试对象:#testobj</p>
+<p>
+    <input id="Button1" type="button" value="创建菜单" onclick="CreateMenu();" />
+    <input id="Button2" type="button" value="绑定出现菜单的鼠标事件" onclick="BindMouseEvent();" />
+    </p>
+<p>
+    <input id="Button4" type="button" value="修改root的菜单参数" onclick="ChangeRootMenuPara(this);" />
+    <input id="Button5" type="button" value="修改root菜单1的选项样式" onclick="ChangeRootItem1Style(this);" />
+    <input id="Button6" type="button" value="修改root菜单标题图片" onclick="ChangeRootTitlePic(this);" />
+    </p><p>
+    <input id="Button7" type="button" value="隐藏root菜单标题" onclick="ChangeRootTitleHide(this);" />
+    <input id="Button8" type="button" value="隐藏root菜单第1个选项" onclick="ChangeRootItemHide(this);" />
+    <input id="Button10" type="button" value="隐藏root菜单分隔项" onclick="ChangeRootSplitHide(this);" />
+    <input id="Button9" type="button" value="屏蔽root菜单第1个选项" onclick="ChangeRootItemEnable(this);" />
+    </P><p>
+    <input id="Button11" type="button" value="切换选项3的子菜单到选项2" onclick="SwitchSubMenu(this);" />
+    <input id="Button12" type="button" value="移除选项3的子菜单" onclick="RemoveSubMenu(this);" />
+</p>
+<p>
+    <input id="Button3" type="button" value="删除选项3－绑定子菜单到选项2" onclick="DeleteItem3(this);" />
+    <input id="Button13" type="button" value="删除选项2－同时删除子菜单" onclick="DeleteItem2(this);" />
+</p>
+<p>
+    <input id="Button14" type="button" value="在第2个位置添加标题" onclick="AddTitle(this);" />
+    <input id="Button15" type="button" value="在第2个位置添加分隔栏" onclick="AddSplit(this);" />
+    <input id="Button16" type="button" value="在第2个位置添加选项" onclick="AddItem(this);" />
+</p>
+<p id='MenuBeforeShow'></p>
+<p id='MenuAfterShow'></p>
+<p id='MenuBeforeHide'></p>
+<p id='MenuAfterHide'></p>
+<p id='over'></p>    
+<p id='out'></p>    
+<p id='click'></p>    
+<p id="testobj" class="PopMenu_LITitle PopMenu_LIItem" style="height:100px;"></p>
+    
+<div id="WebStyleClawl_SetWin_Demo" style="padding: 5px; border: 2px solid #3399FF; background-color: #FFFFFF; position: fixed; left:10px; top:10px; z-index: 9999; width: 300px; height: 130px; overflow: hidden; color: #3399FF;  display:none;">
+    <table width="100%" border="0">
+        <tr>
+            <td colspan="2" style="padding:10px; font-size:20px;" align=center>设置要抓取的对象(置空为取消)</td>
+        </tr>
+        <tr>
+            <td width="80px" align=right>JQuery串</td>
+            <td><input type="text" style="width:90%;" /></td>
+        </tr>
+        <tr>  
+                    <td width='80px' align='right'>&nbsp;</td>  
+                    <td><input type='checkbox' id='WebStyleClawl_SetWin_WithChildren_demo' />包含子节点</td>  
+                </tr>  
+         <tr>
+            <td colspan="2" style="padding:20px; font-size:20px;" align=center>
+                <input type="button" value="设置" onclick="alert($('#WebStyleClawl_SetWin_WithChildren_demo').get(0).checked);" />
+            </td>
+        </tr>
+    </table>
+</div> 
+
+<div id="WebStyleClawl_ShowWin_Demo" style="padding: 5px; border: 2px solid #3399FF; background-color: #FFFFFF; position: fixed; left:10px; top:10px; z-index: 9999; width: 400px; height: 300px; overflow: hidden; color: #3399FF; display:none;">
+    <table width="100%" border="0">
+        <tr>
+            <td style="padding:10px; font-size:20px;" align=center>抓取到的信息</td>
+        </tr>
+        <tr>
+            <td><textarea id="TextArea1" cols="20" 
+                    name="S1" rows="2" style="width:100%; height:200px;"></textarea></td>
+        </tr>
+         <tr>
+            <td  style="padding:15px; font-size:20px;" align=center>
+                <input type="button" value="关闭" />
+            </td>
+        </tr>
+    </table>
+</div>       
+    
+</body>
+</html>
